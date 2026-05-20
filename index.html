@@ -160,9 +160,25 @@
         .results-content strong { color: var(--mq-crimson); }
         .results-content em { font-style: italic; }
         .results-content ul, .results-content ol { margin: 0.5rem 0 0.75rem 1.5rem; }
-        .results-content li { margin-bottom: 0.25rem; }
+        .results-content li { margin-bottom: 0.4rem; }
         .results-content code { background: var(--mq-sand); padding: 0.125rem 0.375rem; border-radius: 3px; font-size: 0.85em; }
         .results-content hr { border: none; border-top: 1px solid var(--mq-grey-light); margin: 1.25rem 0; }
+        .results-warning {
+            padding: 0.75rem 1rem; margin: 0 1.5rem 1rem; border-radius: var(--border-radius);
+            background: #fff3e0; border: 1px solid #ffe0b2; color: #e65100; font-size: 0.85rem;
+        }
+        .input-summary {
+            padding: 1.25rem 1.5rem; border-top: 1px solid var(--mq-grey-light);
+            background: var(--mq-sand);
+        }
+        .input-summary h4 { font-size: 0.85rem; font-weight: 600; color: var(--mq-grey-mid); margin-bottom: 0.75rem; text-transform: uppercase; letter-spacing: 0.5px; }
+        .input-summary-grid { display: grid; grid-template-columns: auto 1fr; gap: 0.25rem 1rem; font-size: 0.85rem; }
+        .input-summary-grid dt { font-weight: 500; color: var(--mq-grey-dark); }
+        .input-summary-grid dd { color: var(--mq-grey-mid); }
+        .input-summary-los { margin-top: 0.75rem; padding-top: 0.75rem; border-top: 1px solid var(--mq-grey-light); }
+        .input-summary-los h5 { font-size: 0.8rem; font-weight: 500; color: var(--mq-grey-dark); margin-bottom: 0.375rem; }
+        .input-summary-los ol { margin-left: 1.25rem; font-size: 0.8rem; color: var(--mq-grey-mid); }
+        .input-summary-los li { margin-bottom: 0.2rem; }
         .results-footer { padding: 1rem 1.5rem; background: var(--mq-sand); border-top: 1px solid var(--mq-grey-light); }
         .results-disclaimer { font-size: 0.8rem; color: var(--mq-grey-mid); text-align: center; }
         .results-disclaimer a { color: var(--mq-crimson); text-decoration: none; }
@@ -186,6 +202,7 @@
             .main-content { padding: 1.5rem 1rem; }
             .mode-toggle { width: 100%; }
             .mode-btn { flex: 1; justify-content: center; }
+            .input-summary-grid { grid-template-columns: 1fr; }
         }
         @media (max-width: 600px) {
             .form-actions { flex-direction: column; }
@@ -382,7 +399,9 @@
                     <button class="btn-icon-only" id="download-btn" title="Download">&#11015;</button>
                 </div>
             </div>
+            <div id="results-warning" class="results-warning" style="display:none;"></div>
             <div class="results-content" id="results-content"></div>
+            <div class="input-summary" id="input-summary" style="display:none;"></div>
             <div class="results-footer">
                 <p class="results-disclaimer">Generated outcomes should be reviewed by the course team and submitted through MQCMS for faculty approval. Visit the <a href="https://lt.arts.mq.edu.au/curriculum-design/constructive-alignment/learning-outcomes/" target="_blank">FoA L&amp;T Hub</a> for further guidance.</p>
             </div>
@@ -500,8 +519,21 @@ Present each LO numbered with opening verb(s) in bold.
 Below each: [Bloom's level | TEQSA dimension (CLOs) | MQ Capability | Brief rationale]
 
 ### Check Mode:
-Rate each: ✓ (good), ~ (minor issues), ✗ (needs revision)
-Provide: feedback, suggested revision, explanation.
+For each learning outcome, present your review in this exact format:
+
+**CLO [number]. [Full text of the original learning outcome]**
+
+**Rating:** ✓ (good) / ~ (minor issues) / ✗ (needs revision)
+
+**Feedback:** [Your analysis]
+
+**Suggested Revision:** "[Revised learning outcome text]"
+
+**Explanation:** [Why the revision improves it]
+
+---
+
+End with a summary section covering: overall assessment, TEQSA dimension coverage, recommendations for consolidation if applicable.
 
 ## QUALITY CHECKS
 - Verb(s) ONLY at start; no Bloom's verbs after opening phrase
@@ -523,8 +555,13 @@ Provide: feedback, suggested revision, explanation.
         const resultsArea = document.getElementById('results-area');
         const resultsTitle = document.getElementById('results-title');
         const resultsContent = document.getElementById('results-content');
+        const resultsWarning = document.getElementById('results-warning');
+        const inputSummary = document.getElementById('input-summary');
         const loading = document.getElementById('loading');
         const loadingText = document.getElementById('loading-text');
+
+        // Store last input for display
+        let lastInputData = null;
 
         // Mode Toggle
         document.getElementById('btn-generate').addEventListener('click', () => switchMode('generate'));
@@ -567,6 +604,17 @@ Provide: feedback, suggested revision, explanation.
             const cap = document.getElementById('capabilities').value;
             if (!desc && !vis && !thm && !cap) return alert('Please provide at least one piece of context.');
 
+            const aqfLabels = { '7': 'Level 7 – Bachelor Degree', '8': 'Level 8 – Honours/Grad Cert/Grad Dip', '9': 'Level 9 – Masters Degree', '10': 'Level 10 – Doctoral Degree' };
+
+            lastInputData = {
+                mode: 'Generate',
+                loType: loType,
+                aqfLevel: aqfLabels[aqfLevel] || aqfLevel,
+                discipline: document.getElementById('discipline').value,
+                unitLevel: document.getElementById('unit-level').value,
+                numLos: document.getElementById('num-los').value
+            };
+
             let msg = '**Mode:** Generate new learning outcomes\n**LO Type:** ' + loType + '\n**AQF Level:** ' + aqfLevel;
             const unitLevel = document.getElementById('unit-level').value;
             if (unitLevel) msg += '\n**Unit Level:** ' + unitLevel;
@@ -592,10 +640,21 @@ Provide: feedback, suggested revision, explanation.
             const los = document.getElementById('check-los').value;
             if (!los.trim()) return alert('Please paste your learning outcomes.');
 
-            let msg = '**Mode:** Check/review existing learning outcomes';
+            const aqfLabels = { '7': 'Level 7 – Bachelor Degree', '8': 'Level 8 – Honours/Grad Cert/Grad Dip', '9': 'Level 9 – Masters Degree', '10': 'Level 10 – Doctoral Degree' };
             const lt = document.getElementById('check-lo-type').value;
-            if (lt) msg += '\n**LO Type:** ' + lt;
             const al = document.getElementById('check-aqf-level').value;
+
+            lastInputData = {
+                mode: 'Check',
+                loType: lt || 'Not specified',
+                aqfLevel: aqfLabels[al] || al || 'Not specified',
+                discipline: document.getElementById('check-discipline').value || 'Not specified',
+                unitLevel: document.getElementById('check-unit-level').value,
+                los: los.trim().split('\n').filter(l => l.trim()).map(l => l.replace(/^\d+[\.\)]\s*/, '').trim())
+            };
+
+            let msg = '**Mode:** Check/review existing learning outcomes';
+            if (lt) msg += '\n**LO Type:** ' + lt;
             if (al) msg += '\n**AQF Level:** ' + al;
             const ul = document.getElementById('check-unit-level').value;
             if (ul) msg += '\n**Unit Level:** ' + ul;
@@ -613,6 +672,8 @@ Provide: feedback, suggested revision, explanation.
             loading.style.display = 'block';
             loadingText.textContent = loadingMsg;
             resultsArea.style.display = 'none';
+            resultsWarning.style.display = 'none';
+            inputSummary.style.display = 'none';
             document.getElementById('generate-btn').disabled = true;
             document.getElementById('check-btn').disabled = true;
 
@@ -633,7 +694,18 @@ Provide: feedback, suggested revision, explanation.
 
                 const data = await response.json();
                 const content = data.content || 'No response generated.';
+                const finishReason = data.finishReason || '';
+
+                // Check if response was truncated
+                if (finishReason === 'MAX_TOKENS' || finishReason === 'SAFETY') {
+                    resultsWarning.textContent = '⚠️ The response may be incomplete due to length limits. Try submitting fewer learning outcomes at a time (e.g., 5-6 at once).';
+                    resultsWarning.style.display = 'block';
+                } else {
+                    resultsWarning.style.display = 'none';
+                }
+
                 displayResults(content, title);
+                displayInputSummary();
 
             } catch (error) {
                 displayError(error.message);
@@ -651,18 +723,43 @@ Provide: feedback, suggested revision, explanation.
             resultsArea.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
 
+        function displayInputSummary() {
+            if (!lastInputData) { inputSummary.style.display = 'none'; return; }
+
+            let html = '<h4>Input Details</h4>';
+            html += '<dl class="input-summary-grid">';
+            html += '<dt>Mode</dt><dd>' + escapeHtml(lastInputData.mode) + '</dd>';
+            html += '<dt>LO Type</dt><dd>' + escapeHtml(lastInputData.loType) + '</dd>';
+            html += '<dt>AQF Level</dt><dd>' + escapeHtml(lastInputData.aqfLevel) + '</dd>';
+            if (lastInputData.discipline) html += '<dt>Discipline</dt><dd>' + escapeHtml(lastInputData.discipline) + '</dd>';
+            if (lastInputData.unitLevel) html += '<dt>Unit Level</dt><dd>' + escapeHtml(lastInputData.unitLevel) + '-level</dd>';
+            if (lastInputData.numLos) html += '<dt>Requested LOs</dt><dd>' + escapeHtml(lastInputData.numLos) + '</dd>';
+            html += '</dl>';
+
+            if (lastInputData.los && lastInputData.los.length > 0) {
+                html += '<div class="input-summary-los"><h5>Original Learning Outcomes Submitted:</h5><ol>';
+                lastInputData.los.forEach(lo => {
+                    html += '<li>' + escapeHtml(lo) + '</li>';
+                });
+                html += '</ol></div>';
+            }
+
+            inputSummary.innerHTML = html;
+            inputSummary.style.display = 'block';
+        }
+
         function displayError(message) {
             resultsTitle.textContent = 'Error';
             resultsContent.innerHTML = '<p><strong>Something went wrong:</strong> ' + escapeHtml(message) + '</p><p style="margin-top:0.75rem;font-size:0.85rem;color:var(--mq-grey-mid);">Please try again. If the problem persists, contact <a href="mailto:artslandt@mq.edu.au">artslandt@mq.edu.au</a>.</p>';
             resultsArea.style.display = 'block';
+            inputSummary.style.display = 'none';
             resultsArea.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
 
-        // Proper markdown renderer that handles formatting correctly
+        // Proper markdown renderer
         function renderMarkdown(text) {
             if (!text) return '<p>No content.</p>';
 
-            // Process line by line
             const lines = text.split('\n');
             let html = '';
             let inList = false;
@@ -757,25 +854,15 @@ Provide: feedback, suggested revision, explanation.
             return html;
         }
 
-        // Inline formatting (bold, italic, code, links)
+        // Inline formatting
         function inlineFormat(text) {
-            // Escape HTML entities first
             text = text.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
-
-            // Code (backticks) - do first to avoid processing inside code
             text = text.replace(/`([^`]+)`/g, '<code>$1</code>');
-
-            // Bold: **text** or __text__
             text = text.replace(/\*\*([^*]+?)\*\*/g, '<strong>$1</strong>');
             text = text.replace(/__([^_]+?)__/g, '<strong>$1</strong>');
-
-            // Italic: *text* or _text_
             text = text.replace(/\*([^*]+?)\*/g, '<em>$1</em>');
             text = text.replace(/(?<!\w)_([^_]+?)_(?!\w)/g, '<em>$1</em>');
-
-            // Links: [text](url)
             text = text.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank" rel="noopener">$1</a>');
-
             return text;
         }
 
@@ -796,7 +883,19 @@ Provide: feedback, suggested revision, explanation.
         });
 
         document.getElementById('download-btn').addEventListener('click', () => {
-            const text = resultsContent.innerText;
+            let text = resultsContent.innerText;
+            // Include input summary in download
+            if (lastInputData) {
+                text += '\n\n---\nINPUT DETAILS\n';
+                text += 'Mode: ' + lastInputData.mode + '\n';
+                text += 'LO Type: ' + lastInputData.loType + '\n';
+                text += 'AQF Level: ' + lastInputData.aqfLevel + '\n';
+                if (lastInputData.discipline) text += 'Discipline: ' + lastInputData.discipline + '\n';
+                if (lastInputData.los) {
+                    text += '\nOriginal Learning Outcomes:\n';
+                    lastInputData.los.forEach((lo, i) => { text += (i+1) + '. ' + lo + '\n'; });
+                }
+            }
             const blob = new Blob([text], { type: 'text/plain' });
             const url = URL.createObjectURL(blob);
             const a = document.createElement('a');
