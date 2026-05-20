@@ -71,7 +71,6 @@
             flex-direction: column;
             transition: background-color 0.3s ease, color 0.3s ease;
         }
-        /* Skip to content for accessibility */
         .skip-link {
             position: absolute; top: -100%; left: 0;
             background: var(--mq-crimson); color: #fff;
@@ -79,33 +78,22 @@
             font-size: 0.85rem; text-decoration: none;
         }
         .skip-link:focus { top: 0; }
-        /* Header */
         .header {
             background: var(--bg-secondary);
             border-bottom: 3px solid var(--mq-crimson);
             box-shadow: var(--shadow-sm);
-            position: sticky;
-            top: 0;
-            z-index: 100;
+            position: sticky; top: 0; z-index: 100;
             transition: background-color 0.3s ease;
         }
         .header-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 1rem 2rem;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 1rem;
+            max-width: 1200px; margin: 0 auto; padding: 1rem 2rem;
+            display: flex; align-items: center; justify-content: space-between; gap: 1rem;
         }
         .logo-area { display: flex; align-items: center; gap: 0.75rem; }
         .logo-mark {
-            width: 44px; height: 44px;
-            background: var(--mq-crimson);
-            color: #fff;
-            border-radius: var(--border-radius);
-            display: flex; align-items: center; justify-content: center;
-            font-weight: 700; font-size: 1rem;
+            width: 44px; height: 44px; background: var(--mq-crimson); color: #fff;
+            border-radius: var(--border-radius); display: flex; align-items: center;
+            justify-content: center; font-weight: 700; font-size: 1rem;
         }
         .logo-text h1 { font-size: 1.25rem; font-weight: 600; color: var(--text-primary); line-height: 1.2; }
         .logo-text p { font-size: 0.8rem; color: var(--text-muted); }
@@ -113,19 +101,15 @@
         .header-nav { display: flex; gap: 1.5rem; }
         .header-nav a { font-size: 0.85rem; color: var(--text-secondary); text-decoration: none; font-weight: 500; transition: color var(--transition); }
         .header-nav a:hover, .header-nav a:focus { color: var(--mq-crimson); }
-        /* Dark mode toggle */
         .theme-toggle {
             width: 36px; height: 36px; border: 1.5px solid var(--border-color);
             border-radius: var(--border-radius); background: var(--bg-secondary);
             color: var(--text-secondary); cursor: pointer; display: flex;
-            align-items: center; justify-content: center; transition: all var(--transition);
-            font-size: 1.1rem;
+            align-items: center; justify-content: center; transition: all var(--transition); font-size: 1.1rem;
         }
         .theme-toggle:hover, .theme-toggle:focus { border-color: var(--mq-crimson); color: var(--mq-crimson); }
         .theme-toggle:focus { outline: 2px solid var(--mq-crimson); outline-offset: 2px; }
-        /* Main */
         .main-content { max-width: 1200px; margin: 0 auto; padding: 2rem; flex: 1; width: 100%; }
-        /* Mode toggle */
         .mode-toggle {
             display: flex; gap: 0.5rem; margin-bottom: 2rem;
             background: var(--bg-secondary); padding: 0.375rem;
@@ -143,12 +127,10 @@
         .mode-btn.active { background: var(--mq-crimson); color: #fff; box-shadow: var(--shadow-sm); }
         .mode-panel { display: none; }
         .mode-panel.active { display: block; }
-        /* Forms */
         .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-bottom: 1.5rem; }
         .form-section {
             background: var(--bg-secondary); border-radius: var(--border-radius-lg);
-            padding: 1.5rem; box-shadow: var(--shadow-sm);
-            transition: background-color 0.3s ease;
+            padding: 1.5rem; box-shadow: var(--shadow-sm); transition: background-color 0.3s ease;
         }
         .section-title {
             font-size: 1rem; font-weight: 600; color: var(--mq-crimson);
@@ -174,11 +156,9 @@
         }
         .help-text { display: block; font-size: 0.75rem; color: var(--text-muted); margin-top: 0.25rem; font-style: italic; }
         .char-warning { color: var(--mq-warning); font-weight: 500; font-style: normal; }
-        /* Example loader */
         .example-loader { margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.75rem; }
         .example-loader label { font-size: 0.85rem; font-weight: 500; white-space: nowrap; }
         .example-loader select { max-width: 300px; }
-        /* Buttons */
         .form-actions { display: flex; gap: 1rem; justify-content: center; padding-top: 0.5rem; flex-wrap: wrap; }
         .btn-primary {
             padding: 0.875rem 2rem; background: var(--mq-crimson); color: #fff;
@@ -205,7 +185,6 @@
         }
         .btn-icon-only:hover { border-color: var(--mq-crimson); color: var(--mq-crimson); }
         .btn-icon-only:focus { outline: 2px solid var(--mq-crimson); outline-offset: 2px; }
-        /* Results */
         .results-area {
             margin-top: 2rem; background: var(--bg-secondary);
             border-radius: var(--border-radius-lg); box-shadow: var(--shadow-md); overflow: hidden;
@@ -217,7 +196,7 @@
             background: linear-gradient(135deg, var(--mq-crimson), var(--mq-crimson-dark));
         }
         .results-title { font-size: 1.1rem; font-weight: 600; color: #fff; }
-        .results-actions { display: flex; gap: 0.5rem; align-items: center; }
+        .results-actions { display: flex; gap: 0.5rem; align-items: center; flex-wrap: wrap; }
         .results-actions .btn-icon-only { border-color: rgba(255,255,255,0.3); background: rgba(255,255,255,0.1); color: #fff; }
         .results-actions .btn-icon-only:hover { border-color: rgba(255,255,255,0.6); background: rgba(255,255,255,0.2); }
         .results-actions .btn-sm {
@@ -240,7 +219,6 @@
         .results-content li { margin-bottom: 0.4rem; }
         .results-content code { background: var(--bg-primary); padding: 0.125rem 0.375rem; border-radius: 3px; font-size: 0.85em; }
         .results-content hr { border: none; border-top: 1px solid var(--border-color); margin: 1.25rem 0; }
-        /* TEQSA visualisation */
         .teqsa-coverage {
             margin: 1rem 1.5rem; padding: 1rem; background: var(--bg-primary);
             border-radius: var(--border-radius); border: 1px solid var(--border-color);
@@ -252,24 +230,36 @@
             font-size: 0.8rem; display: flex; align-items: center; gap: 0.5rem;
         }
         .teqsa-item.covered { background: #e8f5e9; color: #2e7d32; border: 1px solid #c8e6c9; }
-        .teqsa-item.partial { background: #fff3e0; color: #e65100; border: 1px solid #ffe0b2; }
         .teqsa-item.missing { background: #ffebee; color: #c62828; border: 1px solid #ffcdd2; }
         [data-theme="dark"] .teqsa-item.covered { background: #1b3d1b; color: #81c784; border-color: #2e5a2e; }
-        [data-theme="dark"] .teqsa-item.partial { background: #3d2e00; color: #ffb74d; border-color: #5a4400; }
         [data-theme="dark"] .teqsa-item.missing { background: #3d1b1b; color: #ef9a9a; border-color: #5a2e2e; }
         .teqsa-badge { font-size: 0.9rem; }
         .teqsa-label { font-weight: 500; }
-        .teqsa-clos { font-size: 0.7rem; color: var(--text-muted); margin-top: 0.125rem; }
-        /* Warning */
+        .mapping-table-wrap {
+            margin: 1rem 1.5rem; padding: 1rem; background: var(--bg-primary);
+            border-radius: var(--border-radius); border: 1px solid var(--border-color); overflow-x: auto;
+        }
+        .mapping-table-wrap h4 { font-size: 0.85rem; font-weight: 600; color: var(--text-primary); margin-bottom: 0.75rem; }
+        .mapping-table { width: 100%; border-collapse: collapse; font-size: 0.75rem; }
+        .mapping-table th {
+            background: var(--mq-crimson); color: #fff; padding: 0.5rem 0.375rem;
+            text-align: center; font-weight: 500; font-size: 0.7rem; border: 1px solid var(--mq-crimson-dark);
+        }
+        .mapping-table th:first-child { text-align: left; min-width: 180px; }
+        .mapping-table td {
+            padding: 0.375rem; text-align: center; border: 1px solid var(--border-color); vertical-align: middle;
+        }
+        .mapping-table td:first-child { text-align: left; font-size: 0.75rem; font-weight: 500; color: var(--text-primary); }
+        .mapping-table tr:nth-child(even) td { background: var(--bg-secondary); }
+        .mapping-dot { color: var(--mq-crimson); font-size: 1.1rem; }
+        .mapping-legend { margin-top: 0.5rem; font-size: 0.7rem; color: var(--text-muted); }
         .results-warning {
-            padding: 0.75rem 1rem; margin: 0 1.5rem 1rem; border-radius: var(--border-radius);
+            padding: 0.75rem 1rem; margin: 1rem 1.5rem 0; border-radius: var(--border-radius);
             background: #fff3e0; border: 1px solid #ffe0b2; color: #e65100; font-size: 0.85rem;
         }
         [data-theme="dark"] .results-warning { background: #3d2e00; border-color: #5a4400; color: #ffb74d; }
-        /* Refine section */
         .refine-section {
-            padding: 1.25rem 1.5rem; border-top: 1px solid var(--border-color);
-            background: var(--bg-tertiary);
+            padding: 1.25rem 1.5rem; border-top: 1px solid var(--border-color); background: var(--bg-tertiary);
         }
         .refine-section h4 { font-size: 0.9rem; font-weight: 600; color: var(--text-primary); margin-bottom: 0.75rem; }
         .refine-section textarea {
@@ -280,10 +270,25 @@
         }
         .refine-section textarea:focus { outline: none; border-color: var(--mq-crimson); box-shadow: 0 0 0 3px rgba(166,25,46,0.15); }
         .refine-section .btn-primary { font-size: 0.9rem; padding: 0.625rem 1.5rem; }
-        /* Version history */
-        .version-history {
-            padding: 1rem 1.5rem; border-top: 1px solid var(--border-color);
+        .assessment-section {
+            padding: 1.25rem 1.5rem; border-top: 1px solid var(--border-color); background: var(--bg-tertiary);
         }
+        .assessment-section h4 { font-size: 0.9rem; font-weight: 600; color: var(--text-primary); margin-bottom: 0.75rem; }
+        .assessment-section .btn-primary { font-size: 0.9rem; padding: 0.625rem 1.5rem; }
+        .share-section {
+            padding: 1rem 1.5rem; border-top: 1px solid var(--border-color);
+            display: flex; align-items: center; gap: 0.75rem; flex-wrap: wrap;
+        }
+        .share-section .btn-secondary { font-size: 0.8rem; padding: 0.5rem 1rem; }
+        .share-url-display {
+            flex: 1; min-width: 200px; padding: 0.5rem 0.75rem;
+            background: var(--bg-primary); border: 1px solid var(--border-color);
+            border-radius: var(--border-radius); font-size: 0.75rem;
+            color: var(--text-muted); overflow: hidden; text-overflow: ellipsis;
+            white-space: nowrap; font-family: monospace; display: none;
+        }
+        .share-url-display.visible { display: block; }
+        .version-history { padding: 1rem 1.5rem; border-top: 1px solid var(--border-color); }
         .version-toggle {
             font-size: 0.85rem; font-weight: 500; color: var(--mq-crimson);
             cursor: pointer; background: none; border: none; font-family: var(--font-family);
@@ -304,10 +309,8 @@
         .version-item-header { display: flex; justify-content: space-between; align-items: center; }
         .version-item-title { font-weight: 500; color: var(--text-primary); }
         .version-item-time { color: var(--text-muted); font-size: 0.75rem; }
-        /* Input summary */
         .input-summary {
-            padding: 1.25rem 1.5rem; border-top: 1px solid var(--border-color);
-            background: var(--bg-primary);
+            padding: 1.25rem 1.5rem; border-top: 1px solid var(--border-color); background: var(--bg-primary);
         }
         .input-summary h4 { font-size: 0.85rem; font-weight: 600; color: var(--text-muted); margin-bottom: 0.75rem; text-transform: uppercase; letter-spacing: 0.5px; }
         .input-summary-grid { display: grid; grid-template-columns: auto 1fr; gap: 0.25rem 1rem; font-size: 0.85rem; }
@@ -317,11 +320,9 @@
         .input-summary-los h5 { font-size: 0.8rem; font-weight: 500; color: var(--text-secondary); margin-bottom: 0.375rem; }
         .input-summary-los ol { margin-left: 1.25rem; font-size: 0.8rem; color: var(--text-muted); }
         .input-summary-los li { margin-bottom: 0.2rem; }
-        /* Footer */
         .results-footer { padding: 1rem 1.5rem; background: var(--bg-primary); border-top: 1px solid var(--border-color); }
         .results-disclaimer { font-size: 0.8rem; color: var(--text-muted); text-align: center; }
         .results-disclaimer a { color: var(--mq-crimson); text-decoration: none; }
-        /* Loading */
         .loading { text-align: center; padding: 3rem 2rem; margin-top: 2rem; }
         .spinner {
             width: 40px; height: 40px; border: 3px solid var(--border-color);
@@ -330,30 +331,22 @@
         }
         @keyframes spin { to { transform: rotate(360deg); } }
         .loading p { font-size: 0.9rem; color: var(--text-muted); }
-        /* Keyboard shortcut hint */
-        .shortcut-hint {
-            font-size: 0.7rem; color: var(--text-muted); text-align: center;
-            margin-top: 0.5rem;
-        }
+        .shortcut-hint { font-size: 0.7rem; color: var(--text-muted); text-align: center; margin-top: 0.5rem; }
         .shortcut-hint kbd {
             background: var(--bg-primary); border: 1px solid var(--border-color);
-            padding: 0.1rem 0.3rem; border-radius: 3px; font-size: 0.7rem;
-            font-family: var(--font-family);
+            padding: 0.1rem 0.3rem; border-radius: 3px; font-size: 0.7rem; font-family: var(--font-family);
         }
-        /* Footer */
         .footer { background: #1a1a2e; color: #c0c0c0; padding: 1.5rem 2rem; margin-top: auto; }
         .footer-content { max-width: 1200px; margin: 0 auto; text-align: center; }
         .footer-content p { font-size: 0.85rem; margin-bottom: 0.25rem; }
         .footer-sub { font-size: 0.75rem; color: #888; }
         .footer a { color: #c0c0c0; text-decoration: none; }
         .footer a:hover { color: #fff; }
-        /* Live region for screen readers */
         .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
-        /* Print styles */
         @media print {
             .header, .footer, .mode-toggle, .form-actions, .refine-section,
             .results-actions, .results-warning, .version-history, .theme-toggle,
-            .example-loader, .shortcut-hint { display: none !important; }
+            .example-loader, .shortcut-hint, .assessment-section, .share-section { display: none !important; }
             body { background: #fff !important; color: #000 !important; }
             .main-content { padding: 0 !important; max-width: none !important; }
             .results-area { box-shadow: none !important; border: none !important; margin-top: 0 !important; }
@@ -363,19 +356,18 @@
             .results-content strong { color: #a6192e !important; }
             .results-footer { background: #fff !important; border-top: 1px solid #ccc !important; padding: 0.5rem 0 !important; }
             .input-summary { background: #fff !important; }
-            .teqsa-coverage { border: 1px solid #ccc !important; background: #f9f9f9 !important; }
+            .teqsa-coverage, .mapping-table-wrap { border: 1px solid #ccc !important; background: #f9f9f9 !important; }
+            .mapping-table th { background: #a6192e !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
             .mode-panel { display: none !important; }
-            .mode-panel.active { display: none !important; }
             @page { margin: 2cm; }
         }
-        /* Responsive */
         @media (max-width: 900px) {
             .form-grid { grid-template-columns: 1fr; gap: 1.5rem; }
             .header-content { flex-direction: column; align-items: flex-start; }
             .header-actions { width: 100%; justify-content: space-between; }
             .main-content { padding: 1.5rem 1rem; }
-            .mode-toggle { width: 100%; }
-            .mode-btn { flex: 1; justify-content: center; }
+            .mode-toggle { width: 100%; flex-wrap: wrap; }
+            .mode-btn { flex: 1; justify-content: center; font-size: 0.8rem; padding: 0.625rem 0.75rem; }
             .teqsa-grid { grid-template-columns: 1fr; }
             .input-summary-grid { grid-template-columns: 1fr; }
         }
@@ -388,7 +380,6 @@
 </head>
 <body>
     <a href="#main" class="skip-link">Skip to main content</a>
-    <!-- Live region for accessibility announcements -->
     <div id="live-region" class="sr-only" aria-live="polite" aria-atomic="true"></div>
 
     <header class="header" role="banner">
@@ -413,20 +404,19 @@
     <main class="main-content" id="main" role="main">
         <div class="mode-toggle" role="tablist" aria-label="Tool mode">
             <button class="mode-btn active" data-mode="generate" id="btn-generate" role="tab" aria-selected="true" aria-controls="panel-generate">
-                <span aria-hidden="true">&#10022;</span> Generate New LOs
+                <span aria-hidden="true">&#10022;</span> Generate
             </button>
             <button class="mode-btn" data-mode="check" id="btn-check" role="tab" aria-selected="false" aria-controls="panel-check">
-                <span aria-hidden="true">&#10003;</span> Check My LOs
+                <span aria-hidden="true">&#10003;</span> Check
             </button>
-             <button class="mode-btn" data-mode="quick-check" id="btn-quick-check" role="tab" aria-selected="false" aria-controls="panel-quick-check">
+            <button class="mode-btn" data-mode="quick-check" id="btn-quick-check" role="tab" aria-selected="false" aria-controls="panel-quick-check">
                 <span aria-hidden="true">&#9889;</span> Quick Check
             </button>
-
         </div>
+
         <!-- GENERATE MODE -->
         <div class="mode-panel active" id="panel-generate" role="tabpanel" aria-labelledby="btn-generate">
             <form id="generate-form">
-                <!-- Example loader -->
                 <div class="example-loader">
                     <label for="example-select">Load example:</label>
                     <select id="example-select" aria-label="Load a pre-filled example">
@@ -591,7 +581,8 @@
                 <p class="shortcut-hint"><kbd>Ctrl</kbd>+<kbd>Enter</kbd> to submit</p>
             </form>
         </div>
-          <!-- QUICK CHECK MODE (Feature 18) -->
+
+        <!-- QUICK CHECK MODE -->
         <div class="mode-panel" id="panel-quick-check" role="tabpanel" aria-labelledby="btn-quick-check">
             <form id="quick-check-form">
                 <div class="form-grid">
@@ -618,7 +609,7 @@
                                     <option value="10">Level 10 – Doctoral</option>
                                 </select>
                             </div>
-                            <p style="font-size:0.8rem; color:var(--text-muted); margin-top:1rem;">Quick Check gives a brief traffic-light rating for each LO without detailed rewrites. Use the full "Check My LOs" mode for comprehensive feedback.</p>
+                            <p style="font-size:0.8rem; color:var(--text-muted); margin-top:1rem;">Quick Check gives a brief traffic-light rating for each LO without detailed rewrites. Use the full "Check" mode for comprehensive feedback.</p>
                         </div>
                     </div>
                     <div class="form-column">
@@ -645,23 +636,22 @@
                 <h2 class="results-title" id="results-title">Results</h2>
                 <div class="results-actions">
                     <button class="btn-sm" id="copy-los-btn" title="Copy learning outcomes only" aria-label="Copy learning outcomes only">Copy LOs</button>
-                    <button class="btn-icon-only" id="copy-btn" title="Copy all (Ctrl+Shift+C)" aria-label="Copy full results to clipboard">&#128203;</button>
-                    <button class="btn-icon-only" id="download-txt-btn" title="Download as text" aria-label="Download as text file">&#128196;</button>
-                    <button class="btn-icon-only" id="download-docx-btn" title="Download as Word" aria-label="Download as Word document">&#128462;</button>
-                    <button class="btn-icon-only" id="print-btn" title="Print/PDF (Ctrl+P)" aria-label="Print or save as PDF">&#128424;</button>
+                    <button class="btn-icon-only" id="copy-btn" title="Copy all (Ctrl+Shift+C)" aria-label="Copy full results">&#128203;</button>
+                    <button class="btn-icon-only" id="download-txt-btn" title="Download as text" aria-label="Download text">&#128196;</button>
+                    <button class="btn-icon-only" id="download-docx-btn" title="Download as Word" aria-label="Download Word">&#128462;</button>
+                    <button class="btn-icon-only" id="print-btn" title="Print/PDF" aria-label="Print">&#128424;</button>
                 </div>
             </div>
             <div id="results-warning" class="results-warning" style="display:none;" role="alert"></div>
             <div class="results-content" id="results-content"></div>
             <div id="teqsa-coverage" class="teqsa-coverage" style="display:none;"></div>
             <div id="mapping-table-area" class="mapping-table-wrap" style="display:none;"></div>
-
             <div class="refine-section" id="refine-section" style="display:none;">
                 <h4>&#128260; Refine These Learning Outcomes</h4>
-                <textarea id="refine-instructions" rows="3" placeholder="e.g., Consolidate to 8 CLOs as recommended, apply the verb placement fixes, make CLO 6 more specific..." aria-label="Refinement instructions"></textarea>
+                <textarea id="refine-instructions" rows="3" placeholder="e.g., Consolidate to 8 CLOs, apply verb fixes, make CLO 6 more specific..." aria-label="Refinement instructions"></textarea>
                 <button class="btn-primary" id="refine-btn"><span aria-hidden="true">&#128260;</span> Refine</button>
             </div>
-             <div class="assessment-section" id="assessment-section" style="display:none;">
+            <div class="assessment-section" id="assessment-section" style="display:none;">
                 <h4>&#127891; Suggest Assessment Alignment</h4>
                 <p style="font-size:0.8rem; color:var(--text-muted); margin-bottom:0.75rem;">Generate assessment type suggestions aligned to each LO's Bloom's level.</p>
                 <button class="btn-primary" id="assessment-btn"><span aria-hidden="true">&#127891;</span> Suggest Assessments</button>
@@ -696,12 +686,11 @@
             <p class="footer-sub">For support: <a href="mailto:artslandt@mq.edu.au">artslandt@mq.edu.au</a></p>
         </div>
     </footer>
-    <!-- docx library for Word export -->
     <script src="https://cdn.jsdelivr.net/npm/docx@8.5.0/build/index.umd.min.js"></script>
     <script>
     const WORKER_URL = 'https://lo-generator-proxy.james-tracy.workers.dev';
 
-    const SYSTEM_PROMPT = `You are the Faculty of Arts Learning Outcomes Generator at Macquarie University. You are an expert in curriculum design, constructive alignment, and the Australian higher education regulatory environment. Your purpose is to help academic staff generate well-crafted learning outcomes that are meaningful, measurable, and demonstrable.
+    const SYSTEM_PROMPT = `You are the Faculty of Arts Learning Outcomes Generator at Macquarie University. You are an expert in curriculum design, constructive alignment, and the Australian higher education regulatory environment.
 
 You generate learning outcomes that comply with:
 - The Australian Qualifications Framework (AQF)
@@ -711,16 +700,10 @@ You generate learning outcomes that comply with:
 - Macquarie University Graduate Capabilities
 
 ## THE LEARNING OUTCOMES FORMULA
-
 All learning outcomes MUST follow: [Action Verb(s)] + [Content/Topic] + [Discipline-Specific Context]
 
 ### CRITICAL VERB PLACEMENT RULE
 The action verb(s) appear ONLY at the very beginning. The rest of the sentence is content and context with NO additional Bloom's taxonomy verbs as secondary actions.
-
-Correct: "Analyse and evaluate competing historiographical interpretations within their scholarly contexts"
-Correct: "Assess, design and deploy digital tools for historical research within community archives"
-Incorrect: "Analyse primary sources to construct evidence-based arguments" (two verb clusters)
-Incorrect: "Design research projects using methodologies to evaluate claims" (verbs buried in middle/end)
 
 Rules:
 1. One, two, or three Bloom's verbs at the START only, joined by "and" or commas
@@ -729,20 +712,12 @@ Rules:
 4. Use noun forms for subsidiary concepts ("evidence-based argumentation" not "to construct arguments")
 
 ## LEARNING OUTCOME TYPES
-
 ### CLOs (Course Learning Outcomes)
-- Starting point for course design; 6-8 per course
-- Must cover ALL FOUR TEQSA dimensions: specific disciplinary, generic, employment-related, life-long learning
-- Must be assessable (Standard 1.4.4)
-
+- 6-8 per course; must cover ALL FOUR TEQSA dimensions; must be assessable (Standard 1.4.4)
 ### ULOs (Unit Learning Outcomes)
-- 3-5 per unit; align to CLOs/MLOs
-- IPA scaffolding: 1000=Introduction, 2000=Practice, 3000=Assessment/demonstration
-
+- 3-5 per unit; align to CLOs/MLOs; IPA scaffolding: 1000=Introduction, 2000=Practice, 3000=Assessment
 ### MLOs (Major Learning Outcomes)
 - 6-8 per major; specialised focus and employment-related
-- NOT required to map to CLOs (MQ Curriculum Architecture Policy)
-
 ### Specialist Learning Outcomes
 - 4-6 per specialist stream; sub-disciplinary depth
 
@@ -763,7 +738,6 @@ Rules:
 - Level 10 (Doctoral): Systemic & critical understanding; authoritative judgement; original contribution
 
 ## BLOOM'S REVISED TAXONOMY VERBS
-
 Level 1 - Remember: Define, describe, identify, label, list, name, outline, recall, recognise, state
 Level 2 - Understand: Classify, compare, contrast, discuss, distinguish, explain, illustrate, interpret, summarise
 Level 3 - Apply: Apply, calculate, carry out, construct, implement, modify, solve, use
@@ -775,7 +749,7 @@ Level 6 - Create: Compose, construct, create, design, develop, formulate, genera
 - AQF 7: Primarily Apply, Analyse, Evaluate. Create for capstone.
 - AQF 8: Primarily Analyse, Evaluate, Create.
 - AQF 9: Primarily Evaluate, Create with sophisticated Analyse.
-- AQF 10: Primarily Create. Generate, originate, extend.
+- AQF 10: Primarily Create.
 
 ### By Unit Level (Bachelor):
 - 1000-level: Remember, Understand, Apply
@@ -789,93 +763,44 @@ Level 6 - Create: Compose, construct, create, design, develop, formulate, genera
 4. Life-Long Learning Outcomes
 
 ## OUTPUT FORMAT
-
 ### Generate Mode:
 Present each LO numbered (1., 2., etc.) with opening verb(s) in **bold**.
-Below each LO, include on its own line in square brackets: [Bloom's level | TEQSA dimension (CLOs) | MQ Capability | Brief rationale]
-
-End with a Summary section (use ### Summary heading) including:
-- Overall assessment
-- TEQSA dimension coverage mapping (state which CLO numbers cover each dimension)
-- Any recommendations
-
-### Check Mode:
-For each learning outcome, present your review in this exact format:
-
-**[number]. [Full text of the original learning outcome]**
-
-**Rating:** ✓ (good) / ~ (minor issues) / ✗ (needs revision)
-
-**Feedback:** [Your analysis]
-
-**Suggested Revision:** "[Revised learning outcome text with opening verbs in bold]"
-
-**Explanation:** [Why the revision improves it]
-
----
-
-End with a Summary section (use ### Summary heading) including:
-- Overall assessment
-- TEQSA dimension coverage
-- Recommendations for consolidation if applicable
-
-### Refine Mode:
-When asked to refine, present the complete revised set of LOs numbered (1., 2., etc.) with opening verb(s) in **bold**.
-Below each: [Bloom's level | TEQSA dimension | MQ Capability | What changed and why]
-Include a ### Summary of Changes section.
+Below each LO: [Bloom's level | TEQSA dimension (CLOs) | MQ Capability | Brief rationale]
 
 ### ULO Generation with CLO Alignment:
-When generating ULOs and existing CLOs have been provided, include CLO alignment for each ULO in the metadata bracket. Format: [Bloom's level | Aligns to CLO 1, 3 | MQ Capability | Rationale]
+When generating ULOs and existing CLOs have been provided, include CLO alignment in metadata: [Bloom's level | Aligns to CLO 1, 3 | MQ Capability | Rationale]
+
+### Check Mode:
+**[number]. [Full text of the original learning outcome]**
+**Rating:** ✓ (good) / ~ (minor issues) / ✗ (needs revision)
+**Feedback:** [Analysis]
+**Suggested Revision:** "[Revised text with opening verbs in bold]"
+**Explanation:** [Why the revision improves it]
+---
+
+### Refine Mode:
+Present the complete revised set numbered with verb(s) in **bold**.
+Below each: [Bloom's level | TEQSA dimension | MQ Capability | What changed and why]
+
+End all modes with ### Summary section.
 
 ## QUALITY CHECKS
 - Verb(s) ONLY at start; no Bloom's verbs after opening phrase
 - Appropriate to AQF level; measurable; distinct; accessible language
 - CLO sets cover all 4 TEQSA dimensions
-- Avoid: "understand"/"know" alone; teaching descriptions; compound outcomes; jargon; infinitive phrases as secondary actions
+- Avoid: "understand"/"know" alone; teaching descriptions; compound outcomes; jargon
 
 ## TONE
 - Collegial, supportive, Australian English
-- Explain verb/framing choices
 - Remind: LOs need MQCMS faculty approval
 - Reference FoA L&T Hub (lt.arts.mq.edu.au)`;
 
-    // Pre-loaded examples
     const EXAMPLES = {
-        'media-comms': {
-            loType: 'CLO', aqfLevel: '7', discipline: 'Media and Communications',
-            description: 'The Bachelor of Media and Communications prepares students for careers in journalism, strategic communication, digital media production, and screen media. Students develop critical, creative, and technical skills across multiple media platforms and industries.',
-            vision: 'Graduates who are critically engaged, ethically aware, and technically skilled media practitioners ready for the evolving communications landscape.',
-            themes: 'Digital media, journalism, strategic communication, screen production, media ethics, audience engagement, emerging technologies, AI in media',
-            capabilities: 'Critical media analysis, multiplatform content creation, audience research, ethical practice, professional collaboration, digital literacy'
-        },
-        'history': {
-            loType: 'MLO', aqfLevel: '7', discipline: 'History',
-            description: 'The History major develops skills in historical research, analysis, and argumentation. Students engage with diverse historiographical traditions and primary source materials across different periods and regions.',
-            vision: 'Graduates who can research, analyse, and communicate complex historical knowledge with rigour and nuance.',
-            themes: 'Historiography, primary source analysis, colonialism and decolonisation, public history, digital humanities',
-            capabilities: 'Archival research, critical analysis of sources, historical argumentation, academic writing, digital research methods'
-        },
-        'philosophy': {
-            loType: 'MLO', aqfLevel: '7', discipline: 'Philosophy',
-            description: 'The Philosophy major develops rigorous analytical thinking, ethical reasoning, and argumentation skills. Students engage with major philosophical traditions and apply philosophical methods to contemporary problems.',
-            vision: 'Graduates with exceptional reasoning abilities who can analyse complex problems, construct persuasive arguments, and think ethically about pressing social issues.',
-            themes: 'Ethics, epistemology, political philosophy, logic, philosophy of mind, applied ethics',
-            capabilities: 'Logical analysis, ethical reasoning, argument construction, critical reading, philosophical writing'
-        },
-        'creative-writing': {
-            loType: 'CLO', aqfLevel: '9', discipline: 'Creative Writing',
-            description: 'The Master of Creative Writing develops advanced creative practice alongside critical understanding of literary traditions, publishing contexts, and the role of the writer in contemporary culture.',
-            vision: 'Graduates who produce publishable, original creative work and can articulate their practice within broader literary and cultural conversations.',
-            themes: 'Creative practice, literary craft, publishing, editing, writing communities, diverse voices, practice-led research',
-            capabilities: 'Advanced creative composition, critical self-reflection, editorial skills, workshopping, research-informed practice'
-        },
-        'strategic-comms': {
-            loType: 'CLO', aqfLevel: '9', discipline: 'Strategic Communication',
-            description: 'The Master of Strategic Communication prepares professionals for leadership roles in corporate communication, public affairs, crisis management, and digital strategy. Students develop advanced analytical and strategic planning capabilities.',
-            vision: 'Graduates who can lead communication strategy at an organisational level, integrating research, ethics, and innovation.',
-            themes: 'Corporate communication, crisis management, stakeholder engagement, digital strategy, reputation management, data-driven communication',
-            capabilities: 'Strategic planning, stakeholder analysis, campaign evaluation, crisis communication, ethical leadership, data analytics'
-        }
+        'media-comms': { loType: 'CLO', aqfLevel: '7', discipline: 'Media and Communications', description: 'The Bachelor of Media and Communications prepares students for careers in journalism, strategic communication, digital media production, and screen media. Students develop critical, creative, and technical skills across multiple media platforms and industries.', vision: 'Graduates who are critically engaged, ethically aware, and technically skilled media practitioners ready for the evolving communications landscape.', themes: 'Digital media, journalism, strategic communication, screen production, media ethics, audience engagement, emerging technologies, AI in media', capabilities: 'Critical media analysis, multiplatform content creation, audience research, ethical practice, professional collaboration, digital literacy' },
+        'history': { loType: 'MLO', aqfLevel: '7', discipline: 'History', description: 'The History major develops skills in historical research, analysis, and argumentation. Students engage with diverse historiographical traditions and primary source materials across different periods and regions.', vision: 'Graduates who can research, analyse, and communicate complex historical knowledge with rigour and nuance.', themes: 'Historiography, primary source analysis, colonialism and decolonisation, public history, digital humanities', capabilities: 'Archival research, critical analysis of sources, historical argumentation, academic writing, digital research methods' },
+        'philosophy': { loType: 'MLO', aqfLevel: '7', discipline: 'Philosophy', description: 'The Philosophy major develops rigorous analytical thinking, ethical reasoning, and argumentation skills. Students engage with major philosophical traditions and apply philosophical methods to contemporary problems.', vision: 'Graduates with exceptional reasoning abilities who can analyse complex problems, construct persuasive arguments, and think ethically.', themes: 'Ethics, epistemology, political philosophy, logic, philosophy of mind, applied ethics', capabilities: 'Logical analysis, ethical reasoning, argument construction, critical reading, philosophical writing' },
+        'creative-writing': { loType: 'CLO', aqfLevel: '9', discipline: 'Creative Writing', description: 'The Master of Creative Writing develops advanced creative practice alongside critical understanding of literary traditions, publishing contexts, and the role of the writer in contemporary culture.', vision: 'Graduates who produce publishable, original creative work and can articulate their practice within broader literary and cultural conversations.', themes: 'Creative practice, literary craft, publishing, editing, writing communities, diverse voices, practice-led research', capabilities: 'Advanced creative composition, critical self-reflection, editorial skills, workshopping, research-informed practice' },
+        'strategic-comms': { loType: 'CLO', aqfLevel: '9', discipline: 'Strategic Communication', description: 'The Master of Strategic Communication prepares professionals for leadership roles in corporate communication, public affairs, crisis management, and digital strategy.', vision: 'Graduates who can lead communication strategy at an organisational level, integrating research, ethics, and innovation.', themes: 'Corporate communication, crisis management, stakeholder engagement, digital strategy, reputation management, data-driven communication', capabilities: 'Strategic planning, stakeholder analysis, campaign evaluation, crisis communication, ethical leadership, data analytics' }
     };
 
     document.addEventListener('DOMContentLoaded', () => {
@@ -888,7 +813,10 @@ When generating ULOs and existing CLOs have been provided, include CLO alignment
         const resultsContent = document.getElementById('results-content');
         const resultsWarning = document.getElementById('results-warning');
         const teqsaCoverage = document.getElementById('teqsa-coverage');
+        const mappingTableArea = document.getElementById('mapping-table-area');
         const refineSection = document.getElementById('refine-section');
+        const assessmentSection = document.getElementById('assessment-section');
+        const shareSection = document.getElementById('share-section');
         const versionHistory = document.getElementById('version-history');
         const inputSummary = document.getElementById('input-summary');
         const loading = document.getElementById('loading');
@@ -900,7 +828,7 @@ When generating ULOs and existing CLOs have been provided, include CLO alignment
         let lastRawContent = '';
         let versions = [];
 
-        // === DARK MODE (Feature 10) ===
+        // Dark mode
         const themeToggle = document.getElementById('theme-toggle');
         function setTheme(theme) {
             document.documentElement.setAttribute('data-theme', theme);
@@ -908,293 +836,17 @@ When generating ULOs and existing CLOs have been provided, include CLO alignment
             themeToggle.innerHTML = theme === 'dark' ? '&#9788;' : '&#9790;';
             themeToggle.setAttribute('aria-label', theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode');
         }
-        const savedTheme = localStorage.getItem('lo-gen-theme') || 'light';
-        setTheme(savedTheme);
+        setTheme(localStorage.getItem('lo-gen-theme') || 'light');
         themeToggle.addEventListener('click', () => {
-            const current = document.documentElement.getAttribute('data-theme');
-            setTheme(current === 'dark' ? 'light' : 'dark');
- // === QUICK CHECK MODE (Feature 18) ===
-        document.getElementById('btn-quick-check').addEventListener('click', () => switchMode('quick-check'));
-
-        document.getElementById('quick-check-form').addEventListener('submit', async (e) => {
-            e.preventDefault();
-            const los = document.getElementById('qc-los').value;
-            if (!los.trim()) return alert('Please paste your learning outcomes.');
-
-            const lt = document.getElementById('qc-lo-type').value;
-            const al = document.getElementById('qc-aqf-level').value;
-
-            lastInputData = {
-                mode: 'Quick Check',
-                loType: lt || 'Not specified',
-                aqfLevel: al || 'Not specified',
-                discipline: '',
-                los: los.trim().split('\n').filter(l => l.trim()).map(l => l.replace(/^\d+[\.\)]\s*/, '').trim())
-            };
-
-            let msg = '**Mode:** Quick Check (brief traffic-light assessment only)\n';
-            msg += 'For each learning outcome below, provide ONLY:\n';
-            msg += '- The number and first few words\n';
-            msg += '- A rating: ✓ (good), ~ (minor issues), ✗ (needs revision)\n';
-            msg += '- ONE sentence explaining the main issue (if any)\n\n';
-            msg += 'Do NOT provide full rewrites or detailed explanations. Keep it brief and scannable.\n\n';
-            if (lt) msg += '**LO Type:** ' + lt + '\n';
-            if (al) msg += '**AQF Level:** ' + al + '\n';
-            msg += '**Learning Outcomes:**\n' + los;
-
-            conversationHistory = [{ role: 'user', content: msg }];
-            versions = [];
-            await callAPI(conversationHistory, 'Quick Check Results', 'Running quick check...');
+            setTheme(document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
         });
 
-        // === ASSESSMENT ALIGNMENT (Feature 14) ===
-        document.getElementById('assessment-btn').addEventListener('click', async () => {
-            if (!lastRawContent) return;
-
-            const assessMsg = `**Mode:** Assessment Alignment Suggestions
-
-Based on the learning outcomes you just generated/reviewed, suggest appropriate assessment types for each LO.
-
-For each LO, provide:
-**LO [number]:** [First few words...] → **Suggested Assessment:** [type(s)]
-[One sentence rationale linking Bloom's level to assessment type]
-
-Use this alignment guide:
-- Remember/Understand → Quiz, short-answer test, annotation exercise
-- Apply → Case study, problem-based task, simulation, lab work
-- Analyse → Research essay, comparative analysis, data analysis report
-- Evaluate → Critical review, peer assessment, debate, position paper
-- Create → Portfolio, production project, design brief, research proposal, creative work
-
-Keep suggestions specific to the discipline context. Present as a numbered list.`;
-
-            conversationHistory.push({ role: 'assistant', content: lastRawContent });
-            conversationHistory.push({ role: 'user', content: assessMsg });
-
-            await callAPI(conversationHistory, 'Assessment Alignment Suggestions', 'Generating assessment suggestions...');
-        });
-
-        // === SHARE VIA LINK (Feature 17) ===
-        document.getElementById('share-btn').addEventListener('click', () => {
-            const params = new URLSearchParams();
-            const activeMode = document.querySelector('.mode-btn.active').getAttribute('data-mode');
-            params.set('mode', activeMode);
-
-            if (activeMode === 'generate') {
-                const fields = {
-                    lt: document.getElementById('lo-type').value,
-                    aqf: document.getElementById('aqf-level').value,
-                    ul: document.getElementById('unit-level').value,
-                    n: document.getElementById('num-los').value,
-                    disc: document.getElementById('discipline').value,
-                    desc: document.getElementById('description').value,
-                    vis: document.getElementById('vision').value,
-                    thm: document.getElementById('themes').value,
-                    cap: document.getElementById('capabilities').value,
-                    clos: document.getElementById('existing-clos').value,
-                    notes: document.getElementById('additional-notes').value,
-                };
-                for (const [k, v] of Object.entries(fields)) {
-                    if (v) params.set(k, v);
-                }
-            } else if (activeMode === 'check') {
-                const fields = {
-                    lt: document.getElementById('check-lo-type').value,
-                    aqf: document.getElementById('check-aqf-level').value,
-                    ul: document.getElementById('check-unit-level').value,
-                    disc: document.getElementById('check-discipline').value,
-                    los: document.getElementById('check-los').value,
-                    notes: document.getElementById('check-notes').value,
-                };
-                for (const [k, v] of Object.entries(fields)) {
-                    if (v) params.set(k, v);
-                }
-            } else if (activeMode === 'quick-check') {
-                const fields = {
-                    lt: document.getElementById('qc-lo-type').value,
-                    aqf: document.getElementById('qc-aqf-level').value,
-                    los: document.getElementById('qc-los').value,
-                };
-                for (const [k, v] of Object.entries(fields)) {
-                    if (v) params.set(k, v);
-                }
-            }
-
-            const shareUrl = window.location.origin + window.location.pathname + '?' + params.toString();
-            const display = document.getElementById('share-url-display');
-            display.textContent = shareUrl;
-            display.classList.add('visible');
-
-            copyToClipboard(shareUrl).then(success => {
-                if (success) {
-                    document.getElementById('share-btn').innerHTML = '<span aria-hidden="true">&#10003;</span> Link Copied!';
-                    announce('Share link copied to clipboard');
-                    setTimeout(() => {
-                        document.getElementById('share-btn').innerHTML = '<span aria-hidden="true">&#128279;</span> Share Input Link';
-                    }, 3000);
-                }
-            });
-        });
-
-        // Load shared parameters from URL on page load
-        function loadFromURL() {
-            const params = new URLSearchParams(window.location.search);
-            if (!params.has('mode')) return;
-
-            const mode = params.get('mode');
-            switchMode(mode);
-
-            if (mode === 'generate') {
-                if (params.get('lt')) document.getElementById('lo-type').value = params.get('lt');
-                if (params.get('aqf')) document.getElementById('aqf-level').value = params.get('aqf');
-                if (params.get('ul')) document.getElementById('unit-level').value = params.get('ul');
-                if (params.get('n')) document.getElementById('num-los').value = params.get('n');
-                if (params.get('disc')) document.getElementById('discipline').value = params.get('disc');
-                if (params.get('desc')) document.getElementById('description').value = params.get('desc');
-                if (params.get('vis')) document.getElementById('vision').value = params.get('vis');
-                if (params.get('thm')) document.getElementById('themes').value = params.get('thm');
-                if (params.get('cap')) document.getElementById('capabilities').value = params.get('cap');
-                if (params.get('clos')) document.getElementById('existing-clos').value = params.get('clos');
-                if (params.get('notes')) document.getElementById('additional-notes').value = params.get('notes');
-                loTypeSelect.dispatchEvent(new Event('change'));
-                aqfLevelSelect.dispatchEvent(new Event('change'));
-            } else if (mode === 'check') {
-                if (params.get('lt')) document.getElementById('check-lo-type').value = params.get('lt');
-                if (params.get('aqf')) document.getElementById('check-aqf-level').value = params.get('aqf');
-                if (params.get('ul')) document.getElementById('check-unit-level').value = params.get('ul');
-                if (params.get('disc')) document.getElementById('check-discipline').value = params.get('disc');
-                if (params.get('los')) document.getElementById('check-los').value = params.get('los');
-                if (params.get('notes')) document.getElementById('check-notes').value = params.get('notes');
-            } else if (mode === 'quick-check') {
-                if (params.get('lt')) document.getElementById('qc-lo-type').value = params.get('lt');
-                if (params.get('aqf')) document.getElementById('qc-aqf-level').value = params.get('aqf');
-                if (params.get('los')) document.getElementById('qc-los').value = params.get('los');
-            }
-
-            // Clear URL params without reload
-            window.history.replaceState({}, '', window.location.pathname);
-            announce('Form pre-filled from shared link');
-        }
-        loadFromURL();
-
-        // === ULO-CLO MAPPING TABLE (Feature 13) ===
-        function displayMappingTable(content) {
-            const mappingArea = document.getElementById('mapping-table-area');
-
-            // Only show for ULO generation where CLOs were provided
-            if (!lastInputData || lastInputData.loType !== 'ULO' || !lastInputData.mode.includes('Generate')) {
-                // Also check if the content mentions CLO mapping
-                if (!/CLO/i.test(content) || !/ULO/i.test(content)) {
-                    mappingArea.style.display = 'none';
-                    return;
-                }
-            }
-
-            // Try to extract ULOs from the output
-            const uloMatches = [];
-            const lines = content.split('\n');
-            for (let line of lines) {
-                const match = line.match(/^\s*(\d+)[.)]\s+\*\*([^*]+)\*\*(.*)/);
-                if (match) {
-                    uloMatches.push({ num: match[1], verb: match[2], rest: match[3].substring(0, 40).replace(/\*\*/g, '') + '...' });
-                }
-            }
-
-            if (uloMatches.length === 0) {
-                mappingArea.style.display = 'none';
-                return;
-            }
-
-            // Try to find CLO references in the metadata brackets
-            // Look for patterns like "CLO 1, 3" or "aligns to CLO 2"
-            const uloToClo = [];
-            let currentUlo = 0;
-            for (let line of lines) {
-                const uloMatch = line.match(/^\s*(\d+)[.)]\s/);
-                if (uloMatch) currentUlo = parseInt(uloMatch[1]);
-                const cloRef = line.match(/CLO[s]?\s*([\d,\s&and]+)/i);
-                if (cloRef && currentUlo > 0) {
-                    const cloNums = cloRef[1].match(/\d+/g);
-                    if (cloNums) {
-                        uloToClo[currentUlo] = cloNums.map(Number);
-                    }
-                }
-            }
-
-            // If we couldn't extract mappings, try to infer from existing CLOs
-            const existingClos = document.getElementById('existing-clos').value;
-            let cloCount = 0;
-            if (existingClos) {
-                cloCount = existingClos.split('\n').filter(l => l.trim()).length;
-            }
-            if (cloCount === 0) cloCount = 8; // default assumption
-
-            // Build table
-            let html = '<h4>ULO → CLO Alignment Map</h4>';
-            html += '<table class="mapping-table"><thead><tr><th>ULO</th>';
-            for (let c = 1; c <= Math.min(cloCount, 12); c++) {
-                html += '<th>CLO ' + c + '</th>';
-            }
-            html += '</tr></thead><tbody>';
-
-            for (let u of uloMatches) {
-                html += '<tr><td>' + u.num + '. ' + u.verb + '</td>';
-                const mapped = uloToClo[parseInt(u.num)] || [];
-                for (let c = 1; c <= Math.min(cloCount, 12); c++) {
-                    if (mapped.includes(c)) {
-                        html += '<td><span class="mapping-dot">●</span></td>';
-                    } else {
-                        html += '<td></td>';
-                    }
-                }
-                html += '</tr>';
-            }
-            html += '</tbody></table>';
-            html += '<p class="mapping-legend">● = ULO aligns to this CLO. Mapping is inferred from the AI output. Please verify alignment with your course team.</p>';
-
-            mappingArea.innerHTML = html;
-            mappingArea.style.display = 'block';
-        }
-
-        // Show/hide assessment and share sections after results
-        const origDisplayResults = displayResults;
-        displayResults = function(content, title) {
-            origDisplayResults(content, title);
-            // Show assessment suggestion button for generate mode
-            document.getElementById('assessment-section').style.display = (lastInputData && lastInputData.mode !== 'Quick Check') ? 'block' : 'none';
-            // Show share section
-            document.getElementById('share-section').style.display = 'block';
-            // Try mapping table
-            displayMappingTable(content);
-        };
-            
-        });
-
-        // === SESSION STORAGE (Feature 4) ===
+        // Session storage
         const STORAGE_KEY = 'lo-gen-form-data';
         function saveFormState() {
             const state = {
-                generate: {
-                    loType: document.getElementById('lo-type').value,
-                    aqfLevel: document.getElementById('aqf-level').value,
-                    unitLevel: document.getElementById('unit-level').value,
-                    numLos: document.getElementById('num-los').value,
-                    discipline: document.getElementById('discipline').value,
-                    description: document.getElementById('description').value,
-                    vision: document.getElementById('vision').value,
-                    themes: document.getElementById('themes').value,
-                    capabilities: document.getElementById('capabilities').value,
-                    existingClos: document.getElementById('existing-clos').value,
-                    additionalNotes: document.getElementById('additional-notes').value,
-                },
-                check: {
-                    loType: document.getElementById('check-lo-type').value,
-                    aqfLevel: document.getElementById('check-aqf-level').value,
-                    unitLevel: document.getElementById('check-unit-level').value,
-                    discipline: document.getElementById('check-discipline').value,
-                    los: document.getElementById('check-los').value,
-                    notes: document.getElementById('check-notes').value,
-                }
+                generate: { loType: document.getElementById('lo-type').value, aqfLevel: document.getElementById('aqf-level').value, unitLevel: document.getElementById('unit-level').value, numLos: document.getElementById('num-los').value, discipline: document.getElementById('discipline').value, description: document.getElementById('description').value, vision: document.getElementById('vision').value, themes: document.getElementById('themes').value, capabilities: document.getElementById('capabilities').value, existingClos: document.getElementById('existing-clos').value, additionalNotes: document.getElementById('additional-notes').value },
+                check: { loType: document.getElementById('check-lo-type').value, aqfLevel: document.getElementById('check-aqf-level').value, unitLevel: document.getElementById('check-unit-level').value, discipline: document.getElementById('check-discipline').value, los: document.getElementById('check-los').value, notes: document.getElementById('check-notes').value }
             };
             sessionStorage.setItem(STORAGE_KEY, JSON.stringify(state));
         }
@@ -1202,763 +854,322 @@ Keep suggestions specific to the discipline context. Present as a numbered list.
             const saved = sessionStorage.getItem(STORAGE_KEY);
             if (!saved) return;
             try {
-                const state = JSON.parse(saved);
-                if (state.generate) {
-                    document.getElementById('lo-type').value = state.generate.loType || '';
-                    document.getElementById('aqf-level').value = state.generate.aqfLevel || '';
-                    document.getElementById('unit-level').value = state.generate.unitLevel || '';
-                    document.getElementById('num-los').value = state.generate.numLos || '';
-                    document.getElementById('discipline').value = state.generate.discipline || '';
-                    document.getElementById('description').value = state.generate.description || '';
-                    document.getElementById('vision').value = state.generate.vision || '';
-                    document.getElementById('themes').value = state.generate.themes || '';
-                    document.getElementById('capabilities').value = state.generate.capabilities || '';
-                    document.getElementById('existing-clos').value = state.generate.existingClos || '';
-                    document.getElementById('additional-notes').value = state.generate.additionalNotes || '';
-                    // Trigger conditional display
-                    loTypeSelect.dispatchEvent(new Event('change'));
-                    aqfLevelSelect.dispatchEvent(new Event('change'));
-                }
-                if (state.check) {
-                    document.getElementById('check-lo-type').value = state.check.loType || '';
-                    document.getElementById('check-aqf-level').value = state.check.aqfLevel || '';
-                    document.getElementById('check-unit-level').value = state.check.unitLevel || '';
-                    document.getElementById('check-discipline').value = state.check.discipline || '';
-                    document.getElementById('check-los').value = state.check.los || '';
-                    document.getElementById('check-notes').value = state.check.notes || '';
-                }
-            } catch (e) { /* ignore parse errors */ }
+                const s = JSON.parse(saved);
+                if (s.generate) { document.getElementById('lo-type').value=s.generate.loType||''; document.getElementById('aqf-level').value=s.generate.aqfLevel||''; document.getElementById('unit-level').value=s.generate.unitLevel||''; document.getElementById('num-los').value=s.generate.numLos||''; document.getElementById('discipline').value=s.generate.discipline||''; document.getElementById('description').value=s.generate.description||''; document.getElementById('vision').value=s.generate.vision||''; document.getElementById('themes').value=s.generate.themes||''; document.getElementById('capabilities').value=s.generate.capabilities||''; document.getElementById('existing-clos').value=s.generate.existingClos||''; document.getElementById('additional-notes').value=s.generate.additionalNotes||''; loTypeSelect.dispatchEvent(new Event('change')); aqfLevelSelect.dispatchEvent(new Event('change')); }
+                if (s.check) { document.getElementById('check-lo-type').value=s.check.loType||''; document.getElementById('check-aqf-level').value=s.check.aqfLevel||''; document.getElementById('check-unit-level').value=s.check.unitLevel||''; document.getElementById('check-discipline').value=s.check.discipline||''; document.getElementById('check-los').value=s.check.los||''; document.getElementById('check-notes').value=s.check.notes||''; }
+            } catch(e){}
         }
         restoreFormState();
-        // Auto-save on input changes
-        document.querySelectorAll('#generate-form input, #generate-form textarea, #generate-form select, #check-form input, #check-form textarea, #check-form select').forEach(el => {
-            el.addEventListener('change', saveFormState);
-            el.addEventListener('input', saveFormState);
-        });
+        document.querySelectorAll('#generate-form input, #generate-form textarea, #generate-form select, #check-form input, #check-form textarea, #check-form select').forEach(el => { el.addEventListener('change', saveFormState); el.addEventListener('input', saveFormState); });
 
-        // === CHAR COUNT / TOKEN WARNING (Feature 8) ===
+        // Char count
         function updateCharCount(textarea, display, limit) {
             const len = textarea.value.length;
-            if (len > limit) {
-                display.textContent = len + ' characters — may produce incomplete results. Consider shortening.';
-                display.classList.add('char-warning');
-            } else if (len > limit * 0.8) {
-                display.textContent = len + ' characters (approaching limit)';
-                display.classList.add('char-warning');
-            } else {
-                display.textContent = '';
-                display.classList.remove('char-warning');
-            }
+            if (len > limit) { display.textContent = len + ' chars — may produce incomplete results'; display.classList.add('char-warning'); }
+            else if (len > limit * 0.8) { display.textContent = len + ' chars (approaching limit)'; display.classList.add('char-warning'); }
+            else { display.textContent = ''; display.classList.remove('char-warning'); }
         }
         document.getElementById('description').addEventListener('input', function() { updateCharCount(this, document.getElementById('desc-charcount'), 2000); });
         document.getElementById('check-los').addEventListener('input', function() { updateCharCount(this, document.getElementById('check-charcount'), 3000); });
 
-        // === EXAMPLE LOADER (Feature 7) ===
+        // Example loader
         document.getElementById('example-select').addEventListener('change', function() {
-            const key = this.value;
-            if (!key || !EXAMPLES[key]) return;
-            const ex = EXAMPLES[key];
-            document.getElementById('lo-type').value = ex.loType || '';
-            document.getElementById('aqf-level').value = ex.aqfLevel || '';
-            document.getElementById('discipline').value = ex.discipline || '';
-            document.getElementById('description').value = ex.description || '';
-            document.getElementById('vision').value = ex.vision || '';
-            document.getElementById('themes').value = ex.themes || '';
-            document.getElementById('capabilities').value = ex.capabilities || '';
-            loTypeSelect.dispatchEvent(new Event('change'));
-            aqfLevelSelect.dispatchEvent(new Event('change'));
-            saveFormState();
-            announce('Example loaded: ' + ex.discipline);
+            const ex = EXAMPLES[this.value]; if (!ex) return;
+            document.getElementById('lo-type').value=ex.loType||''; document.getElementById('aqf-level').value=ex.aqfLevel||''; document.getElementById('discipline').value=ex.discipline||''; document.getElementById('description').value=ex.description||''; document.getElementById('vision').value=ex.vision||''; document.getElementById('themes').value=ex.themes||''; document.getElementById('capabilities').value=ex.capabilities||'';
+            loTypeSelect.dispatchEvent(new Event('change')); aqfLevelSelect.dispatchEvent(new Event('change')); saveFormState(); announce('Example loaded: ' + ex.discipline);
         });
 
-        // === MODE TOGGLE ===
+        // Mode toggle
         document.getElementById('btn-generate').addEventListener('click', () => switchMode('generate'));
         document.getElementById('btn-check').addEventListener('click', () => switchMode('check'));
-        
-
+        document.getElementById('btn-quick-check').addEventListener('click', () => switchMode('quick-check'));
         function switchMode(mode) {
-            document.querySelectorAll('.mode-btn').forEach(b => { b.classList.remove('active'); b.setAttribute('aria-selected', 'false'); });
-            const btn = document.querySelector('[data-mode="' + mode + '"]');
-            btn.classList.add('active');
-            btn.setAttribute('aria-selected', 'true');
+            document.querySelectorAll('.mode-btn').forEach(b => { b.classList.remove('active'); b.setAttribute('aria-selected','false'); });
+            document.querySelector('[data-mode="'+mode+'"]').classList.add('active');
+            document.querySelector('[data-mode="'+mode+'"]').setAttribute('aria-selected','true');
             document.querySelectorAll('.mode-panel').forEach(p => p.classList.remove('active'));
-            document.getElementById('panel-' + mode).classList.add('active');
+            document.getElementById('panel-'+mode).classList.add('active');
             resultsArea.style.display = 'none';
         }
 
-        // === CONDITIONAL FIELDS ===
+        // Conditional fields
         loTypeSelect.addEventListener('change', () => {
             const t = loTypeSelect.value;
             unitLevelGroup.style.display = t === 'ULO' ? 'block' : 'none';
             existingClosGroup.style.display = t === 'ULO' ? 'block' : 'none';
             const help = document.getElementById('lo-type-help');
-            const texts = { CLO: 'Course-level: 6-8 outcomes, all TEQSA dimensions', ULO: 'Unit-level: 3-5 outcomes, scaffolded to CLOs', MLO: 'Major-level: 6-8 specialised outcomes', Specialist: 'Specialist: 4-6 sub-disciplinary outcomes' };
+            const texts = { CLO:'Course-level: 6-8, all TEQSA dimensions', ULO:'Unit-level: 3-5, scaffolded to CLOs', MLO:'Major-level: 6-8 specialised', Specialist:'Specialist: 4-6 sub-disciplinary' };
             help.textContent = texts[t] || '';
         });
         aqfLevelSelect.addEventListener('change', () => {
             const help = document.getElementById('aqf-help');
-            const texts = { '7': 'Bachelor: broad knowledge, well-developed judgement', '8': 'Honours/GradCert/GradDip: advanced knowledge, adaptability', '9': 'Masters: integrated understanding, expert judgement', '10': 'Doctoral: systemic understanding, authoritative judgement' };
+            const texts = { '7':'Bachelor: broad knowledge, well-developed judgement', '8':'Honours/Grad: advanced knowledge, adaptability', '9':'Masters: integrated understanding, expert judgement', '10':'Doctoral: systemic understanding, authoritative judgement' };
             help.textContent = texts[aqfLevelSelect.value] || '';
         });
 
-        // === KEYBOARD SHORTCUTS (Feature 11) ===
+        // Keyboard shortcuts
         document.addEventListener('keydown', (e) => {
-            // Ctrl+Enter to submit active form
-            if (e.ctrlKey && e.key === 'Enter') {
-                e.preventDefault();
-                const activePanel = document.querySelector('.mode-panel.active');
-                if (activePanel) {
-                    const form = activePanel.querySelector('form');
-                    if (form) form.requestSubmit();
-                }
-            }
-            // Ctrl+Shift+C to copy results
-            if (e.ctrlKey && e.shiftKey && e.key === 'C') {
-                e.preventDefault();
-                if (lastRawContent) {
-                    copyToClipboard(buildPlainText(lastRawContent));
-                    announce('Results copied to clipboard');
-                }
-            }
-            // Ctrl+Shift+D to toggle dark mode
-            if (e.ctrlKey && e.shiftKey && e.key === 'D') {
-                e.preventDefault();
-                themeToggle.click();
-            }
+            if (e.ctrlKey && e.key === 'Enter') { e.preventDefault(); const f = document.querySelector('.mode-panel.active form'); if (f) f.requestSubmit(); }
+            if (e.ctrlKey && e.shiftKey && e.key === 'C') { e.preventDefault(); if (lastRawContent) { copyToClipboard(buildPlainText(lastRawContent)); announce('Copied'); } }
+            if (e.ctrlKey && e.shiftKey && e.key === 'D') { e.preventDefault(); themeToggle.click(); }
         });
 
-        // === ACCESSIBILITY: Announce function (Feature 12) ===
-        function announce(message) {
-            liveRegion.textContent = message;
-            setTimeout(() => { liveRegion.textContent = ''; }, 3000);
-        }
-         // === GENERATE FORM ===
+        function announce(msg) { liveRegion.textContent = msg; setTimeout(() => { liveRegion.textContent = ''; }, 3000); }
+
+        // Generate form
         document.getElementById('generate-form').addEventListener('submit', async (e) => {
             e.preventDefault();
             const loType = document.getElementById('lo-type').value;
             const aqfLevel = document.getElementById('aqf-level').value;
             if (!loType || !aqfLevel) return alert('Please select LO Type and AQF Level.');
-
-            const desc = document.getElementById('description').value;
-            const vis = document.getElementById('vision').value;
-            const thm = document.getElementById('themes').value;
-            const cap = document.getElementById('capabilities').value;
+            const desc = document.getElementById('description').value, vis = document.getElementById('vision').value, thm = document.getElementById('themes').value, cap = document.getElementById('capabilities').value;
             if (!desc && !vis && !thm && !cap) return alert('Please provide at least one piece of context.');
-
-            const aqfLabels = { '7': 'Level 7 – Bachelor Degree', '8': 'Level 8 – Honours/Grad Cert/Grad Dip', '9': 'Level 9 – Masters Degree', '10': 'Level 10 – Doctoral Degree' };
-
-            lastInputData = {
-                mode: 'Generate',
-                loType: loType,
-                aqfLevel: aqfLabels[aqfLevel] || aqfLevel,
-                discipline: document.getElementById('discipline').value,
-                unitLevel: document.getElementById('unit-level').value,
-                numLos: document.getElementById('num-los').value
-            };
-
-            let msg = '**Mode:** Generate new learning outcomes\n**LO Type:** ' + loType + '\n**AQF Level:** ' + aqfLevel;
-            const unitLevel = document.getElementById('unit-level').value;
-            if (unitLevel) msg += '\n**Unit Level:** ' + unitLevel;
-            const numLos = document.getElementById('num-los').value;
-            if (numLos) msg += '\n**Number of LOs:** ' + numLos;
-            const disc = document.getElementById('discipline').value;
-            if (disc) msg += '\n**Discipline:** ' + disc;
-            if (desc) msg += '\n**Description:**\n' + desc;
-            if (vis) msg += '\n**Vision/Graduate Profile:**\n' + vis;
-            if (thm) msg += '\n**Themes:**\n' + thm;
-            if (cap) msg += '\n**Capabilities:**\n' + cap;
-            const clos = document.getElementById('existing-clos').value;
-            if (clos) msg += '\n**Existing CLOs:**\n' + clos;
-            const notes = document.getElementById('additional-notes').value;
-            if (notes) msg += '\n**Additional Notes:**\n' + notes;
-
-            conversationHistory = [{ role: 'user', content: msg }];
-            versions = [];
+            const aqfLabels = { '7':'Level 7 – Bachelor Degree', '8':'Level 8 – Honours/Grad Cert/Grad Dip', '9':'Level 9 – Masters Degree', '10':'Level 10 – Doctoral Degree' };
+            lastInputData = { mode:'Generate', loType, aqfLevel: aqfLabels[aqfLevel]||aqfLevel, discipline: document.getElementById('discipline').value, unitLevel: document.getElementById('unit-level').value, numLos: document.getElementById('num-los').value };
+            let msg = '**Mode:** Generate new learning outcomes\n**LO Type:** '+loType+'\n**AQF Level:** '+aqfLevel;
+            const ul = document.getElementById('unit-level').value; if (ul) msg += '\n**Unit Level:** '+ul;
+            const n = document.getElementById('num-los').value; if (n) msg += '\n**Number of LOs:** '+n;
+            const disc = document.getElementById('discipline').value; if (disc) msg += '\n**Discipline:** '+disc;
+            if (desc) msg += '\n**Description:**\n'+desc; if (vis) msg += '\n**Vision:**\n'+vis; if (thm) msg += '\n**Themes:**\n'+thm; if (cap) msg += '\n**Capabilities:**\n'+cap;
+            const clos = document.getElementById('existing-clos').value; if (clos) msg += '\n**Existing CLOs:**\n'+clos;
+            const notes = document.getElementById('additional-notes').value; if (notes) msg += '\n**Additional Notes:**\n'+notes;
+            conversationHistory = [{ role:'user', content:msg }]; versions = [];
             await callAPI(conversationHistory, 'Generated Learning Outcomes', 'Generating learning outcomes...');
         });
 
-        // === CHECK FORM ===
+        // Check form
         document.getElementById('check-form').addEventListener('submit', async (e) => {
             e.preventDefault();
-            const los = document.getElementById('check-los').value;
-            if (!los.trim()) return alert('Please paste your learning outcomes.');
-
-            const aqfLabels = { '7': 'Level 7 – Bachelor Degree', '8': 'Level 8 – Honours/Grad Cert/Grad Dip', '9': 'Level 9 – Masters Degree', '10': 'Level 10 – Doctoral Degree' };
-            const lt = document.getElementById('check-lo-type').value;
-            const al = document.getElementById('check-aqf-level').value;
-
-            lastInputData = {
-                mode: 'Check',
-                loType: lt || 'Not specified',
-                aqfLevel: aqfLabels[al] || al || 'Not specified',
-                discipline: document.getElementById('check-discipline').value || 'Not specified',
-                unitLevel: document.getElementById('check-unit-level').value,
-                los: los.trim().split('\n').filter(l => l.trim()).map(l => l.replace(/^\d+[\.\)]\s*/, '').trim())
-            };
-
+            const los = document.getElementById('check-los').value; if (!los.trim()) return alert('Please paste your learning outcomes.');
+            const aqfLabels = { '7':'Level 7 – Bachelor Degree', '8':'Level 8 – Honours/Grad Cert/Grad Dip', '9':'Level 9 – Masters Degree', '10':'Level 10 – Doctoral Degree' };
+            const lt = document.getElementById('check-lo-type').value, al = document.getElementById('check-aqf-level').value;
+            lastInputData = { mode:'Check', loType:lt||'Not specified', aqfLevel:aqfLabels[al]||al||'Not specified', discipline:document.getElementById('check-discipline').value||'Not specified', unitLevel:document.getElementById('check-unit-level').value, los:los.trim().split('\n').filter(l=>l.trim()).map(l=>l.replace(/^\d+[\.\)]\s*/,'').trim()) };
             let msg = '**Mode:** Check/review existing learning outcomes';
-            if (lt) msg += '\n**LO Type:** ' + lt;
-            if (al) msg += '\n**AQF Level:** ' + al;
-            const ul = document.getElementById('check-unit-level').value;
-            if (ul) msg += '\n**Unit Level:** ' + ul;
-            const d = document.getElementById('check-discipline').value;
-            if (d) msg += '\n**Discipline:** ' + d;
-            msg += '\n**Learning Outcomes to Review:**\n' + los;
-            const n = document.getElementById('check-notes').value;
-            if (n) msg += '\n**Concerns/Questions:**\n' + n;
-
-            conversationHistory = [{ role: 'user', content: msg }];
-            versions = [];
+            if (lt) msg += '\n**LO Type:** '+lt; if (al) msg += '\n**AQF Level:** '+al;
+            const ul = document.getElementById('check-unit-level').value; if (ul) msg += '\n**Unit Level:** '+ul;
+            const d = document.getElementById('check-discipline').value; if (d) msg += '\n**Discipline:** '+d;
+            msg += '\n**Learning Outcomes to Review:**\n'+los;
+            const n = document.getElementById('check-notes').value; if (n) msg += '\n**Concerns:**\n'+n;
+            conversationHistory = [{ role:'user', content:msg }]; versions = [];
             await callAPI(conversationHistory, 'Learning Outcomes Review', 'Reviewing your learning outcomes...');
         });
 
-        // === REFINE (Feature 9 - Version History) ===
+        // Quick check form
+        document.getElementById('quick-check-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const los = document.getElementById('qc-los').value; if (!los.trim()) return alert('Please paste your learning outcomes.');
+            const lt = document.getElementById('qc-lo-type').value, al = document.getElementById('qc-aqf-level').value;
+            lastInputData = { mode:'Quick Check', loType:lt||'Not specified', aqfLevel:al||'Not specified', discipline:'', los:los.trim().split('\n').filter(l=>l.trim()).map(l=>l.replace(/^\d+[\.\)]\s*/,'').trim()) };
+            let msg = '**Mode:** Quick Check (brief traffic-light assessment only)\nFor each LO provide ONLY:\n- The number and first few words\n- Rating: ✓ (good), ~ (minor issues), ✗ (needs revision)\n- ONE sentence explaining the main issue (if any)\n\nDo NOT provide full rewrites. Keep it brief.\n\n';
+            if (lt) msg += '**LO Type:** '+lt+'\n'; if (al) msg += '**AQF Level:** '+al+'\n';
+            msg += '**Learning Outcomes:**\n'+los;
+            conversationHistory = [{ role:'user', content:msg }]; versions = [];
+            await callAPI(conversationHistory, 'Quick Check Results', 'Running quick check...');
+        });
+
+        // Refine
         document.getElementById('refine-btn').addEventListener('click', async () => {
             const instructions = document.getElementById('refine-instructions').value.trim();
             if (!instructions) return alert('Please enter refinement instructions.');
-
-            // Save current version before refining
-            versions.push({
-                title: versions.length === 0 ? 'Original' : 'Revision ' + versions.length,
-                content: lastRawContent,
-                time: new Date().toLocaleTimeString('en-AU', { hour: '2-digit', minute: '2-digit' })
-            });
+            versions.push({ title: versions.length===0?'Original':'Revision '+versions.length, content:lastRawContent, time:new Date().toLocaleTimeString('en-AU',{hour:'2-digit',minute:'2-digit'}) });
             updateVersionHistory();
-
-            const refineMsg = '**Mode:** Refine\n**Instructions:** ' + instructions + '\n\nPlease apply the requested changes to the learning outcomes from your previous response. Present the complete revised set.';
-
-            conversationHistory.push({ role: 'assistant', content: lastRawContent });
-            conversationHistory.push({ role: 'user', content: refineMsg });
-
-            await callAPI(conversationHistory, 'Refined Learning Outcomes', 'Refining learning outcomes...');
+            conversationHistory.push({ role:'assistant', content:lastRawContent });
+            conversationHistory.push({ role:'user', content:'**Mode:** Refine\n**Instructions:** '+instructions+'\n\nApply the requested changes. Present the complete revised set.' });
+            await callAPI(conversationHistory, 'Refined Learning Outcomes', 'Refining...');
         });
 
-        // === VERSION HISTORY (Feature 9) ===
+        // Assessment alignment
+        document.getElementById('assessment-btn').addEventListener('click', async () => {
+            if (!lastRawContent) return;
+            conversationHistory.push({ role:'assistant', content:lastRawContent });
+            conversationHistory.push({ role:'user', content:'**Mode:** Assessment Alignment Suggestions\n\nFor each LO, suggest assessment types:\n**LO [number]:** [First words...] → **Suggested Assessment:** [type(s)]\n[One sentence rationale]\n\nAlignment guide:\n- Remember/Understand → Quiz, short-answer, annotation\n- Apply → Case study, simulation, lab work\n- Analyse → Research essay, comparative analysis, data report\n- Evaluate → Critical review, peer assessment, debate, position paper\n- Create → Portfolio, production project, design brief, research proposal\n\nKeep suggestions discipline-specific.' });
+            await callAPI(conversationHistory, 'Assessment Alignment', 'Generating assessment suggestions...');
+        });
+
+        // Version history
         document.getElementById('version-toggle').addEventListener('click', function() {
             const list = document.getElementById('version-list');
-            const isOpen = list.classList.toggle('open');
-            this.classList.toggle('open', isOpen);
-            this.setAttribute('aria-expanded', isOpen);
+            const isOpen = list.classList.toggle('open'); this.classList.toggle('open', isOpen); this.setAttribute('aria-expanded', isOpen);
         });
-
         function updateVersionHistory() {
-            if (versions.length === 0) {
-                versionHistory.style.display = 'none';
-                return;
-            }
-            versionHistory.style.display = 'block';
-            document.getElementById('version-count').textContent = versions.length;
-            const list = document.getElementById('version-list');
-            list.innerHTML = '';
-            versions.forEach((v, i) => {
-                const item = document.createElement('div');
-                item.className = 'version-item';
-                item.setAttribute('role', 'listitem');
-                item.setAttribute('tabindex', '0');
-                item.innerHTML = '<div class="version-item-header"><span class="version-item-title">' + escapeHtml(v.title) + '</span><span class="version-item-time">' + v.time + '</span></div>';
-                item.addEventListener('click', () => {
-                    lastRawContent = v.content;
-                    resultsContent.innerHTML = renderMarkdown(v.content);
-                    resultsTitle.textContent = v.title;
-                    announce('Showing ' + v.title);
-                });
-                item.addEventListener('keydown', (e) => { if (e.key === 'Enter') item.click(); });
+            if (versions.length===0) { versionHistory.style.display='none'; return; }
+            versionHistory.style.display='block';
+            document.getElementById('version-count').textContent=versions.length;
+            const list = document.getElementById('version-list'); list.innerHTML='';
+            versions.forEach((v,i) => {
+                const item = document.createElement('div'); item.className='version-item'; item.setAttribute('role','listitem'); item.setAttribute('tabindex','0');
+                item.innerHTML='<div class="version-item-header"><span class="version-item-title">'+escapeHtml(v.title)+'</span><span class="version-item-time">'+v.time+'</span></div>';
+                item.addEventListener('click', () => { lastRawContent=v.content; resultsContent.innerHTML=renderMarkdown(v.content); resultsTitle.textContent=v.title; announce('Showing '+v.title); });
+                item.addEventListener('keydown', (e) => { if (e.key==='Enter') item.click(); });
                 list.appendChild(item);
             });
         }
 
-        // === API CALL ===
+        // Share link
+        document.getElementById('share-btn').addEventListener('click', () => {
+            const params = new URLSearchParams();
+            const mode = document.querySelector('.mode-btn.active').getAttribute('data-mode');
+            params.set('mode', mode);
+            if (mode==='generate') {
+                const f = { lt:document.getElementById('lo-type').value, aqf:document.getElementById('aqf-level').value, ul:document.getElementById('unit-level').value, n:document.getElementById('num-los').value, disc:document.getElementById('discipline').value, desc:document.getElementById('description').value, vis:document.getElementById('vision').value, thm:document.getElementById('themes').value, cap:document.getElementById('capabilities').value, clos:document.getElementById('existing-clos').value, notes:document.getElementById('additional-notes').value };
+                for (const [k,v] of Object.entries(f)) { if (v) params.set(k,v); }
+            } else if (mode==='check') {
+                const f = { lt:document.getElementById('check-lo-type').value, aqf:document.getElementById('check-aqf-level').value, ul:document.getElementById('check-unit-level').value, disc:document.getElementById('check-discipline').value, los:document.getElementById('check-los').value, notes:document.getElementById('check-notes').value };
+                for (const [k,v] of Object.entries(f)) { if (v) params.set(k,v); }
+            } else if (mode==='quick-check') {
+                const f = { lt:document.getElementById('qc-lo-type').value, aqf:document.getElementById('qc-aqf-level').value, los:document.getElementById('qc-los').value };
+                for (const [k,v] of Object.entries(f)) { if (v) params.set(k,v); }
+            }
+            const url = window.location.origin+window.location.pathname+'?'+params.toString();
+            document.getElementById('share-url-display').textContent=url;
+            document.getElementById('share-url-display').classList.add('visible');
+            copyToClipboard(url).then(ok => { if (ok) { document.getElementById('share-btn').innerHTML='<span>&#10003;</span> Link Copied!'; announce('Share link copied'); setTimeout(()=>{document.getElementById('share-btn').innerHTML='<span>&#128279;</span> Share Input Link';},3000); } });
+        });
+
+        // Load from URL
+        (function loadFromURL() {
+            const p = new URLSearchParams(window.location.search); if (!p.has('mode')) return;
+            const mode = p.get('mode'); switchMode(mode);
+            if (mode==='generate') { if(p.get('lt'))document.getElementById('lo-type').value=p.get('lt'); if(p.get('aqf'))document.getElementById('aqf-level').value=p.get('aqf'); if(p.get('ul'))document.getElementById('unit-level').value=p.get('ul'); if(p.get('n'))document.getElementById('num-los').value=p.get('n'); if(p.get('disc'))document.getElementById('discipline').value=p.get('disc'); if(p.get('desc'))document.getElementById('description').value=p.get('desc'); if(p.get('vis'))document.getElementById('vision').value=p.get('vis'); if(p.get('thm'))document.getElementById('themes').value=p.get('thm'); if(p.get('cap'))document.getElementById('capabilities').value=p.get('cap'); if(p.get('clos'))document.getElementById('existing-clos').value=p.get('clos'); if(p.get('notes'))document.getElementById('additional-notes').value=p.get('notes'); loTypeSelect.dispatchEvent(new Event('change')); aqfLevelSelect.dispatchEvent(new Event('change')); }
+            else if (mode==='check') { if(p.get('lt'))document.getElementById('check-lo-type').value=p.get('lt'); if(p.get('aqf'))document.getElementById('check-aqf-level').value=p.get('aqf'); if(p.get('ul'))document.getElementById('check-unit-level').value=p.get('ul'); if(p.get('disc'))document.getElementById('check-discipline').value=p.get('disc'); if(p.get('los'))document.getElementById('check-los').value=p.get('los'); if(p.get('notes'))document.getElementById('check-notes').value=p.get('notes'); }
+            else if (mode==='quick-check') { if(p.get('lt'))document.getElementById('qc-lo-type').value=p.get('lt'); if(p.get('aqf'))document.getElementById('qc-aqf-level').value=p.get('aqf'); if(p.get('los'))document.getElementById('qc-los').value=p.get('los'); }
+            window.history.replaceState({},'',window.location.pathname); announce('Form pre-filled from shared link');
+        })();
+
+        // API call
         async function callAPI(messages, title, loadingMsg) {
-            loading.style.display = 'block';
-            loadingText.textContent = loadingMsg;
-            resultsArea.style.display = 'none';
-            resultsWarning.style.display = 'none';
-            teqsaCoverage.style.display = 'none';
-            inputSummary.style.display = 'none';
-            refineSection.style.display = 'none';
-            document.getElementById('generate-btn').disabled = true;
-            document.getElementById('check-btn').disabled = true;
-            document.getElementById('refine-btn').disabled = true;
+            loading.style.display='block'; loadingText.textContent=loadingMsg;
+            resultsArea.style.display='none'; resultsWarning.style.display='none'; teqsaCoverage.style.display='none'; mappingTableArea.style.display='none';
+            inputSummary.style.display='none'; refineSection.style.display='none'; assessmentSection.style.display='none'; shareSection.style.display='none';
+            document.getElementById('generate-btn').disabled=true; document.getElementById('check-btn').disabled=true; document.getElementById('quick-check-btn').disabled=true; document.getElementById('refine-btn').disabled=true; document.getElementById('assessment-btn').disabled=true;
             announce(loadingMsg);
-
             try {
-                const response = await fetch(WORKER_URL, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ system: SYSTEM_PROMPT, messages: messages })
-                });
-
-                if (!response.ok) {
-                    const err = await response.json().catch(() => ({}));
-                    throw new Error(err.error || 'Server error: ' + response.status);
-                }
-
+                const response = await fetch(WORKER_URL, { method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({system:SYSTEM_PROMPT, messages}) });
+                if (!response.ok) { const err = await response.json().catch(()=>({})); throw new Error(err.error||'Server error: '+response.status); }
                 const data = await response.json();
-                const content = data.content || 'No response generated.';
-                const finishReason = data.finishReason || '';
+                const content = data.content||'No response generated.';
                 lastRawContent = content;
-
-                if (finishReason === 'MAX_TOKENS') {
-                    resultsWarning.textContent = '\u26a0\ufe0f The response may be incomplete. Try submitting fewer learning outcomes at a time.';
-                    resultsWarning.style.display = 'block';
-                }
-
-                displayResults(content, title);
-                displayInputSummary();
-                displayTeqsaCoverage(content);
-                refineSection.style.display = 'block';
-                document.getElementById('refine-instructions').value = '';
-                updateVersionHistory();
-                announce('Results ready: ' + title);
-
-            } catch (error) {
-                displayError(error.message);
-                announce('Error: ' + error.message);
-            } finally {
-                loading.style.display = 'none';
-                document.getElementById('generate-btn').disabled = false;
-                document.getElementById('check-btn').disabled = false;
-                document.getElementById('refine-btn').disabled = false;
-            }
+                if (data.finishReason==='MAX_TOKENS') { resultsWarning.textContent='\u26a0\ufe0f Response may be incomplete. Try fewer LOs at a time.'; resultsWarning.style.display='block'; }
+                displayResults(content, title); displayInputSummary(); displayTeqsaCoverage(content); displayMappingTable(content);
+                refineSection.style.display='block'; document.getElementById('refine-instructions').value='';
+                assessmentSection.style.display = (lastInputData && lastInputData.mode !== 'Quick Check') ? 'block' : 'none';
+                shareSection.style.display='block'; updateVersionHistory();
+                announce('Results ready: '+title);
+            } catch(error) { displayError(error.message); announce('Error: '+error.message); }
+            finally { loading.style.display='none'; document.getElementById('generate-btn').disabled=false; document.getElementById('check-btn').disabled=false; document.getElementById('quick-check-btn').disabled=false; document.getElementById('refine-btn').disabled=false; document.getElementById('assessment-btn').disabled=false; }
         }
 
-        function displayResults(content, title) {
-            resultsTitle.textContent = title;
-            resultsContent.innerHTML = renderMarkdown(content);
-            resultsArea.style.display = 'block';
-            resultsArea.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }
+        function displayResults(content, title) { resultsTitle.textContent=title; resultsContent.innerHTML=renderMarkdown(content); resultsArea.style.display='block'; resultsArea.scrollIntoView({behavior:'smooth',block:'start'}); }
 
-        // === TEQSA COVERAGE VISUALISATION (Feature 6) ===
         function displayTeqsaCoverage(content) {
-            // Only show for CLO generation/check
-            if (!lastInputData || (lastInputData.loType !== 'CLO' && lastInputData.loType !== 'Not specified')) {
-                teqsaCoverage.style.display = 'none';
-                return;
-            }
-
-            const dimensions = [
-                { key: 'disciplinary', label: 'Specific Disciplinary Knowledge', patterns: /disciplin|specific.*knowledge/i },
-                { key: 'generic', label: 'Generic Skills', patterns: /generic|communication|critical.*think|digital.*liter|ethic.*reason/i },
-                { key: 'employment', label: 'Employment-Related', patterns: /employ|professional|industry|career|workplace/i },
-                { key: 'lifelong', label: 'Life-Long Learning', patterns: /life.?long|continuous.*learn|reflect|adapt|ongoing|future/i }
-            ];
-
+            if (!lastInputData || (lastInputData.loType!=='CLO' && lastInputData.loType!=='Not specified')) { teqsaCoverage.style.display='none'; return; }
+            const dims = [ {label:'Specific Disciplinary Knowledge',p:/disciplin|specific.*knowledge/i}, {label:'Generic Skills',p:/generic|communication|critical.*think|digital.*liter|ethic.*reason/i}, {label:'Employment-Related',p:/employ|professional|industry|career|workplace/i}, {label:'Life-Long Learning',p:/life.?long|continuous.*learn|reflect|adapt|ongoing|future/i} ];
             let html = '<h4>TEQSA Dimension Coverage</h4><div class="teqsa-grid">';
-            dimensions.forEach(dim => {
-                const found = dim.patterns.test(content);
-                const status = found ? 'covered' : 'missing';
-                const badge = found ? '✓' : '✗';
-                html += '<div class="teqsa-item ' + status + '"><span class="teqsa-badge">' + badge + '</span><span class="teqsa-label">' + dim.label + '</span></div>';
-            });
-            html += '</div>';
+            dims.forEach(d => { const f=d.p.test(content); html+='<div class="teqsa-item '+(f?'covered':'missing')+'"><span class="teqsa-badge">'+(f?'✓':'✗')+'</span><span class="teqsa-label">'+d.label+'</span></div>'; });
+            html+='</div>'; teqsaCoverage.innerHTML=html; teqsaCoverage.style.display='block';
+        }
 
-            teqsaCoverage.innerHTML = html;
-            teqsaCoverage.style.display = 'block';
+        function displayMappingTable(content) {
+            if (!lastInputData || lastInputData.loType!=='ULO') { mappingTableArea.style.display='none'; return; }
+            const lines = content.split('\n');
+            const ulos = []; let curUlo = 0; const uloToClo = {};
+            for (let line of lines) {
+                const m = line.match(/^\s*(\d+)[.)]\s+\*\*([^*]+)\*\*/);
+                if (m) { ulos.push({num:m[1],verb:m[2]}); curUlo=parseInt(m[1]); }
+                const c = line.match(/CLO[s]?\s*([\d,\s&and]+)/i);
+                if (c && curUlo) { const nums=c[1].match(/\d+/g); if(nums) uloToClo[curUlo]=nums.map(Number); }
+            }
+            if (ulos.length===0) { mappingTableArea.style.display='none'; return; }
+            const ec = document.getElementById('existing-clos').value;
+            let cloCount = ec ? ec.split('\n').filter(l=>l.trim()).length : 8;
+            cloCount = Math.min(cloCount, 12);
+            let html='<h4>ULO → CLO Alignment Map</h4><table class="mapping-table"><thead><tr><th>ULO</th>';
+            for (let c=1;c<=cloCount;c++) html+='<th>CLO '+c+'</th>';
+            html+='</tr></thead><tbody>';
+            for (let u of ulos) { html+='<tr><td>'+u.num+'. '+u.verb+'</td>'; const mapped=uloToClo[parseInt(u.num)]||[]; for(let c=1;c<=cloCount;c++) html+='<td>'+(mapped.includes(c)?'<span class="mapping-dot">●</span>':'')+'</td>'; html+='</tr>'; }
+            html+='</tbody></table><p class="mapping-legend">● = alignment. Please verify with your course team.</p>';
+            mappingTableArea.innerHTML=html; mappingTableArea.style.display='block';
         }
 
         function displayInputSummary() {
-            if (!lastInputData) { inputSummary.style.display = 'none'; return; }
-            let html = '<h4>Input Details</h4><dl class="input-summary-grid">';
-            html += '<dt>Mode</dt><dd>' + escapeHtml(lastInputData.mode) + '</dd>';
-            html += '<dt>LO Type</dt><dd>' + escapeHtml(lastInputData.loType) + '</dd>';
-            html += '<dt>AQF Level</dt><dd>' + escapeHtml(lastInputData.aqfLevel) + '</dd>';
-            if (lastInputData.discipline && lastInputData.discipline !== 'Not specified') html += '<dt>Discipline</dt><dd>' + escapeHtml(lastInputData.discipline) + '</dd>';
-            if (lastInputData.unitLevel) html += '<dt>Unit Level</dt><dd>' + escapeHtml(lastInputData.unitLevel) + '-level</dd>';
-            if (lastInputData.numLos) html += '<dt>Requested LOs</dt><dd>' + escapeHtml(lastInputData.numLos) + '</dd>';
-            html += '</dl>';
-            if (lastInputData.los && lastInputData.los.length > 0) {
-                html += '<div class="input-summary-los"><h5>Original Learning Outcomes Submitted:</h5><ol>';
-                lastInputData.los.forEach(lo => { html += '<li>' + escapeHtml(lo) + '</li>'; });
-                html += '</ol></div>';
-            }
-            inputSummary.innerHTML = html;
-            inputSummary.style.display = 'block';
+            if (!lastInputData) { inputSummary.style.display='none'; return; }
+            let html='<h4>Input Details</h4><dl class="input-summary-grid">';
+            html+='<dt>Mode</dt><dd>'+escapeHtml(lastInputData.mode)+'</dd>';
+            html+='<dt>LO Type</dt><dd>'+escapeHtml(lastInputData.loType)+'</dd>';
+            html+='<dt>AQF Level</dt><dd>'+escapeHtml(lastInputData.aqfLevel)+'</dd>';
+            if (lastInputData.discipline&&lastInputData.discipline!=='Not specified') html+='<dt>Discipline</dt><dd>'+escapeHtml(lastInputData.discipline)+'</dd>';
+            html+='</dl>';
+            if (lastInputData.los&&lastInputData.los.length>0) { html+='<div class="input-summary-los"><h5>Original Learning Outcomes:</h5><ol>'; lastInputData.los.forEach(lo=>{html+='<li>'+escapeHtml(lo)+'</li>';}); html+='</ol></div>'; }
+            inputSummary.innerHTML=html; inputSummary.style.display='block';
         }
 
-        function displayError(message) {
-            resultsTitle.textContent = 'Error';
-            resultsContent.innerHTML = '<p><strong>Something went wrong:</strong> ' + escapeHtml(message) + '</p><p style="margin-top:0.75rem;font-size:0.85rem;color:var(--text-muted);">Please try again. If the problem persists, contact <a href="mailto:artslandt@mq.edu.au">artslandt@mq.edu.au</a>.</p>';
-            resultsArea.style.display = 'block';
-            inputSummary.style.display = 'none';
-            refineSection.style.display = 'none';
-            resultsArea.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }
+        function displayError(msg) { resultsTitle.textContent='Error'; resultsContent.innerHTML='<p><strong>Something went wrong:</strong> '+escapeHtml(msg)+'</p><p style="margin-top:0.75rem;font-size:0.85rem;color:var(--text-muted);">Please try again. If the problem persists, contact <a href="mailto:artslandt@mq.edu.au">artslandt@mq.edu.au</a>.</p>'; resultsArea.style.display='block'; inputSummary.style.display='none'; refineSection.style.display='none'; assessmentSection.style.display='none'; shareSection.style.display='none'; resultsArea.scrollIntoView({behavior:'smooth',block:'start'}); }
 
-        // === MARKDOWN RENDERER (fixed numbering) ===
+        // Markdown renderer
         function renderMarkdown(text) {
             if (!text) return '<p>No content.</p>';
-            const lines = text.split('\n');
-            let html = '';
-            let inOl = false;
-            let inUl = false;
-            let inLi = false;
-
-            for (let i = 0; i < lines.length; i++) {
-                let line = lines[i];
-
-                if (/^---+$/.test(line.trim()) || /^\*\*\*+$/.test(line.trim())) {
-                    if (inLi) { html += '</li>'; inLi = false; }
-                    if (inOl) { html += '</ol>'; inOl = false; }
-                    if (inUl) { html += '</ul>'; inUl = false; }
-                    html += '<hr>';
-                    continue;
+            const lines=text.split('\n'); let html='',inOl=false,inUl=false,inLi=false;
+            for (let i=0;i<lines.length;i++) {
+                let line=lines[i];
+                if (/^---+$/.test(line.trim())||/^\*\*\*+$/.test(line.trim())) { if(inLi){html+='</li>';inLi=false;} if(inOl){html+='</ol>';inOl=false;} if(inUl){html+='</ul>';inUl=false;} html+='<hr>'; continue; }
+                let hm=line.match(/^(#{1,4})\s+(.*)/);
+                if (hm) { if(inLi){html+='</li>';inLi=false;} if(inOl){html+='</ol>';inOl=false;} if(inUl){html+='</ul>';inUl=false;} let lv=Math.min(hm[1].length,4); if(lv<=2)lv=3; html+='<h'+lv+'>'+inlineFormat(hm[2])+'</h'+lv+'>'; continue; }
+                if (/^\s*\d+[.)]\s/.test(line)) { if(inUl){if(inLi){html+='</li>';inLi=false;}html+='</ul>';inUl=false;} if(inLi){html+='</li>';inLi=false;} if(!inOl){html+='<ol>';inOl=true;} html+='<li>'+inlineFormat(line.replace(/^\s*\d+[.)]\s*/,'')); inLi=true; continue; }
+                if (/^\s*[-*+]\s/.test(line)&&!/^\*\*/.test(line.trim())) { if(inOl&&inLi){html+='</li>';inLi=false;} if(inOl&&!inLi){html+='</ol>';inOl=false;} if(inLi&&inUl){html+='</li>';inLi=false;} if(!inUl){html+='<ul>';inUl=true;} html+='<li>'+inlineFormat(line.replace(/^\s*[-*+]\s*/,'')); inLi=true; continue; }
+                if (line.trim()==='') {
+                    if (inOl&&inLi) { let hasMore=false; for(let j=i+1;j<Math.min(i+6,lines.length);j++){if(/^\s*\d+[.)]\s/.test(lines[j])){hasMore=true;break;}if(/^#{1,4}\s/.test(lines[j])||/^---/.test(lines[j].trim()))break;} if(hasMore){html+='<br>';continue;}else{html+='</li>';inLi=false;html+='</ol>';inOl=false;html+='</p><p>';continue;} }
+                    if (inUl&&inLi) { let hasMore=false; for(let j=i+1;j<Math.min(i+4,lines.length);j++){if(/^\s*[-*+]\s/.test(lines[j])){hasMore=true;break;}if(/^#{1,4}\s/.test(lines[j]))break;} if(hasMore){html+='<br>';continue;}else{html+='</li>';inLi=false;html+='</ul>';inUl=false;html+='</p><p>';continue;} }
+                    html+='</p><p>'; continue;
                 }
-                let headerMatch = line.match(/^(#{1,4})\s+(.*)/);
-                if (headerMatch) {
-                    if (inLi) { html += '</li>'; inLi = false; }
-                    if (inOl) { html += '</ol>'; inOl = false; }
-                    if (inUl) { html += '</ul>'; inUl = false; }
-                    let level = Math.min(headerMatch[1].length, 4);
-                    if (level <= 2) level = 3;
-                    html += '<h' + level + '>' + inlineFormat(headerMatch[2]) + '</h' + level + '>';
-                    continue;
-                }
-                if (/^\s*\d+[.)]\s/.test(line)) {
-                    if (inUl) { if (inLi) { html += '</li>'; inLi = false; } html += '</ul>'; inUl = false; }
-                    if (inLi) { html += '</li>'; inLi = false; }
-                    if (!inOl) { html += '<ol>'; inOl = true; }
-                    html += '<li>' + inlineFormat(line.replace(/^\s*\d+[.)]\s*/, ''));
-                    inLi = true;
-                    continue;
-                }
-                if (/^\s*[-*+]\s/.test(line) && !/^\*\*/.test(line.trim())) {
-                    if (inOl && inLi) { html += '</li>'; inLi = false; }
-                    if (inOl && !inLi) { html += '</ol>'; inOl = false; }
-                    if (inLi && inUl) { html += '</li>'; inLi = false; }
-                    if (!inUl) { html += '<ul>'; inUl = true; }
-                    html += '<li>' + inlineFormat(line.replace(/^\s*[-*+]\s*/, ''));
-                    inLi = true;
-                    continue;
-                }
-                if (line.trim() === '') {
-                    if (inOl && inLi) {
-                        let hasMore = false;
-                        for (let j = i + 1; j < Math.min(i + 6, lines.length); j++) {
-                            if (/^\s*\d+[.)]\s/.test(lines[j])) { hasMore = true; break; }
-                            if (/^#{1,4}\s/.test(lines[j]) || /^---/.test(lines[j].trim())) break;
-                        }
-                        if (hasMore) { html += '<br>'; continue; }
-                        else { html += '</li>'; inLi = false; html += '</ol>'; inOl = false; html += '</p><p>'; continue; }
-                    }
-                    if (inUl && inLi) {
-                        let hasMore = false;
-                        for (let j = i + 1; j < Math.min(i + 4, lines.length); j++) {
-                            if (/^\s*[-*+]\s/.test(lines[j])) { hasMore = true; break; }
-                            if (/^#{1,4}\s/.test(lines[j])) break;
-                        }
-                        if (hasMore) { html += '<br>'; continue; }
-                        else { html += '</li>'; inLi = false; html += '</ul>'; inUl = false; html += '</p><p>'; continue; }
-                    }
-                    html += '</p><p>';
-                    continue;
-                }
-                if (inLi) { html += '<br>' + inlineFormat(line); }
-                else { html += inlineFormat(line) + '<br>'; }
+                if (inLi) { html+='<br>'+inlineFormat(line); } else { html+=inlineFormat(line)+'<br>'; }
             }
-            if (inLi) html += '</li>';
-            if (inOl) html += '</ol>';
-            if (inUl) html += '</ul>';
-            html = '<p>' + html + '</p>';
-            html = html.replace(/<p><\/p>/g, '');
-            html = html.replace(/<br><\/p>/g, '</p>');
-            html = html.replace(/<p><br>/g, '<p>');
-            html = html.replace(/<p>(<h[1-4]>)/g, '$1');
-            html = html.replace(/(<\/h[1-4]>)<\/p>/g, '$1');
-            html = html.replace(/<p>(<[uo]l>)/g, '$1');
-            html = html.replace(/(<\/[uo]l>)<\/p>/g, '$1');
-            html = html.replace(/<p>(<hr>)/g, '$1');
-            html = html.replace(/(<hr>)<\/p>/g, '$1');
+            if(inLi)html+='</li>'; if(inOl)html+='</ol>'; if(inUl)html+='</ul>';
+            html='<p>'+html+'</p>'; html=html.replace(/<p><\/p>/g,'').replace(/<br><\/p>/g,'</p>').replace(/<p><br>/g,'<p>').replace(/<p>(<h[1-4]>)/g,'$1').replace(/(<\/h[1-4]>)<\/p>/g,'$1').replace(/<p>(<[uo]l>)/g,'$1').replace(/(<\/[uo]l>)<\/p>/g,'$1').replace(/<p>(<hr>)/g,'$1').replace(/(<hr>)<\/p>/g,'$1');
             return html;
         }
+        function inlineFormat(t) { t=t.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); t=t.replace(/`([^`]+)`/g,'<code>$1</code>'); t=t.replace(/\*\*([^*]+?)\*\*/g,'<strong>$1</strong>'); t=t.replace(/__([^_]+?)__/g,'<strong>$1</strong>'); t=t.replace(/\*([^*]+?)\*/g,'<em>$1</em>'); t=t.replace(/(?<!\w)_([^_]+?)_(?!\w)/g,'<em>$1</em>'); t=t.replace(/\[([^\]]+)\]\(([^)]+)\)/g,'<a href="$2" target="_blank" rel="noopener">$1</a>'); return t; }
+        function escapeHtml(t) { const d=document.createElement('div'); d.textContent=t; return d.innerHTML; }
+        function buildPlainText(md) { if(!md)return''; return md.split('\n').map(l=>{ l=l.replace(/\*\*([^*]+?)\*\*/g,'$1').replace(/__([^_]+?)__/g,'$1').replace(/\*([^*]+?)\*/g,'$1').replace(/(?<!\w)_([^_]+?)_(?!\w)/g,'$1').replace(/`([^`]+)`/g,'$1').replace(/\[([^\]]+)\]\([^)]+\)/g,'$1').replace(/^#{1,4}\s*/,''); return l; }).join('\n'); }
+        function extractLosOnly(md) { if(!md)return''; const los=[]; for(let line of md.split('\n')){let m=line.match(/^\s*(\d+)[.)]\s+(.*)/);if(m){let t=m[2].replace(/\*\*([^*]+?)\*\*/g,'$1').replace(/__([^_]+?)__/g,'$1');if(t.length>20&&/^[A-Z]/.test(t))los.push(m[1]+'. '+t);}} return los.join('\n'); }
+        async function copyToClipboard(t) { try{await navigator.clipboard.writeText(t);return true;}catch(e){return false;} }
 
-        function inlineFormat(text) {
-            text = text.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
-            text = text.replace(/`([^`]+)`/g, '<code>$1</code>');
-            text = text.replace(/\*\*([^*]+?)\*\*/g, '<strong>$1</strong>');
-            text = text.replace(/__([^_]+?)__/g, '<strong>$1</strong>');
-            text = text.replace(/\*([^*]+?)\*/g, '<em>$1</em>');
-            text = text.replace(/(?<!\w)_([^_]+?)_(?!\w)/g, '<em>$1</em>');
-            text = text.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank" rel="noopener">$1</a>');
-            return text;
-        }
+        // Copy buttons
+        document.getElementById('copy-btn').addEventListener('click', async()=>{ if(await copyToClipboard(buildPlainText(lastRawContent))){document.getElementById('copy-btn').textContent='\u2713';announce('Copied');setTimeout(()=>{document.getElementById('copy-btn').innerHTML='&#128203;';},2000);} });
+        document.getElementById('copy-los-btn').addEventListener('click', async()=>{ const t=extractLosOnly(lastRawContent); if(!t){announce('No LOs found');return;} if(await copyToClipboard(t)){document.getElementById('copy-los-btn').textContent='\u2713 Copied';announce('LOs copied');setTimeout(()=>{document.getElementById('copy-los-btn').textContent='Copy LOs';},2000);} });
 
-        function escapeHtml(t) { const d = document.createElement('div'); d.textContent = t; return d.innerHTML; }
-
-        // === PLAIN TEXT BUILDER (preserves numbering) ===
-        function buildPlainText(markdown) {
-            if (!markdown) return '';
-            const lines = markdown.split('\n');
-            let result = [];
-            for (let line of lines) {
-                let clean = line;
-                clean = clean.replace(/\*\*([^*]+?)\*\*/g, '$1');
-                clean = clean.replace(/__([^_]+?)__/g, '$1');
-                clean = clean.replace(/\*([^*]+?)\*/g, '$1');
-                clean = clean.replace(/(?<!\w)_([^_]+?)_(?!\w)/g, '$1');
-                clean = clean.replace(/`([^`]+)`/g, '$1');
-                clean = clean.replace(/\[([^\]]+)\]\([^)]+\)/g, '$1');
-                clean = clean.replace(/^#{1,4}\s*/, '');
-                result.push(clean);
-            }
-            return result.join('\n');
-        }
-
-        // === EXTRACT LOs ONLY (Feature 2) ===
-        function extractLosOnly(markdown) {
-            if (!markdown) return '';
-            const lines = markdown.split('\n');
-            let los = [];
-            for (let line of lines) {
-                // Match numbered items that look like LOs (start with number + verb)
-                let match = line.match(/^\s*(\d+)[.)]\s+(.*)/);
-                if (match) {
-                    let text = match[2];
-                    // Strip markdown bold
-                    text = text.replace(/\*\*([^*]+?)\*\*/g, '$1');
-                    text = text.replace(/__([^_]+?)__/g, '$1');
-                    // Only include if it looks like an LO (starts with capital letter, reasonable length)
-                    if (text.length > 20 && /^[A-Z]/.test(text)) {
-                        los.push(match[1] + '. ' + text);
-                    }
-                }
-            }
-            return los.join('\n');
-        }
-
-        // === CLIPBOARD ===
-        async function copyToClipboard(text) {
-            try {
-                await navigator.clipboard.writeText(text);
-                return true;
-            } catch (e) {
-                console.error(e);
-                return false;
-            }
-        }
-
-        // Copy all
-        document.getElementById('copy-btn').addEventListener('click', async () => {
-            const success = await copyToClipboard(buildPlainText(lastRawContent));
-            if (success) {
-                document.getElementById('copy-btn').textContent = '\u2713';
-                announce('Full results copied to clipboard');
-                setTimeout(() => { document.getElementById('copy-btn').innerHTML = '&#128203;'; }, 2000);
-            }
+        // Downloads
+        document.getElementById('download-txt-btn').addEventListener('click', ()=>{
+            let t=buildPlainText(lastRawContent);
+            if(lastInputData){t+='\n\n---\nINPUT DETAILS\nMode: '+lastInputData.mode+'\nLO Type: '+lastInputData.loType+'\nAQF Level: '+lastInputData.aqfLevel+'\n'; if(lastInputData.discipline&&lastInputData.discipline!=='Not specified')t+='Discipline: '+lastInputData.discipline+'\n'; if(lastInputData.los){t+='\nOriginal LOs:\n';lastInputData.los.forEach((lo,i)=>{t+=(i+1)+'. '+lo+'\n';});}}
+            downloadFile(t,'learning-outcomes-'+new Date().toISOString().slice(0,10)+'.txt','text/plain');
         });
-
-        // Copy LOs only (Feature 2)
-        document.getElementById('copy-los-btn').addEventListener('click', async () => {
-            const losText = extractLosOnly(lastRawContent);
-            if (!losText) {
-                announce('No learning outcomes found to copy');
-                return;
-            }
-            const success = await copyToClipboard(losText);
-            if (success) {
-                document.getElementById('copy-los-btn').textContent = '\u2713 Copied';
-                announce('Learning outcomes copied to clipboard');
-                setTimeout(() => { document.getElementById('copy-los-btn').textContent = 'Copy LOs'; }, 2000);
-            }
-        });
-
-        // === DOWNLOAD TEXT ===
-        document.getElementById('download-txt-btn').addEventListener('click', () => {
-            let text = buildPlainText(lastRawContent);
-            if (lastInputData) {
-                text += '\n\n---\nINPUT DETAILS\n';
-                text += 'Mode: ' + lastInputData.mode + '\n';
-                text += 'LO Type: ' + lastInputData.loType + '\n';
-                text += 'AQF Level: ' + lastInputData.aqfLevel + '\n';
-                if (lastInputData.discipline && lastInputData.discipline !== 'Not specified') text += 'Discipline: ' + lastInputData.discipline + '\n';
-                if (lastInputData.los) {
-                    text += '\nOriginal Learning Outcomes:\n';
-                    lastInputData.los.forEach((lo, i) => { text += (i+1) + '. ' + lo + '\n'; });
+        document.getElementById('download-docx-btn').addEventListener('click', async()=>{
+            try{
+                const{Document,Packer,Paragraph,TextRun,HeadingLevel,BorderStyle}=window.docx;
+                const children=[];
+                children.push(new Paragraph({children:[new TextRun({text:resultsTitle.textContent,bold:true,size:32,color:'A6192E'})],heading:HeadingLevel.HEADING_1,spacing:{after:200}}));
+                for(let line of lastRawContent.split('\n')){
+                    if(line.trim()===''){children.push(new Paragraph({spacing:{after:100}}));continue;}
+                    if(/^---/.test(line.trim())){children.push(new Paragraph({border:{bottom:{color:'A6192E',space:1,style:BorderStyle.SINGLE,size:6}},spacing:{after:200}}));continue;}
+                    let hm=line.match(/^(#{1,4})\s+(.*)/);
+                    if(hm){children.push(new Paragraph({children:[new TextRun({text:hm[2].replace(/\*\*([^*]+?)\*\*/g,'$1'),bold:true,size:26,color:'A6192E'})],heading:HeadingLevel.HEADING_2,spacing:{before:200,after:100}}));continue;}
+                    let nm=line.match(/^\s*(\d+)[.)]\s+(.*)/);
+                    if(nm){let runs=[]; let parts=nm[2].split(/\*\*([^*]+?)\*\*/); for(let p=0;p<parts.length;p++){if(p%2===1)runs.push(new TextRun({text:parts[p],bold:true,color:'A6192E'}));else if(parts[p])runs.push(new TextRun({text:parts[p]}));} children.push(new Paragraph({children:[new TextRun({text:nm[1]+'. ',bold:true}),...runs],spacing:{after:80},indent:{left:360}}));continue;}
+                    let runs=[]; let stripped=line.replace(/^[-*+]\s*/,''); let parts=stripped.split(/\*\*([^*]+?)\*\*/); for(let p=0;p<parts.length;p++){if(p%2===1)runs.push(new TextRun({text:parts[p],bold:true,color:'A6192E'}));else if(parts[p])runs.push(new TextRun({text:parts[p].replace(/\*([^*]+?)\*/g,'$1')}));} if(runs.length>0)children.push(new Paragraph({children:runs,spacing:{after:80}}));
                 }
-            }
-            downloadFile(text, 'learning-outcomes-' + new Date().toISOString().slice(0,10) + '.txt', 'text/plain');
-        });
-
-        // === DOWNLOAD WORD (Feature 1) ===
-        document.getElementById('download-docx-btn').addEventListener('click', async () => {
-            try {
-                const { Document, Packer, Paragraph, TextRun, HeadingLevel, AlignmentType, BorderStyle } = window.docx;
-
-                const children = [];
-                // Title
-                children.push(new Paragraph({
-                    children: [new TextRun({ text: resultsTitle.textContent, bold: true, size: 32, color: 'A6192E' })],
-                    heading: HeadingLevel.HEADING_1,
-                    spacing: { after: 200 }
-                }));
-
-                // Parse markdown into docx paragraphs
-                const lines = lastRawContent.split('\n');
-                for (let line of lines) {
-                    if (line.trim() === '') { children.push(new Paragraph({ spacing: { after: 100 } })); continue; }
-                    if (/^---/.test(line.trim())) {
-                        children.push(new Paragraph({ border: { bottom: { color: 'A6192E', space: 1, style: BorderStyle.SINGLE, size: 6 } }, spacing: { after: 200 } }));
-                        continue;
-                    }
-                    // Headers
-                    let hMatch = line.match(/^(#{1,4})\s+(.*)/);
-                    if (hMatch) {
-                        let text = hMatch[2].replace(/\*\*([^*]+?)\*\*/g, '$1');
-                        children.push(new Paragraph({
-                            children: [new TextRun({ text: text, bold: true, size: 26, color: 'A6192E' })],
-                            heading: HeadingLevel.HEADING_2,
-                            spacing: { before: 200, after: 100 }
-                        }));
-                        continue;
-                    }
-                    // Numbered items
-                    let numMatch = line.match(/^\s*(\d+)[.)]\s+(.*)/);
-                    if (numMatch) {
-                        let content = numMatch[2];
-                        let runs = [];
-                        // Handle bold within the line
-                        let parts = content.split(/\*\*([^*]+?)\*\*/);
-                        for (let p = 0; p < parts.length; p++) {
-                            if (p % 2 === 1) {
-                                runs.push(new TextRun({ text: parts[p], bold: true, color: 'A6192E' }));
-                            } else if (parts[p]) {
-                                runs.push(new TextRun({ text: parts[p] }));
-                            }
-                        }
-                        children.push(new Paragraph({
-                            children: [new TextRun({ text: numMatch[1] + '. ', bold: true }), ...runs],
-                            spacing: { after: 80 },
-                            indent: { left: 360 }
-                        }));
-                        continue;
-                    }
-                    // Regular text with bold handling
-                    let runs = [];
-                    let stripped = line.replace(/^[-*+]\s*/, '');
-                    let parts = stripped.split(/\*\*([^*]+?)\*\*/);
-                    for (let p = 0; p < parts.length; p++) {
-                        if (p % 2 === 1) {
-                            runs.push(new TextRun({ text: parts[p], bold: true, color: 'A6192E' }));
-                        } else if (parts[p]) {
-                            let cleaned = parts[p].replace(/\*([^*]+?)\*/g, '$1').replace(/_([^_]+?)_/g, '$1');
-                            runs.push(new TextRun({ text: cleaned }));
-                        }
-                    }
-                    if (runs.length > 0) {
-                        children.push(new Paragraph({ children: runs, spacing: { after: 80 } }));
-                    }
-                }
-
-                // Add input details
-                if (lastInputData) {
-                    children.push(new Paragraph({ border: { bottom: { color: 'CCCCCC', space: 1, style: BorderStyle.SINGLE, size: 4 } }, spacing: { before: 300, after: 200 } }));
-                    children.push(new Paragraph({ children: [new TextRun({ text: 'Input Details', bold: true, size: 20, color: '666666' })], spacing: { after: 100 } }));
-                    children.push(new Paragraph({ children: [new TextRun({ text: 'Mode: ' + lastInputData.mode + ' | LO Type: ' + lastInputData.loType + ' | AQF: ' + lastInputData.aqfLevel, color: '666666', size: 18 })]}));
-                    if (lastInputData.discipline && lastInputData.discipline !== 'Not specified') {
-                        children.push(new Paragraph({ children: [new TextRun({ text: 'Discipline: ' + lastInputData.discipline, color: '666666', size: 18 })]}));
-                    }
-                }
-
-                const doc = new Document({
-                    sections: [{ properties: {}, children: children }],
-                    creator: 'MQ Faculty of Arts LO Generator',
-                    title: resultsTitle.textContent
-                });
-
-                const blob = await Packer.toBlob(doc);
-                downloadFile(blob, 'learning-outcomes-' + new Date().toISOString().slice(0,10) + '.docx', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document');
+                const doc=new Document({sections:[{properties:{},children}],creator:'MQ Faculty of Arts LO Generator',title:resultsTitle.textContent});
+                const blob=await Packer.toBlob(doc);
+                downloadFile(blob,'learning-outcomes-'+new Date().toISOString().slice(0,10)+'.docx','application/vnd.openxmlformats-officedocument.wordprocessingml.document');
                 announce('Word document downloaded');
-            } catch (e) {
-                console.error('DOCX generation error:', e);
-                alert('Word export failed. Try the text download instead.');
-            }
+            }catch(e){console.error(e);alert('Word export failed. Try text download.');}
         });
+        document.getElementById('print-btn').addEventListener('click', ()=>{window.print();});
+        function downloadFile(content,filename,type){const blob=content instanceof Blob?content:new Blob([content],{type});const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download=filename;document.body.appendChild(a);a.click();document.body.removeChild(a);URL.revokeObjectURL(url);}
 
-        // === PRINT (Feature 3) ===
-        document.getElementById('print-btn').addEventListener('click', () => { window.print(); });
-
-        function downloadFile(content, filename, type) {
-            const blob = content instanceof Blob ? content : new Blob([content], { type: type });
-            const url = URL.createObjectURL(blob);
-            const a = document.createElement('a');
-            a.href = url; a.download = filename;
-            document.body.appendChild(a); a.click(); document.body.removeChild(a);
-            URL.revokeObjectURL(url);
-        }
-
-        // === FORM RESET HANDLERS ===
-        document.getElementById('generate-form').addEventListener('reset', () => {
-            setTimeout(() => {
-                document.getElementById('example-select').value = '';
-                saveFormState();
-                unitLevelGroup.style.display = 'none';
-                existingClosGroup.style.display = 'none';
-                document.getElementById('lo-type-help').textContent = '';
-                document.getElementById('aqf-help').textContent = '';
-                document.getElementById('desc-charcount').textContent = '';
-            }, 10);
-        });
-        document.getElementById('check-form').addEventListener('reset', () => {
-            setTimeout(() => {
-                saveFormState();
-                document.getElementById('check-charcount').textContent = '';
-            }, 10);
-        });
+        // Form resets
+        document.getElementById('generate-form').addEventListener('reset',()=>{setTimeout(()=>{document.getElementById('example-select').value='';saveFormState();unitLevelGroup.style.display='none';existingClosGroup.style.display='none';document.getElementById('lo-type-help').textContent='';document.getElementById('aqf-help').textContent='';document.getElementById('desc-charcount').textContent='';},10);});
+        document.getElementById('check-form').addEventListener('reset',()=>{setTimeout(()=>{saveFormState();document.getElementById('check-charcount').textContent='';},10);});
     });
-
-          /* ULO-CLO Mapping Table (Feature 13) */
-        .mapping-table-wrap {
-            margin: 1rem 1.5rem; padding: 1rem; background: var(--bg-primary);
-            border-radius: var(--border-radius); border: 1px solid var(--border-color);
-            overflow-x: auto;
-        }
-        .mapping-table-wrap h4 { font-size: 0.85rem; font-weight: 600; color: var(--text-primary); margin-bottom: 0.75rem; }
-        .mapping-table {
-            width: 100%; border-collapse: collapse; font-size: 0.75rem;
-        }
-        .mapping-table th {
-            background: var(--mq-crimson); color: #fff; padding: 0.5rem 0.375rem;
-            text-align: center; font-weight: 500; font-size: 0.7rem;
-            border: 1px solid var(--mq-crimson-dark);
-        }
-        .mapping-table th:first-child { text-align: left; min-width: 180px; }
-        .mapping-table td {
-            padding: 0.375rem; text-align: center; border: 1px solid var(--border-color);
-            vertical-align: middle;
-        }
-        .mapping-table td:first-child { text-align: left; font-size: 0.75rem; font-weight: 500; color: var(--text-primary); }
-        .mapping-table tr:nth-child(even) td { background: var(--bg-secondary); }
-        .mapping-dot { color: var(--mq-crimson); font-size: 1.1rem; }
-        .mapping-legend { margin-top: 0.5rem; font-size: 0.7rem; color: var(--text-muted); }
-        /* Assessment Suggestions (Feature 14) */
-        .assessment-section {
-            padding: 1.25rem 1.5rem; border-top: 1px solid var(--border-color);
-            background: var(--bg-tertiary);
-        }
-        .assessment-section h4 { font-size: 0.9rem; font-weight: 600; color: var(--text-primary); margin-bottom: 0.75rem; }
-        .assessment-section .btn-primary { font-size: 0.9rem; padding: 0.625rem 1.5rem; }
-        /* Share link (Feature 17) */
-        .share-section {
-            padding: 1rem 1.5rem; border-top: 1px solid var(--border-color);
-            display: flex; align-items: center; gap: 0.75rem; flex-wrap: wrap;
-        }
-        .share-section .btn-secondary { font-size: 0.8rem; padding: 0.5rem 1rem; }
-        .share-url-display {
-            flex: 1; min-width: 200px; padding: 0.5rem 0.75rem;
-            background: var(--bg-primary); border: 1px solid var(--border-color);
-            border-radius: var(--border-radius); font-size: 0.75rem;
-            color: var(--text-muted); overflow: hidden; text-overflow: ellipsis;
-            white-space: nowrap; font-family: monospace; display: none;
-        }
-        .share-url-display.visible { display: block; }
-        /* Quick Check mode (Feature 18) */
-        .mode-btn[data-mode="quick-check"] { }
-        @media print {
-            .mapping-table-wrap { border: 1px solid #ccc !important; background: #f9f9f9 !important; }
-            .mapping-table th { background: #a6192e !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-            .assessment-section, .share-section { display: none !important; }
-        }
-
     </script>
 </body>
 </html>
