@@ -1,0 +1,783 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Learning Outcomes Generator | Faculty of Arts</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* ===== VARIABLES ===== */
+        :root {
+            --mq-crimson: #a6192e;
+            --mq-crimson-dark: #8c1527;
+            --mq-crimson-light: #d4213a;
+            --mq-sand: #f5f0eb;
+            --mq-charcoal: #2d2d2d;
+            --mq-grey-dark: #4a4a4a;
+            --mq-grey-mid: #6b6b6b;
+            --mq-grey-light: #e8e4e0;
+            --mq-white: #ffffff;
+            --mq-success: #2e7d32;
+            --mq-warning: #f57c00;
+            --mq-error: #c62828;
+            --font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            --border-radius: 8px;
+            --border-radius-lg: 12px;
+            --shadow-sm: 0 1px 3px rgba(0,0,0,0.08);
+            --shadow-md: 0 4px 12px rgba(0,0,0,0.1);
+            --shadow-lg: 0 8px 24px rgba(0,0,0,0.12);
+            --transition: 0.2s ease;
+        }
+
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        html { font-size: 16px; scroll-behavior: smooth; }
+        body {
+            font-family: var(--font-family);
+            color: var(--mq-charcoal);
+            background: var(--mq-sand);
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* ===== HEADER ===== */
+        .header {
+            background: var(--mq-white);
+            border-bottom: 3px solid var(--mq-crimson);
+            box-shadow: var(--shadow-sm);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+        }
+        .logo-area { display: flex; align-items: center; gap: 0.75rem; }
+        .logo-mark {
+            width: 44px; height: 44px;
+            background: var(--mq-crimson);
+            color: var(--mq-white);
+            border-radius: var(--border-radius);
+            display: flex; align-items: center; justify-content: center;
+            font-weight: 700; font-size: 1rem;
+        }
+        .logo-text h1 { font-size: 1.25rem; font-weight: 600; color: var(--mq-charcoal); line-height: 1.2; }
+        .logo-text p { font-size: 0.8rem; color: var(--mq-grey-mid); }
+        .header-nav { display: flex; gap: 1.5rem; }
+        .header-nav a { font-size: 0.85rem; color: var(--mq-grey-dark); text-decoration: none; font-weight: 500; transition: color var(--transition); }
+        .header-nav a:hover { color: var(--mq-crimson); }
+
+        /* ===== MAIN ===== */
+        .main-content { max-width: 1200px; margin: 0 auto; padding: 2rem; flex: 1; width: 100%; }
+
+        /* ===== API KEY BAR ===== */
+        .api-key-bar {
+            background: var(--mq-white);
+            border-radius: var(--border-radius);
+            padding: 0.75rem 1rem;
+            margin-bottom: 1.5rem;
+            box-shadow: var(--shadow-sm);
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+        .api-key-bar label { font-size: 0.85rem; font-weight: 500; white-space: nowrap; }
+        .api-key-bar input {
+            flex: 1;
+            padding: 0.5rem 0.75rem;
+            border: 1.5px solid var(--mq-grey-light);
+            border-radius: var(--border-radius);
+            font-family: var(--font-family);
+            font-size: 0.85rem;
+        }
+        .api-key-bar input:focus { outline: none; border-color: var(--mq-crimson); box-shadow: 0 0 0 3px rgba(166,25,46,0.1); }
+        .api-key-bar .key-status { font-size: 0.75rem; color: var(--mq-grey-mid); }
+        .api-key-bar .key-status.connected { color: var(--mq-success); }
+
+        /* ===== MODE TOGGLE ===== */
+        .mode-toggle {
+            display: flex; gap: 0.5rem; margin-bottom: 2rem;
+            background: var(--mq-white); padding: 0.375rem;
+            border-radius: var(--border-radius-lg); box-shadow: var(--shadow-sm); width: fit-content;
+        }
+        .mode-btn {
+            padding: 0.75rem 1.5rem; border: none; background: transparent;
+            border-radius: var(--border-radius); font-family: var(--font-family);
+            font-size: 0.9rem; font-weight: 500; color: var(--mq-grey-mid);
+            cursor: pointer; transition: all var(--transition);
+            display: flex; align-items: center; gap: 0.5rem;
+        }
+        .mode-btn:hover { color: var(--mq-charcoal); background: var(--mq-sand); }
+        .mode-btn.active { background: var(--mq-crimson); color: var(--mq-white); box-shadow: var(--shadow-sm); }
+
+        /* ===== PANELS ===== */
+        .mode-panel { display: none; }
+        .mode-panel.active { display: block; }
+
+        /* ===== FORM ===== */
+        .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-bottom: 1.5rem; }
+        .form-section {
+            background: var(--mq-white); border-radius: var(--border-radius-lg);
+            padding: 1.5rem; box-shadow: var(--shadow-sm);
+        }
+        .section-title {
+            font-size: 1rem; font-weight: 600; color: var(--mq-crimson);
+            margin-bottom: 1.25rem; padding-bottom: 0.75rem; border-bottom: 1px solid var(--mq-grey-light);
+        }
+        .form-group { margin-bottom: 1.25rem; }
+        .form-group:last-child { margin-bottom: 0; }
+        .form-group label { display: block; font-size: 0.85rem; font-weight: 500; margin-bottom: 0.375rem; }
+        .form-group select, .form-group input[type="text"], .form-group input[type="number"], .form-group textarea {
+            width: 100%; padding: 0.625rem 0.875rem;
+            border: 1.5px solid var(--mq-grey-light); border-radius: var(--border-radius);
+            font-family: var(--font-family); font-size: 0.9rem; color: var(--mq-charcoal);
+            background: var(--mq-white); transition: border-color var(--transition), box-shadow var(--transition);
+        }
+        .form-group select:focus, .form-group input:focus, .form-group textarea:focus {
+            outline: none; border-color: var(--mq-crimson); box-shadow: 0 0 0 3px rgba(166,25,46,0.1);
+        }
+        .form-group textarea { resize: vertical; min-height: 60px; }
+        .form-group select {
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%236b6b6b' d='M6 8.825L1.175 4 2.238 2.938 6 6.7 9.763 2.937 10.825 4z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat; background-position: right 0.875rem center; padding-right: 2.5rem;
+        }
+        .help-text { display: block; font-size: 0.75rem; color: var(--mq-grey-mid); margin-top: 0.25rem; font-style: italic; }
+
+        /* ===== BUTTONS ===== */
+        .form-actions { display: flex; gap: 1rem; justify-content: center; padding-top: 0.5rem; }
+        .btn-primary {
+            padding: 0.875rem 2rem; background: var(--mq-crimson); color: var(--mq-white);
+            border: none; border-radius: var(--border-radius); font-family: var(--font-family);
+            font-size: 1rem; font-weight: 600; cursor: pointer; transition: all var(--transition);
+            display: flex; align-items: center; gap: 0.5rem; box-shadow: var(--shadow-sm);
+        }
+        .btn-primary:hover { background: var(--mq-crimson-dark); box-shadow: var(--shadow-md); transform: translateY(-1px); }
+        .btn-primary:disabled { background: var(--mq-grey-mid); cursor: not-allowed; transform: none; box-shadow: none; }
+        .btn-secondary {
+            padding: 0.875rem 1.5rem; background: transparent; color: var(--mq-grey-dark);
+            border: 1.5px solid var(--mq-grey-light); border-radius: var(--border-radius);
+            font-family: var(--font-family); font-size: 0.9rem; font-weight: 500; cursor: pointer;
+            transition: all var(--transition);
+        }
+        .btn-secondary:hover { border-color: var(--mq-grey-mid); background: var(--mq-white); }
+        .btn-icon-only {
+            width: 36px; height: 36px; border: 1.5px solid var(--mq-grey-light);
+            border-radius: var(--border-radius); background: var(--mq-white); color: var(--mq-grey-dark);
+            cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all var(--transition);
+        }
+        .btn-icon-only:hover { border-color: var(--mq-crimson); color: var(--mq-crimson); }
+
+        /* ===== RESULTS ===== */
+        .results-area {
+            margin-top: 2rem; background: var(--mq-white);
+            border-radius: var(--border-radius-lg); box-shadow: var(--shadow-md); overflow: hidden;
+        }
+        .results-header {
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 1.25rem 1.5rem; border-bottom: 1px solid var(--mq-grey-light);
+            background: linear-gradient(135deg, var(--mq-crimson), var(--mq-crimson-dark));
+        }
+        .results-title { font-size: 1.1rem; font-weight: 600; color: var(--mq-white); }
+        .results-actions { display: flex; gap: 0.5rem; }
+        .results-actions .btn-icon-only { border-color: rgba(255,255,255,0.3); background: rgba(255,255,255,0.1); color: var(--mq-white); }
+        .results-actions .btn-icon-only:hover { border-color: rgba(255,255,255,0.6); background: rgba(255,255,255,0.2); color: var(--mq-white); }
+        .results-content { padding: 1.5rem; font-size: 0.9rem; line-height: 1.7; white-space: pre-wrap; }
+        .results-content h3 { font-size: 1rem; font-weight: 600; color: var(--mq-crimson); margin: 1.5rem 0 0.75rem 0; }
+        .results-content h3:first-child { margin-top: 0; }
+        .results-footer { padding: 1rem 1.5rem; background: var(--mq-sand); border-top: 1px solid var(--mq-grey-light); }
+        .results-disclaimer { font-size: 0.8rem; color: var(--mq-grey-mid); text-align: center; }
+        .results-disclaimer a { color: var(--mq-crimson); text-decoration: none; }
+
+        /* ===== LOADING ===== */
+        .loading { text-align: center; padding: 3rem 2rem; margin-top: 2rem; }
+        .spinner {
+            width: 40px; height: 40px; border: 3px solid var(--mq-grey-light);
+            border-top-color: var(--mq-crimson); border-radius: 50%;
+            margin: 0 auto 1rem; animation: spin 0.8s linear infinite;
+        }
+        @keyframes spin { to { transform: rotate(360deg); } }
+        .loading p { font-size: 0.9rem; color: var(--mq-grey-mid); }
+
+        /* ===== FOOTER ===== */
+        .footer { background: var(--mq-charcoal); color: var(--mq-grey-light); padding: 1.5rem 2rem; margin-top: auto; }
+        .footer-content { max-width: 1200px; margin: 0 auto; text-align: center; }
+        .footer-content p { font-size: 0.85rem; margin-bottom: 0.25rem; }
+        .footer-sub { font-size: 0.75rem; color: var(--mq-grey-mid); }
+        .footer a { color: var(--mq-grey-light); text-decoration: none; }
+        .footer a:hover { color: var(--mq-white); }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 900px) {
+            .form-grid { grid-template-columns: 1fr; gap: 1.5rem; }
+            .header-content { flex-direction: column; align-items: flex-start; }
+            .main-content { padding: 1.5rem 1rem; }
+            .mode-toggle { width: 100%; }
+            .mode-btn { flex: 1; justify-content: center; }
+            .api-key-bar { flex-direction: column; align-items: stretch; }
+        }
+        @media (max-width: 600px) {
+            .form-actions { flex-direction: column; }
+            .btn-primary, .btn-secondary { width: 100%; justify-content: center; }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="header-content">
+            <div class="logo-area">
+                <div class="logo-mark">LO</div>
+                <div class="logo-text">
+                    <h1>Learning Outcomes Generator</h1>
+                    <p>Faculty of Arts | Macquarie University</p>
+                </div>
+            </div>
+            <nav class="header-nav">
+                <a href="https://lt.arts.mq.edu.au/curriculum-design/constructive-alignment/learning-outcomes/" target="_blank" rel="noopener">LO Principles</a>
+                <a href="https://www.aqf.edu.au/framework/aqf-levels" target="_blank" rel="noopener">AQF Levels</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <!-- API Key Input -->
+        <div class="api-key-bar">
+            <label for="api-key">API Key:</label>
+            <input type="password" id="api-key" placeholder="Enter your Anthropic API key (sk-ant-...)" autocomplete="off">
+            <span class="key-status" id="key-status">Not connected</span>
+        </div>
+
+        <!-- Mode Toggle -->
+        <div class="mode-toggle">
+            <button class="mode-btn active" data-mode="generate" id="btn-generate">
+                <span>✦</span> Generate New LOs
+            </button>
+            <button class="mode-btn" data-mode="check" id="btn-check">
+                <span>✓</span> Check My LOs
+            </button>
+        </div>
+
+        <!-- GENERATE MODE -->
+        <div class="mode-panel active" id="panel-generate">
+            <form id="generate-form">
+                <div class="form-grid">
+                    <div class="form-column">
+                        <div class="form-section">
+                            <h2 class="section-title">Configuration</h2>
+                            <div class="form-group">
+                                <label for="lo-type">Learning Outcome Type</label>
+                                <select id="lo-type" required>
+                                    <option value="">Select type...</option>
+                                    <option value="CLO">Course Learning Outcomes (CLOs)</option>
+                                    <option value="ULO">Unit Learning Outcomes (ULOs)</option>
+                                    <option value="MLO">Major Learning Outcomes (MLOs)</option>
+                                    <option value="Specialist">Specialist Learning Outcomes</option>
+                                </select>
+                                <span class="help-text" id="lo-type-help"></span>
+                            </div>
+                            <div class="form-group">
+                                <label for="aqf-level">AQF Level</label>
+                                <select id="aqf-level" required>
+                                    <option value="">Select level...</option>
+                                    <option value="7">Level 7 – Bachelor Degree</option>
+                                    <option value="8">Level 8 – Honours / Grad Cert / Grad Dip</option>
+                                    <option value="9">Level 9 – Masters Degree</option>
+                                    <option value="10">Level 10 – Doctoral Degree</option>
+                                </select>
+                                <span class="help-text" id="aqf-help"></span>
+                            </div>
+                            <div class="form-group" id="unit-level-group" style="display:none;">
+                                <label for="unit-level">Unit Level</label>
+                                <select id="unit-level">
+                                    <option value="">Select unit level...</option>
+                                    <option value="1000">1000-level (Introductory)</option>
+                                    <option value="2000">2000-level (Developing)</option>
+                                    <option value="3000">3000-level (Consolidating)</option>
+                                    <option value="4000">4000-level (Honours)</option>
+                                    <option value="5000">5000-level (Postgraduate)</option>
+                                    <option value="6000">6000-level (Postgraduate Advanced)</option>
+                                    <option value="7000">7000-level (Research)</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="num-los">Number of LOs</label>
+                                <input type="number" id="num-los" min="1" max="12" placeholder="Leave blank for default">
+                                <span class="help-text">Defaults: CLOs 6–8, ULOs 3–5, MLOs 6–8, Specialist 4–6</span>
+                            </div>
+                            <div class="form-group">
+                                <label for="discipline">Discipline / Field</label>
+                                <input type="text" id="discipline" placeholder="e.g., History, Media Studies, Philosophy...">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-column">
+                        <div class="form-section">
+                            <h2 class="section-title">Context & Input</h2>
+                            <div class="form-group">
+                                <label for="description">Course / Unit Description</label>
+                                <textarea id="description" rows="4" placeholder="Paste or type the course/unit description, overview, or aims..."></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="vision">Vision / Graduate Profile</label>
+                                <textarea id="vision" rows="3" placeholder="What kind of graduate does this course/major aim to produce?"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="themes">Themes / Key Topics</label>
+                                <textarea id="themes" rows="2" placeholder="e.g., decolonisation, digital humanities, sustainability..."></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="capabilities">Desired Capabilities / Skills</label>
+                                <textarea id="capabilities" rows="2" placeholder="e.g., critical analysis, research design, professional writing..."></textarea>
+                            </div>
+                            <div class="form-group" id="existing-clos-group" style="display:none;">
+                                <label for="existing-clos">Existing CLOs (for ULO alignment)</label>
+                                <textarea id="existing-clos" rows="4" placeholder="Paste existing Course Learning Outcomes here..."></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="additional-notes">Additional Notes</label>
+                                <textarea id="additional-notes" rows="2" placeholder="Any other context, constraints, or preferences..."></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-actions">
+                    <button type="submit" class="btn-primary" id="generate-btn"><span>✦</span> Generate Learning Outcomes</button>
+                    <button type="reset" class="btn-secondary">Clear Form</button>
+                </div>
+            </form>
+        </div>
+
+        <!-- CHECK MODE -->
+        <div class="mode-panel" id="panel-check">
+            <form id="check-form">
+                <div class="form-grid">
+                    <div class="form-column">
+                        <div class="form-section">
+                            <h2 class="section-title">Context</h2>
+                            <div class="form-group">
+                                <label for="check-lo-type">Learning Outcome Type</label>
+                                <select id="check-lo-type">
+                                    <option value="">Select type (optional)...</option>
+                                    <option value="CLO">Course Learning Outcomes (CLOs)</option>
+                                    <option value="ULO">Unit Learning Outcomes (ULOs)</option>
+                                    <option value="MLO">Major Learning Outcomes (MLOs)</option>
+                                    <option value="Specialist">Specialist Learning Outcomes</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="check-aqf-level">AQF Level</label>
+                                <select id="check-aqf-level">
+                                    <option value="">Select level (optional)...</option>
+                                    <option value="7">Level 7 – Bachelor Degree</option>
+                                    <option value="8">Level 8 – Honours / Grad Cert / Grad Dip</option>
+                                    <option value="9">Level 9 – Masters Degree</option>
+                                    <option value="10">Level 10 – Doctoral Degree</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="check-unit-level">Unit Level (if ULOs)</label>
+                                <select id="check-unit-level">
+                                    <option value="">Select unit level (optional)...</option>
+                                    <option value="1000">1000-level (Introductory)</option>
+                                    <option value="2000">2000-level (Developing)</option>
+                                    <option value="3000">3000-level (Consolidating)</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="check-discipline">Discipline / Field</label>
+                                <input type="text" id="check-discipline" placeholder="e.g., History, Media Studies...">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-column">
+                        <div class="form-section">
+                            <h2 class="section-title">Your Learning Outcomes</h2>
+                            <div class="form-group">
+                                <label for="check-los">Paste your learning outcomes below</label>
+                                <textarea id="check-los" rows="10" required placeholder="Paste your existing learning outcomes here, one per line..."></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="check-notes">Specific concerns (optional)</label>
+                                <textarea id="check-notes" rows="2" placeholder="e.g., Are these at the right level? Do they cover TEQSA dimensions?"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-actions">
+                    <button type="submit" class="btn-primary" id="check-btn"><span>✓</span> Check My Learning Outcomes</button>
+                    <button type="reset" class="btn-secondary">Clear Form</button>
+                </div>
+            </form>
+        </div>
+
+        <!-- Results -->
+        <div class="results-area" id="results-area" style="display:none;">
+            <div class="results-header">
+                <h2 class="results-title" id="results-title">Results</h2>
+                <div class="results-actions">
+                    <button class="btn-icon-only" id="copy-btn" title="Copy to clipboard">📋</button>
+                    <button class="btn-icon-only" id="download-btn" title="Download">⬇</button>
+                </div>
+            </div>
+            <div class="results-content" id="results-content"></div>
+            <div class="results-footer">
+                <p class="results-disclaimer">Generated outcomes should be reviewed by the course team and submitted through MQCMS for faculty approval. Visit the <a href="https://lt.arts.mq.edu.au/curriculum-design/constructive-alignment/learning-outcomes/" target="_blank">FoA L&T Hub</a> for further guidance.</p>
+            </div>
+        </div>
+
+        <!-- Loading -->
+        <div class="loading" id="loading" style="display:none;">
+            <div class="spinner"></div>
+            <p id="loading-text">Generating learning outcomes...</p>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <p>Faculty of Arts Learning Outcomes Generator | Macquarie University</p>
+            <p class="footer-sub">Powered by the FoA LO Formula, AQF Level Descriptors, TEQSA HES Framework & Bloom's Revised Taxonomy</p>
+            <p class="footer-sub">For support: <a href="mailto:artslandt@mq.edu.au">artslandt@mq.edu.au</a></p>
+        </div>
+    </footer>
+
+    <script>
+    // ===== SYSTEM PROMPT =====
+    const SYSTEM_PROMPT = `You are the Faculty of Arts Learning Outcomes Generator at Macquarie University. You are an expert in curriculum design, constructive alignment, and the Australian higher education regulatory environment. Your purpose is to help academic staff generate well-crafted learning outcomes that are meaningful, measurable, and demonstrable.
+
+You generate learning outcomes that comply with:
+- The Australian Qualifications Framework (AQF)
+- The Higher Education Standards Framework (Threshold Standards) 2021 (TEQSA)
+- Macquarie University Faculty of Arts Learning Outcomes Principles
+- Bloom's Revised Taxonomy (Anderson & Krathwohl, 2001)
+- Macquarie University Graduate Capabilities
+
+## THE LEARNING OUTCOMES FORMULA
+
+All learning outcomes MUST follow: **[Action Verb(s)] + [Content/Topic] + [Discipline-Specific Context]**
+
+### CRITICAL VERB PLACEMENT RULE
+The action verb(s) appear ONLY at the very beginning. The rest of the sentence is content and context with NO additional Bloom's taxonomy verbs as secondary actions.
+
+Correct: "Analyse and evaluate competing historiographical interpretations within their scholarly contexts"
+Correct: "Assess, design and deploy digital tools for historical research within community archives"
+Incorrect: "Analyse primary sources to construct evidence-based arguments" (two verb clusters)
+Incorrect: "Design research projects using methodologies to evaluate claims" (verbs buried in middle/end)
+
+Rules:
+1. One, two, or three Bloom's verbs at the START only, joined by "and" or commas
+2. After opening verb(s), describe WHAT is acted upon (content) and WHERE/HOW (context)
+3. No additional Bloom's verbs after the opening phrase
+4. Use noun forms for subsidiary concepts ("evidence-based argumentation" not "to construct arguments")
+
+## LEARNING OUTCOME TYPES
+
+### CLOs (Course Learning Outcomes)
+- Starting point for course design; 6–8 per course
+- Must cover ALL FOUR TEQSA dimensions: specific disciplinary, generic, employment-related, life-long learning
+- Must be assessable (Standard 1.4.4)
+
+### ULOs (Unit Learning Outcomes)
+- 3–5 per unit; align to CLOs/MLOs
+- IPA scaffolding: 1000=Introduction, 2000=Practice, 3000=Assessment/demonstration
+
+### MLOs (Major Learning Outcomes)
+- 6–8 per major; specialised focus and employment-related
+- NOT required to map to CLOs (MQ Curriculum Architecture Policy)
+
+### Specialist Learning Outcomes
+- 4–6 per specialist stream; sub-disciplinary depth
+
+## MQ GRADUATE CAPABILITIES
+1. Critical, Analytical and Integrative Thinking
+2. Creative and Innovative
+3. Engaged and Ethical Local and Global Citizens
+4. Socially and Environmentally Active and Responsible
+5. Capable of Professional and Personal Judgement and Initiative
+6. Commitment to Continuous Learning
+7. Collaborative and Effective Communicators
+8. Digitally Literate
+
+## AQF LEVELS
+- Level 7 (Bachelor): Broad & coherent knowledge; well-developed judgement; autonomy
+- Level 8 (Honours/GradCert/GradDip): Advanced knowledge; adaptability; professional practice
+- Level 9 (Masters): Advanced & integrated understanding; expert judgement; independence
+- Level 10 (Doctoral): Systemic & critical understanding; authoritative judgement; original contribution
+
+## BLOOM'S REVISED TAXONOMY VERBS
+
+Level 1 – Remember: Define, describe, identify, label, list, name, outline, recall, recognise, state
+Level 2 – Understand: Classify, compare, contrast, discuss, distinguish, explain, illustrate, interpret, summarise
+Level 3 – Apply: Apply, calculate, carry out, construct, implement, modify, solve, use
+Level 4 – Analyse: Analyse, categorise, compare, deconstruct, differentiate, examine, investigate, research
+Level 5 – Evaluate: Appraise, argue, assess, critique, defend, evaluate, justify, recommend, review
+Level 6 – Create: Compose, construct, create, design, develop, formulate, generate, hypothesise, produce, synthesise
+
+### By AQF Level:
+- AQF 7: Primarily Apply, Analyse, Evaluate. Create for capstone.
+- AQF 8: Primarily Analyse, Evaluate, Create.
+- AQF 9: Primarily Evaluate, Create with sophisticated Analyse.
+- AQF 10: Primarily Create. Generate, originate, extend.
+
+### By Unit Level (Bachelor):
+- 1000-level: Remember, Understand, Apply
+- 2000-level: Apply, Analyse
+- 3000-level: Analyse, Evaluate, Create
+
+## TEQSA FOUR DIMENSIONS (for CLOs)
+1. Specific Disciplinary Knowledge
+2. Generic Skills (critical thinking, communication, digital literacy, ethical reasoning)
+3. Employment-Related Outcomes
+4. Life-Long Learning Outcomes
+
+## OUTPUT FORMAT
+
+### Generate Mode:
+Present each LO numbered with opening verb(s) in **bold**.
+Below each: [Bloom's level | TEQSA dimension (CLOs) | MQ Capability | Brief rationale]
+
+### Check Mode:
+Rate each: ✓ (good), ~ (minor issues), ✗ (needs revision)
+Provide: feedback, suggested revision, explanation.
+
+## QUALITY CHECKS
+- Verb(s) ONLY at start; no Bloom's verbs after opening phrase
+- Appropriate to AQF level; measurable; distinct; accessible language
+- CLO sets cover all 4 TEQSA dimensions
+- Avoid: "understand"/"know" alone; teaching descriptions; compound outcomes; jargon; infinitive phrases as secondary actions
+
+## TONE
+- Collegial, supportive, Australian English
+- Explain verb/framing choices
+- Remind: LOs need MQCMS faculty approval
+- Reference FoA L&T Hub (lt.arts.mq.edu.au)`;
+
+    // ===== APPLICATION LOGIC =====
+    document.addEventListener('DOMContentLoaded', () => {
+        const apiKeyInput = document.getElementById('api-key');
+        const keyStatus = document.getElementById('key-status');
+        const loTypeSelect = document.getElementById('lo-type');
+        const aqfLevelSelect = document.getElementById('aqf-level');
+        const unitLevelGroup = document.getElementById('unit-level-group');
+        const existingClosGroup = document.getElementById('existing-clos-group');
+        const resultsArea = document.getElementById('results-area');
+        const resultsTitle = document.getElementById('results-title');
+        const resultsContent = document.getElementById('results-content');
+        const loading = document.getElementById('loading');
+        const loadingText = document.getElementById('loading-text');
+
+        // --- API Key Handling ---
+        const savedKey = localStorage.getItem('lo_gen_api_key');
+        if (savedKey) {
+            apiKeyInput.value = savedKey;
+            keyStatus.textContent = '✓ Key saved';
+            keyStatus.classList.add('connected');
+        }
+
+        apiKeyInput.addEventListener('change', () => {
+            const key = apiKeyInput.value.trim();
+            if (key.startsWith('sk-ant-')) {
+                localStorage.setItem('lo_gen_api_key', key);
+                keyStatus.textContent = '✓ Key saved';
+                keyStatus.classList.add('connected');
+            } else if (key === '') {
+                localStorage.removeItem('lo_gen_api_key');
+                keyStatus.textContent = 'Not connected';
+                keyStatus.classList.remove('connected');
+            } else {
+                keyStatus.textContent = 'Invalid key format';
+                keyStatus.classList.remove('connected');
+            }
+        });
+
+        // --- Mode Toggle ---
+        document.getElementById('btn-generate').addEventListener('click', () => switchMode('generate'));
+        document.getElementById('btn-check').addEventListener('click', () => switchMode('check'));
+
+        function switchMode(mode) {
+            document.querySelectorAll('.mode-btn').forEach(b => b.classList.remove('active'));
+            document.querySelector(`[data-mode="${mode}"]`).classList.add('active');
+            document.querySelectorAll('.mode-panel').forEach(p => p.classList.remove('active'));
+            document.getElementById(`panel-${mode}`).classList.add('active');
+            resultsArea.style.display = 'none';
+        }
+
+        // --- Conditional Fields ---
+        loTypeSelect.addEventListener('change', () => {
+            const t = loTypeSelect.value;
+            unitLevelGroup.style.display = t === 'ULO' ? 'block' : 'none';
+            existingClosGroup.style.display = t === 'ULO' ? 'block' : 'none';
+            const help = document.getElementById('lo-type-help');
+            const texts = { CLO: 'Course-level: 6–8 outcomes, all TEQSA dimensions', ULO: 'Unit-level: 3–5 outcomes, scaffolded to CLOs', MLO: 'Major-level: 6–8 specialised outcomes', Specialist: 'Specialist: 4–6 sub-disciplinary outcomes' };
+            help.textContent = texts[t] || '';
+        });
+
+        aqfLevelSelect.addEventListener('change', () => {
+            const help = document.getElementById('aqf-help');
+            const texts = { '7': 'Bachelor: broad knowledge, well-developed judgement', '8': 'Honours/GradCert/GradDip: advanced knowledge, adaptability', '9': 'Masters: integrated understanding, expert judgement', '10': 'Doctoral: systemic understanding, authoritative judgement' };
+            help.textContent = texts[aqfLevelSelect.value] || '';
+        });
+
+        // --- Generate Form ---
+        document.getElementById('generate-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const loType = document.getElementById('lo-type').value;
+            const aqfLevel = document.getElementById('aqf-level').value;
+            if (!loType || !aqfLevel) return alert('Please select LO Type and AQF Level.');
+
+            const desc = document.getElementById('description').value;
+            const vis = document.getElementById('vision').value;
+            const thm = document.getElementById('themes').value;
+            const cap = document.getElementById('capabilities').value;
+            if (!desc && !vis && !thm && !cap) return alert('Please provide at least one piece of context.');
+
+            let msg = `**Mode:** Generate new learning outcomes\n**LO Type:** ${loType}\n**AQF Level:** ${aqfLevel}`;
+            const unitLevel = document.getElementById('unit-level').value;
+            if (unitLevel) msg += `\n**Unit Level:** ${unitLevel}`;
+            const numLos = document.getElementById('num-los').value;
+            if (numLos) msg += `\n**Number of LOs:** ${numLos}`;
+            const disc = document.getElementById('discipline').value;
+            if (disc) msg += `\n**Discipline:** ${disc}`;
+            if (desc) msg += `\n**Description:**\n${desc}`;
+            if (vis) msg += `\n**Vision/Graduate Profile:**\n${vis}`;
+            if (thm) msg += `\n**Themes:**\n${thm}`;
+            if (cap) msg += `\n**Capabilities:**\n${cap}`;
+            const clos = document.getElementById('existing-clos').value;
+            if (clos) msg += `\n**Existing CLOs:**\n${clos}`;
+            const notes = document.getElementById('additional-notes').value;
+            if (notes) msg += `\n**Additional Notes:**\n${notes}`;
+
+            await callAPI(msg, 'Generated Learning Outcomes', 'Generating learning outcomes...');
+        });
+
+        // --- Check Form ---
+        document.getElementById('check-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const los = document.getElementById('check-los').value;
+            if (!los.trim()) return alert('Please paste your learning outcomes.');
+
+            let msg = `**Mode:** Check/review existing learning outcomes`;
+            const lt = document.getElementById('check-lo-type').value;
+            if (lt) msg += `\n**LO Type:** ${lt}`;
+            const al = document.getElementById('check-aqf-level').value;
+            if (al) msg += `\n**AQF Level:** ${al}`;
+            const ul = document.getElementById('check-unit-level').value;
+            if (ul) msg += `\n**Unit Level:** ${ul}`;
+            const d = document.getElementById('check-discipline').value;
+            if (d) msg += `\n**Discipline:** ${d}`;
+            msg += `\n**Learning Outcomes to Review:**\n${los}`;
+            const n = document.getElementById('check-notes').value;
+            if (n) msg += `\n**Concerns/Questions:**\n${n}`;
+
+            await callAPI(msg, 'Learning Outcomes Review', 'Reviewing your learning outcomes...');
+        });
+
+        // --- API Call ---
+        async function callAPI(userMessage, title, loadingMsg) {
+            const apiKey = apiKeyInput.value.trim() || localStorage.getItem('lo_gen_api_key');
+            if (!apiKey) return alert('Please enter your Anthropic API key.');
+
+            loading.style.display = 'block';
+            loadingText.textContent = loadingMsg;
+            resultsArea.style.display = 'none';
+            document.getElementById('generate-btn').disabled = true;
+            document.getElementById('check-btn').disabled = true;
+
+            try {
+                const response = await fetch('https://api.anthropic.com/v1/messages', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'x-api-key': apiKey,
+                        'anthropic-version': '2023-06-01',
+                        'anthropic-dangerous-direct-browser-access': 'true'
+                    },
+                    body: JSON.stringify({
+                        model: 'claude-sonnet-4-20250514',
+                        max_tokens: 4096,
+                        system: SYSTEM_PROMPT,
+                        messages: [{ role: 'user', content: userMessage }]
+                    })
+                });
+
+                if (!response.ok) {
+                    const err = await response.json().catch(() => ({}));
+                    throw new Error(err.error?.message || `API error: ${response.status}`);
+                }
+
+                const data = await response.json();
+                const content = data.content?.[0]?.text || 'No response generated.';
+                displayResults(content, title);
+
+            } catch (error) {
+                displayError(error.message);
+            } finally {
+                loading.style.display = 'none';
+                document.getElementById('generate-btn').disabled = false;
+                document.getElementById('check-btn').disabled = false;
+            }
+        }
+
+        function displayResults(content, title) {
+            resultsTitle.textContent = title;
+            resultsContent.innerHTML = renderMarkdown(content);
+            resultsArea.style.display = 'block';
+            resultsArea.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+
+        function displayError(message) {
+            resultsTitle.textContent = 'Error';
+            resultsContent.innerHTML = `<p><strong>Something went wrong:</strong> ${escapeHtml(message)}</p><p style="margin-top:0.75rem;font-size:0.85rem;color:var(--mq-grey-mid);">If using this directly in the browser, you need the <code>anthropic-dangerous-direct-browser-access</code> header enabled on your API key. Alternatively, use the Python backend version. Contact <a href="mailto:artslandt@mq.edu.au">artslandt@mq.edu.au</a> for help.</p>`;
+            resultsArea.style.display = 'block';
+            resultsArea.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+
+        // --- Markdown Renderer ---
+        function renderMarkdown(text) {
+            if (!text) return '<p>No content.</p>';
+            let h = escapeHtml(text);
+            h = h.replace(/^### (.+)$/gm, '<h4 style="margin:1.25rem 0 0.5rem;font-size:0.95rem;color:var(--mq-crimson-dark);">$1</h4>');
+            h = h.replace(/^## (.+)$/gm, '<h3>$1</h3>');
+            h = h.replace(/^# (.+)$/gm, '<h3>$1</h3>');
+            h = h.replace(/\*\*(.+?)\*\*/g, '<strong style="color:var(--mq-crimson);">$1</strong>');
+            h = h.replace(/\*(.+?)\*/g, '<em>$1</em>');
+            h = h.replace(/`(.+?)`/g, '<code style="background:var(--mq-sand);padding:0.125rem 0.375rem;border-radius:3px;font-size:0.85em;">$1</code>');
+            h = h.replace(/\n\n/g, '</p><p>');
+            h = h.replace(/\n/g, '<br>');
+            return `<p>${h}</p>`;
+        }
+
+        function escapeHtml(t) { const d = document.createElement('div'); d.textContent = t; return d.innerHTML; }
+
+        // --- Copy & Download ---
+        document.getElementById('copy-btn').addEventListener('click', async () => {
+            const text = resultsContent.innerText;
+            try {
+                await navigator.clipboard.writeText(text);
+                document.getElementById('copy-btn').textContent = '✓';
+                setTimeout(() => { document.getElementById('copy-btn').textContent = '📋'; }, 2000);
+            } catch (e) { console.error(e); }
+        });
+
+        document.getElementById('download-btn').addEventListener('click', () => {
+            const text = resultsContent.innerText;
+            const blob = new Blob([text], { type: 'text/plain' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `learning-outcomes-${new Date().toISOString().slice(0,10)}.txt`;
+            document.body.appendChild(a); a.click(); document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        });
+    });
+    </script>
+</body>
+</html>
