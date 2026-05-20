@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en-AU">
+<html lang="en-AU" data-theme="light">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,7 +8,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        :root {
+        :root, [data-theme="light"] {
             --mq-crimson: #a6192e;
             --mq-crimson-dark: #8c1527;
             --mq-crimson-light: #d4213a;
@@ -21,32 +21,73 @@
             --mq-success: #2e7d32;
             --mq-warning: #f57c00;
             --mq-error: #c62828;
+            --mq-info: #1565c0;
+            --bg-primary: var(--mq-sand);
+            --bg-secondary: var(--mq-white);
+            --bg-tertiary: #f0f7ff;
+            --text-primary: var(--mq-charcoal);
+            --text-secondary: var(--mq-grey-dark);
+            --text-muted: var(--mq-grey-mid);
+            --border-color: var(--mq-grey-light);
+            --shadow-color: rgba(0,0,0,0.08);
+        }
+        [data-theme="dark"] {
+            --mq-crimson: #e63950;
+            --mq-crimson-dark: #c62840;
+            --mq-crimson-light: #ff5a6e;
+            --mq-sand: #1a1a2e;
+            --mq-charcoal: #e8e8e8;
+            --mq-grey-dark: #c0c0c0;
+            --mq-grey-mid: #888888;
+            --mq-grey-light: #333355;
+            --mq-white: #16213e;
+            --bg-primary: #0f0f1a;
+            --bg-secondary: #1a1a2e;
+            --bg-tertiary: #1e2a4a;
+            --text-primary: #e8e8e8;
+            --text-secondary: #c0c0c0;
+            --text-muted: #888888;
+            --border-color: #333355;
+            --shadow-color: rgba(0,0,0,0.3);
+        }
+        :root {
             --font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             --border-radius: 8px;
             --border-radius-lg: 12px;
-            --shadow-sm: 0 1px 3px rgba(0,0,0,0.08);
-            --shadow-md: 0 4px 12px rgba(0,0,0,0.1);
-            --shadow-lg: 0 8px 24px rgba(0,0,0,0.12);
+            --shadow-sm: 0 1px 3px var(--shadow-color);
+            --shadow-md: 0 4px 12px var(--shadow-color);
+            --shadow-lg: 0 8px 24px var(--shadow-color);
             --transition: 0.2s ease;
         }
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
         html { font-size: 16px; scroll-behavior: smooth; }
         body {
             font-family: var(--font-family);
-            color: var(--mq-charcoal);
-            background: var(--mq-sand);
+            color: var(--text-primary);
+            background: var(--bg-primary);
             line-height: 1.6;
             min-height: 100vh;
             display: flex;
             flex-direction: column;
+            transition: background-color 0.3s ease, color 0.3s ease;
         }
+        /* Skip to content for accessibility */
+        .skip-link {
+            position: absolute; top: -100%; left: 0;
+            background: var(--mq-crimson); color: #fff;
+            padding: 0.5rem 1rem; z-index: 1000;
+            font-size: 0.85rem; text-decoration: none;
+        }
+        .skip-link:focus { top: 0; }
+        /* Header */
         .header {
-            background: var(--mq-white);
+            background: var(--bg-secondary);
             border-bottom: 3px solid var(--mq-crimson);
             box-shadow: var(--shadow-sm);
             position: sticky;
             top: 0;
             z-index: 100;
+            transition: background-color 0.3s ease;
         }
         .header-content {
             max-width: 1200px;
@@ -61,53 +102,69 @@
         .logo-mark {
             width: 44px; height: 44px;
             background: var(--mq-crimson);
-            color: var(--mq-white);
+            color: #fff;
             border-radius: var(--border-radius);
             display: flex; align-items: center; justify-content: center;
             font-weight: 700; font-size: 1rem;
         }
-        .logo-text h1 { font-size: 1.25rem; font-weight: 600; color: var(--mq-charcoal); line-height: 1.2; }
-        .logo-text p { font-size: 0.8rem; color: var(--mq-grey-mid); }
+        .logo-text h1 { font-size: 1.25rem; font-weight: 600; color: var(--text-primary); line-height: 1.2; }
+        .logo-text p { font-size: 0.8rem; color: var(--text-muted); }
+        .header-actions { display: flex; align-items: center; gap: 1rem; }
         .header-nav { display: flex; gap: 1.5rem; }
-        .header-nav a { font-size: 0.85rem; color: var(--mq-grey-dark); text-decoration: none; font-weight: 500; transition: color var(--transition); }
-        .header-nav a:hover { color: var(--mq-crimson); }
+        .header-nav a { font-size: 0.85rem; color: var(--text-secondary); text-decoration: none; font-weight: 500; transition: color var(--transition); }
+        .header-nav a:hover, .header-nav a:focus { color: var(--mq-crimson); }
+        /* Dark mode toggle */
+        .theme-toggle {
+            width: 36px; height: 36px; border: 1.5px solid var(--border-color);
+            border-radius: var(--border-radius); background: var(--bg-secondary);
+            color: var(--text-secondary); cursor: pointer; display: flex;
+            align-items: center; justify-content: center; transition: all var(--transition);
+            font-size: 1.1rem;
+        }
+        .theme-toggle:hover, .theme-toggle:focus { border-color: var(--mq-crimson); color: var(--mq-crimson); }
+        .theme-toggle:focus { outline: 2px solid var(--mq-crimson); outline-offset: 2px; }
+        /* Main */
         .main-content { max-width: 1200px; margin: 0 auto; padding: 2rem; flex: 1; width: 100%; }
+        /* Mode toggle */
         .mode-toggle {
             display: flex; gap: 0.5rem; margin-bottom: 2rem;
-            background: var(--mq-white); padding: 0.375rem;
+            background: var(--bg-secondary); padding: 0.375rem;
             border-radius: var(--border-radius-lg); box-shadow: var(--shadow-sm); width: fit-content;
         }
         .mode-btn {
             padding: 0.75rem 1.5rem; border: none; background: transparent;
             border-radius: var(--border-radius); font-family: var(--font-family);
-            font-size: 0.9rem; font-weight: 500; color: var(--mq-grey-mid);
+            font-size: 0.9rem; font-weight: 500; color: var(--text-muted);
             cursor: pointer; transition: all var(--transition);
             display: flex; align-items: center; gap: 0.5rem;
         }
-        .mode-btn:hover { color: var(--mq-charcoal); background: var(--mq-sand); }
-        .mode-btn.active { background: var(--mq-crimson); color: var(--mq-white); box-shadow: var(--shadow-sm); }
+        .mode-btn:hover { color: var(--text-primary); background: var(--bg-primary); }
+        .mode-btn:focus { outline: 2px solid var(--mq-crimson); outline-offset: -2px; }
+        .mode-btn.active { background: var(--mq-crimson); color: #fff; box-shadow: var(--shadow-sm); }
         .mode-panel { display: none; }
         .mode-panel.active { display: block; }
+        /* Forms */
         .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-bottom: 1.5rem; }
         .form-section {
-            background: var(--mq-white); border-radius: var(--border-radius-lg);
+            background: var(--bg-secondary); border-radius: var(--border-radius-lg);
             padding: 1.5rem; box-shadow: var(--shadow-sm);
+            transition: background-color 0.3s ease;
         }
         .section-title {
             font-size: 1rem; font-weight: 600; color: var(--mq-crimson);
-            margin-bottom: 1.25rem; padding-bottom: 0.75rem; border-bottom: 1px solid var(--mq-grey-light);
+            margin-bottom: 1.25rem; padding-bottom: 0.75rem; border-bottom: 1px solid var(--border-color);
         }
         .form-group { margin-bottom: 1.25rem; }
         .form-group:last-child { margin-bottom: 0; }
-        .form-group label { display: block; font-size: 0.85rem; font-weight: 500; margin-bottom: 0.375rem; }
+        .form-group label { display: block; font-size: 0.85rem; font-weight: 500; margin-bottom: 0.375rem; color: var(--text-primary); }
         .form-group select, .form-group input[type="text"], .form-group input[type="number"], .form-group textarea {
             width: 100%; padding: 0.625rem 0.875rem;
-            border: 1.5px solid var(--mq-grey-light); border-radius: var(--border-radius);
-            font-family: var(--font-family); font-size: 0.9rem; color: var(--mq-charcoal);
-            background: var(--mq-white); transition: border-color var(--transition), box-shadow var(--transition);
+            border: 1.5px solid var(--border-color); border-radius: var(--border-radius);
+            font-family: var(--font-family); font-size: 0.9rem; color: var(--text-primary);
+            background: var(--bg-secondary); transition: border-color var(--transition), box-shadow var(--transition);
         }
         .form-group select:focus, .form-group input:focus, .form-group textarea:focus {
-            outline: none; border-color: var(--mq-crimson); box-shadow: 0 0 0 3px rgba(166,25,46,0.1);
+            outline: none; border-color: var(--mq-crimson); box-shadow: 0 0 0 3px rgba(166,25,46,0.15);
         }
         .form-group textarea { resize: vertical; min-height: 60px; }
         .form-group select {
@@ -115,151 +172,275 @@
             background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%236b6b6b' d='M6 8.825L1.175 4 2.238 2.938 6 6.7 9.763 2.937 10.825 4z'/%3E%3C/svg%3E");
             background-repeat: no-repeat; background-position: right 0.875rem center; padding-right: 2.5rem;
         }
-        .help-text { display: block; font-size: 0.75rem; color: var(--mq-grey-mid); margin-top: 0.25rem; font-style: italic; }
-        .form-actions { display: flex; gap: 1rem; justify-content: center; padding-top: 0.5rem; }
+        .help-text { display: block; font-size: 0.75rem; color: var(--text-muted); margin-top: 0.25rem; font-style: italic; }
+        .char-warning { color: var(--mq-warning); font-weight: 500; font-style: normal; }
+        /* Example loader */
+        .example-loader { margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.75rem; }
+        .example-loader label { font-size: 0.85rem; font-weight: 500; white-space: nowrap; }
+        .example-loader select { max-width: 300px; }
+        /* Buttons */
+        .form-actions { display: flex; gap: 1rem; justify-content: center; padding-top: 0.5rem; flex-wrap: wrap; }
         .btn-primary {
-            padding: 0.875rem 2rem; background: var(--mq-crimson); color: var(--mq-white);
+            padding: 0.875rem 2rem; background: var(--mq-crimson); color: #fff;
             border: none; border-radius: var(--border-radius); font-family: var(--font-family);
             font-size: 1rem; font-weight: 600; cursor: pointer; transition: all var(--transition);
-            display: flex; align-items: center; gap: 0.5rem; box-shadow: var(--shadow-sm);
+            display: inline-flex; align-items: center; gap: 0.5rem; box-shadow: var(--shadow-sm);
         }
         .btn-primary:hover { background: var(--mq-crimson-dark); box-shadow: var(--shadow-md); transform: translateY(-1px); }
-        .btn-primary:disabled { background: var(--mq-grey-mid); cursor: not-allowed; transform: none; box-shadow: none; }
+        .btn-primary:focus { outline: 2px solid var(--mq-crimson); outline-offset: 2px; }
+        .btn-primary:disabled { background: var(--text-muted); cursor: not-allowed; transform: none; box-shadow: none; }
         .btn-secondary {
-            padding: 0.875rem 1.5rem; background: transparent; color: var(--mq-grey-dark);
-            border: 1.5px solid var(--mq-grey-light); border-radius: var(--border-radius);
+            padding: 0.875rem 1.5rem; background: transparent; color: var(--text-secondary);
+            border: 1.5px solid var(--border-color); border-radius: var(--border-radius);
             font-family: var(--font-family); font-size: 0.9rem; font-weight: 500; cursor: pointer;
-            transition: all var(--transition);
+            transition: all var(--transition); display: inline-flex; align-items: center; gap: 0.5rem;
         }
-        .btn-secondary:hover { border-color: var(--mq-grey-mid); background: var(--mq-white); }
+        .btn-secondary:hover { border-color: var(--text-muted); background: var(--bg-secondary); }
+        .btn-secondary:focus { outline: 2px solid var(--mq-crimson); outline-offset: 2px; }
         .btn-icon-only {
-            width: 36px; height: 36px; border: 1.5px solid var(--mq-grey-light);
-            border-radius: var(--border-radius); background: var(--mq-white); color: var(--mq-grey-dark);
-            cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all var(--transition);
+            width: 36px; height: 36px; border: 1.5px solid var(--border-color);
+            border-radius: var(--border-radius); background: var(--bg-secondary); color: var(--text-secondary);
+            cursor: pointer; display: flex; align-items: center; justify-content: center;
+            transition: all var(--transition); font-size: 1rem;
         }
         .btn-icon-only:hover { border-color: var(--mq-crimson); color: var(--mq-crimson); }
+        .btn-icon-only:focus { outline: 2px solid var(--mq-crimson); outline-offset: 2px; }
+        /* Results */
         .results-area {
-            margin-top: 2rem; background: var(--mq-white);
+            margin-top: 2rem; background: var(--bg-secondary);
             border-radius: var(--border-radius-lg); box-shadow: var(--shadow-md); overflow: hidden;
+            transition: background-color 0.3s ease;
         }
         .results-header {
             display: flex; align-items: center; justify-content: space-between;
-            padding: 1.25rem 1.5rem; border-bottom: 1px solid var(--mq-grey-light);
+            padding: 1.25rem 1.5rem; border-bottom: 1px solid var(--border-color);
             background: linear-gradient(135deg, var(--mq-crimson), var(--mq-crimson-dark));
         }
-        .results-title { font-size: 1.1rem; font-weight: 600; color: var(--mq-white); }
-        .results-actions { display: flex; gap: 0.5rem; }
-        .results-actions .btn-icon-only { border-color: rgba(255,255,255,0.3); background: rgba(255,255,255,0.1); color: var(--mq-white); }
-        .results-actions .btn-icon-only:hover { border-color: rgba(255,255,255,0.6); background: rgba(255,255,255,0.2); color: var(--mq-white); }
+        .results-title { font-size: 1.1rem; font-weight: 600; color: #fff; }
+        .results-actions { display: flex; gap: 0.5rem; align-items: center; }
+        .results-actions .btn-icon-only { border-color: rgba(255,255,255,0.3); background: rgba(255,255,255,0.1); color: #fff; }
+        .results-actions .btn-icon-only:hover { border-color: rgba(255,255,255,0.6); background: rgba(255,255,255,0.2); }
+        .results-actions .btn-sm {
+            padding: 0.375rem 0.75rem; font-size: 0.75rem; font-weight: 500;
+            border: 1.5px solid rgba(255,255,255,0.3); background: rgba(255,255,255,0.1);
+            color: #fff; border-radius: var(--border-radius); cursor: pointer;
+            font-family: var(--font-family); transition: all var(--transition);
+        }
+        .results-actions .btn-sm:hover { background: rgba(255,255,255,0.2); border-color: rgba(255,255,255,0.6); }
+        .results-actions .btn-sm:focus { outline: 2px solid #fff; outline-offset: 2px; }
         .results-content { padding: 1.5rem; font-size: 0.9rem; line-height: 1.7; }
         .results-content h1, .results-content h2, .results-content h3, .results-content h4 { color: var(--mq-crimson); margin: 1.25rem 0 0.5rem 0; }
         .results-content h1:first-child, .results-content h2:first-child, .results-content h3:first-child { margin-top: 0; }
         .results-content h3 { font-size: 1rem; font-weight: 600; }
-        .results-content h4 { font-size: 0.95rem; font-weight: 600; color: var(--mq-crimson-dark); }
+        .results-content h4 { font-size: 0.95rem; font-weight: 600; }
         .results-content p { margin-bottom: 0.75rem; }
         .results-content strong { color: var(--mq-crimson); }
         .results-content em { font-style: italic; }
         .results-content ul, .results-content ol { margin: 0.5rem 0 0.75rem 1.5rem; }
         .results-content li { margin-bottom: 0.4rem; }
-        .results-content code { background: var(--mq-sand); padding: 0.125rem 0.375rem; border-radius: 3px; font-size: 0.85em; }
-        .results-content hr { border: none; border-top: 1px solid var(--mq-grey-light); margin: 1.25rem 0; }
+        .results-content code { background: var(--bg-primary); padding: 0.125rem 0.375rem; border-radius: 3px; font-size: 0.85em; }
+        .results-content hr { border: none; border-top: 1px solid var(--border-color); margin: 1.25rem 0; }
+        /* TEQSA visualisation */
+        .teqsa-coverage {
+            margin: 1rem 1.5rem; padding: 1rem; background: var(--bg-primary);
+            border-radius: var(--border-radius); border: 1px solid var(--border-color);
+        }
+        .teqsa-coverage h4 { font-size: 0.85rem; font-weight: 600; color: var(--text-primary); margin-bottom: 0.75rem; }
+        .teqsa-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem; }
+        .teqsa-item {
+            padding: 0.5rem 0.75rem; border-radius: var(--border-radius);
+            font-size: 0.8rem; display: flex; align-items: center; gap: 0.5rem;
+        }
+        .teqsa-item.covered { background: #e8f5e9; color: #2e7d32; border: 1px solid #c8e6c9; }
+        .teqsa-item.partial { background: #fff3e0; color: #e65100; border: 1px solid #ffe0b2; }
+        .teqsa-item.missing { background: #ffebee; color: #c62828; border: 1px solid #ffcdd2; }
+        [data-theme="dark"] .teqsa-item.covered { background: #1b3d1b; color: #81c784; border-color: #2e5a2e; }
+        [data-theme="dark"] .teqsa-item.partial { background: #3d2e00; color: #ffb74d; border-color: #5a4400; }
+        [data-theme="dark"] .teqsa-item.missing { background: #3d1b1b; color: #ef9a9a; border-color: #5a2e2e; }
+        .teqsa-badge { font-size: 0.9rem; }
+        .teqsa-label { font-weight: 500; }
+        .teqsa-clos { font-size: 0.7rem; color: var(--text-muted); margin-top: 0.125rem; }
+        /* Warning */
         .results-warning {
             padding: 0.75rem 1rem; margin: 0 1.5rem 1rem; border-radius: var(--border-radius);
             background: #fff3e0; border: 1px solid #ffe0b2; color: #e65100; font-size: 0.85rem;
         }
+        [data-theme="dark"] .results-warning { background: #3d2e00; border-color: #5a4400; color: #ffb74d; }
+        /* Refine section */
         .refine-section {
-            padding: 1.25rem 1.5rem; border-top: 1px solid var(--mq-grey-light);
-            background: #f0f7ff;
+            padding: 1.25rem 1.5rem; border-top: 1px solid var(--border-color);
+            background: var(--bg-tertiary);
         }
-        .refine-section h4 { font-size: 0.9rem; font-weight: 600; color: var(--mq-charcoal); margin-bottom: 0.75rem; }
+        .refine-section h4 { font-size: 0.9rem; font-weight: 600; color: var(--text-primary); margin-bottom: 0.75rem; }
         .refine-section textarea {
             width: 100%; padding: 0.625rem 0.875rem;
-            border: 1.5px solid var(--mq-grey-light); border-radius: var(--border-radius);
-            font-family: var(--font-family); font-size: 0.85rem; color: var(--mq-charcoal);
-            background: var(--mq-white); resize: vertical; min-height: 50px; margin-bottom: 0.75rem;
+            border: 1.5px solid var(--border-color); border-radius: var(--border-radius);
+            font-family: var(--font-family); font-size: 0.85rem; color: var(--text-primary);
+            background: var(--bg-secondary); resize: vertical; min-height: 50px; margin-bottom: 0.75rem;
         }
-        .refine-section textarea:focus { outline: none; border-color: var(--mq-crimson); box-shadow: 0 0 0 3px rgba(166,25,46,0.1); }
+        .refine-section textarea:focus { outline: none; border-color: var(--mq-crimson); box-shadow: 0 0 0 3px rgba(166,25,46,0.15); }
         .refine-section .btn-primary { font-size: 0.9rem; padding: 0.625rem 1.5rem; }
-        .input-summary {
-            padding: 1.25rem 1.5rem; border-top: 1px solid var(--mq-grey-light);
-            background: var(--mq-sand);
+        /* Version history */
+        .version-history {
+            padding: 1rem 1.5rem; border-top: 1px solid var(--border-color);
         }
-        .input-summary h4 { font-size: 0.85rem; font-weight: 600; color: var(--mq-grey-mid); margin-bottom: 0.75rem; text-transform: uppercase; letter-spacing: 0.5px; }
+        .version-toggle {
+            font-size: 0.85rem; font-weight: 500; color: var(--mq-crimson);
+            cursor: pointer; background: none; border: none; font-family: var(--font-family);
+            display: flex; align-items: center; gap: 0.5rem; padding: 0.375rem 0;
+        }
+        .version-toggle:hover { text-decoration: underline; }
+        .version-toggle:focus { outline: 2px solid var(--mq-crimson); outline-offset: 2px; }
+        .version-toggle .arrow { transition: transform 0.2s; }
+        .version-toggle.open .arrow { transform: rotate(90deg); }
+        .version-list { display: none; margin-top: 0.75rem; }
+        .version-list.open { display: block; }
+        .version-item {
+            padding: 0.75rem; margin-bottom: 0.5rem; background: var(--bg-primary);
+            border-radius: var(--border-radius); border: 1px solid var(--border-color);
+            font-size: 0.8rem; cursor: pointer; transition: border-color var(--transition);
+        }
+        .version-item:hover { border-color: var(--mq-crimson); }
+        .version-item-header { display: flex; justify-content: space-between; align-items: center; }
+        .version-item-title { font-weight: 500; color: var(--text-primary); }
+        .version-item-time { color: var(--text-muted); font-size: 0.75rem; }
+        /* Input summary */
+        .input-summary {
+            padding: 1.25rem 1.5rem; border-top: 1px solid var(--border-color);
+            background: var(--bg-primary);
+        }
+        .input-summary h4 { font-size: 0.85rem; font-weight: 600; color: var(--text-muted); margin-bottom: 0.75rem; text-transform: uppercase; letter-spacing: 0.5px; }
         .input-summary-grid { display: grid; grid-template-columns: auto 1fr; gap: 0.25rem 1rem; font-size: 0.85rem; }
-        .input-summary-grid dt { font-weight: 500; color: var(--mq-grey-dark); }
-        .input-summary-grid dd { color: var(--mq-grey-mid); }
-        .input-summary-los { margin-top: 0.75rem; padding-top: 0.75rem; border-top: 1px solid var(--mq-grey-light); }
-        .input-summary-los h5 { font-size: 0.8rem; font-weight: 500; color: var(--mq-grey-dark); margin-bottom: 0.375rem; }
-        .input-summary-los ol { margin-left: 1.25rem; font-size: 0.8rem; color: var(--mq-grey-mid); }
+        .input-summary-grid dt { font-weight: 500; color: var(--text-secondary); }
+        .input-summary-grid dd { color: var(--text-muted); }
+        .input-summary-los { margin-top: 0.75rem; padding-top: 0.75rem; border-top: 1px solid var(--border-color); }
+        .input-summary-los h5 { font-size: 0.8rem; font-weight: 500; color: var(--text-secondary); margin-bottom: 0.375rem; }
+        .input-summary-los ol { margin-left: 1.25rem; font-size: 0.8rem; color: var(--text-muted); }
         .input-summary-los li { margin-bottom: 0.2rem; }
-        .results-footer { padding: 1rem 1.5rem; background: var(--mq-sand); border-top: 1px solid var(--mq-grey-light); }
-        .results-disclaimer { font-size: 0.8rem; color: var(--mq-grey-mid); text-align: center; }
+        /* Footer */
+        .results-footer { padding: 1rem 1.5rem; background: var(--bg-primary); border-top: 1px solid var(--border-color); }
+        .results-disclaimer { font-size: 0.8rem; color: var(--text-muted); text-align: center; }
         .results-disclaimer a { color: var(--mq-crimson); text-decoration: none; }
+        /* Loading */
         .loading { text-align: center; padding: 3rem 2rem; margin-top: 2rem; }
         .spinner {
-            width: 40px; height: 40px; border: 3px solid var(--mq-grey-light);
+            width: 40px; height: 40px; border: 3px solid var(--border-color);
             border-top-color: var(--mq-crimson); border-radius: 50%;
             margin: 0 auto 1rem; animation: spin 0.8s linear infinite;
         }
         @keyframes spin { to { transform: rotate(360deg); } }
-        .loading p { font-size: 0.9rem; color: var(--mq-grey-mid); }
-        .footer { background: var(--mq-charcoal); color: var(--mq-grey-light); padding: 1.5rem 2rem; margin-top: auto; }
+        .loading p { font-size: 0.9rem; color: var(--text-muted); }
+        /* Keyboard shortcut hint */
+        .shortcut-hint {
+            font-size: 0.7rem; color: var(--text-muted); text-align: center;
+            margin-top: 0.5rem;
+        }
+        .shortcut-hint kbd {
+            background: var(--bg-primary); border: 1px solid var(--border-color);
+            padding: 0.1rem 0.3rem; border-radius: 3px; font-size: 0.7rem;
+            font-family: var(--font-family);
+        }
+        /* Footer */
+        .footer { background: #1a1a2e; color: #c0c0c0; padding: 1.5rem 2rem; margin-top: auto; }
         .footer-content { max-width: 1200px; margin: 0 auto; text-align: center; }
         .footer-content p { font-size: 0.85rem; margin-bottom: 0.25rem; }
-        .footer-sub { font-size: 0.75rem; color: var(--mq-grey-mid); }
-        .footer a { color: var(--mq-grey-light); text-decoration: none; }
-        .footer a:hover { color: var(--mq-white); }
+        .footer-sub { font-size: 0.75rem; color: #888; }
+        .footer a { color: #c0c0c0; text-decoration: none; }
+        .footer a:hover { color: #fff; }
+        /* Live region for screen readers */
+        .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
+        /* Print styles */
+        @media print {
+            .header, .footer, .mode-toggle, .form-actions, .refine-section,
+            .results-actions, .results-warning, .version-history, .theme-toggle,
+            .example-loader, .shortcut-hint { display: none !important; }
+            body { background: #fff !important; color: #000 !important; }
+            .main-content { padding: 0 !important; max-width: none !important; }
+            .results-area { box-shadow: none !important; border: none !important; margin-top: 0 !important; }
+            .results-header { background: #fff !important; border-bottom: 2px solid #a6192e !important; padding: 0.5rem 0 !important; }
+            .results-title { color: #a6192e !important; font-size: 1.3rem !important; }
+            .results-content { padding: 1rem 0 !important; font-size: 0.85rem !important; }
+            .results-content strong { color: #a6192e !important; }
+            .results-footer { background: #fff !important; border-top: 1px solid #ccc !important; padding: 0.5rem 0 !important; }
+            .input-summary { background: #fff !important; }
+            .teqsa-coverage { border: 1px solid #ccc !important; background: #f9f9f9 !important; }
+            .mode-panel { display: none !important; }
+            .mode-panel.active { display: none !important; }
+            @page { margin: 2cm; }
+        }
+        /* Responsive */
         @media (max-width: 900px) {
             .form-grid { grid-template-columns: 1fr; gap: 1.5rem; }
             .header-content { flex-direction: column; align-items: flex-start; }
+            .header-actions { width: 100%; justify-content: space-between; }
             .main-content { padding: 1.5rem 1rem; }
             .mode-toggle { width: 100%; }
             .mode-btn { flex: 1; justify-content: center; }
+            .teqsa-grid { grid-template-columns: 1fr; }
             .input-summary-grid { grid-template-columns: 1fr; }
         }
         @media (max-width: 600px) {
             .form-actions { flex-direction: column; }
             .btn-primary, .btn-secondary { width: 100%; justify-content: center; }
+            .results-actions { flex-wrap: wrap; }
         }
     </style>
 </head>
 <body>
-    <header class="header">
+    <a href="#main" class="skip-link">Skip to main content</a>
+    <!-- Live region for accessibility announcements -->
+    <div id="live-region" class="sr-only" aria-live="polite" aria-atomic="true"></div>
+
+    <header class="header" role="banner">
         <div class="header-content">
             <div class="logo-area">
-                <div class="logo-mark">LO</div>
+                <div class="logo-mark" aria-hidden="true">LO</div>
                 <div class="logo-text">
                     <h1>Learning Outcomes Generator</h1>
                     <p>Faculty of Arts | Macquarie University</p>
                 </div>
             </div>
-            <nav class="header-nav">
-                <a href="https://lt.arts.mq.edu.au/curriculum-design/constructive-alignment/learning-outcomes/" target="_blank" rel="noopener">LO Principles</a>
-                <a href="https://www.aqf.edu.au/framework/aqf-levels" target="_blank" rel="noopener">AQF Levels</a>
-            </nav>
+            <div class="header-actions">
+                <nav class="header-nav" aria-label="External resources">
+                    <a href="https://lt.arts.mq.edu.au/curriculum-design/constructive-alignment/learning-outcomes/" target="_blank" rel="noopener">LO Principles</a>
+                    <a href="https://www.aqf.edu.au/framework/aqf-levels" target="_blank" rel="noopener">AQF Levels</a>
+                </nav>
+                <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode" title="Toggle dark mode (Ctrl+Shift+D)">&#9790;</button>
+            </div>
         </div>
     </header>
 
-    <main class="main-content">
-        <div class="mode-toggle">
-            <button class="mode-btn active" data-mode="generate" id="btn-generate">
-                <span>&#10022;</span> Generate New LOs
+    <main class="main-content" id="main" role="main">
+        <div class="mode-toggle" role="tablist" aria-label="Tool mode">
+            <button class="mode-btn active" data-mode="generate" id="btn-generate" role="tab" aria-selected="true" aria-controls="panel-generate">
+                <span aria-hidden="true">&#10022;</span> Generate New LOs
             </button>
-            <button class="mode-btn" data-mode="check" id="btn-check">
-                <span>&#10003;</span> Check My LOs
+            <button class="mode-btn" data-mode="check" id="btn-check" role="tab" aria-selected="false" aria-controls="panel-check">
+                <span aria-hidden="true">&#10003;</span> Check My LOs
             </button>
         </div>
-
         <!-- GENERATE MODE -->
-        <div class="mode-panel active" id="panel-generate">
+        <div class="mode-panel active" id="panel-generate" role="tabpanel" aria-labelledby="btn-generate">
             <form id="generate-form">
+                <!-- Example loader -->
+                <div class="example-loader">
+                    <label for="example-select">Load example:</label>
+                    <select id="example-select" aria-label="Load a pre-filled example">
+                        <option value="">Start from scratch...</option>
+                        <option value="media-comms">Bachelor of Media &amp; Communications</option>
+                        <option value="history">Bachelor of Arts (History Major)</option>
+                        <option value="philosophy">Bachelor of Arts (Philosophy Major)</option>
+                        <option value="creative-writing">Master of Creative Writing</option>
+                        <option value="strategic-comms">Master of Strategic Communication</option>
+                    </select>
+                </div>
                 <div class="form-grid">
                     <div class="form-column">
                         <div class="form-section">
                             <h2 class="section-title">Configuration</h2>
                             <div class="form-group">
                                 <label for="lo-type">Learning Outcome Type</label>
-                                <select id="lo-type" required>
+                                <select id="lo-type" required aria-required="true">
                                     <option value="">Select type...</option>
                                     <option value="CLO">Course Learning Outcomes (CLOs)</option>
                                     <option value="ULO">Unit Learning Outcomes (ULOs)</option>
@@ -270,7 +451,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="aqf-level">AQF Level</label>
-                                <select id="aqf-level" required>
+                                <select id="aqf-level" required aria-required="true">
                                     <option value="">Select level...</option>
                                     <option value="7">Level 7 – Bachelor Degree</option>
                                     <option value="8">Level 8 – Honours / Grad Cert / Grad Dip</option>
@@ -294,8 +475,8 @@
                             </div>
                             <div class="form-group">
                                 <label for="num-los">Number of LOs</label>
-                                <input type="number" id="num-los" min="1" max="12" placeholder="Leave blank for default">
-                                <span class="help-text">Defaults: CLOs 6–8, ULOs 3–5, MLOs 6–8, Specialist 4–6</span>
+                                <input type="number" id="num-los" min="1" max="12" placeholder="Leave blank for default" aria-describedby="num-los-help">
+                                <span class="help-text" id="num-los-help">Defaults: CLOs 6–8, ULOs 3–5, MLOs 6–8, Specialist 4–6</span>
                             </div>
                             <div class="form-group">
                                 <label for="discipline">Discipline / Field</label>
@@ -308,7 +489,8 @@
                             <h2 class="section-title">Context &amp; Input</h2>
                             <div class="form-group">
                                 <label for="description">Course / Unit Description</label>
-                                <textarea id="description" rows="4" placeholder="Paste or type the course/unit description, overview, or aims..."></textarea>
+                                <textarea id="description" rows="4" placeholder="Paste or type the course/unit description, overview, or aims..." aria-describedby="desc-charcount"></textarea>
+                                <span class="help-text" id="desc-charcount"></span>
                             </div>
                             <div class="form-group">
                                 <label for="vision">Vision / Graduate Profile</label>
@@ -334,14 +516,15 @@
                     </div>
                 </div>
                 <div class="form-actions">
-                    <button type="submit" class="btn-primary" id="generate-btn"><span>&#10022;</span> Generate Learning Outcomes</button>
+                    <button type="submit" class="btn-primary" id="generate-btn"><span aria-hidden="true">&#10022;</span> Generate Learning Outcomes</button>
                     <button type="reset" class="btn-secondary">Clear Form</button>
                 </div>
+                <p class="shortcut-hint"><kbd>Ctrl</kbd>+<kbd>Enter</kbd> to submit</p>
             </form>
         </div>
 
         <!-- CHECK MODE -->
-        <div class="mode-panel" id="panel-check">
+        <div class="mode-panel" id="panel-check" role="tabpanel" aria-labelledby="btn-check">
             <form id="check-form">
                 <div class="form-grid">
                     <div class="form-column">
@@ -387,7 +570,8 @@
                             <h2 class="section-title">Your Learning Outcomes</h2>
                             <div class="form-group">
                                 <label for="check-los">Paste your learning outcomes below</label>
-                                <textarea id="check-los" rows="10" required placeholder="Paste your existing learning outcomes here, one per line..."></textarea>
+                                <textarea id="check-los" rows="10" required aria-required="true" placeholder="Paste your existing learning outcomes here, one per line..." aria-describedby="check-charcount"></textarea>
+                                <span class="help-text" id="check-charcount"></span>
                             </div>
                             <div class="form-group">
                                 <label for="check-notes">Specific concerns (optional)</label>
@@ -397,49 +581,61 @@
                     </div>
                 </div>
                 <div class="form-actions">
-                    <button type="submit" class="btn-primary" id="check-btn"><span>&#10003;</span> Check My Learning Outcomes</button>
+                    <button type="submit" class="btn-primary" id="check-btn"><span aria-hidden="true">&#10003;</span> Check My Learning Outcomes</button>
                     <button type="reset" class="btn-secondary">Clear Form</button>
                 </div>
+                <p class="shortcut-hint"><kbd>Ctrl</kbd>+<kbd>Enter</kbd> to submit</p>
             </form>
         </div>
 
         <!-- Results -->
-        <div class="results-area" id="results-area" style="display:none;">
+        <div class="results-area" id="results-area" style="display:none;" aria-label="Results">
             <div class="results-header">
                 <h2 class="results-title" id="results-title">Results</h2>
                 <div class="results-actions">
-                    <button class="btn-icon-only" id="copy-btn" title="Copy to clipboard">&#128203;</button>
-                    <button class="btn-icon-only" id="download-btn" title="Download">&#11015;</button>
+                    <button class="btn-sm" id="copy-los-btn" title="Copy learning outcomes only" aria-label="Copy learning outcomes only">Copy LOs</button>
+                    <button class="btn-icon-only" id="copy-btn" title="Copy all (Ctrl+Shift+C)" aria-label="Copy full results to clipboard">&#128203;</button>
+                    <button class="btn-icon-only" id="download-txt-btn" title="Download as text" aria-label="Download as text file">&#128196;</button>
+                    <button class="btn-icon-only" id="download-docx-btn" title="Download as Word" aria-label="Download as Word document">&#128462;</button>
+                    <button class="btn-icon-only" id="print-btn" title="Print/PDF (Ctrl+P)" aria-label="Print or save as PDF">&#128424;</button>
                 </div>
             </div>
-            <div id="results-warning" class="results-warning" style="display:none;"></div>
+            <div id="results-warning" class="results-warning" style="display:none;" role="alert"></div>
             <div class="results-content" id="results-content"></div>
+            <div id="teqsa-coverage" class="teqsa-coverage" style="display:none;"></div>
             <div class="refine-section" id="refine-section" style="display:none;">
                 <h4>&#128260; Refine These Learning Outcomes</h4>
-                <textarea id="refine-instructions" rows="3" placeholder="e.g., Consolidate to 8 CLOs as recommended, apply the verb placement fixes, make CLO 6 more specific..."></textarea>
-                <button class="btn-primary" id="refine-btn"><span>&#128260;</span> Refine</button>
+                <textarea id="refine-instructions" rows="3" placeholder="e.g., Consolidate to 8 CLOs as recommended, apply the verb placement fixes, make CLO 6 more specific..." aria-label="Refinement instructions"></textarea>
+                <button class="btn-primary" id="refine-btn"><span aria-hidden="true">&#128260;</span> Refine</button>
+            </div>
+            <div class="version-history" id="version-history" style="display:none;">
+                <button class="version-toggle" id="version-toggle" aria-expanded="false" aria-controls="version-list">
+                    <span class="arrow" aria-hidden="true">&#9654;</span> Previous versions (<span id="version-count">0</span>)
+                </button>
+                <div class="version-list" id="version-list" role="list"></div>
             </div>
             <div class="input-summary" id="input-summary" style="display:none;"></div>
             <div class="results-footer">
-                <p class="results-disclaimer">Generated outcomes should be reviewed by the course team and submitted through MQCMS for faculty approval. Visit the <a href="https://lt.arts.mq.edu.au/curriculum-design/constructive-alignment/learning-outcomes/" target="_blank">FoA L&amp;T Hub</a> for further guidance.</p>
+                <p class="results-disclaimer">Generated outcomes should be reviewed by the course team and submitted through MQCMS for faculty approval. Visit the <a href="https://lt.arts.mq.edu.au/curriculum-design/constructive-alignment/learning-outcomes/" target="_blank" rel="noopener">FoA L&amp;T Hub</a> for further guidance.</p>
             </div>
         </div>
 
         <!-- Loading -->
-        <div class="loading" id="loading" style="display:none;">
-            <div class="spinner"></div>
+        <div class="loading" id="loading" style="display:none;" role="status" aria-label="Loading">
+            <div class="spinner" aria-hidden="true"></div>
             <p id="loading-text">Generating learning outcomes...</p>
         </div>
     </main>
 
-    <footer class="footer">
+    <footer class="footer" role="contentinfo">
         <div class="footer-content">
             <p>Faculty of Arts Learning Outcomes Generator | Macquarie University</p>
             <p class="footer-sub">Powered by the FoA LO Formula, AQF Level Descriptors, TEQSA HES Framework &amp; Bloom's Revised Taxonomy</p>
             <p class="footer-sub">For support: <a href="mailto:artslandt@mq.edu.au">artslandt@mq.edu.au</a></p>
         </div>
     </footer>
-
+ <!-- docx library for Word export -->
+    <script src="https://cdn.jsdelivr.net/npm/docx@8.5.0/build/index.umd.min.js"></script>
     <script>
     const WORKER_URL = 'https://lo-generator-proxy.james-tracy.workers.dev';
 
@@ -534,11 +730,11 @@ Level 6 - Create: Compose, construct, create, design, develop, formulate, genera
 
 ### Generate Mode:
 Present each LO numbered (1., 2., etc.) with opening verb(s) in **bold**.
-Below each LO, include: [Bloom's level | TEQSA dimension (CLOs) | MQ Capability | Brief rationale]
+Below each LO, include on its own line in square brackets: [Bloom's level | TEQSA dimension (CLOs) | MQ Capability | Brief rationale]
 
-End with a Summary section including:
+End with a Summary section (use ### Summary heading) including:
 - Overall assessment
-- TEQSA dimension coverage mapping
+- TEQSA dimension coverage mapping (state which CLO numbers cover each dimension)
 - Any recommendations
 
 ### Check Mode:
@@ -556,7 +752,7 @@ For each learning outcome, present your review in this exact format:
 
 ---
 
-End with a Summary section including:
+End with a Summary section (use ### Summary heading) including:
 - Overall assessment
 - TEQSA dimension coverage
 - Recommendations for consolidation if applicable
@@ -564,7 +760,7 @@ End with a Summary section including:
 ### Refine Mode:
 When asked to refine, present the complete revised set of LOs numbered (1., 2., etc.) with opening verb(s) in **bold**.
 Below each: [Bloom's level | TEQSA dimension | MQ Capability | What changed and why]
-Include a brief summary of changes made.
+Include a ### Summary of Changes section.
 
 ## QUALITY CHECKS
 - Verb(s) ONLY at start; no Bloom's verbs after opening phrase
@@ -578,6 +774,45 @@ Include a brief summary of changes made.
 - Remind: LOs need MQCMS faculty approval
 - Reference FoA L&T Hub (lt.arts.mq.edu.au)`;
 
+    // Pre-loaded examples
+    const EXAMPLES = {
+        'media-comms': {
+            loType: 'CLO', aqfLevel: '7', discipline: 'Media and Communications',
+            description: 'The Bachelor of Media and Communications prepares students for careers in journalism, strategic communication, digital media production, and screen media. Students develop critical, creative, and technical skills across multiple media platforms and industries.',
+            vision: 'Graduates who are critically engaged, ethically aware, and technically skilled media practitioners ready for the evolving communications landscape.',
+            themes: 'Digital media, journalism, strategic communication, screen production, media ethics, audience engagement, emerging technologies, AI in media',
+            capabilities: 'Critical media analysis, multiplatform content creation, audience research, ethical practice, professional collaboration, digital literacy'
+        },
+        'history': {
+            loType: 'MLO', aqfLevel: '7', discipline: 'History',
+            description: 'The History major develops skills in historical research, analysis, and argumentation. Students engage with diverse historiographical traditions and primary source materials across different periods and regions.',
+            vision: 'Graduates who can research, analyse, and communicate complex historical knowledge with rigour and nuance.',
+            themes: 'Historiography, primary source analysis, colonialism and decolonisation, public history, digital humanities',
+            capabilities: 'Archival research, critical analysis of sources, historical argumentation, academic writing, digital research methods'
+        },
+        'philosophy': {
+            loType: 'MLO', aqfLevel: '7', discipline: 'Philosophy',
+            description: 'The Philosophy major develops rigorous analytical thinking, ethical reasoning, and argumentation skills. Students engage with major philosophical traditions and apply philosophical methods to contemporary problems.',
+            vision: 'Graduates with exceptional reasoning abilities who can analyse complex problems, construct persuasive arguments, and think ethically about pressing social issues.',
+            themes: 'Ethics, epistemology, political philosophy, logic, philosophy of mind, applied ethics',
+            capabilities: 'Logical analysis, ethical reasoning, argument construction, critical reading, philosophical writing'
+        },
+        'creative-writing': {
+            loType: 'CLO', aqfLevel: '9', discipline: 'Creative Writing',
+            description: 'The Master of Creative Writing develops advanced creative practice alongside critical understanding of literary traditions, publishing contexts, and the role of the writer in contemporary culture.',
+            vision: 'Graduates who produce publishable, original creative work and can articulate their practice within broader literary and cultural conversations.',
+            themes: 'Creative practice, literary craft, publishing, editing, writing communities, diverse voices, practice-led research',
+            capabilities: 'Advanced creative composition, critical self-reflection, editorial skills, workshopping, research-informed practice'
+        },
+        'strategic-comms': {
+            loType: 'CLO', aqfLevel: '9', discipline: 'Strategic Communication',
+            description: 'The Master of Strategic Communication prepares professionals for leadership roles in corporate communication, public affairs, crisis management, and digital strategy. Students develop advanced analytical and strategic planning capabilities.',
+            vision: 'Graduates who can lead communication strategy at an organisational level, integrating research, ethics, and innovation.',
+            themes: 'Corporate communication, crisis management, stakeholder engagement, digital strategy, reputation management, data-driven communication',
+            capabilities: 'Strategic planning, stakeholder analysis, campaign evaluation, crisis communication, ethical leadership, data analytics'
+        }
+    };
+
     document.addEventListener('DOMContentLoaded', () => {
         const loTypeSelect = document.getElementById('lo-type');
         const aqfLevelSelect = document.getElementById('aqf-level');
@@ -587,29 +822,150 @@ Include a brief summary of changes made.
         const resultsTitle = document.getElementById('results-title');
         const resultsContent = document.getElementById('results-content');
         const resultsWarning = document.getElementById('results-warning');
+        const teqsaCoverage = document.getElementById('teqsa-coverage');
         const refineSection = document.getElementById('refine-section');
+        const versionHistory = document.getElementById('version-history');
         const inputSummary = document.getElementById('input-summary');
         const loading = document.getElementById('loading');
         const loadingText = document.getElementById('loading-text');
+        const liveRegion = document.getElementById('live-region');
 
-        // Conversation history for refinement
         let conversationHistory = [];
         let lastInputData = null;
         let lastRawContent = '';
+        let versions = [];
 
-        // Mode Toggle
+        // === DARK MODE (Feature 10) ===
+        const themeToggle = document.getElementById('theme-toggle');
+        function setTheme(theme) {
+            document.documentElement.setAttribute('data-theme', theme);
+            localStorage.setItem('lo-gen-theme', theme);
+            themeToggle.innerHTML = theme === 'dark' ? '&#9788;' : '&#9790;';
+            themeToggle.setAttribute('aria-label', theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode');
+        }
+        const savedTheme = localStorage.getItem('lo-gen-theme') || 'light';
+        setTheme(savedTheme);
+        themeToggle.addEventListener('click', () => {
+            const current = document.documentElement.getAttribute('data-theme');
+            setTheme(current === 'dark' ? 'light' : 'dark');
+        });
+
+        // === SESSION STORAGE (Feature 4) ===
+        const STORAGE_KEY = 'lo-gen-form-data';
+        function saveFormState() {
+            const state = {
+                generate: {
+                    loType: document.getElementById('lo-type').value,
+                    aqfLevel: document.getElementById('aqf-level').value,
+                    unitLevel: document.getElementById('unit-level').value,
+                    numLos: document.getElementById('num-los').value,
+                    discipline: document.getElementById('discipline').value,
+                    description: document.getElementById('description').value,
+                    vision: document.getElementById('vision').value,
+                    themes: document.getElementById('themes').value,
+                    capabilities: document.getElementById('capabilities').value,
+                    existingClos: document.getElementById('existing-clos').value,
+                    additionalNotes: document.getElementById('additional-notes').value,
+                },
+                check: {
+                    loType: document.getElementById('check-lo-type').value,
+                    aqfLevel: document.getElementById('check-aqf-level').value,
+                    unitLevel: document.getElementById('check-unit-level').value,
+                    discipline: document.getElementById('check-discipline').value,
+                    los: document.getElementById('check-los').value,
+                    notes: document.getElementById('check-notes').value,
+                }
+            };
+            sessionStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+        }
+        function restoreFormState() {
+            const saved = sessionStorage.getItem(STORAGE_KEY);
+            if (!saved) return;
+            try {
+                const state = JSON.parse(saved);
+                if (state.generate) {
+                    document.getElementById('lo-type').value = state.generate.loType || '';
+                    document.getElementById('aqf-level').value = state.generate.aqfLevel || '';
+                    document.getElementById('unit-level').value = state.generate.unitLevel || '';
+                    document.getElementById('num-los').value = state.generate.numLos || '';
+                    document.getElementById('discipline').value = state.generate.discipline || '';
+                    document.getElementById('description').value = state.generate.description || '';
+                    document.getElementById('vision').value = state.generate.vision || '';
+                    document.getElementById('themes').value = state.generate.themes || '';
+                    document.getElementById('capabilities').value = state.generate.capabilities || '';
+                    document.getElementById('existing-clos').value = state.generate.existingClos || '';
+                    document.getElementById('additional-notes').value = state.generate.additionalNotes || '';
+                    // Trigger conditional display
+                    loTypeSelect.dispatchEvent(new Event('change'));
+                    aqfLevelSelect.dispatchEvent(new Event('change'));
+                }
+                if (state.check) {
+                    document.getElementById('check-lo-type').value = state.check.loType || '';
+                    document.getElementById('check-aqf-level').value = state.check.aqfLevel || '';
+                    document.getElementById('check-unit-level').value = state.check.unitLevel || '';
+                    document.getElementById('check-discipline').value = state.check.discipline || '';
+                    document.getElementById('check-los').value = state.check.los || '';
+                    document.getElementById('check-notes').value = state.check.notes || '';
+                }
+            } catch (e) { /* ignore parse errors */ }
+        }
+        restoreFormState();
+        // Auto-save on input changes
+        document.querySelectorAll('#generate-form input, #generate-form textarea, #generate-form select, #check-form input, #check-form textarea, #check-form select').forEach(el => {
+            el.addEventListener('change', saveFormState);
+            el.addEventListener('input', saveFormState);
+        });
+
+        // === CHAR COUNT / TOKEN WARNING (Feature 8) ===
+        function updateCharCount(textarea, display, limit) {
+            const len = textarea.value.length;
+            if (len > limit) {
+                display.textContent = len + ' characters — may produce incomplete results. Consider shortening.';
+                display.classList.add('char-warning');
+            } else if (len > limit * 0.8) {
+                display.textContent = len + ' characters (approaching limit)';
+                display.classList.add('char-warning');
+            } else {
+                display.textContent = '';
+                display.classList.remove('char-warning');
+            }
+        }
+        document.getElementById('description').addEventListener('input', function() { updateCharCount(this, document.getElementById('desc-charcount'), 2000); });
+        document.getElementById('check-los').addEventListener('input', function() { updateCharCount(this, document.getElementById('check-charcount'), 3000); });
+
+        // === EXAMPLE LOADER (Feature 7) ===
+        document.getElementById('example-select').addEventListener('change', function() {
+            const key = this.value;
+            if (!key || !EXAMPLES[key]) return;
+            const ex = EXAMPLES[key];
+            document.getElementById('lo-type').value = ex.loType || '';
+            document.getElementById('aqf-level').value = ex.aqfLevel || '';
+            document.getElementById('discipline').value = ex.discipline || '';
+            document.getElementById('description').value = ex.description || '';
+            document.getElementById('vision').value = ex.vision || '';
+            document.getElementById('themes').value = ex.themes || '';
+            document.getElementById('capabilities').value = ex.capabilities || '';
+            loTypeSelect.dispatchEvent(new Event('change'));
+            aqfLevelSelect.dispatchEvent(new Event('change'));
+            saveFormState();
+            announce('Example loaded: ' + ex.discipline);
+        });
+
+        // === MODE TOGGLE ===
         document.getElementById('btn-generate').addEventListener('click', () => switchMode('generate'));
         document.getElementById('btn-check').addEventListener('click', () => switchMode('check'));
 
         function switchMode(mode) {
-            document.querySelectorAll('.mode-btn').forEach(b => b.classList.remove('active'));
-            document.querySelector('[data-mode="' + mode + '"]').classList.add('active');
+            document.querySelectorAll('.mode-btn').forEach(b => { b.classList.remove('active'); b.setAttribute('aria-selected', 'false'); });
+            const btn = document.querySelector('[data-mode="' + mode + '"]');
+            btn.classList.add('active');
+            btn.setAttribute('aria-selected', 'true');
             document.querySelectorAll('.mode-panel').forEach(p => p.classList.remove('active'));
             document.getElementById('panel-' + mode).classList.add('active');
             resultsArea.style.display = 'none';
         }
 
-        // Conditional Fields
+        // === CONDITIONAL FIELDS ===
         loTypeSelect.addEventListener('change', () => {
             const t = loTypeSelect.value;
             unitLevelGroup.style.display = t === 'ULO' ? 'block' : 'none';
@@ -618,14 +974,44 @@ Include a brief summary of changes made.
             const texts = { CLO: 'Course-level: 6-8 outcomes, all TEQSA dimensions', ULO: 'Unit-level: 3-5 outcomes, scaffolded to CLOs', MLO: 'Major-level: 6-8 specialised outcomes', Specialist: 'Specialist: 4-6 sub-disciplinary outcomes' };
             help.textContent = texts[t] || '';
         });
-
         aqfLevelSelect.addEventListener('change', () => {
             const help = document.getElementById('aqf-help');
             const texts = { '7': 'Bachelor: broad knowledge, well-developed judgement', '8': 'Honours/GradCert/GradDip: advanced knowledge, adaptability', '9': 'Masters: integrated understanding, expert judgement', '10': 'Doctoral: systemic understanding, authoritative judgement' };
             help.textContent = texts[aqfLevelSelect.value] || '';
         });
 
-        // Generate Form
+        // === KEYBOARD SHORTCUTS (Feature 11) ===
+        document.addEventListener('keydown', (e) => {
+            // Ctrl+Enter to submit active form
+            if (e.ctrlKey && e.key === 'Enter') {
+                e.preventDefault();
+                const activePanel = document.querySelector('.mode-panel.active');
+                if (activePanel) {
+                    const form = activePanel.querySelector('form');
+                    if (form) form.requestSubmit();
+                }
+            }
+            // Ctrl+Shift+C to copy results
+            if (e.ctrlKey && e.shiftKey && e.key === 'C') {
+                e.preventDefault();
+                if (lastRawContent) {
+                    copyToClipboard(buildPlainText(lastRawContent));
+                    announce('Results copied to clipboard');
+                }
+            }
+            // Ctrl+Shift+D to toggle dark mode
+            if (e.ctrlKey && e.shiftKey && e.key === 'D') {
+                e.preventDefault();
+                themeToggle.click();
+            }
+        });
+
+        // === ACCESSIBILITY: Announce function (Feature 12) ===
+        function announce(message) {
+            liveRegion.textContent = message;
+            setTimeout(() => { liveRegion.textContent = ''; }, 3000);
+        }
+ // === GENERATE FORM ===
         document.getElementById('generate-form').addEventListener('submit', async (e) => {
             e.preventDefault();
             const loType = document.getElementById('lo-type').value;
@@ -665,12 +1051,12 @@ Include a brief summary of changes made.
             const notes = document.getElementById('additional-notes').value;
             if (notes) msg += '\n**Additional Notes:**\n' + notes;
 
-            // Reset conversation for new generation
             conversationHistory = [{ role: 'user', content: msg }];
+            versions = [];
             await callAPI(conversationHistory, 'Generated Learning Outcomes', 'Generating learning outcomes...');
         });
 
-        // Check Form
+        // === CHECK FORM ===
         document.getElementById('check-form').addEventListener('submit', async (e) => {
             e.preventDefault();
             const los = document.getElementById('check-los').value;
@@ -700,45 +1086,85 @@ Include a brief summary of changes made.
             const n = document.getElementById('check-notes').value;
             if (n) msg += '\n**Concerns/Questions:**\n' + n;
 
-            // Reset conversation for new check
             conversationHistory = [{ role: 'user', content: msg }];
+            versions = [];
             await callAPI(conversationHistory, 'Learning Outcomes Review', 'Reviewing your learning outcomes...');
         });
 
-        // Refine Button
+        // === REFINE (Feature 9 - Version History) ===
         document.getElementById('refine-btn').addEventListener('click', async () => {
             const instructions = document.getElementById('refine-instructions').value.trim();
-            if (!instructions) return alert('Please enter refinement instructions (e.g., "Consolidate to 8 CLOs" or "Apply all suggested verb fixes").');
+            if (!instructions) return alert('Please enter refinement instructions.');
+
+            // Save current version before refining
+            versions.push({
+                title: versions.length === 0 ? 'Original' : 'Revision ' + versions.length,
+                content: lastRawContent,
+                time: new Date().toLocaleTimeString('en-AU', { hour: '2-digit', minute: '2-digit' })
+            });
+            updateVersionHistory();
 
             const refineMsg = '**Mode:** Refine\n**Instructions:** ' + instructions + '\n\nPlease apply the requested changes to the learning outcomes from your previous response. Present the complete revised set.';
 
-            // Add assistant response and new user message to history
             conversationHistory.push({ role: 'assistant', content: lastRawContent });
             conversationHistory.push({ role: 'user', content: refineMsg });
 
             await callAPI(conversationHistory, 'Refined Learning Outcomes', 'Refining learning outcomes...');
         });
 
-        // API Call
+        // === VERSION HISTORY (Feature 9) ===
+        document.getElementById('version-toggle').addEventListener('click', function() {
+            const list = document.getElementById('version-list');
+            const isOpen = list.classList.toggle('open');
+            this.classList.toggle('open', isOpen);
+            this.setAttribute('aria-expanded', isOpen);
+        });
+
+        function updateVersionHistory() {
+            if (versions.length === 0) {
+                versionHistory.style.display = 'none';
+                return;
+            }
+            versionHistory.style.display = 'block';
+            document.getElementById('version-count').textContent = versions.length;
+            const list = document.getElementById('version-list');
+            list.innerHTML = '';
+            versions.forEach((v, i) => {
+                const item = document.createElement('div');
+                item.className = 'version-item';
+                item.setAttribute('role', 'listitem');
+                item.setAttribute('tabindex', '0');
+                item.innerHTML = '<div class="version-item-header"><span class="version-item-title">' + escapeHtml(v.title) + '</span><span class="version-item-time">' + v.time + '</span></div>';
+                item.addEventListener('click', () => {
+                    lastRawContent = v.content;
+                    resultsContent.innerHTML = renderMarkdown(v.content);
+                    resultsTitle.textContent = v.title;
+                    announce('Showing ' + v.title);
+                });
+                item.addEventListener('keydown', (e) => { if (e.key === 'Enter') item.click(); });
+                list.appendChild(item);
+            });
+        }
+
+        // === API CALL ===
         async function callAPI(messages, title, loadingMsg) {
             loading.style.display = 'block';
             loadingText.textContent = loadingMsg;
             resultsArea.style.display = 'none';
             resultsWarning.style.display = 'none';
+            teqsaCoverage.style.display = 'none';
             inputSummary.style.display = 'none';
             refineSection.style.display = 'none';
             document.getElementById('generate-btn').disabled = true;
             document.getElementById('check-btn').disabled = true;
             document.getElementById('refine-btn').disabled = true;
+            announce(loadingMsg);
 
             try {
                 const response = await fetch(WORKER_URL, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({
-                        system: SYSTEM_PROMPT,
-                        messages: messages
-                    })
+                    body: JSON.stringify({ system: SYSTEM_PROMPT, messages: messages })
                 });
 
                 if (!response.ok) {
@@ -752,19 +1178,21 @@ Include a brief summary of changes made.
                 lastRawContent = content;
 
                 if (finishReason === 'MAX_TOKENS') {
-                    resultsWarning.textContent = '\u26a0\ufe0f The response may be incomplete due to length limits. Try submitting fewer learning outcomes at a time (e.g., 5-6 at once).';
+                    resultsWarning.textContent = '\u26a0\ufe0f The response may be incomplete. Try submitting fewer learning outcomes at a time.';
                     resultsWarning.style.display = 'block';
-                } else {
-                    resultsWarning.style.display = 'none';
                 }
 
                 displayResults(content, title);
                 displayInputSummary();
+                displayTeqsaCoverage(content);
                 refineSection.style.display = 'block';
                 document.getElementById('refine-instructions').value = '';
+                updateVersionHistory();
+                announce('Results ready: ' + title);
 
             } catch (error) {
                 displayError(error.message);
+                announce('Error: ' + error.message);
             } finally {
                 loading.style.display = 'none';
                 document.getElementById('generate-btn').disabled = false;
@@ -780,11 +1208,37 @@ Include a brief summary of changes made.
             resultsArea.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
 
+        // === TEQSA COVERAGE VISUALISATION (Feature 6) ===
+        function displayTeqsaCoverage(content) {
+            // Only show for CLO generation/check
+            if (!lastInputData || (lastInputData.loType !== 'CLO' && lastInputData.loType !== 'Not specified')) {
+                teqsaCoverage.style.display = 'none';
+                return;
+            }
+
+            const dimensions = [
+                { key: 'disciplinary', label: 'Specific Disciplinary Knowledge', patterns: /disciplin|specific.*knowledge/i },
+                { key: 'generic', label: 'Generic Skills', patterns: /generic|communication|critical.*think|digital.*liter|ethic.*reason/i },
+                { key: 'employment', label: 'Employment-Related', patterns: /employ|professional|industry|career|workplace/i },
+                { key: 'lifelong', label: 'Life-Long Learning', patterns: /life.?long|continuous.*learn|reflect|adapt|ongoing|future/i }
+            ];
+
+            let html = '<h4>TEQSA Dimension Coverage</h4><div class="teqsa-grid">';
+            dimensions.forEach(dim => {
+                const found = dim.patterns.test(content);
+                const status = found ? 'covered' : 'missing';
+                const badge = found ? '✓' : '✗';
+                html += '<div class="teqsa-item ' + status + '"><span class="teqsa-badge">' + badge + '</span><span class="teqsa-label">' + dim.label + '</span></div>';
+            });
+            html += '</div>';
+
+            teqsaCoverage.innerHTML = html;
+            teqsaCoverage.style.display = 'block';
+        }
+
         function displayInputSummary() {
             if (!lastInputData) { inputSummary.style.display = 'none'; return; }
-
-            let html = '<h4>Input Details</h4>';
-            html += '<dl class="input-summary-grid">';
+            let html = '<h4>Input Details</h4><dl class="input-summary-grid">';
             html += '<dt>Mode</dt><dd>' + escapeHtml(lastInputData.mode) + '</dd>';
             html += '<dt>LO Type</dt><dd>' + escapeHtml(lastInputData.loType) + '</dd>';
             html += '<dt>AQF Level</dt><dd>' + escapeHtml(lastInputData.aqfLevel) + '</dd>';
@@ -792,98 +1246,98 @@ Include a brief summary of changes made.
             if (lastInputData.unitLevel) html += '<dt>Unit Level</dt><dd>' + escapeHtml(lastInputData.unitLevel) + '-level</dd>';
             if (lastInputData.numLos) html += '<dt>Requested LOs</dt><dd>' + escapeHtml(lastInputData.numLos) + '</dd>';
             html += '</dl>';
-
             if (lastInputData.los && lastInputData.los.length > 0) {
                 html += '<div class="input-summary-los"><h5>Original Learning Outcomes Submitted:</h5><ol>';
-                lastInputData.los.forEach(lo => {
-                    html += '<li>' + escapeHtml(lo) + '</li>';
-                });
+                lastInputData.los.forEach(lo => { html += '<li>' + escapeHtml(lo) + '</li>'; });
                 html += '</ol></div>';
             }
-
             inputSummary.innerHTML = html;
             inputSummary.style.display = 'block';
         }
 
         function displayError(message) {
             resultsTitle.textContent = 'Error';
-            resultsContent.innerHTML = '<p><strong>Something went wrong:</strong> ' + escapeHtml(message) + '</p><p style="margin-top:0.75rem;font-size:0.85rem;color:var(--mq-grey-mid);">Please try again. If the problem persists, contact <a href="mailto:artslandt@mq.edu.au">artslandt@mq.edu.au</a>.</p>';
+            resultsContent.innerHTML = '<p><strong>Something went wrong:</strong> ' + escapeHtml(message) + '</p><p style="margin-top:0.75rem;font-size:0.85rem;color:var(--text-muted);">Please try again. If the problem persists, contact <a href="mailto:artslandt@mq.edu.au">artslandt@mq.edu.au</a>.</p>';
             resultsArea.style.display = 'block';
             inputSummary.style.display = 'none';
             refineSection.style.display = 'none';
             resultsArea.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
 
-        // Markdown renderer
+        // === MARKDOWN RENDERER (fixed numbering) ===
         function renderMarkdown(text) {
             if (!text) return '<p>No content.</p>';
-
             const lines = text.split('\n');
             let html = '';
-            let inList = false;
-            let listType = '';
+            let inOl = false;
+            let inUl = false;
+            let inLi = false;
 
             for (let i = 0; i < lines.length; i++) {
                 let line = lines[i];
 
                 if (/^---+$/.test(line.trim()) || /^\*\*\*+$/.test(line.trim())) {
-                    if (inList) { html += '</' + listType + '>'; inList = false; }
+                    if (inLi) { html += '</li>'; inLi = false; }
+                    if (inOl) { html += '</ol>'; inOl = false; }
+                    if (inUl) { html += '</ul>'; inUl = false; }
                     html += '<hr>';
                     continue;
                 }
-                if (/^####\s/.test(line)) {
-                    if (inList) { html += '</' + listType + '>'; inList = false; }
-                    html += '<h4>' + inlineFormat(line.replace(/^####\s*/, '')) + '</h4>';
-                    continue;
-                }
-                if (/^###\s/.test(line)) {
-                    if (inList) { html += '</' + listType + '>'; inList = false; }
-                    html += '<h3>' + inlineFormat(line.replace(/^###\s*/, '')) + '</h3>';
-                    continue;
-                }
-                if (/^##\s/.test(line)) {
-                    if (inList) { html += '</' + listType + '>'; inList = false; }
-                    html += '<h3>' + inlineFormat(line.replace(/^##\s*/, '')) + '</h3>';
-                    continue;
-                }
-                if (/^#\s/.test(line)) {
-                    if (inList) { html += '</' + listType + '>'; inList = false; }
-                    html += '<h3>' + inlineFormat(line.replace(/^#\s*/, '')) + '</h3>';
-                    continue;
-                }
-                if (/^\s*[-*+]\s/.test(line)) {
-                    if (!inList || listType !== 'ul') {
-                        if (inList) html += '</' + listType + '>';
-                        html += '<ul>';
-                        inList = true;
-                        listType = 'ul';
-                    }
-                    html += '<li>' + inlineFormat(line.replace(/^\s*[-*+]\s*/, '')) + '</li>';
+                let headerMatch = line.match(/^(#{1,4})\s+(.*)/);
+                if (headerMatch) {
+                    if (inLi) { html += '</li>'; inLi = false; }
+                    if (inOl) { html += '</ol>'; inOl = false; }
+                    if (inUl) { html += '</ul>'; inUl = false; }
+                    let level = Math.min(headerMatch[1].length, 4);
+                    if (level <= 2) level = 3;
+                    html += '<h' + level + '>' + inlineFormat(headerMatch[2]) + '</h' + level + '>';
                     continue;
                 }
                 if (/^\s*\d+[.)]\s/.test(line)) {
-                    if (!inList || listType !== 'ol') {
-                        if (inList) html += '</' + listType + '>';
-                        html += '<ol>';
-                        inList = true;
-                        listType = 'ol';
-                    }
-                    html += '<li>' + inlineFormat(line.replace(/^\s*\d+[.)]\s*/, '')) + '</li>';
+                    if (inUl) { if (inLi) { html += '</li>'; inLi = false; } html += '</ul>'; inUl = false; }
+                    if (inLi) { html += '</li>'; inLi = false; }
+                    if (!inOl) { html += '<ol>'; inOl = true; }
+                    html += '<li>' + inlineFormat(line.replace(/^\s*\d+[.)]\s*/, ''));
+                    inLi = true;
                     continue;
                 }
-                if (inList) {
-                    html += '</' + listType + '>';
-                    inList = false;
+                if (/^\s*[-*+]\s/.test(line) && !/^\*\*/.test(line.trim())) {
+                    if (inOl && inLi) { html += '</li>'; inLi = false; }
+                    if (inOl && !inLi) { html += '</ol>'; inOl = false; }
+                    if (inLi && inUl) { html += '</li>'; inLi = false; }
+                    if (!inUl) { html += '<ul>'; inUl = true; }
+                    html += '<li>' + inlineFormat(line.replace(/^\s*[-*+]\s*/, ''));
+                    inLi = true;
+                    continue;
                 }
                 if (line.trim() === '') {
+                    if (inOl && inLi) {
+                        let hasMore = false;
+                        for (let j = i + 1; j < Math.min(i + 6, lines.length); j++) {
+                            if (/^\s*\d+[.)]\s/.test(lines[j])) { hasMore = true; break; }
+                            if (/^#{1,4}\s/.test(lines[j]) || /^---/.test(lines[j].trim())) break;
+                        }
+                        if (hasMore) { html += '<br>'; continue; }
+                        else { html += '</li>'; inLi = false; html += '</ol>'; inOl = false; html += '</p><p>'; continue; }
+                    }
+                    if (inUl && inLi) {
+                        let hasMore = false;
+                        for (let j = i + 1; j < Math.min(i + 4, lines.length); j++) {
+                            if (/^\s*[-*+]\s/.test(lines[j])) { hasMore = true; break; }
+                            if (/^#{1,4}\s/.test(lines[j])) break;
+                        }
+                        if (hasMore) { html += '<br>'; continue; }
+                        else { html += '</li>'; inLi = false; html += '</ul>'; inUl = false; html += '</p><p>'; continue; }
+                    }
                     html += '</p><p>';
                     continue;
                 }
-                html += inlineFormat(line) + '<br>';
+                if (inLi) { html += '<br>' + inlineFormat(line); }
+                else { html += inlineFormat(line) + '<br>'; }
             }
-
-            if (inList) html += '</' + listType + '>';
-
+            if (inLi) html += '</li>';
+            if (inOl) html += '</ol>';
+            if (inUl) html += '</ul>';
             html = '<p>' + html + '</p>';
             html = html.replace(/<p><\/p>/g, '');
             html = html.replace(/<br><\/p>/g, '</p>');
@@ -894,7 +1348,6 @@ Include a brief summary of changes made.
             html = html.replace(/(<\/[uo]l>)<\/p>/g, '$1');
             html = html.replace(/<p>(<hr>)/g, '$1');
             html = html.replace(/(<hr>)<\/p>/g, '$1');
-
             return html;
         }
 
@@ -909,19 +1362,14 @@ Include a brief summary of changes made.
             return text;
         }
 
-        function escapeHtml(t) {
-            const d = document.createElement('div');
-            d.textContent = t;
-            return d.innerHTML;
-        }
+        function escapeHtml(t) { const d = document.createElement('div'); d.textContent = t; return d.innerHTML; }
 
-        // Build plain text from raw markdown (preserving numbers)
+        // === PLAIN TEXT BUILDER (preserves numbering) ===
         function buildPlainText(markdown) {
             if (!markdown) return '';
             const lines = markdown.split('\n');
             let result = [];
             for (let line of lines) {
-                // Strip markdown formatting but keep structure
                 let clean = line;
                 clean = clean.replace(/\*\*([^*]+?)\*\*/g, '$1');
                 clean = clean.replace(/__([^_]+?)__/g, '$1');
@@ -929,25 +1377,72 @@ Include a brief summary of changes made.
                 clean = clean.replace(/(?<!\w)_([^_]+?)_(?!\w)/g, '$1');
                 clean = clean.replace(/`([^`]+)`/g, '$1');
                 clean = clean.replace(/\[([^\]]+)\]\([^)]+\)/g, '$1');
-                // Convert headers to plain text with spacing
                 clean = clean.replace(/^#{1,4}\s*/, '');
                 result.push(clean);
             }
             return result.join('\n');
         }
 
-        // Copy
-        document.getElementById('copy-btn').addEventListener('click', async () => {
-            const text = buildPlainText(lastRawContent);
+        // === EXTRACT LOs ONLY (Feature 2) ===
+        function extractLosOnly(markdown) {
+            if (!markdown) return '';
+            const lines = markdown.split('\n');
+            let los = [];
+            for (let line of lines) {
+                // Match numbered items that look like LOs (start with number + verb)
+                let match = line.match(/^\s*(\d+)[.)]\s+(.*)/);
+                if (match) {
+                    let text = match[2];
+                    // Strip markdown bold
+                    text = text.replace(/\*\*([^*]+?)\*\*/g, '$1');
+                    text = text.replace(/__([^_]+?)__/g, '$1');
+                    // Only include if it looks like an LO (starts with capital letter, reasonable length)
+                    if (text.length > 20 && /^[A-Z]/.test(text)) {
+                        los.push(match[1] + '. ' + text);
+                    }
+                }
+            }
+            return los.join('\n');
+        }
+
+        // === CLIPBOARD ===
+        async function copyToClipboard(text) {
             try {
                 await navigator.clipboard.writeText(text);
+                return true;
+            } catch (e) {
+                console.error(e);
+                return false;
+            }
+        }
+
+        // Copy all
+        document.getElementById('copy-btn').addEventListener('click', async () => {
+            const success = await copyToClipboard(buildPlainText(lastRawContent));
+            if (success) {
                 document.getElementById('copy-btn').textContent = '\u2713';
+                announce('Full results copied to clipboard');
                 setTimeout(() => { document.getElementById('copy-btn').innerHTML = '&#128203;'; }, 2000);
-            } catch (e) { console.error(e); }
+            }
         });
 
-        // Download
-        document.getElementById('download-btn').addEventListener('click', () => {
+        // Copy LOs only (Feature 2)
+        document.getElementById('copy-los-btn').addEventListener('click', async () => {
+            const losText = extractLosOnly(lastRawContent);
+            if (!losText) {
+                announce('No learning outcomes found to copy');
+                return;
+            }
+            const success = await copyToClipboard(losText);
+            if (success) {
+                document.getElementById('copy-los-btn').textContent = '\u2713 Copied';
+                announce('Learning outcomes copied to clipboard');
+                setTimeout(() => { document.getElementById('copy-los-btn').textContent = 'Copy LOs'; }, 2000);
+            }
+        });
+
+        // === DOWNLOAD TEXT ===
+        document.getElementById('download-txt-btn').addEventListener('click', () => {
             let text = buildPlainText(lastRawContent);
             if (lastInputData) {
                 text += '\n\n---\nINPUT DETAILS\n';
@@ -960,13 +1455,133 @@ Include a brief summary of changes made.
                     lastInputData.los.forEach((lo, i) => { text += (i+1) + '. ' + lo + '\n'; });
                 }
             }
-            const blob = new Blob([text], { type: 'text/plain' });
+            downloadFile(text, 'learning-outcomes-' + new Date().toISOString().slice(0,10) + '.txt', 'text/plain');
+        });
+
+        // === DOWNLOAD WORD (Feature 1) ===
+        document.getElementById('download-docx-btn').addEventListener('click', async () => {
+            try {
+                const { Document, Packer, Paragraph, TextRun, HeadingLevel, AlignmentType, BorderStyle } = window.docx;
+
+                const children = [];
+                // Title
+                children.push(new Paragraph({
+                    children: [new TextRun({ text: resultsTitle.textContent, bold: true, size: 32, color: 'A6192E' })],
+                    heading: HeadingLevel.HEADING_1,
+                    spacing: { after: 200 }
+                }));
+
+                // Parse markdown into docx paragraphs
+                const lines = lastRawContent.split('\n');
+                for (let line of lines) {
+                    if (line.trim() === '') { children.push(new Paragraph({ spacing: { after: 100 } })); continue; }
+                    if (/^---/.test(line.trim())) {
+                        children.push(new Paragraph({ border: { bottom: { color: 'A6192E', space: 1, style: BorderStyle.SINGLE, size: 6 } }, spacing: { after: 200 } }));
+                        continue;
+                    }
+                    // Headers
+                    let hMatch = line.match(/^(#{1,4})\s+(.*)/);
+                    if (hMatch) {
+                        let text = hMatch[2].replace(/\*\*([^*]+?)\*\*/g, '$1');
+                        children.push(new Paragraph({
+                            children: [new TextRun({ text: text, bold: true, size: 26, color: 'A6192E' })],
+                            heading: HeadingLevel.HEADING_2,
+                            spacing: { before: 200, after: 100 }
+                        }));
+                        continue;
+                    }
+                    // Numbered items
+                    let numMatch = line.match(/^\s*(\d+)[.)]\s+(.*)/);
+                    if (numMatch) {
+                        let content = numMatch[2];
+                        let runs = [];
+                        // Handle bold within the line
+                        let parts = content.split(/\*\*([^*]+?)\*\*/);
+                        for (let p = 0; p < parts.length; p++) {
+                            if (p % 2 === 1) {
+                                runs.push(new TextRun({ text: parts[p], bold: true, color: 'A6192E' }));
+                            } else if (parts[p]) {
+                                runs.push(new TextRun({ text: parts[p] }));
+                            }
+                        }
+                        children.push(new Paragraph({
+                            children: [new TextRun({ text: numMatch[1] + '. ', bold: true }), ...runs],
+                            spacing: { after: 80 },
+                            indent: { left: 360 }
+                        }));
+                        continue;
+                    }
+                    // Regular text with bold handling
+                    let runs = [];
+                    let stripped = line.replace(/^[-*+]\s*/, '');
+                    let parts = stripped.split(/\*\*([^*]+?)\*\*/);
+                    for (let p = 0; p < parts.length; p++) {
+                        if (p % 2 === 1) {
+                            runs.push(new TextRun({ text: parts[p], bold: true, color: 'A6192E' }));
+                        } else if (parts[p]) {
+                            let cleaned = parts[p].replace(/\*([^*]+?)\*/g, '$1').replace(/_([^_]+?)_/g, '$1');
+                            runs.push(new TextRun({ text: cleaned }));
+                        }
+                    }
+                    if (runs.length > 0) {
+                        children.push(new Paragraph({ children: runs, spacing: { after: 80 } }));
+                    }
+                }
+
+                // Add input details
+                if (lastInputData) {
+                    children.push(new Paragraph({ border: { bottom: { color: 'CCCCCC', space: 1, style: BorderStyle.SINGLE, size: 4 } }, spacing: { before: 300, after: 200 } }));
+                    children.push(new Paragraph({ children: [new TextRun({ text: 'Input Details', bold: true, size: 20, color: '666666' })], spacing: { after: 100 } }));
+                    children.push(new Paragraph({ children: [new TextRun({ text: 'Mode: ' + lastInputData.mode + ' | LO Type: ' + lastInputData.loType + ' | AQF: ' + lastInputData.aqfLevel, color: '666666', size: 18 })]}));
+                    if (lastInputData.discipline && lastInputData.discipline !== 'Not specified') {
+                        children.push(new Paragraph({ children: [new TextRun({ text: 'Discipline: ' + lastInputData.discipline, color: '666666', size: 18 })]}));
+                    }
+                }
+
+                const doc = new Document({
+                    sections: [{ properties: {}, children: children }],
+                    creator: 'MQ Faculty of Arts LO Generator',
+                    title: resultsTitle.textContent
+                });
+
+                const blob = await Packer.toBlob(doc);
+                downloadFile(blob, 'learning-outcomes-' + new Date().toISOString().slice(0,10) + '.docx', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document');
+                announce('Word document downloaded');
+            } catch (e) {
+                console.error('DOCX generation error:', e);
+                alert('Word export failed. Try the text download instead.');
+            }
+        });
+
+        // === PRINT (Feature 3) ===
+        document.getElementById('print-btn').addEventListener('click', () => { window.print(); });
+
+        function downloadFile(content, filename, type) {
+            const blob = content instanceof Blob ? content : new Blob([content], { type: type });
             const url = URL.createObjectURL(blob);
             const a = document.createElement('a');
-            a.href = url;
-            a.download = 'learning-outcomes-' + new Date().toISOString().slice(0,10) + '.txt';
+            a.href = url; a.download = filename;
             document.body.appendChild(a); a.click(); document.body.removeChild(a);
             URL.revokeObjectURL(url);
+        }
+
+        // === FORM RESET HANDLERS ===
+        document.getElementById('generate-form').addEventListener('reset', () => {
+            setTimeout(() => {
+                document.getElementById('example-select').value = '';
+                saveFormState();
+                unitLevelGroup.style.display = 'none';
+                existingClosGroup.style.display = 'none';
+                document.getElementById('lo-type-help').textContent = '';
+                document.getElementById('aqf-help').textContent = '';
+                document.getElementById('desc-charcount').textContent = '';
+            }, 10);
+        });
+        document.getElementById('check-form').addEventListener('reset', () => {
+            setTimeout(() => {
+                saveFormState();
+                document.getElementById('check-charcount').textContent = '';
+            }, 10);
         });
     });
     </script>
