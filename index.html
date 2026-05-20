@@ -418,6 +418,10 @@
             <button class="mode-btn" data-mode="check" id="btn-check" role="tab" aria-selected="false" aria-controls="panel-check">
                 <span aria-hidden="true">&#10003;</span> Check My LOs
             </button>
+             <button class="mode-btn" data-mode="quick-check" id="btn-quick-check" role="tab" aria-selected="false" aria-controls="panel-quick-check">
+                <span aria-hidden="true">&#9889;</span> Quick Check
+            </button>
+
         </div>
         <!-- GENERATE MODE -->
         <div class="mode-panel active" id="panel-generate" role="tabpanel" aria-labelledby="btn-generate">
@@ -587,6 +591,53 @@
                 <p class="shortcut-hint"><kbd>Ctrl</kbd>+<kbd>Enter</kbd> to submit</p>
             </form>
         </div>
+          <!-- QUICK CHECK MODE (Feature 18) -->
+        <div class="mode-panel" id="panel-quick-check" role="tabpanel" aria-labelledby="btn-quick-check">
+            <form id="quick-check-form">
+                <div class="form-grid">
+                    <div class="form-column">
+                        <div class="form-section">
+                            <h2 class="section-title">Quick Settings</h2>
+                            <div class="form-group">
+                                <label for="qc-lo-type">Learning Outcome Type</label>
+                                <select id="qc-lo-type">
+                                    <option value="">Select type (optional)...</option>
+                                    <option value="CLO">CLOs</option>
+                                    <option value="ULO">ULOs</option>
+                                    <option value="MLO">MLOs</option>
+                                    <option value="Specialist">Specialist</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="qc-aqf-level">AQF Level</label>
+                                <select id="qc-aqf-level">
+                                    <option value="">Select level (optional)...</option>
+                                    <option value="7">Level 7 – Bachelor</option>
+                                    <option value="8">Level 8 – Honours/Grad</option>
+                                    <option value="9">Level 9 – Masters</option>
+                                    <option value="10">Level 10 – Doctoral</option>
+                                </select>
+                            </div>
+                            <p style="font-size:0.8rem; color:var(--text-muted); margin-top:1rem;">Quick Check gives a brief traffic-light rating for each LO without detailed rewrites. Use the full "Check My LOs" mode for comprehensive feedback.</p>
+                        </div>
+                    </div>
+                    <div class="form-column">
+                        <div class="form-section">
+                            <h2 class="section-title">Your Learning Outcomes</h2>
+                            <div class="form-group">
+                                <label for="qc-los">Paste your learning outcomes below</label>
+                                <textarea id="qc-los" rows="10" required aria-required="true" placeholder="Paste your learning outcomes here, one per line..."></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-actions">
+                    <button type="submit" class="btn-primary" id="quick-check-btn"><span aria-hidden="true">&#9889;</span> Quick Check</button>
+                    <button type="reset" class="btn-secondary">Clear</button>
+                </div>
+                <p class="shortcut-hint"><kbd>Ctrl</kbd>+<kbd>Enter</kbd> to submit</p>
+            </form>
+        </div>
 
         <!-- Results -->
         <div class="results-area" id="results-area" style="display:none;" aria-label="Results">
@@ -603,10 +654,21 @@
             <div id="results-warning" class="results-warning" style="display:none;" role="alert"></div>
             <div class="results-content" id="results-content"></div>
             <div id="teqsa-coverage" class="teqsa-coverage" style="display:none;"></div>
+            <div id="mapping-table-area" class="mapping-table-wrap" style="display:none;"></div>
+
             <div class="refine-section" id="refine-section" style="display:none;">
                 <h4>&#128260; Refine These Learning Outcomes</h4>
                 <textarea id="refine-instructions" rows="3" placeholder="e.g., Consolidate to 8 CLOs as recommended, apply the verb placement fixes, make CLO 6 more specific..." aria-label="Refinement instructions"></textarea>
                 <button class="btn-primary" id="refine-btn"><span aria-hidden="true">&#128260;</span> Refine</button>
+            </div>
+             <div class="assessment-section" id="assessment-section" style="display:none;">
+                <h4>&#127891; Suggest Assessment Alignment</h4>
+                <p style="font-size:0.8rem; color:var(--text-muted); margin-bottom:0.75rem;">Generate assessment type suggestions aligned to each LO's Bloom's level.</p>
+                <button class="btn-primary" id="assessment-btn"><span aria-hidden="true">&#127891;</span> Suggest Assessments</button>
+            </div>
+            <div class="share-section" id="share-section" style="display:none;">
+                <button class="btn-secondary" id="share-btn"><span aria-hidden="true">&#128279;</span> Share Input Link</button>
+                <span class="share-url-display" id="share-url-display"></span>
             </div>
             <div class="version-history" id="version-history" style="display:none;">
                 <button class="version-toggle" id="version-toggle" aria-expanded="false" aria-controls="version-list">
@@ -634,7 +696,7 @@
             <p class="footer-sub">For support: <a href="mailto:artslandt@mq.edu.au">artslandt@mq.edu.au</a></p>
         </div>
     </footer>
- <!-- docx library for Word export -->
+    <!-- docx library for Word export -->
     <script src="https://cdn.jsdelivr.net/npm/docx@8.5.0/build/index.umd.min.js"></script>
     <script>
     const WORKER_URL = 'https://lo-generator-proxy.james-tracy.workers.dev';
@@ -762,6 +824,9 @@ When asked to refine, present the complete revised set of LOs numbered (1., 2., 
 Below each: [Bloom's level | TEQSA dimension | MQ Capability | What changed and why]
 Include a ### Summary of Changes section.
 
+### ULO Generation with CLO Alignment:
+When generating ULOs and existing CLOs have been provided, include CLO alignment for each ULO in the metadata bracket. Format: [Bloom's level | Aligns to CLO 1, 3 | MQ Capability | Rationale]
+
 ## QUALITY CHECKS
 - Verb(s) ONLY at start; no Bloom's verbs after opening phrase
 - Appropriate to AQF level; measurable; distinct; accessible language
@@ -848,6 +913,261 @@ Include a ### Summary of Changes section.
         themeToggle.addEventListener('click', () => {
             const current = document.documentElement.getAttribute('data-theme');
             setTheme(current === 'dark' ? 'light' : 'dark');
+ // === QUICK CHECK MODE (Feature 18) ===
+        document.getElementById('btn-quick-check').addEventListener('click', () => switchMode('quick-check'));
+
+        document.getElementById('quick-check-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const los = document.getElementById('qc-los').value;
+            if (!los.trim()) return alert('Please paste your learning outcomes.');
+
+            const lt = document.getElementById('qc-lo-type').value;
+            const al = document.getElementById('qc-aqf-level').value;
+
+            lastInputData = {
+                mode: 'Quick Check',
+                loType: lt || 'Not specified',
+                aqfLevel: al || 'Not specified',
+                discipline: '',
+                los: los.trim().split('\n').filter(l => l.trim()).map(l => l.replace(/^\d+[\.\)]\s*/, '').trim())
+            };
+
+            let msg = '**Mode:** Quick Check (brief traffic-light assessment only)\n';
+            msg += 'For each learning outcome below, provide ONLY:\n';
+            msg += '- The number and first few words\n';
+            msg += '- A rating: ✓ (good), ~ (minor issues), ✗ (needs revision)\n';
+            msg += '- ONE sentence explaining the main issue (if any)\n\n';
+            msg += 'Do NOT provide full rewrites or detailed explanations. Keep it brief and scannable.\n\n';
+            if (lt) msg += '**LO Type:** ' + lt + '\n';
+            if (al) msg += '**AQF Level:** ' + al + '\n';
+            msg += '**Learning Outcomes:**\n' + los;
+
+            conversationHistory = [{ role: 'user', content: msg }];
+            versions = [];
+            await callAPI(conversationHistory, 'Quick Check Results', 'Running quick check...');
+        });
+
+        // === ASSESSMENT ALIGNMENT (Feature 14) ===
+        document.getElementById('assessment-btn').addEventListener('click', async () => {
+            if (!lastRawContent) return;
+
+            const assessMsg = `**Mode:** Assessment Alignment Suggestions
+
+Based on the learning outcomes you just generated/reviewed, suggest appropriate assessment types for each LO.
+
+For each LO, provide:
+**LO [number]:** [First few words...] → **Suggested Assessment:** [type(s)]
+[One sentence rationale linking Bloom's level to assessment type]
+
+Use this alignment guide:
+- Remember/Understand → Quiz, short-answer test, annotation exercise
+- Apply → Case study, problem-based task, simulation, lab work
+- Analyse → Research essay, comparative analysis, data analysis report
+- Evaluate → Critical review, peer assessment, debate, position paper
+- Create → Portfolio, production project, design brief, research proposal, creative work
+
+Keep suggestions specific to the discipline context. Present as a numbered list.`;
+
+            conversationHistory.push({ role: 'assistant', content: lastRawContent });
+            conversationHistory.push({ role: 'user', content: assessMsg });
+
+            await callAPI(conversationHistory, 'Assessment Alignment Suggestions', 'Generating assessment suggestions...');
+        });
+
+        // === SHARE VIA LINK (Feature 17) ===
+        document.getElementById('share-btn').addEventListener('click', () => {
+            const params = new URLSearchParams();
+            const activeMode = document.querySelector('.mode-btn.active').getAttribute('data-mode');
+            params.set('mode', activeMode);
+
+            if (activeMode === 'generate') {
+                const fields = {
+                    lt: document.getElementById('lo-type').value,
+                    aqf: document.getElementById('aqf-level').value,
+                    ul: document.getElementById('unit-level').value,
+                    n: document.getElementById('num-los').value,
+                    disc: document.getElementById('discipline').value,
+                    desc: document.getElementById('description').value,
+                    vis: document.getElementById('vision').value,
+                    thm: document.getElementById('themes').value,
+                    cap: document.getElementById('capabilities').value,
+                    clos: document.getElementById('existing-clos').value,
+                    notes: document.getElementById('additional-notes').value,
+                };
+                for (const [k, v] of Object.entries(fields)) {
+                    if (v) params.set(k, v);
+                }
+            } else if (activeMode === 'check') {
+                const fields = {
+                    lt: document.getElementById('check-lo-type').value,
+                    aqf: document.getElementById('check-aqf-level').value,
+                    ul: document.getElementById('check-unit-level').value,
+                    disc: document.getElementById('check-discipline').value,
+                    los: document.getElementById('check-los').value,
+                    notes: document.getElementById('check-notes').value,
+                };
+                for (const [k, v] of Object.entries(fields)) {
+                    if (v) params.set(k, v);
+                }
+            } else if (activeMode === 'quick-check') {
+                const fields = {
+                    lt: document.getElementById('qc-lo-type').value,
+                    aqf: document.getElementById('qc-aqf-level').value,
+                    los: document.getElementById('qc-los').value,
+                };
+                for (const [k, v] of Object.entries(fields)) {
+                    if (v) params.set(k, v);
+                }
+            }
+
+            const shareUrl = window.location.origin + window.location.pathname + '?' + params.toString();
+            const display = document.getElementById('share-url-display');
+            display.textContent = shareUrl;
+            display.classList.add('visible');
+
+            copyToClipboard(shareUrl).then(success => {
+                if (success) {
+                    document.getElementById('share-btn').innerHTML = '<span aria-hidden="true">&#10003;</span> Link Copied!';
+                    announce('Share link copied to clipboard');
+                    setTimeout(() => {
+                        document.getElementById('share-btn').innerHTML = '<span aria-hidden="true">&#128279;</span> Share Input Link';
+                    }, 3000);
+                }
+            });
+        });
+
+        // Load shared parameters from URL on page load
+        function loadFromURL() {
+            const params = new URLSearchParams(window.location.search);
+            if (!params.has('mode')) return;
+
+            const mode = params.get('mode');
+            switchMode(mode);
+
+            if (mode === 'generate') {
+                if (params.get('lt')) document.getElementById('lo-type').value = params.get('lt');
+                if (params.get('aqf')) document.getElementById('aqf-level').value = params.get('aqf');
+                if (params.get('ul')) document.getElementById('unit-level').value = params.get('ul');
+                if (params.get('n')) document.getElementById('num-los').value = params.get('n');
+                if (params.get('disc')) document.getElementById('discipline').value = params.get('disc');
+                if (params.get('desc')) document.getElementById('description').value = params.get('desc');
+                if (params.get('vis')) document.getElementById('vision').value = params.get('vis');
+                if (params.get('thm')) document.getElementById('themes').value = params.get('thm');
+                if (params.get('cap')) document.getElementById('capabilities').value = params.get('cap');
+                if (params.get('clos')) document.getElementById('existing-clos').value = params.get('clos');
+                if (params.get('notes')) document.getElementById('additional-notes').value = params.get('notes');
+                loTypeSelect.dispatchEvent(new Event('change'));
+                aqfLevelSelect.dispatchEvent(new Event('change'));
+            } else if (mode === 'check') {
+                if (params.get('lt')) document.getElementById('check-lo-type').value = params.get('lt');
+                if (params.get('aqf')) document.getElementById('check-aqf-level').value = params.get('aqf');
+                if (params.get('ul')) document.getElementById('check-unit-level').value = params.get('ul');
+                if (params.get('disc')) document.getElementById('check-discipline').value = params.get('disc');
+                if (params.get('los')) document.getElementById('check-los').value = params.get('los');
+                if (params.get('notes')) document.getElementById('check-notes').value = params.get('notes');
+            } else if (mode === 'quick-check') {
+                if (params.get('lt')) document.getElementById('qc-lo-type').value = params.get('lt');
+                if (params.get('aqf')) document.getElementById('qc-aqf-level').value = params.get('aqf');
+                if (params.get('los')) document.getElementById('qc-los').value = params.get('los');
+            }
+
+            // Clear URL params without reload
+            window.history.replaceState({}, '', window.location.pathname);
+            announce('Form pre-filled from shared link');
+        }
+        loadFromURL();
+
+        // === ULO-CLO MAPPING TABLE (Feature 13) ===
+        function displayMappingTable(content) {
+            const mappingArea = document.getElementById('mapping-table-area');
+
+            // Only show for ULO generation where CLOs were provided
+            if (!lastInputData || lastInputData.loType !== 'ULO' || !lastInputData.mode.includes('Generate')) {
+                // Also check if the content mentions CLO mapping
+                if (!/CLO/i.test(content) || !/ULO/i.test(content)) {
+                    mappingArea.style.display = 'none';
+                    return;
+                }
+            }
+
+            // Try to extract ULOs from the output
+            const uloMatches = [];
+            const lines = content.split('\n');
+            for (let line of lines) {
+                const match = line.match(/^\s*(\d+)[.)]\s+\*\*([^*]+)\*\*(.*)/);
+                if (match) {
+                    uloMatches.push({ num: match[1], verb: match[2], rest: match[3].substring(0, 40).replace(/\*\*/g, '') + '...' });
+                }
+            }
+
+            if (uloMatches.length === 0) {
+                mappingArea.style.display = 'none';
+                return;
+            }
+
+            // Try to find CLO references in the metadata brackets
+            // Look for patterns like "CLO 1, 3" or "aligns to CLO 2"
+            const uloToClo = [];
+            let currentUlo = 0;
+            for (let line of lines) {
+                const uloMatch = line.match(/^\s*(\d+)[.)]\s/);
+                if (uloMatch) currentUlo = parseInt(uloMatch[1]);
+                const cloRef = line.match(/CLO[s]?\s*([\d,\s&and]+)/i);
+                if (cloRef && currentUlo > 0) {
+                    const cloNums = cloRef[1].match(/\d+/g);
+                    if (cloNums) {
+                        uloToClo[currentUlo] = cloNums.map(Number);
+                    }
+                }
+            }
+
+            // If we couldn't extract mappings, try to infer from existing CLOs
+            const existingClos = document.getElementById('existing-clos').value;
+            let cloCount = 0;
+            if (existingClos) {
+                cloCount = existingClos.split('\n').filter(l => l.trim()).length;
+            }
+            if (cloCount === 0) cloCount = 8; // default assumption
+
+            // Build table
+            let html = '<h4>ULO → CLO Alignment Map</h4>';
+            html += '<table class="mapping-table"><thead><tr><th>ULO</th>';
+            for (let c = 1; c <= Math.min(cloCount, 12); c++) {
+                html += '<th>CLO ' + c + '</th>';
+            }
+            html += '</tr></thead><tbody>';
+
+            for (let u of uloMatches) {
+                html += '<tr><td>' + u.num + '. ' + u.verb + '</td>';
+                const mapped = uloToClo[parseInt(u.num)] || [];
+                for (let c = 1; c <= Math.min(cloCount, 12); c++) {
+                    if (mapped.includes(c)) {
+                        html += '<td><span class="mapping-dot">●</span></td>';
+                    } else {
+                        html += '<td></td>';
+                    }
+                }
+                html += '</tr>';
+            }
+            html += '</tbody></table>';
+            html += '<p class="mapping-legend">● = ULO aligns to this CLO. Mapping is inferred from the AI output. Please verify alignment with your course team.</p>';
+
+            mappingArea.innerHTML = html;
+            mappingArea.style.display = 'block';
+        }
+
+        // Show/hide assessment and share sections after results
+        const origDisplayResults = displayResults;
+        displayResults = function(content, title) {
+            origDisplayResults(content, title);
+            // Show assessment suggestion button for generate mode
+            document.getElementById('assessment-section').style.display = (lastInputData && lastInputData.mode !== 'Quick Check') ? 'block' : 'none';
+            // Show share section
+            document.getElementById('share-section').style.display = 'block';
+            // Try mapping table
+            displayMappingTable(content);
+        };
+            
         });
 
         // === SESSION STORAGE (Feature 4) ===
@@ -954,6 +1274,7 @@ Include a ### Summary of Changes section.
         // === MODE TOGGLE ===
         document.getElementById('btn-generate').addEventListener('click', () => switchMode('generate'));
         document.getElementById('btn-check').addEventListener('click', () => switchMode('check'));
+        
 
         function switchMode(mode) {
             document.querySelectorAll('.mode-btn').forEach(b => { b.classList.remove('active'); b.setAttribute('aria-selected', 'false'); });
@@ -1011,7 +1332,7 @@ Include a ### Summary of Changes section.
             liveRegion.textContent = message;
             setTimeout(() => { liveRegion.textContent = ''; }, 3000);
         }
- // === GENERATE FORM ===
+         // === GENERATE FORM ===
         document.getElementById('generate-form').addEventListener('submit', async (e) => {
             e.preventDefault();
             const loType = document.getElementById('lo-type').value;
@@ -1584,6 +1905,60 @@ Include a ### Summary of Changes section.
             }, 10);
         });
     });
+
+          /* ULO-CLO Mapping Table (Feature 13) */
+        .mapping-table-wrap {
+            margin: 1rem 1.5rem; padding: 1rem; background: var(--bg-primary);
+            border-radius: var(--border-radius); border: 1px solid var(--border-color);
+            overflow-x: auto;
+        }
+        .mapping-table-wrap h4 { font-size: 0.85rem; font-weight: 600; color: var(--text-primary); margin-bottom: 0.75rem; }
+        .mapping-table {
+            width: 100%; border-collapse: collapse; font-size: 0.75rem;
+        }
+        .mapping-table th {
+            background: var(--mq-crimson); color: #fff; padding: 0.5rem 0.375rem;
+            text-align: center; font-weight: 500; font-size: 0.7rem;
+            border: 1px solid var(--mq-crimson-dark);
+        }
+        .mapping-table th:first-child { text-align: left; min-width: 180px; }
+        .mapping-table td {
+            padding: 0.375rem; text-align: center; border: 1px solid var(--border-color);
+            vertical-align: middle;
+        }
+        .mapping-table td:first-child { text-align: left; font-size: 0.75rem; font-weight: 500; color: var(--text-primary); }
+        .mapping-table tr:nth-child(even) td { background: var(--bg-secondary); }
+        .mapping-dot { color: var(--mq-crimson); font-size: 1.1rem; }
+        .mapping-legend { margin-top: 0.5rem; font-size: 0.7rem; color: var(--text-muted); }
+        /* Assessment Suggestions (Feature 14) */
+        .assessment-section {
+            padding: 1.25rem 1.5rem; border-top: 1px solid var(--border-color);
+            background: var(--bg-tertiary);
+        }
+        .assessment-section h4 { font-size: 0.9rem; font-weight: 600; color: var(--text-primary); margin-bottom: 0.75rem; }
+        .assessment-section .btn-primary { font-size: 0.9rem; padding: 0.625rem 1.5rem; }
+        /* Share link (Feature 17) */
+        .share-section {
+            padding: 1rem 1.5rem; border-top: 1px solid var(--border-color);
+            display: flex; align-items: center; gap: 0.75rem; flex-wrap: wrap;
+        }
+        .share-section .btn-secondary { font-size: 0.8rem; padding: 0.5rem 1rem; }
+        .share-url-display {
+            flex: 1; min-width: 200px; padding: 0.5rem 0.75rem;
+            background: var(--bg-primary); border: 1px solid var(--border-color);
+            border-radius: var(--border-radius); font-size: 0.75rem;
+            color: var(--text-muted); overflow: hidden; text-overflow: ellipsis;
+            white-space: nowrap; font-family: monospace; display: none;
+        }
+        .share-url-display.visible { display: block; }
+        /* Quick Check mode (Feature 18) */
+        .mode-btn[data-mode="quick-check"] { }
+        @media print {
+            .mapping-table-wrap { border: 1px solid #ccc !important; background: #f9f9f9 !important; }
+            .mapping-table th { background: #a6192e !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+            .assessment-section, .share-section { display: none !important; }
+        }
+
     </script>
 </body>
 </html>
