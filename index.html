@@ -167,6 +167,19 @@
             padding: 0.75rem 1rem; margin: 0 1.5rem 1rem; border-radius: var(--border-radius);
             background: #fff3e0; border: 1px solid #ffe0b2; color: #e65100; font-size: 0.85rem;
         }
+        .refine-section {
+            padding: 1.25rem 1.5rem; border-top: 1px solid var(--mq-grey-light);
+            background: #f0f7ff;
+        }
+        .refine-section h4 { font-size: 0.9rem; font-weight: 600; color: var(--mq-charcoal); margin-bottom: 0.75rem; }
+        .refine-section textarea {
+            width: 100%; padding: 0.625rem 0.875rem;
+            border: 1.5px solid var(--mq-grey-light); border-radius: var(--border-radius);
+            font-family: var(--font-family); font-size: 0.85rem; color: var(--mq-charcoal);
+            background: var(--mq-white); resize: vertical; min-height: 50px; margin-bottom: 0.75rem;
+        }
+        .refine-section textarea:focus { outline: none; border-color: var(--mq-crimson); box-shadow: 0 0 0 3px rgba(166,25,46,0.1); }
+        .refine-section .btn-primary { font-size: 0.9rem; padding: 0.625rem 1.5rem; }
         .input-summary {
             padding: 1.25rem 1.5rem; border-top: 1px solid var(--mq-grey-light);
             background: var(--mq-sand);
@@ -401,6 +414,11 @@
             </div>
             <div id="results-warning" class="results-warning" style="display:none;"></div>
             <div class="results-content" id="results-content"></div>
+            <div class="refine-section" id="refine-section" style="display:none;">
+                <h4>&#128260; Refine These Learning Outcomes</h4>
+                <textarea id="refine-instructions" rows="3" placeholder="e.g., Consolidate to 8 CLOs as recommended, apply the verb placement fixes, make CLO 6 more specific..."></textarea>
+                <button class="btn-primary" id="refine-btn"><span>&#128260;</span> Refine</button>
+            </div>
             <div class="input-summary" id="input-summary" style="display:none;"></div>
             <div class="results-footer">
                 <p class="results-disclaimer">Generated outcomes should be reviewed by the course team and submitted through MQCMS for faculty approval. Visit the <a href="https://lt.arts.mq.edu.au/curriculum-design/constructive-alignment/learning-outcomes/" target="_blank">FoA L&amp;T Hub</a> for further guidance.</p>
@@ -515,25 +533,38 @@ Level 6 - Create: Compose, construct, create, design, develop, formulate, genera
 ## OUTPUT FORMAT
 
 ### Generate Mode:
-Present each LO numbered with opening verb(s) in bold.
-Below each: [Bloom's level | TEQSA dimension (CLOs) | MQ Capability | Brief rationale]
+Present each LO numbered (1., 2., etc.) with opening verb(s) in **bold**.
+Below each LO, include: [Bloom's level | TEQSA dimension (CLOs) | MQ Capability | Brief rationale]
+
+End with a Summary section including:
+- Overall assessment
+- TEQSA dimension coverage mapping
+- Any recommendations
 
 ### Check Mode:
 For each learning outcome, present your review in this exact format:
 
-**CLO [number]. [Full text of the original learning outcome]**
+**[number]. [Full text of the original learning outcome]**
 
 **Rating:** ✓ (good) / ~ (minor issues) / ✗ (needs revision)
 
 **Feedback:** [Your analysis]
 
-**Suggested Revision:** "[Revised learning outcome text]"
+**Suggested Revision:** "[Revised learning outcome text with opening verbs in bold]"
 
 **Explanation:** [Why the revision improves it]
 
 ---
 
-End with a summary section covering: overall assessment, TEQSA dimension coverage, recommendations for consolidation if applicable.
+End with a Summary section including:
+- Overall assessment
+- TEQSA dimension coverage
+- Recommendations for consolidation if applicable
+
+### Refine Mode:
+When asked to refine, present the complete revised set of LOs numbered (1., 2., etc.) with opening verb(s) in **bold**.
+Below each: [Bloom's level | TEQSA dimension | MQ Capability | What changed and why]
+Include a brief summary of changes made.
 
 ## QUALITY CHECKS
 - Verb(s) ONLY at start; no Bloom's verbs after opening phrase
@@ -556,12 +587,15 @@ End with a summary section covering: overall assessment, TEQSA dimension coverag
         const resultsTitle = document.getElementById('results-title');
         const resultsContent = document.getElementById('results-content');
         const resultsWarning = document.getElementById('results-warning');
+        const refineSection = document.getElementById('refine-section');
         const inputSummary = document.getElementById('input-summary');
         const loading = document.getElementById('loading');
         const loadingText = document.getElementById('loading-text');
 
-        // Store last input for display
+        // Conversation history for refinement
+        let conversationHistory = [];
         let lastInputData = null;
+        let lastRawContent = '';
 
         // Mode Toggle
         document.getElementById('btn-generate').addEventListener('click', () => switchMode('generate'));
@@ -631,7 +665,9 @@ End with a summary section covering: overall assessment, TEQSA dimension coverag
             const notes = document.getElementById('additional-notes').value;
             if (notes) msg += '\n**Additional Notes:**\n' + notes;
 
-            await callAPI(msg, 'Generated Learning Outcomes', 'Generating learning outcomes...');
+            // Reset conversation for new generation
+            conversationHistory = [{ role: 'user', content: msg }];
+            await callAPI(conversationHistory, 'Generated Learning Outcomes', 'Generating learning outcomes...');
         });
 
         // Check Form
@@ -664,18 +700,36 @@ End with a summary section covering: overall assessment, TEQSA dimension coverag
             const n = document.getElementById('check-notes').value;
             if (n) msg += '\n**Concerns/Questions:**\n' + n;
 
-            await callAPI(msg, 'Learning Outcomes Review', 'Reviewing your learning outcomes...');
+            // Reset conversation for new check
+            conversationHistory = [{ role: 'user', content: msg }];
+            await callAPI(conversationHistory, 'Learning Outcomes Review', 'Reviewing your learning outcomes...');
         });
 
-        // API Call via Cloudflare Worker
-        async function callAPI(userMessage, title, loadingMsg) {
+        // Refine Button
+        document.getElementById('refine-btn').addEventListener('click', async () => {
+            const instructions = document.getElementById('refine-instructions').value.trim();
+            if (!instructions) return alert('Please enter refinement instructions (e.g., "Consolidate to 8 CLOs" or "Apply all suggested verb fixes").');
+
+            const refineMsg = '**Mode:** Refine\n**Instructions:** ' + instructions + '\n\nPlease apply the requested changes to the learning outcomes from your previous response. Present the complete revised set.';
+
+            // Add assistant response and new user message to history
+            conversationHistory.push({ role: 'assistant', content: lastRawContent });
+            conversationHistory.push({ role: 'user', content: refineMsg });
+
+            await callAPI(conversationHistory, 'Refined Learning Outcomes', 'Refining learning outcomes...');
+        });
+
+        // API Call
+        async function callAPI(messages, title, loadingMsg) {
             loading.style.display = 'block';
             loadingText.textContent = loadingMsg;
             resultsArea.style.display = 'none';
             resultsWarning.style.display = 'none';
             inputSummary.style.display = 'none';
+            refineSection.style.display = 'none';
             document.getElementById('generate-btn').disabled = true;
             document.getElementById('check-btn').disabled = true;
+            document.getElementById('refine-btn').disabled = true;
 
             try {
                 const response = await fetch(WORKER_URL, {
@@ -683,7 +737,7 @@ End with a summary section covering: overall assessment, TEQSA dimension coverag
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({
                         system: SYSTEM_PROMPT,
-                        messages: [{ role: 'user', content: userMessage }]
+                        messages: messages
                     })
                 });
 
@@ -695,10 +749,10 @@ End with a summary section covering: overall assessment, TEQSA dimension coverag
                 const data = await response.json();
                 const content = data.content || 'No response generated.';
                 const finishReason = data.finishReason || '';
+                lastRawContent = content;
 
-                // Check if response was truncated
-                if (finishReason === 'MAX_TOKENS' || finishReason === 'SAFETY') {
-                    resultsWarning.textContent = '⚠️ The response may be incomplete due to length limits. Try submitting fewer learning outcomes at a time (e.g., 5-6 at once).';
+                if (finishReason === 'MAX_TOKENS') {
+                    resultsWarning.textContent = '\u26a0\ufe0f The response may be incomplete due to length limits. Try submitting fewer learning outcomes at a time (e.g., 5-6 at once).';
                     resultsWarning.style.display = 'block';
                 } else {
                     resultsWarning.style.display = 'none';
@@ -706,6 +760,8 @@ End with a summary section covering: overall assessment, TEQSA dimension coverag
 
                 displayResults(content, title);
                 displayInputSummary();
+                refineSection.style.display = 'block';
+                document.getElementById('refine-instructions').value = '';
 
             } catch (error) {
                 displayError(error.message);
@@ -713,6 +769,7 @@ End with a summary section covering: overall assessment, TEQSA dimension coverag
                 loading.style.display = 'none';
                 document.getElementById('generate-btn').disabled = false;
                 document.getElementById('check-btn').disabled = false;
+                document.getElementById('refine-btn').disabled = false;
             }
         }
 
@@ -731,7 +788,7 @@ End with a summary section covering: overall assessment, TEQSA dimension coverag
             html += '<dt>Mode</dt><dd>' + escapeHtml(lastInputData.mode) + '</dd>';
             html += '<dt>LO Type</dt><dd>' + escapeHtml(lastInputData.loType) + '</dd>';
             html += '<dt>AQF Level</dt><dd>' + escapeHtml(lastInputData.aqfLevel) + '</dd>';
-            if (lastInputData.discipline) html += '<dt>Discipline</dt><dd>' + escapeHtml(lastInputData.discipline) + '</dd>';
+            if (lastInputData.discipline && lastInputData.discipline !== 'Not specified') html += '<dt>Discipline</dt><dd>' + escapeHtml(lastInputData.discipline) + '</dd>';
             if (lastInputData.unitLevel) html += '<dt>Unit Level</dt><dd>' + escapeHtml(lastInputData.unitLevel) + '-level</dd>';
             if (lastInputData.numLos) html += '<dt>Requested LOs</dt><dd>' + escapeHtml(lastInputData.numLos) + '</dd>';
             html += '</dl>';
@@ -753,10 +810,11 @@ End with a summary section covering: overall assessment, TEQSA dimension coverag
             resultsContent.innerHTML = '<p><strong>Something went wrong:</strong> ' + escapeHtml(message) + '</p><p style="margin-top:0.75rem;font-size:0.85rem;color:var(--mq-grey-mid);">Please try again. If the problem persists, contact <a href="mailto:artslandt@mq.edu.au">artslandt@mq.edu.au</a>.</p>';
             resultsArea.style.display = 'block';
             inputSummary.style.display = 'none';
+            refineSection.style.display = 'none';
             resultsArea.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
 
-        // Proper markdown renderer
+        // Markdown renderer
         function renderMarkdown(text) {
             if (!text) return '<p>No content.</p>';
 
@@ -768,14 +826,11 @@ End with a summary section covering: overall assessment, TEQSA dimension coverag
             for (let i = 0; i < lines.length; i++) {
                 let line = lines[i];
 
-                // Horizontal rules
                 if (/^---+$/.test(line.trim()) || /^\*\*\*+$/.test(line.trim())) {
                     if (inList) { html += '</' + listType + '>'; inList = false; }
                     html += '<hr>';
                     continue;
                 }
-
-                // Headers
                 if (/^####\s/.test(line)) {
                     if (inList) { html += '</' + listType + '>'; inList = false; }
                     html += '<h4>' + inlineFormat(line.replace(/^####\s*/, '')) + '</h4>';
@@ -796,8 +851,6 @@ End with a summary section covering: overall assessment, TEQSA dimension coverag
                     html += '<h3>' + inlineFormat(line.replace(/^#\s*/, '')) + '</h3>';
                     continue;
                 }
-
-                // Unordered list items
                 if (/^\s*[-*+]\s/.test(line)) {
                     if (!inList || listType !== 'ul') {
                         if (inList) html += '</' + listType + '>';
@@ -808,8 +861,6 @@ End with a summary section covering: overall assessment, TEQSA dimension coverag
                     html += '<li>' + inlineFormat(line.replace(/^\s*[-*+]\s*/, '')) + '</li>';
                     continue;
                 }
-
-                // Ordered list items
                 if (/^\s*\d+[.)]\s/.test(line)) {
                     if (!inList || listType !== 'ol') {
                         if (inList) html += '</' + listType + '>';
@@ -820,26 +871,19 @@ End with a summary section covering: overall assessment, TEQSA dimension coverag
                     html += '<li>' + inlineFormat(line.replace(/^\s*\d+[.)]\s*/, '')) + '</li>';
                     continue;
                 }
-
-                // Close list if we hit a non-list line
                 if (inList) {
                     html += '</' + listType + '>';
                     inList = false;
                 }
-
-                // Empty line = paragraph break
                 if (line.trim() === '') {
                     html += '</p><p>';
                     continue;
                 }
-
-                // Normal text
                 html += inlineFormat(line) + '<br>';
             }
 
             if (inList) html += '</' + listType + '>';
 
-            // Wrap in paragraph tags and clean up
             html = '<p>' + html + '</p>';
             html = html.replace(/<p><\/p>/g, '');
             html = html.replace(/<br><\/p>/g, '</p>');
@@ -854,7 +898,6 @@ End with a summary section covering: overall assessment, TEQSA dimension coverag
             return html;
         }
 
-        // Inline formatting
         function inlineFormat(text) {
             text = text.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
             text = text.replace(/`([^`]+)`/g, '<code>$1</code>');
@@ -872,9 +915,30 @@ End with a summary section covering: overall assessment, TEQSA dimension coverag
             return d.innerHTML;
         }
 
-        // Copy & Download
+        // Build plain text from raw markdown (preserving numbers)
+        function buildPlainText(markdown) {
+            if (!markdown) return '';
+            const lines = markdown.split('\n');
+            let result = [];
+            for (let line of lines) {
+                // Strip markdown formatting but keep structure
+                let clean = line;
+                clean = clean.replace(/\*\*([^*]+?)\*\*/g, '$1');
+                clean = clean.replace(/__([^_]+?)__/g, '$1');
+                clean = clean.replace(/\*([^*]+?)\*/g, '$1');
+                clean = clean.replace(/(?<!\w)_([^_]+?)_(?!\w)/g, '$1');
+                clean = clean.replace(/`([^`]+)`/g, '$1');
+                clean = clean.replace(/\[([^\]]+)\]\([^)]+\)/g, '$1');
+                // Convert headers to plain text with spacing
+                clean = clean.replace(/^#{1,4}\s*/, '');
+                result.push(clean);
+            }
+            return result.join('\n');
+        }
+
+        // Copy
         document.getElementById('copy-btn').addEventListener('click', async () => {
-            const text = resultsContent.innerText;
+            const text = buildPlainText(lastRawContent);
             try {
                 await navigator.clipboard.writeText(text);
                 document.getElementById('copy-btn').textContent = '\u2713';
@@ -882,15 +946,15 @@ End with a summary section covering: overall assessment, TEQSA dimension coverag
             } catch (e) { console.error(e); }
         });
 
+        // Download
         document.getElementById('download-btn').addEventListener('click', () => {
-            let text = resultsContent.innerText;
-            // Include input summary in download
+            let text = buildPlainText(lastRawContent);
             if (lastInputData) {
                 text += '\n\n---\nINPUT DETAILS\n';
                 text += 'Mode: ' + lastInputData.mode + '\n';
                 text += 'LO Type: ' + lastInputData.loType + '\n';
                 text += 'AQF Level: ' + lastInputData.aqfLevel + '\n';
-                if (lastInputData.discipline) text += 'Discipline: ' + lastInputData.discipline + '\n';
+                if (lastInputData.discipline && lastInputData.discipline !== 'Not specified') text += 'Discipline: ' + lastInputData.discipline + '\n';
                 if (lastInputData.los) {
                     text += '\nOriginal Learning Outcomes:\n';
                     lastInputData.los.forEach((lo, i) => { text += (i+1) + '. ' + lo + '\n'; });
