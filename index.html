@@ -152,8 +152,17 @@
         .results-actions .btn-icon-only { border-color: rgba(255,255,255,0.3); background: rgba(255,255,255,0.1); color: var(--mq-white); }
         .results-actions .btn-icon-only:hover { border-color: rgba(255,255,255,0.6); background: rgba(255,255,255,0.2); color: var(--mq-white); }
         .results-content { padding: 1.5rem; font-size: 0.9rem; line-height: 1.7; }
-        .results-content h3 { font-size: 1rem; font-weight: 600; color: var(--mq-crimson); margin: 1.5rem 0 0.75rem 0; }
-        .results-content h3:first-child { margin-top: 0; }
+        .results-content h1, .results-content h2, .results-content h3, .results-content h4 { color: var(--mq-crimson); margin: 1.25rem 0 0.5rem 0; }
+        .results-content h1:first-child, .results-content h2:first-child, .results-content h3:first-child { margin-top: 0; }
+        .results-content h3 { font-size: 1rem; font-weight: 600; }
+        .results-content h4 { font-size: 0.95rem; font-weight: 600; color: var(--mq-crimson-dark); }
+        .results-content p { margin-bottom: 0.75rem; }
+        .results-content strong { color: var(--mq-crimson); }
+        .results-content em { font-style: italic; }
+        .results-content ul, .results-content ol { margin: 0.5rem 0 0.75rem 1.5rem; }
+        .results-content li { margin-bottom: 0.25rem; }
+        .results-content code { background: var(--mq-sand); padding: 0.125rem 0.375rem; border-radius: 3px; font-size: 0.85em; }
+        .results-content hr { border: none; border-top: 1px solid var(--mq-grey-light); margin: 1.25rem 0; }
         .results-footer { padding: 1rem 1.5rem; background: var(--mq-sand); border-top: 1px solid var(--mq-grey-light); }
         .results-disclaimer { font-size: 0.8rem; color: var(--mq-grey-mid); text-align: center; }
         .results-disclaimer a { color: var(--mq-crimson); text-decoration: none; }
@@ -233,10 +242,10 @@
                                 <label for="aqf-level">AQF Level</label>
                                 <select id="aqf-level" required>
                                     <option value="">Select level...</option>
-                                    <option value="7">Level 7 &#8211; Bachelor Degree</option>
-                                    <option value="8">Level 8 &#8211; Honours / Grad Cert / Grad Dip</option>
-                                    <option value="9">Level 9 &#8211; Masters Degree</option>
-                                    <option value="10">Level 10 &#8211; Doctoral Degree</option>
+                                    <option value="7">Level 7 – Bachelor Degree</option>
+                                    <option value="8">Level 8 – Honours / Grad Cert / Grad Dip</option>
+                                    <option value="9">Level 9 – Masters Degree</option>
+                                    <option value="10">Level 10 – Doctoral Degree</option>
                                 </select>
                                 <span class="help-text" id="aqf-help"></span>
                             </div>
@@ -256,7 +265,7 @@
                             <div class="form-group">
                                 <label for="num-los">Number of LOs</label>
                                 <input type="number" id="num-los" min="1" max="12" placeholder="Leave blank for default">
-                                <span class="help-text">Defaults: CLOs 6&#8211;8, ULOs 3&#8211;5, MLOs 6&#8211;8, Specialist 4&#8211;6</span>
+                                <span class="help-text">Defaults: CLOs 6–8, ULOs 3–5, MLOs 6–8, Specialist 4–6</span>
                             </div>
                             <div class="form-group">
                                 <label for="discipline">Discipline / Field</label>
@@ -322,10 +331,10 @@
                                 <label for="check-aqf-level">AQF Level</label>
                                 <select id="check-aqf-level">
                                     <option value="">Select level (optional)...</option>
-                                    <option value="7">Level 7 &#8211; Bachelor Degree</option>
-                                    <option value="8">Level 8 &#8211; Honours / Grad Cert / Grad Dip</option>
-                                    <option value="9">Level 9 &#8211; Masters Degree</option>
-                                    <option value="10">Level 10 &#8211; Doctoral Degree</option>
+                                    <option value="7">Level 7 – Bachelor Degree</option>
+                                    <option value="8">Level 8 – Honours / Grad Cert / Grad Dip</option>
+                                    <option value="9">Level 9 – Masters Degree</option>
+                                    <option value="10">Level 10 – Doctoral Degree</option>
                                 </select>
                             </div>
                             <div class="form-group">
@@ -389,7 +398,7 @@
     <footer class="footer">
         <div class="footer-content">
             <p>Faculty of Arts Learning Outcomes Generator | Macquarie University</p>
-            <p class="footer-sub">Powered by the FoA LO Formula, AQF Level Descriptors, TEQSA HES Framework &amp; Bloom&#8217;s Revised Taxonomy</p>
+            <p class="footer-sub">Powered by the FoA LO Formula, AQF Level Descriptors, TEQSA HES Framework &amp; Bloom's Revised Taxonomy</p>
             <p class="footer-sub">For support: <a href="mailto:artslandt@mq.edu.au">artslandt@mq.edu.au</a></p>
         </div>
     </footer>
@@ -408,7 +417,7 @@ You generate learning outcomes that comply with:
 
 ## THE LEARNING OUTCOMES FORMULA
 
-All learning outcomes MUST follow: **[Action Verb(s)] + [Content/Topic] + [Discipline-Specific Context]**
+All learning outcomes MUST follow: [Action Verb(s)] + [Content/Topic] + [Discipline-Specific Context]
 
 ### CRITICAL VERB PLACEMENT RULE
 The action verb(s) appear ONLY at the very beginning. The rest of the sentence is content and context with NO additional Bloom's taxonomy verbs as secondary actions.
@@ -487,11 +496,11 @@ Level 6 - Create: Compose, construct, create, design, develop, formulate, genera
 ## OUTPUT FORMAT
 
 ### Generate Mode:
-Present each LO numbered with opening verb(s) in **bold**.
+Present each LO numbered with opening verb(s) in bold.
 Below each: [Bloom's level | TEQSA dimension (CLOs) | MQ Capability | Brief rationale]
 
 ### Check Mode:
-Rate each: \\u2713 (good), ~ (minor issues), \\u2717 (needs revision)
+Rate each: ✓ (good), ~ (minor issues), ✗ (needs revision)
 Provide: feedback, suggested revision, explanation.
 
 ## QUALITY CHECKS
@@ -558,21 +567,21 @@ Provide: feedback, suggested revision, explanation.
             const cap = document.getElementById('capabilities').value;
             if (!desc && !vis && !thm && !cap) return alert('Please provide at least one piece of context.');
 
-            let msg = '**Mode:** Generate new learning outcomes\\n**LO Type:** ' + loType + '\\n**AQF Level:** ' + aqfLevel;
+            let msg = '**Mode:** Generate new learning outcomes\n**LO Type:** ' + loType + '\n**AQF Level:** ' + aqfLevel;
             const unitLevel = document.getElementById('unit-level').value;
-            if (unitLevel) msg += '\\n**Unit Level:** ' + unitLevel;
+            if (unitLevel) msg += '\n**Unit Level:** ' + unitLevel;
             const numLos = document.getElementById('num-los').value;
-            if (numLos) msg += '\\n**Number of LOs:** ' + numLos;
+            if (numLos) msg += '\n**Number of LOs:** ' + numLos;
             const disc = document.getElementById('discipline').value;
-            if (disc) msg += '\\n**Discipline:** ' + disc;
-            if (desc) msg += '\\n**Description:**\\n' + desc;
-            if (vis) msg += '\\n**Vision/Graduate Profile:**\\n' + vis;
-            if (thm) msg += '\\n**Themes:**\\n' + thm;
-            if (cap) msg += '\\n**Capabilities:**\\n' + cap;
+            if (disc) msg += '\n**Discipline:** ' + disc;
+            if (desc) msg += '\n**Description:**\n' + desc;
+            if (vis) msg += '\n**Vision/Graduate Profile:**\n' + vis;
+            if (thm) msg += '\n**Themes:**\n' + thm;
+            if (cap) msg += '\n**Capabilities:**\n' + cap;
             const clos = document.getElementById('existing-clos').value;
-            if (clos) msg += '\\n**Existing CLOs:**\\n' + clos;
+            if (clos) msg += '\n**Existing CLOs:**\n' + clos;
             const notes = document.getElementById('additional-notes').value;
-            if (notes) msg += '\\n**Additional Notes:**\\n' + notes;
+            if (notes) msg += '\n**Additional Notes:**\n' + notes;
 
             await callAPI(msg, 'Generated Learning Outcomes', 'Generating learning outcomes...');
         });
@@ -585,16 +594,16 @@ Provide: feedback, suggested revision, explanation.
 
             let msg = '**Mode:** Check/review existing learning outcomes';
             const lt = document.getElementById('check-lo-type').value;
-            if (lt) msg += '\\n**LO Type:** ' + lt;
+            if (lt) msg += '\n**LO Type:** ' + lt;
             const al = document.getElementById('check-aqf-level').value;
-            if (al) msg += '\\n**AQF Level:** ' + al;
+            if (al) msg += '\n**AQF Level:** ' + al;
             const ul = document.getElementById('check-unit-level').value;
-            if (ul) msg += '\\n**Unit Level:** ' + ul;
+            if (ul) msg += '\n**Unit Level:** ' + ul;
             const d = document.getElementById('check-discipline').value;
-            if (d) msg += '\\n**Discipline:** ' + d;
-            msg += '\\n**Learning Outcomes to Review:**\\n' + los;
+            if (d) msg += '\n**Discipline:** ' + d;
+            msg += '\n**Learning Outcomes to Review:**\n' + los;
             const n = document.getElementById('check-notes').value;
-            if (n) msg += '\\n**Concerns/Questions:**\\n' + n;
+            if (n) msg += '\n**Concerns/Questions:**\n' + n;
 
             await callAPI(msg, 'Learning Outcomes Review', 'Reviewing your learning outcomes...');
         });
@@ -649,28 +658,139 @@ Provide: feedback, suggested revision, explanation.
             resultsArea.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
 
+        // Proper markdown renderer that handles formatting correctly
         function renderMarkdown(text) {
             if (!text) return '<p>No content.</p>';
-            let h = escapeHtml(text);
-            h = h.replace(/^### (.+)$/gm, '<h4 style="margin:1.25rem 0 0.5rem;font-size:0.95rem;color:var(--mq-crimson-dark);">$1</h4>');
-            h = h.replace(/^## (.+)$/gm, '<h3>$1</h3>');
-            h = h.replace(/^# (.+)$/gm, '<h3>$1</h3>');
-            h = h.replace(/\\*\\*(.+?)\\*\\*/g, '<strong style="color:var(--mq-crimson);">$1</strong>');
-            h = h.replace(/\\*(.+?)\\*/g, '<em>$1</em>');
-            h = h.replace(/`(.+?)`/g, '<code style="background:var(--mq-sand);padding:0.125rem 0.375rem;border-radius:3px;font-size:0.85em;">$1</code>');
-            h = h.replace(/\\n\\n/g, '</p><p>');
-            h = h.replace(/\\n/g, '<br>');
-            return '<p>' + h + '</p>';
+
+            // Process line by line
+            const lines = text.split('\n');
+            let html = '';
+            let inList = false;
+            let listType = '';
+
+            for (let i = 0; i < lines.length; i++) {
+                let line = lines[i];
+
+                // Horizontal rules
+                if (/^---+$/.test(line.trim()) || /^\*\*\*+$/.test(line.trim())) {
+                    if (inList) { html += '</' + listType + '>'; inList = false; }
+                    html += '<hr>';
+                    continue;
+                }
+
+                // Headers
+                if (/^####\s/.test(line)) {
+                    if (inList) { html += '</' + listType + '>'; inList = false; }
+                    html += '<h4>' + inlineFormat(line.replace(/^####\s*/, '')) + '</h4>';
+                    continue;
+                }
+                if (/^###\s/.test(line)) {
+                    if (inList) { html += '</' + listType + '>'; inList = false; }
+                    html += '<h3>' + inlineFormat(line.replace(/^###\s*/, '')) + '</h3>';
+                    continue;
+                }
+                if (/^##\s/.test(line)) {
+                    if (inList) { html += '</' + listType + '>'; inList = false; }
+                    html += '<h3>' + inlineFormat(line.replace(/^##\s*/, '')) + '</h3>';
+                    continue;
+                }
+                if (/^#\s/.test(line)) {
+                    if (inList) { html += '</' + listType + '>'; inList = false; }
+                    html += '<h3>' + inlineFormat(line.replace(/^#\s*/, '')) + '</h3>';
+                    continue;
+                }
+
+                // Unordered list items
+                if (/^\s*[-*+]\s/.test(line)) {
+                    if (!inList || listType !== 'ul') {
+                        if (inList) html += '</' + listType + '>';
+                        html += '<ul>';
+                        inList = true;
+                        listType = 'ul';
+                    }
+                    html += '<li>' + inlineFormat(line.replace(/^\s*[-*+]\s*/, '')) + '</li>';
+                    continue;
+                }
+
+                // Ordered list items
+                if (/^\s*\d+[.)]\s/.test(line)) {
+                    if (!inList || listType !== 'ol') {
+                        if (inList) html += '</' + listType + '>';
+                        html += '<ol>';
+                        inList = true;
+                        listType = 'ol';
+                    }
+                    html += '<li>' + inlineFormat(line.replace(/^\s*\d+[.)]\s*/, '')) + '</li>';
+                    continue;
+                }
+
+                // Close list if we hit a non-list line
+                if (inList) {
+                    html += '</' + listType + '>';
+                    inList = false;
+                }
+
+                // Empty line = paragraph break
+                if (line.trim() === '') {
+                    html += '</p><p>';
+                    continue;
+                }
+
+                // Normal text
+                html += inlineFormat(line) + '<br>';
+            }
+
+            if (inList) html += '</' + listType + '>';
+
+            // Wrap in paragraph tags and clean up
+            html = '<p>' + html + '</p>';
+            html = html.replace(/<p><\/p>/g, '');
+            html = html.replace(/<br><\/p>/g, '</p>');
+            html = html.replace(/<p><br>/g, '<p>');
+            html = html.replace(/<p>(<h[1-4]>)/g, '$1');
+            html = html.replace(/(<\/h[1-4]>)<\/p>/g, '$1');
+            html = html.replace(/<p>(<[uo]l>)/g, '$1');
+            html = html.replace(/(<\/[uo]l>)<\/p>/g, '$1');
+            html = html.replace(/<p>(<hr>)/g, '$1');
+            html = html.replace(/(<hr>)<\/p>/g, '$1');
+
+            return html;
         }
 
-        function escapeHtml(t) { const d = document.createElement('div'); d.textContent = t; return d.innerHTML; }
+        // Inline formatting (bold, italic, code, links)
+        function inlineFormat(text) {
+            // Escape HTML entities first
+            text = text.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+
+            // Code (backticks) - do first to avoid processing inside code
+            text = text.replace(/`([^`]+)`/g, '<code>$1</code>');
+
+            // Bold: **text** or __text__
+            text = text.replace(/\*\*([^*]+?)\*\*/g, '<strong>$1</strong>');
+            text = text.replace(/__([^_]+?)__/g, '<strong>$1</strong>');
+
+            // Italic: *text* or _text_
+            text = text.replace(/\*([^*]+?)\*/g, '<em>$1</em>');
+            text = text.replace(/(?<!\w)_([^_]+?)_(?!\w)/g, '<em>$1</em>');
+
+            // Links: [text](url)
+            text = text.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank" rel="noopener">$1</a>');
+
+            return text;
+        }
+
+        function escapeHtml(t) {
+            const d = document.createElement('div');
+            d.textContent = t;
+            return d.innerHTML;
+        }
 
         // Copy & Download
         document.getElementById('copy-btn').addEventListener('click', async () => {
             const text = resultsContent.innerText;
             try {
                 await navigator.clipboard.writeText(text);
-                document.getElementById('copy-btn').textContent = '\\u2713';
+                document.getElementById('copy-btn').textContent = '\u2713';
                 setTimeout(() => { document.getElementById('copy-btn').innerHTML = '&#128203;'; }, 2000);
             } catch (e) { console.error(e); }
         });
