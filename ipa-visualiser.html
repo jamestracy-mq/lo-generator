@@ -9,32 +9,16 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root, [data-theme="light"] {
-            --mq-crimson: #a6192e;
-            --mq-crimson-dark: #8c1527;
-            --mq-sand: #f5f0eb;
-            --mq-charcoal: #2d2d2d;
-            --mq-grey-dark: #4a4a4a;
-            --mq-grey-mid: #6b6b6b;
-            --mq-grey-light: #e8e4e0;
-            --mq-white: #ffffff;
-            --ipa-i: #1565c0;
-            --ipa-i-bg: #e3f2fd;
-            --ipa-i-border: #90caf9;
-            --ipa-p: #f57c00;
-            --ipa-p-bg: #fff3e0;
-            --ipa-p-border: #ffcc80;
-            --ipa-a: #2e7d32;
-            --ipa-a-bg: #e8f5e9;
-            --ipa-a-border: #a5d6a7;
-            --ipa-gap: #c62828;
-            --ipa-gap-bg: #ffebee;
-            --bg-primary: var(--mq-sand);
-            --bg-secondary: var(--mq-white);
-            --bg-tertiary: #f0f7ff;
-            --text-primary: var(--mq-charcoal);
-            --text-secondary: var(--mq-grey-dark);
-            --text-muted: var(--mq-grey-mid);
-            --border-color: var(--mq-grey-light);
+            --mq-crimson: #a6192e; --mq-crimson-dark: #8c1527;
+            --mq-sand: #f5f0eb; --mq-charcoal: #2d2d2d; --mq-grey-dark: #4a4a4a;
+            --mq-grey-mid: #6b6b6b; --mq-grey-light: #e8e4e0; --mq-white: #ffffff;
+            --ipa-i: #1565c0; --ipa-i-bg: #e3f2fd; --ipa-i-border: #90caf9;
+            --ipa-p: #f57c00; --ipa-p-bg: #fff3e0; --ipa-p-border: #ffcc80;
+            --ipa-a: #2e7d32; --ipa-a-bg: #e8f5e9; --ipa-a-border: #a5d6a7;
+            --ipa-gap: #c62828; --ipa-gap-bg: #ffebee;
+            --bg-primary: var(--mq-sand); --bg-secondary: var(--mq-white); --bg-tertiary: #f0f7ff;
+            --text-primary: var(--mq-charcoal); --text-secondary: var(--mq-grey-dark);
+            --text-muted: var(--mq-grey-mid); --border-color: var(--mq-grey-light);
             --shadow-color: rgba(0,0,0,0.08);
         }
         [data-theme="dark"] {
@@ -49,17 +33,10 @@
             --text-primary: #e8e8e8; --text-secondary: #c0c0c0; --text-muted: #888;
             --border-color: #333355; --shadow-color: rgba(0,0,0,0.3);
         }
-        :root {
-            --font: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-            --radius: 8px; --radius-lg: 12px;
-            --shadow-sm: 0 1px 3px var(--shadow-color);
-            --shadow-md: 0 4px 12px var(--shadow-color);
-            --transition: 0.2s ease;
-        }
+        :root { --font: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; --radius: 8px; --radius-lg: 12px; --shadow-sm: 0 1px 3px var(--shadow-color); --shadow-md: 0 4px 12px var(--shadow-color); --transition: 0.2s ease; }
         *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
         html{font-size:16px;scroll-behavior:smooth}
         body{font-family:var(--font);color:var(--text-primary);background:var(--bg-primary);line-height:1.6;min-height:100vh;display:flex;flex-direction:column;transition:background 0.3s,color 0.3s}
-        /* Header */
         .header{background:var(--bg-secondary);border-bottom:3px solid var(--mq-crimson);box-shadow:var(--shadow-sm);position:sticky;top:0;z-index:100}
         .header-content{max-width:1400px;margin:0 auto;padding:1rem 2rem;display:flex;align-items:center;justify-content:space-between;gap:1rem}
         .logo-area{display:flex;align-items:center;gap:0.75rem}
@@ -71,7 +48,6 @@
         .header-nav a:hover{color:var(--mq-crimson)}
         .theme-toggle{width:36px;height:36px;border:1.5px solid var(--border-color);border-radius:var(--radius);background:var(--bg-secondary);color:var(--text-secondary);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:1.1rem}
         .theme-toggle:hover{border-color:var(--mq-crimson);color:var(--mq-crimson)}
-        /* Main */
         .main{max-width:1400px;margin:0 auto;padding:2rem;flex:1;width:100%}
         /* Steps */
         .step{background:var(--bg-secondary);border-radius:var(--radius-lg);padding:1.5rem 2rem;margin-bottom:1.5rem;box-shadow:var(--shadow-sm)}
@@ -88,31 +64,41 @@
         .form-group textarea:focus,.form-group input:focus,.form-group select:focus{outline:none;border-color:var(--mq-crimson);box-shadow:0 0 0 3px rgba(166,25,46,0.15)}
         .form-group textarea{resize:vertical;min-height:70px}
         .help-text{font-size:0.75rem;color:var(--text-muted);margin-top:0.25rem;font-style:italic}
-        /* Unit list */
-        .unit-list{border:1.5px solid var(--border-color);border-radius:var(--radius);overflow:hidden}
-        .unit-list-header{display:grid;grid-template-columns:100px 1fr 2fr 40px;gap:0.5rem;padding:0.5rem 0.75rem;background:var(--mq-crimson);color:#fff;font-size:0.7rem;font-weight:600;text-transform:uppercase;letter-spacing:0.5px}
-        .unit-row{display:grid;grid-template-columns:100px 1fr 2fr 40px;gap:0.5rem;padding:0.5rem 0.75rem;border-bottom:1px solid var(--border-color);align-items:center;font-size:0.8rem;transition:background var(--transition)}
-        .unit-row:last-child{border-bottom:none}
-        .unit-row:hover{background:var(--bg-primary)}
-        .unit-row input{padding:0.375rem 0.5rem;font-size:0.8rem;border:1px solid transparent;border-radius:4px;background:transparent;color:var(--text-primary);font-family:var(--font);width:100%}
-        .unit-row input:hover{border-color:var(--border-color)}
-        .unit-row input:focus{border-color:var(--mq-crimson);background:var(--bg-secondary);outline:none}
-        .unit-row .code-input{font-weight:600;color:var(--mq-crimson)}
-        .unit-row .delete-btn{width:28px;height:28px;border:none;background:transparent;color:var(--text-muted);cursor:pointer;border-radius:4px;font-size:1rem;display:flex;align-items:center;justify-content:center}
-        .unit-row .delete-btn:hover{background:var(--ipa-gap-bg);color:var(--ipa-gap)}
-        .unit-add-row{display:grid;grid-template-columns:100px 1fr 2fr 40px;gap:0.5rem;padding:0.5rem 0.75rem;background:var(--bg-tertiary);align-items:center}
-        .unit-add-row input{padding:0.375rem 0.5rem;font-size:0.8rem;border:1px solid var(--border-color);border-radius:4px;background:var(--bg-secondary);color:var(--text-primary);font-family:var(--font);width:100%}
-        .unit-add-row .add-btn{width:28px;height:28px;border:1.5px solid var(--mq-crimson);background:transparent;color:var(--mq-crimson);cursor:pointer;border-radius:4px;font-size:1.2rem;font-weight:700;display:flex;align-items:center;justify-content:center}
-        .unit-add-row .add-btn:hover{background:var(--mq-crimson);color:#fff}
-        .unit-level-badge{font-size:0.65rem;font-weight:500;padding:0.15rem 0.4rem;border-radius:8px;background:var(--border-color);color:var(--text-secondary);white-space:nowrap}
+        /* Unit cards */
+        .unit-cards-container{display:flex;flex-direction:column;gap:0.75rem}
+        .unit-card{border:1.5px solid var(--border-color);border-radius:var(--radius);overflow:hidden;transition:border-color var(--transition)}
+        .unit-card:hover{border-color:var(--mq-crimson)}
+        .unit-card.expanded{border-color:var(--mq-crimson);box-shadow:var(--shadow-md)}
+        .unit-card-bar{display:flex;align-items:center;gap:0.75rem;padding:0.75rem 1rem;background:var(--bg-primary);cursor:pointer;transition:background var(--transition)}
+        .unit-card-bar:hover{background:var(--bg-tertiary)}
+        .unit-card-code{font-weight:700;font-size:0.85rem;color:var(--mq-crimson);min-width:90px}
+        .unit-card-name{font-size:0.85rem;color:var(--text-primary);flex:1}
+        .unit-card-level{font-size:0.65rem;font-weight:500;padding:0.15rem 0.5rem;border-radius:10px;background:var(--border-color);color:var(--text-secondary)}
+        .unit-card-toggle{font-size:0.75rem;color:var(--text-muted);padding:0.25rem 0.5rem;border:1px solid var(--border-color);border-radius:4px;background:var(--bg-secondary);cursor:pointer;transition:all var(--transition)}
+        .unit-card-toggle:hover{border-color:var(--mq-crimson);color:var(--mq-crimson)}
+        .unit-card-delete{font-size:0.9rem;color:var(--text-muted);padding:0.25rem 0.5rem;border:none;background:transparent;cursor:pointer;border-radius:4px}
+        .unit-card-delete:hover{background:var(--ipa-gap-bg);color:var(--ipa-gap)}
+        .unit-card-body{display:none;padding:1rem 1.25rem;border-top:1px solid var(--border-color);background:var(--bg-secondary)}
+        .unit-card.expanded .unit-card-body{display:block}
+        .unit-card-body .form-group{margin-bottom:0.75rem}
+        .unit-card-body .form-group label{font-size:0.8rem;color:var(--text-secondary)}
+        .unit-card-body textarea{min-height:55px;font-size:0.8rem}
+        .unit-card-body input{font-size:0.8rem}
+        .unit-field-grid{display:grid;grid-template-columns:1fr 1fr;gap:0.75rem}
+        /* Add unit section */
+        .add-unit-card{border:1.5px dashed var(--border-color);border-radius:var(--radius);padding:1.25rem;background:var(--bg-tertiary)}
+        .add-unit-card h5{font-size:0.85rem;font-weight:600;color:var(--text-primary);margin-bottom:0.75rem}
+        .add-unit-row{display:grid;grid-template-columns:110px 1fr auto;gap:0.75rem;align-items:end}
+        .add-unit-row .form-group{margin-bottom:0}
         /* Buttons */
         .btn-primary{padding:0.75rem 1.5rem;background:var(--mq-crimson);color:#fff;border:none;border-radius:var(--radius);font-family:var(--font);font-size:0.9rem;font-weight:600;cursor:pointer;transition:all var(--transition);display:inline-flex;align-items:center;gap:0.5rem}
         .btn-primary:hover{background:var(--mq-crimson-dark);transform:translateY(-1px)}
         .btn-primary:disabled{background:var(--text-muted);cursor:not-allowed;transform:none}
         .btn-secondary{padding:0.625rem 1.25rem;background:transparent;color:var(--text-secondary);border:1.5px solid var(--border-color);border-radius:var(--radius);font-family:var(--font);font-size:0.85rem;font-weight:500;cursor:pointer;transition:all var(--transition);display:inline-flex;align-items:center;gap:0.5rem}
         .btn-secondary:hover{border-color:var(--mq-crimson);color:var(--mq-crimson)}
+        .btn-sm{padding:0.5rem 0.875rem;font-size:0.8rem}
         .btn-row{display:flex;gap:1rem;margin-top:1.25rem;flex-wrap:wrap;align-items:center}
-        /* IPA Matrix */
+        /* Matrix */
         .matrix-section{margin-top:2rem;background:var(--bg-secondary);border-radius:var(--radius-lg);box-shadow:var(--shadow-md);overflow:hidden}
         .matrix-header{display:flex;align-items:center;justify-content:space-between;padding:1.25rem 1.5rem;background:linear-gradient(135deg,var(--mq-crimson),var(--mq-crimson-dark))}
         .matrix-title{font-size:1.1rem;font-weight:600;color:#fff}
@@ -127,12 +113,11 @@
         .ipa-dot-p{background:var(--ipa-p-bg);color:var(--ipa-p);border:2px solid var(--ipa-p-border)}
         .ipa-dot-a{background:var(--ipa-a-bg);color:var(--ipa-a);border:2px solid var(--ipa-a-border)}
         .ipa-dot-gap{background:var(--ipa-gap-bg);color:var(--ipa-gap);border:2px solid var(--ipa-gap)}
-        /* Matrix table */
         .ipa-table{width:100%;border-collapse:collapse;font-size:0.8rem}
         .ipa-table th{padding:0.5rem;text-align:center;font-weight:600;font-size:0.7rem;border:1px solid var(--border-color);background:var(--bg-primary);color:var(--text-secondary)}
         .ipa-table th.level-group{background:var(--mq-crimson);color:#fff;font-size:0.65rem;letter-spacing:0.5px;text-transform:uppercase}
         .ipa-table th.clo-col{text-align:left;min-width:220px;max-width:300px}
-        .ipa-table th.unit-col{min-width:70px;writing-mode:horizontal-tb;font-size:0.65rem;padding:0.5rem 0.25rem}
+        .ipa-table th.unit-col{min-width:70px;font-size:0.65rem;padding:0.5rem 0.25rem}
         .ipa-table td{padding:0.4rem;text-align:center;border:1px solid var(--border-color);vertical-align:middle}
         .ipa-table td.clo-cell{text-align:left;font-size:0.75rem;padding:0.5rem 0.75rem}
         .ipa-table td.clo-cell strong{color:var(--mq-crimson)}
@@ -145,10 +130,8 @@
         .ipa-cell-a{background:var(--ipa-a-bg);color:var(--ipa-a);border:2px solid var(--ipa-a-border)}
         .ipa-cell-empty{border:1.5px dashed var(--border-color);color:var(--text-muted);font-size:0.6rem}
         .ipa-cell-empty:hover{border-color:var(--mq-crimson);color:var(--mq-crimson)}
-        /* Status column */
         .status-ok{color:var(--ipa-a);font-weight:600;font-size:0.75rem}
         .status-gap{color:var(--ipa-gap);font-weight:600;font-size:0.75rem}
-        /* Gap summary */
         .gap-summary{margin-top:1.5rem;padding:1.25rem;border-radius:var(--radius);border:1.5px solid var(--border-color)}
         .gap-summary.has-gaps{border-color:var(--ipa-gap);background:var(--ipa-gap-bg)}
         .gap-summary.no-gaps{border-color:var(--ipa-a-border);background:var(--ipa-a-bg)}
@@ -159,36 +142,32 @@
         .gap-item::before{content:'⚠';position:absolute;left:0}
         .gap-item.critical::before{content:'✗'}
         .gap-item.critical{font-weight:500}
-        /* Loading */
         .loading-overlay{text-align:center;padding:2rem}
         .spinner{width:36px;height:36px;border:3px solid var(--border-color);border-top-color:var(--mq-crimson);border-radius:50%;margin:0 auto 1rem;animation:spin 0.8s linear infinite}
         @keyframes spin{to{transform:rotate(360deg)}}
         .loading-overlay p{font-size:0.85rem;color:var(--text-muted)}
-        /* Footer */
         .footer{background:#1a1a2e;color:#c0c0c0;padding:1.5rem 2rem;margin-top:auto}
         .footer-content{max-width:1400px;margin:0 auto;text-align:center}
         .footer-content p{font-size:0.85rem;margin-bottom:0.25rem}
         .footer-sub{font-size:0.75rem;color:#888}
         .footer a{color:#c0c0c0;text-decoration:none}
         .footer a:hover{color:#fff}
-        /* Print */
         @media print{
-            .header,.footer,.step,.btn-primary,.btn-secondary,.btn-row,.matrix-actions,.ipa-legend,.theme-toggle{display:none !important}
+            .header,.footer,.step,.btn-primary,.btn-secondary,.btn-row,.matrix-actions,.ipa-legend,.theme-toggle,.add-unit-card{display:none !important}
             body{background:#fff !important;color:#000 !important}
             .main{padding:0 !important;max-width:none !important}
             .matrix-section{box-shadow:none !important;margin-top:0 !important}
             .matrix-header{background:#fff !important;border-bottom:2px solid #a6192e !important;padding:0.5rem 0 !important}
             .matrix-title{color:#a6192e !important}
-            .matrix-body{padding:0.5rem 0 !important}
             .ipa-cell,.ipa-dot{-webkit-print-color-adjust:exact;print-color-adjust:exact}
             .ipa-table th.level-group{background:#a6192e !important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
             @page{margin:1.5cm;size:landscape}
         }
         @media(max-width:900px){
             .form-row{grid-template-columns:1fr}
+            .unit-field-grid{grid-template-columns:1fr}
             .header-content{flex-direction:column;align-items:flex-start}
-            .unit-list-header,.unit-row,.unit-add-row{grid-template-columns:80px 1fr 40px}
-            .unit-list-header span:nth-child(3),.unit-row input:nth-child(3){display:none}
+            .add-unit-row{grid-template-columns:1fr;gap:0.5rem}
         }
     </style>
 </head>
@@ -212,11 +191,10 @@
 
     <main class="main">
         <!-- Step 1: CLOs -->
-        <div class="step" id="step-clos">
+        <div class="step">
             <div class="step-header">
                 <span class="step-num">1</span>
                 <span class="step-title">Course Learning Outcomes</span>
-                <span class="step-desc">Paste your CLOs — one per line</span>
             </div>
             <div class="form-row">
                 <div>
@@ -233,52 +211,53 @@
                     <div class="form-group">
                         <label for="clo-input">CLOs (one per line)</label>
                         <textarea id="clo-input" rows="6" placeholder="1. Analyse and evaluate media theories...&#10;2. Produce and deploy multimodal media content...&#10;3. Examine and articulate ethical impacts...&#10;4. Implement and apply professional communication..."></textarea>
-                        <span class="help-text">Numbering is optional. Each line = one CLO.</span>
+                        <span class="help-text">Each line = one CLO. Numbering is optional.</span>
                     </div>
                 </div>
             </div>
         </div>
 
         <!-- Step 2: Units -->
-        <div class="step" id="step-units">
+        <div class="step">
             <div class="step-header">
                 <span class="step-num">2</span>
-                <span class="step-title">Units</span>
-                <span class="step-desc">Add units in this course/major — edit inline anytime</span>
+                <span class="step-title">Units in this Course / Major</span>
+                <span class="step-desc" id="unit-count-display">0 units</span>
             </div>
-            <div class="form-group">
-                <div class="unit-list" id="unit-list">
-                    <div class="unit-list-header">
-                        <span>Code</span>
-                        <span>Unit Name</span>
-                        <span>Description / ULOs (brief)</span>
-                        <span></span>
-                    </div>
-                    <div id="unit-rows"></div>
-                    <div class="unit-add-row">
+
+            <div class="unit-cards-container" id="unit-cards-container"></div>
+
+            <div class="add-unit-card" style="margin-top:1rem;">
+                <h5>Add a unit</h5>
+                <div class="add-unit-row">
+                    <div class="form-group">
+                        <label for="add-code">Code</label>
                         <input type="text" id="add-code" placeholder="MECO1001">
-                        <input type="text" id="add-name" placeholder="Introduction to Media">
-                        <input type="text" id="add-desc" placeholder="Key concepts, media history, foundational analysis...">
-                        <button class="add-btn" id="add-unit-btn" title="Add unit">+</button>
                     </div>
+                    <div class="form-group">
+                        <label for="add-name">Unit Name</label>
+                        <input type="text" id="add-name" placeholder="Introduction to Media">
+                    </div>
+                    <button class="btn-primary btn-sm" id="add-unit-btn">+ Add Unit</button>
                 </div>
-                <span class="help-text">The unit level is detected from the code (e.g., MECO1001 = 1000-level). Add a brief description or key ULOs to help the AI map IPA accurately.</span>
+                <span class="help-text">Add the unit, then expand it to fill in description, ULOs, and assessments.</span>
             </div>
+
             <div class="btn-row">
-                <button class="btn-secondary" id="paste-bulk-btn">Paste multiple units</button>
-                <span style="font-size:0.75rem;color:var(--text-muted);">Tab-separated: Code, Name, Description</span>
+                <button class="btn-secondary" id="paste-bulk-btn">Paste multiple units from spreadsheet</button>
+                <button class="btn-secondary" id="expand-all-btn">Expand all</button>
+                <button class="btn-secondary" id="collapse-all-btn">Collapse all</button>
             </div>
         </div>
 
         <!-- Step 3: Generate -->
-        <div class="step" id="step-generate">
+        <div class="step">
             <div class="step-header">
                 <span class="step-num">3</span>
                 <span class="step-title">Generate IPA Mapping</span>
-                <span class="step-desc">AI analyses your curriculum and maps I, P, A for each CLO × unit</span>
             </div>
             <p style="font-size:0.85rem;color:var(--text-secondary);margin-bottom:1rem;">
-                The AI will determine where each CLO is Introduced, Practised, and Assured based on the unit descriptions and level. IPA stages are <strong>not</strong> locked to unit levels — a 1000-level unit can Practise, and a 2000-level can Assure. The key requirement is: <strong>all CLOs must be Assured by the end of 3000-level.</strong>
+                The AI analyses your CLOs against each unit's description, ULOs, and assessments to determine where each CLO is Introduced, Practised, and Assured. IPA stages are <strong>not</strong> locked to unit levels. The key requirement: <strong>all CLOs must be Assured by the end of 3000-level.</strong>
             </p>
             <div class="btn-row">
                 <button class="btn-primary" id="generate-ipa-btn">Generate IPA Matrix</button>
@@ -292,11 +271,12 @@
             <p>Analysing your curriculum and generating IPA mapping...</p>
         </div>
 
-        <!-- Matrix output -->
+        <!-- Matrix -->
         <div class="matrix-section" id="matrix-section" style="display:none">
             <div class="matrix-header">
                 <span class="matrix-title" id="matrix-title">IPA Matrix</span>
                 <div class="matrix-actions">
+                    <button id="regenerate-btn">Regenerate</button>
                     <button id="export-csv-btn">Export CSV</button>
                     <button id="print-btn">Print / PDF</button>
                 </div>
@@ -307,7 +287,7 @@
                     <div class="ipa-legend-item"><span class="ipa-dot ipa-dot-p">P</span> Practised</div>
                     <div class="ipa-legend-item"><span class="ipa-dot ipa-dot-a">A</span> Assured</div>
                     <div class="ipa-legend-item"><span class="ipa-dot ipa-dot-gap">!</span> Gap</div>
-                    <span style="margin-left:auto;font-size:0.75rem;color:var(--text-muted);">Click any cell to change its value</span>
+                    <span style="margin-left:auto;font-size:0.75rem;color:var(--text-muted);">Click cells to change values</span>
                 </div>
                 <div id="matrix-content"></div>
                 <div id="gap-summary"></div>
@@ -318,7 +298,7 @@
     <footer class="footer">
         <div class="footer-content">
             <p>IPA Curriculum Visualiser | Faculty of Arts | Macquarie University</p>
-            <p class="footer-sub">Based on the FoA IPA Framework | TEQSA Standard 1.4.4 compliance</p>
+            <p class="footer-sub">Based on the FoA IPA Framework | TEQSA Standard 1.4.4</p>
             <p class="footer-sub">For support: <a href="mailto:artslandt@mq.edu.au">artslandt@mq.edu.au</a></p>
         </div>
     </footer>
@@ -329,112 +309,148 @@
 
 ## THE IPA FRAMEWORK
 The IPA Framework maps where Course Learning Outcomes (CLOs) are:
-- **Introduced (I):** Students are first exposed to concepts, foundational knowledge, comprehension, recall, initial exploration
-- **Practised (P):** Students actively engage with complex tasks, developing analytical, comparative, and evaluative skills through repeated practice
-- **Assured (A):** Students demonstrate mastery and independence — this is where CLO achievement is formally assessed
+- **Introduced (I):** Students first encounter concepts, foundational knowledge, comprehension, recall, initial exploration
+- **Practised (P):** Students actively engage with complex tasks, developing analytical, comparative, evaluative skills through repeated practice
+- **Assured (A):** Students demonstrate mastery and independence — CLO achievement is formally assessed
 
 ## CRITICAL RULES
-1. IPA stages are NOT rigidly locked to unit levels. A 1000-level unit CAN practise. A 2000-level unit CAN assure.
-2. However, the logical flow should generally progress from I → P → A across the course.
-3. **ALL CLOs MUST be Assured (A) in at least one unit by the end of 3000-level.** This is the non-negotiable TEQSA compliance requirement.
-4. A CLO can appear as I in multiple units, P in multiple units, and A in multiple units.
-5. Not every CLO needs to appear in every unit. Only map where there is genuine alignment.
-6. Consider the unit description/ULOs to determine what is actually taught and assessed.
-
-## YOUR TASK
-Given the CLOs and units below, produce an IPA mapping. For each CLO × unit combination, assign I, P, A, or leave blank (no alignment).
+1. IPA stages are NOT rigidly locked to unit levels. A 1000-level unit CAN practise or even assure. A 2000-level unit CAN introduce new concepts related to a CLO.
+2. The logical flow should generally progress from I → P → A but this is not absolute.
+3. **ALL CLOs MUST be Assured (A) in at least one unit by the end of 3000-level.** This is the TEQSA compliance requirement.
+4. A CLO can appear as I, P, or A in multiple units.
+5. Only map where there is genuine alignment between the CLO and what the unit actually teaches/assesses.
+6. Use the unit description, ULOs, and assessment details to make informed mapping decisions.
+7. Not every CLO appears in every unit — be selective and accurate.
 
 ## OUTPUT FORMAT
-Respond ONLY with a JSON object in this exact format:
+Respond ONLY with a JSON object:
 {
   "mapping": [
     {"clo": 1, "unit": "CODE1001", "ipa": "I", "rationale": "brief reason"},
     {"clo": 1, "unit": "CODE2001", "ipa": "P", "rationale": "brief reason"},
     {"clo": 1, "unit": "CODE3001", "ipa": "A", "rationale": "brief reason"}
   ],
-  "notes": "Any overall observations about gaps or strengths in the curriculum"
+  "notes": "Overall observations about the curriculum's IPA coverage, strengths, and any gaps."
 }
 
-Only include entries where there IS alignment (I, P, or A). Do not include blank entries.
-Keep rationales to one short sentence each.`;
+Only include entries where there IS alignment. Keep rationales to one sentence.`;
 
     document.addEventListener('DOMContentLoaded', () => {
         let clos = [];
-        let units = []; // [{code, name, desc, level}]
-        let ipaData = {}; // {`${cloIdx}-${unitIdx}`: 'I'|'P'|'A'}
+        let units = []; // [{code, name, description, ulos, assessments, level}]
+        let ipaData = {}; // {`cloIdx-unitIdx`: 'I'|'P'|'A'}
 
         // Dark mode
         const themeToggle = document.getElementById('theme-toggle');
-        function setTheme(t) { document.documentElement.setAttribute('data-theme',t); localStorage.setItem('ipa-vis-theme',t); themeToggle.innerHTML=t==='dark'?'&#9788;':'&#9790;'; }
-        setTheme(localStorage.getItem('ipa-vis-theme')||localStorage.getItem('lo-gen-theme')||'light');
-        themeToggle.addEventListener('click',()=>setTheme(document.documentElement.getAttribute('data-theme')==='dark'?'light':'dark'));
-
-        // Unit management
-        function renderUnits() {
-            const container = document.getElementById('unit-rows');
-            container.innerHTML = units.map((u, i) => `
-                <div class="unit-row" data-idx="${i}">
-                    <input type="text" class="code-input" value="${escapeAttr(u.code)}" data-field="code" data-idx="${i}">
-                    <input type="text" value="${escapeAttr(u.name)}" data-field="name" data-idx="${i}">
-                    <input type="text" value="${escapeAttr(u.desc)}" data-field="desc" data-idx="${i}" placeholder="Description / ULOs...">
-                    <button class="delete-btn" data-idx="${i}" title="Remove">&#10005;</button>
-                </div>
-            `).join('');
-
-            // Attach events
-            container.querySelectorAll('input').forEach(inp => {
-                inp.addEventListener('change', (e) => {
-                    const idx = parseInt(e.target.getAttribute('data-idx'));
-                    const field = e.target.getAttribute('data-field');
-                    units[idx][field] = e.target.value;
-                    if (field === 'code') units[idx].level = getUnitLevel(e.target.value);
-                });
-            });
-            container.querySelectorAll('.delete-btn').forEach(btn => {
-                btn.addEventListener('click', (e) => {
-                    const idx = parseInt(e.target.getAttribute('data-idx'));
-                    units.splice(idx, 1);
-                    renderUnits();
-                });
-            });
-        }
+        function setTheme(t) { document.documentElement.setAttribute('data-theme', t); localStorage.setItem('ipa-vis-theme', t); themeToggle.innerHTML = t === 'dark' ? '&#9788;' : '&#9790;'; }
+        setTheme(localStorage.getItem('ipa-vis-theme') || localStorage.getItem('lo-gen-theme') || 'light');
+        themeToggle.addEventListener('click', () => setTheme(document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark'));
 
         // Add unit
         document.getElementById('add-unit-btn').addEventListener('click', addUnit);
-        document.getElementById('add-code').addEventListener('keydown', (e) => { if (e.key === 'Enter') { e.preventDefault(); addUnit(); } });
-        document.getElementById('add-name').addEventListener('keydown', (e) => { if (e.key === 'Enter') { e.preventDefault(); addUnit(); } });
-        document.getElementById('add-desc').addEventListener('keydown', (e) => { if (e.key === 'Enter') { e.preventDefault(); addUnit(); } });
+        ['add-code', 'add-name'].forEach(id => {
+            document.getElementById(id).addEventListener('keydown', e => { if (e.key === 'Enter') { e.preventDefault(); addUnit(); } });
+        });
 
         function addUnit() {
             const code = document.getElementById('add-code').value.trim();
             const name = document.getElementById('add-name').value.trim();
-            const desc = document.getElementById('add-desc').value.trim();
             if (!code) return;
-            units.push({ code, name: name || code, desc: desc || '', level: getUnitLevel(code) });
+            units.push({ code, name: name || code, description: '', ulos: '', assessments: '', level: getUnitLevel(code) });
             document.getElementById('add-code').value = '';
             document.getElementById('add-name').value = '';
-            document.getElementById('add-desc').value = '';
             document.getElementById('add-code').focus();
             renderUnits();
         }
 
-        // Paste bulk units
+        // Paste bulk
         document.getElementById('paste-bulk-btn').addEventListener('click', () => {
-            const raw = prompt('Paste tab-separated units (Code\\tName\\tDescription), one per line:');
+            const raw = prompt('Paste tab-separated data: Code \\t Name \\t Description (optional)\\nOne unit per line:');
             if (!raw) return;
             raw.split('\n').filter(l => l.trim()).forEach(line => {
                 const parts = line.split('\t');
                 const code = (parts[0] || '').trim();
                 const name = (parts[1] || '').trim();
                 const desc = (parts[2] || '').trim();
-                if (code) units.push({ code, name: name || code, desc, level: getUnitLevel(code) });
+                if (code) units.push({ code, name: name || code, description: desc, ulos: '', assessments: '', level: getUnitLevel(code) });
             });
             renderUnits();
         });
 
-        // Generate IPA mapping
-        document.getElementById('generate-ipa-btn').addEventListener('click', async () => {
-            // Parse CLOs
+        // Expand/collapse all
+        document.getElementById('expand-all-btn').addEventListener('click', () => {
+            document.querySelectorAll('.unit-card').forEach(c => c.classList.add('expanded'));
+        });
+        document.getElementById('collapse-all-btn').addEventListener('click', () => {
+            document.querySelectorAll('.unit-card').forEach(c => c.classList.remove('expanded'));
+        });
+
+        // Render unit cards
+        function renderUnits() {
+            const container = document.getElementById('unit-cards-container');
+            const sorted = [...units].map((u, i) => ({ ...u, idx: i })).sort((a, b) => a.level - b.level);
+
+            container.innerHTML = sorted.map(u => `
+                <div class="unit-card" data-idx="${u.idx}">
+                    <div class="unit-card-bar" onclick="toggleUnit(${u.idx})">
+                        <span class="unit-card-code">${escapeHtml(u.code)}</span>
+                        <span class="unit-card-name">${escapeHtml(u.name)}</span>
+                        <span class="unit-card-level">${u.level}-level</span>
+                        <button class="unit-card-toggle" onclick="event.stopPropagation();toggleUnit(${u.idx})">Edit</button>
+                        <button class="unit-card-delete" onclick="event.stopPropagation();deleteUnit(${u.idx})" title="Remove">&#10005;</button>
+                    </div>
+                    <div class="unit-card-body">
+                        <div class="unit-field-grid">
+                            <div class="form-group">
+                                <label>Unit Code</label>
+                                <input type="text" value="${escapeAttr(u.code)}" onchange="updateUnit(${u.idx},'code',this.value)">
+                            </div>
+                            <div class="form-group">
+                                <label>Unit Name</label>
+                                <input type="text" value="${escapeAttr(u.name)}" onchange="updateUnit(${u.idx},'name',this.value)">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Unit Description / Overview</label>
+                            <textarea rows="3" placeholder="What does this unit cover? What are the key themes, content areas, and skills developed?" onchange="updateUnit(${u.idx},'description',this.value)">${escapeHtml(u.description)}</textarea>
+                        </div>
+                        <div class="unit-field-grid">
+                            <div class="form-group">
+                                <label>Unit Learning Outcomes (ULOs)</label>
+                                <textarea rows="4" placeholder="1. Identify key media concepts...&#10;2. Describe the history of...&#10;3. Apply foundational analysis..." onchange="updateUnit(${u.idx},'ulos',this.value)">${escapeHtml(u.ulos)}</textarea>
+                            </div>
+                            <div class="form-group">
+                                <label>Assessment Tasks</label>
+                                <textarea rows="4" placeholder="e.g., Research essay (40%)&#10;Group presentation (30%)&#10;Reflective portfolio (30%)" onchange="updateUnit(${u.idx},'assessments',this.value)">${escapeHtml(u.assessments)}</textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+
+            document.getElementById('unit-count-display').textContent = units.length + ' unit' + (units.length !== 1 ? 's' : '');
+        }
+
+        window.toggleUnit = function(idx) {
+            const card = document.querySelector(`.unit-card[data-idx="${idx}"]`);
+            if (card) card.classList.toggle('expanded');
+        };
+        window.deleteUnit = function(idx) {
+            if (confirm('Remove ' + units[idx].code + '?')) {
+                units.splice(idx, 1);
+                renderUnits();
+            }
+        };
+        window.updateUnit = function(idx, field, value) {
+            units[idx][field] = value;
+            if (field === 'code') units[idx].level = getUnitLevel(value);
+        };
+
+        // Generate IPA
+        document.getElementById('generate-ipa-btn').addEventListener('click', generateIPA);
+        document.getElementById('regenerate-btn').addEventListener('click', generateIPA);
+
+        async function generateIPA() {
             const cloInput = document.getElementById('clo-input').value.trim();
             if (!cloInput) return alert('Please enter your CLOs in Step 1.');
             if (units.length === 0) return alert('Please add at least one unit in Step 2.');
@@ -446,28 +462,26 @@ Keep rationales to one short sentence each.`;
 
             const courseName = document.getElementById('course-name').value.trim();
             const discipline = document.getElementById('discipline').value.trim();
+            const sorted = [...units].sort((a, b) => a.level - b.level);
 
-            // Sort units by level for the prompt
-            const sortedUnits = [...units].sort((a, b) => a.level - b.level);
-
-            // Build prompt
             let userMsg = '';
             if (courseName) userMsg += `**Course/Major:** ${courseName}\n`;
             if (discipline) userMsg += `**Discipline:** ${discipline}\n\n`;
 
             userMsg += '**CLOs:**\n';
-            clos.forEach(c => { userMsg += `${c.num}. ${c.text}\n`; });
+            clos.forEach(c => userMsg += `${c.num}. ${c.text}\n`);
 
-            userMsg += '\n**Units (ordered by level):**\n';
-            sortedUnits.forEach(u => {
-                userMsg += `- ${u.code} (${u.level}-level): ${u.name}`;
-                if (u.desc) userMsg += ` — ${u.desc}`;
+            userMsg += '\n**Units (ordered by level):**\n\n';
+            sorted.forEach(u => {
+                userMsg += `### ${u.code} — ${u.name} (${u.level}-level)\n`;
+                if (u.description) userMsg += `**Description:** ${u.description}\n`;
+                if (u.ulos) userMsg += `**ULOs:**\n${u.ulos}\n`;
+                if (u.assessments) userMsg += `**Assessments:** ${u.assessments}\n`;
                 userMsg += '\n';
             });
 
-            userMsg += '\nPlease generate the IPA mapping as JSON.';
+            userMsg += 'Please generate the IPA mapping as JSON.';
 
-            // Call API
             document.getElementById('loading').style.display = 'block';
             document.getElementById('matrix-section').style.display = 'none';
             document.getElementById('generate-ipa-btn').disabled = true;
@@ -477,10 +491,7 @@ Keep rationales to one short sentence each.`;
                 const response = await fetch(WORKER_URL, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({
-                        system: IPA_SYSTEM_PROMPT,
-                        messages: [{ role: 'user', content: userMsg }]
-                    })
+                    body: JSON.stringify({ system: IPA_SYSTEM_PROMPT, messages: [{ role: 'user', content: userMsg }] })
                 });
 
                 if (!response.ok) {
@@ -490,34 +501,25 @@ Keep rationales to one short sentence each.`;
 
                 const data = await response.json();
                 const content = data.content || '';
-
-                // Parse JSON from response
                 const jsonMatch = content.match(/\{[\s\S]*\}/);
                 if (!jsonMatch) throw new Error('Could not parse AI response. Please try again.');
 
                 const parsed = JSON.parse(jsonMatch[0]);
                 if (!parsed.mapping || !Array.isArray(parsed.mapping)) throw new Error('Invalid response format.');
 
-                // Build ipaData from response
                 ipaData = {};
                 parsed.mapping.forEach(entry => {
                     const cloIdx = entry.clo - 1;
                     const unitIdx = units.findIndex(u => u.code.toLowerCase() === entry.unit.toLowerCase());
                     if (cloIdx >= 0 && cloIdx < clos.length && unitIdx >= 0) {
-                        const key = `${cloIdx}-${unitIdx}`;
-                        ipaData[key] = entry.ipa.toUpperCase();
+                        ipaData[`${cloIdx}-${unitIdx}`] = entry.ipa.toUpperCase();
                     }
                 });
 
                 renderMatrix();
                 document.getElementById('matrix-section').style.display = 'block';
                 document.getElementById('matrix-section').scrollIntoView({ behavior: 'smooth', block: 'start' });
-                document.getElementById('generate-status').textContent = 'Mapping complete. Click cells to edit.';
-
-                // Show notes if any
-                if (parsed.notes) {
-                    document.getElementById('generate-status').textContent = parsed.notes;
-                }
+                document.getElementById('generate-status').textContent = parsed.notes || 'Mapping complete. Click cells to edit.';
 
             } catch (error) {
                 alert('Error: ' + error.message);
@@ -526,57 +528,42 @@ Keep rationales to one short sentence each.`;
                 document.getElementById('loading').style.display = 'none';
                 document.getElementById('generate-ipa-btn').disabled = false;
             }
-        });
+        }
 
         // Render matrix
         function renderMatrix() {
-            const sortedUnits = [...units].map((u, i) => ({ ...u, origIdx: i })).sort((a, b) => a.level - b.level);
-            const levels = [...new Set(sortedUnits.map(u => u.level))].sort((a, b) => a - b);
+            const sorted = [...units].map((u, i) => ({ ...u, origIdx: i })).sort((a, b) => a.level - b.level);
+            const levels = [...new Set(sorted.map(u => u.level))].sort((a, b) => a - b);
 
             let html = '<table class="ipa-table"><thead>';
-
-            // Level group row
             html += '<tr><th class="clo-col"></th>';
             levels.forEach(level => {
-                const count = sortedUnits.filter(u => u.level === level).length;
+                const count = sorted.filter(u => u.level === level).length;
                 html += `<th class="level-group" colspan="${count}">${level}-level</th>`;
             });
             html += '<th class="level-group">Status</th></tr>';
 
-            // Unit code row
             html += '<tr><th class="clo-col">Course Learning Outcome</th>';
-            sortedUnits.forEach(u => {
-                html += `<th class="unit-col" title="${escapeAttr(u.name)}">${escapeHtml(u.code)}</th>`;
-            });
-            html += '<th class="unit-col">Assured?</th></tr>';
-            html += '</thead><tbody>';
+            sorted.forEach(u => html += `<th class="unit-col" title="${escapeAttr(u.name)}">${escapeHtml(u.code)}</th>`);
+            html += '<th class="unit-col">Assured?</th></tr></thead><tbody>';
 
-            // CLO rows
             clos.forEach((clo, cloIdx) => {
-                const shortText = clo.text.length > 55 ? clo.text.substring(0, 55) + '...' : clo.text;
-                html += `<tr><td class="clo-cell" title="${escapeAttr(clo.text)}"><strong>CLO ${clo.num}.</strong> ${escapeHtml(shortText)}</td>`;
+                const short = clo.text.length > 55 ? clo.text.substring(0, 55) + '...' : clo.text;
+                html += `<tr><td class="clo-cell" title="${escapeAttr(clo.text)}"><strong>CLO ${clo.num}.</strong> ${escapeHtml(short)}</td>`;
 
                 let isAssured = false;
-                sortedUnits.forEach(u => {
+                sorted.forEach(u => {
                     const key = `${cloIdx}-${u.origIdx}`;
                     const val = ipaData[key] || '';
                     if (val === 'A') isAssured = true;
-
-                    let cellClass = 'ipa-cell-empty';
-                    let label = '+';
-                    if (val === 'I') { cellClass = 'ipa-cell-i'; label = 'I'; }
-                    else if (val === 'P') { cellClass = 'ipa-cell-p'; label = 'P'; }
-                    else if (val === 'A') { cellClass = 'ipa-cell-a'; label = 'A'; }
-
-                    html += `<td><span class="ipa-cell ${cellClass}" data-clo="${cloIdx}" data-unit="${u.origIdx}" title="Click to change">${label}</span></td>`;
+                    let cls = 'ipa-cell-empty', label = '+';
+                    if (val === 'I') { cls = 'ipa-cell-i'; label = 'I'; }
+                    else if (val === 'P') { cls = 'ipa-cell-p'; label = 'P'; }
+                    else if (val === 'A') { cls = 'ipa-cell-a'; label = 'A'; }
+                    html += `<td><span class="ipa-cell ${cls}" data-clo="${cloIdx}" data-unit="${u.origIdx}">${label}</span></td>`;
                 });
 
-                // Status column
-                if (isAssured) {
-                    html += '<td><span class="status-ok">✓</span></td>';
-                } else {
-                    html += '<td><span class="status-gap">✗ Not assured</span></td>';
-                }
+                html += isAssured ? '<td><span class="status-ok">✓</span></td>' : '<td><span class="status-gap">✗</span></td>';
                 html += '</tr>';
             });
 
@@ -584,16 +571,15 @@ Keep rationales to one short sentence each.`;
             document.getElementById('matrix-content').innerHTML = html;
             document.getElementById('matrix-title').textContent = document.getElementById('course-name').value || 'IPA Matrix';
 
-            // Attach click handlers
+            // Click handlers
             document.querySelectorAll('.ipa-cell').forEach(cell => {
                 cell.addEventListener('click', () => {
                     const cloIdx = parseInt(cell.getAttribute('data-clo'));
                     const unitIdx = parseInt(cell.getAttribute('data-unit'));
                     const key = `${cloIdx}-${unitIdx}`;
-                    const current = ipaData[key] || '';
                     const cycle = { '': 'I', 'I': 'P', 'P': 'A', 'A': '' };
-                    const next = cycle[current];
-                    if (next) { ipaData[key] = next; } else { delete ipaData[key]; }
+                    const next = cycle[ipaData[key] || ''];
+                    if (next) ipaData[key] = next; else delete ipaData[key];
                     renderMatrix();
                 });
             });
@@ -601,91 +587,61 @@ Keep rationales to one short sentence each.`;
             renderGapSummary();
         }
 
-        // Gap analysis
         function renderGapSummary() {
             const gaps = [];
-            let allAssured = true;
-
             clos.forEach((clo, cloIdx) => {
                 let hasI = false, hasP = false, hasA = false;
                 units.forEach((u, uIdx) => {
-                    const val = ipaData[`${cloIdx}-${uIdx}`] || '';
-                    if (val === 'I') hasI = true;
-                    if (val === 'P') hasP = true;
-                    if (val === 'A') hasA = true;
+                    const v = ipaData[`${cloIdx}-${uIdx}`] || '';
+                    if (v === 'I') hasI = true;
+                    if (v === 'P') hasP = true;
+                    if (v === 'A') hasA = true;
                 });
-
-                if (!hasA) {
-                    gaps.push({ critical: true, text: `CLO ${clo.num} is <strong>never Assured</strong> — students do not demonstrate mastery of this outcome anywhere in the course.` });
-                    allAssured = false;
-                }
-                if (!hasI) {
-                    gaps.push({ critical: false, text: `CLO ${clo.num} is never formally Introduced — students may lack foundational exposure.` });
-                }
-                if (!hasP && hasA) {
-                    gaps.push({ critical: false, text: `CLO ${clo.num} jumps from Introduction to Assurance without Practice — students may not have sufficient development opportunities.` });
-                }
+                if (!hasA) gaps.push({ critical: true, text: `CLO ${clo.num} is <strong>never Assured</strong> — mastery is not demonstrated anywhere in the course.` });
+                if (!hasI && (hasP || hasA)) gaps.push({ critical: false, text: `CLO ${clo.num} is never formally Introduced — students may lack foundational exposure before being asked to practise or demonstrate.` });
+                if (!hasP && hasI && hasA) gaps.push({ critical: false, text: `CLO ${clo.num} jumps from Introduction to Assurance without Practice — students may need more developmental opportunities.` });
             });
 
             const container = document.getElementById('gap-summary');
             if (gaps.length === 0) {
-                container.innerHTML = `<div class="gap-summary no-gaps"><h4>✓ All CLOs have complete IPA coverage</h4><p style="font-size:0.8rem;color:var(--text-secondary);">Every CLO is Introduced, Practised, and Assured. TEQSA Standard 1.4.4 requirements are met.</p></div>`;
+                container.innerHTML = '<div class="gap-summary no-gaps"><h4>✓ All CLOs have complete IPA coverage</h4><p style="font-size:0.8rem;color:var(--text-secondary);">Every CLO is Introduced, Practised, and Assured. TEQSA Standard 1.4.4 requirements are met.</p></div>';
             } else {
                 const critCount = gaps.filter(g => g.critical).length;
-                let heading = `${gaps.length} issue${gaps.length !== 1 ? 's' : ''} found`;
-                if (critCount > 0) heading = `⚠ ${critCount} CLO${critCount !== 1 ? 's' : ''} not Assured — TEQSA compliance gap`;
+                const heading = critCount > 0 ? `⚠ ${critCount} CLO${critCount !== 1 ? 's' : ''} not Assured — TEQSA compliance gap` : `${gaps.length} issue${gaps.length !== 1 ? 's' : ''} found`;
                 container.innerHTML = `<div class="gap-summary has-gaps"><h4>${heading}</h4>${gaps.map(g => `<div class="gap-item${g.critical ? ' critical' : ''}">${g.text}</div>`).join('')}</div>`;
             }
         }
 
-        // Export CSV
+        // CSV export
         document.getElementById('export-csv-btn').addEventListener('click', () => {
             if (clos.length === 0 || units.length === 0) return;
             const sorted = [...units].map((u, i) => ({ ...u, origIdx: i })).sort((a, b) => a.level - b.level);
-
             let csv = 'CLO,' + sorted.map(u => `"${u.code} (${u.level})"` ).join(',') + ',Has I,Has P,Has A,Status\n';
-
             clos.forEach((clo, cloIdx) => {
                 const short = clo.text.substring(0, 40).replace(/"/g, "'");
                 let row = `"CLO ${clo.num}. ${short}..."`;
                 let hasI = false, hasP = false, hasA = false;
-
                 sorted.forEach(u => {
-                    const val = ipaData[`${cloIdx}-${u.origIdx}`] || '';
-                    row += ',' + val;
-                    if (val === 'I') hasI = true;
-                    if (val === 'P') hasP = true;
-                    if (val === 'A') hasA = true;
+                    const v = ipaData[`${cloIdx}-${u.origIdx}`] || '';
+                    row += ',' + v;
+                    if (v === 'I') hasI = true; if (v === 'P') hasP = true; if (v === 'A') hasA = true;
                 });
-
-                row += ',' + (hasI ? 'Yes' : 'NO');
-                row += ',' + (hasP ? 'Yes' : 'NO');
-                row += ',' + (hasA ? 'Yes' : 'NO');
-                row += ',' + (hasA ? 'Complete' : 'NOT ASSURED');
+                row += ',' + (hasI?'Yes':'NO') + ',' + (hasP?'Yes':'NO') + ',' + (hasA?'Yes':'NO') + ',' + (hasA?'Complete':'NOT ASSURED');
                 csv += row + '\n';
             });
-
             const blob = new Blob([csv], { type: 'text/csv' });
-            const url = URL.createObjectURL(blob);
-            const a = document.createElement('a');
-            a.href = url;
+            const a = document.createElement('a'); a.href = URL.createObjectURL(blob);
             a.download = 'ipa-matrix-' + (document.getElementById('course-name').value || 'course').replace(/\s+/g, '-').toLowerCase() + '.csv';
             document.body.appendChild(a); a.click(); document.body.removeChild(a);
-            URL.revokeObjectURL(url);
         });
 
-        // Print
         document.getElementById('print-btn').addEventListener('click', () => window.print());
 
         // Utilities
-        function getUnitLevel(code) {
-            const match = code.match(/(\d)\d{3}/);
-            return match ? parseInt(match[1]) * 1000 : 1000;
-        }
-        function escapeHtml(t) { const d = document.createElement('div'); d.textContent = t; return d.innerHTML; }
+        function getUnitLevel(code) { const m = code.match(/(\d)\d{3}/); return m ? parseInt(m[1]) * 1000 : 1000; }
+        function escapeHtml(t) { const d = document.createElement('div'); d.textContent = t || ''; return d.innerHTML; }
         function escapeAttr(t) { return (t || '').replace(/"/g, '&quot;').replace(/</g, '&lt;').replace(/>/g, '&gt;'); }
 
-        // Initial render
         renderUnits();
     });
     </script>
