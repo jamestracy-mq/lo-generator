@@ -11,22 +11,21 @@
         :root, [data-theme="light"] {
             --mq-crimson: #a6192e;
             --mq-crimson-dark: #8c1527;
-            --mq-crimson-light: #d4213a;
             --mq-sand: #f5f0eb;
             --mq-charcoal: #2d2d2d;
             --mq-grey-dark: #4a4a4a;
             --mq-grey-mid: #6b6b6b;
             --mq-grey-light: #e8e4e0;
             --mq-white: #ffffff;
-            --ipa-intro: #1565c0;
-            --ipa-intro-bg: #e3f2fd;
-            --ipa-intro-border: #90caf9;
-            --ipa-practice: #f57c00;
-            --ipa-practice-bg: #fff3e0;
-            --ipa-practice-border: #ffcc80;
-            --ipa-assured: #2e7d32;
-            --ipa-assured-bg: #e8f5e9;
-            --ipa-assured-border: #a5d6a7;
+            --ipa-i: #1565c0;
+            --ipa-i-bg: #e3f2fd;
+            --ipa-i-border: #90caf9;
+            --ipa-p: #f57c00;
+            --ipa-p-bg: #fff3e0;
+            --ipa-p-border: #ffcc80;
+            --ipa-a: #2e7d32;
+            --ipa-a-bg: #e8f5e9;
+            --ipa-a-border: #a5d6a7;
             --ipa-gap: #c62828;
             --ipa-gap-bg: #ffebee;
             --bg-primary: var(--mq-sand);
@@ -39,316 +38,157 @@
             --shadow-color: rgba(0,0,0,0.08);
         }
         [data-theme="dark"] {
-            --mq-crimson: #e63950;
-            --mq-crimson-dark: #c62840;
-            --mq-crimson-light: #ff5a6e;
-            --mq-sand: #1a1a2e;
-            --mq-charcoal: #e8e8e8;
-            --mq-grey-dark: #c0c0c0;
-            --mq-grey-mid: #888888;
-            --mq-grey-light: #333355;
-            --mq-white: #16213e;
-            --ipa-intro: #64b5f6;
-            --ipa-intro-bg: #1a2a4a;
-            --ipa-intro-border: #1e3a5f;
-            --ipa-practice: #ffb74d;
-            --ipa-practice-bg: #3d2e00;
-            --ipa-practice-border: #5a4400;
-            --ipa-assured: #81c784;
-            --ipa-assured-bg: #1b3d1b;
-            --ipa-assured-border: #2e5a2e;
-            --ipa-gap: #ef9a9a;
-            --ipa-gap-bg: #3d1b1b;
-            --bg-primary: #0f0f1a;
-            --bg-secondary: #1a1a2e;
-            --bg-tertiary: #1e2a4a;
-            --text-primary: #e8e8e8;
-            --text-secondary: #c0c0c0;
-            --text-muted: #888888;
-            --border-color: #333355;
-            --shadow-color: rgba(0,0,0,0.3);
+            --mq-crimson: #e63950; --mq-crimson-dark: #c62840;
+            --mq-sand: #1a1a2e; --mq-charcoal: #e8e8e8; --mq-grey-dark: #c0c0c0;
+            --mq-grey-mid: #888; --mq-grey-light: #333355; --mq-white: #16213e;
+            --ipa-i: #64b5f6; --ipa-i-bg: #1a2a4a; --ipa-i-border: #1e3a5f;
+            --ipa-p: #ffb74d; --ipa-p-bg: #3d2e00; --ipa-p-border: #5a4400;
+            --ipa-a: #81c784; --ipa-a-bg: #1b3d1b; --ipa-a-border: #2e5a2e;
+            --ipa-gap: #ef9a9a; --ipa-gap-bg: #3d1b1b;
+            --bg-primary: #0f0f1a; --bg-secondary: #1a1a2e; --bg-tertiary: #1e2a4a;
+            --text-primary: #e8e8e8; --text-secondary: #c0c0c0; --text-muted: #888;
+            --border-color: #333355; --shadow-color: rgba(0,0,0,0.3);
         }
         :root {
-            --font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            --border-radius: 8px;
-            --border-radius-lg: 12px;
+            --font: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            --radius: 8px; --radius-lg: 12px;
             --shadow-sm: 0 1px 3px var(--shadow-color);
             --shadow-md: 0 4px 12px var(--shadow-color);
             --transition: 0.2s ease;
         }
-        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-        html { font-size: 16px; scroll-behavior: smooth; }
-        body {
-            font-family: var(--font-family); color: var(--text-primary);
-            background: var(--bg-primary); line-height: 1.6;
-            min-height: 100vh; display: flex; flex-direction: column;
-            transition: background-color 0.3s ease, color 0.3s ease;
-        }
-        .header {
-            background: var(--bg-secondary); border-bottom: 3px solid var(--mq-crimson);
-            box-shadow: var(--shadow-sm); position: sticky; top: 0; z-index: 100;
-        }
-        .header-content {
-            max-width: 1400px; margin: 0 auto; padding: 1rem 2rem;
-            display: flex; align-items: center; justify-content: space-between; gap: 1rem;
-        }
-        .logo-area { display: flex; align-items: center; gap: 0.75rem; }
-        .logo-mark {
-            width: 44px; height: 44px; background: var(--mq-crimson); color: #fff;
-            border-radius: var(--border-radius); display: flex; align-items: center;
-            justify-content: center; font-weight: 700; font-size: 0.75rem;
-        }
-        .logo-text h1 { font-size: 1.2rem; font-weight: 600; color: var(--text-primary); line-height: 1.2; }
-        .logo-text p { font-size: 0.8rem; color: var(--text-muted); }
-        .header-actions { display: flex; align-items: center; gap: 1rem; }
-        .header-nav { display: flex; gap: 1.5rem; }
-        .header-nav a { font-size: 0.85rem; color: var(--text-secondary); text-decoration: none; font-weight: 500; transition: color var(--transition); }
-        .header-nav a:hover { color: var(--mq-crimson); }
-        .theme-toggle {
-            width: 36px; height: 36px; border: 1.5px solid var(--border-color);
-            border-radius: var(--border-radius); background: var(--bg-secondary);
-            color: var(--text-secondary); cursor: pointer; display: flex;
-            align-items: center; justify-content: center; font-size: 1.1rem;
-            transition: all var(--transition);
-        }
-        .theme-toggle:hover { border-color: var(--mq-crimson); color: var(--mq-crimson); }
-        .main-content { max-width: 1400px; margin: 0 auto; padding: 2rem; flex: 1; width: 100%; }
-        /* Intro section */
-        .intro-banner {
-            background: var(--bg-secondary); border-radius: var(--border-radius-lg);
-            padding: 1.5rem 2rem; margin-bottom: 2rem; box-shadow: var(--shadow-sm);
-            border-left: 4px solid var(--mq-crimson);
-        }
-        .intro-banner h2 { font-size: 1.1rem; font-weight: 600; color: var(--mq-crimson); margin-bottom: 0.5rem; }
-        .intro-banner p { font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 0.25rem; }
-        .ipa-legend {
-            display: flex; gap: 1.5rem; margin-top: 1rem; flex-wrap: wrap;
-        }
-        .ipa-legend-item { display: flex; align-items: center; gap: 0.5rem; font-size: 0.8rem; }
-        .ipa-badge {
-            width: 28px; height: 28px; border-radius: 50%; display: flex;
-            align-items: center; justify-content: center; font-weight: 700; font-size: 0.75rem;
-        }
-        .ipa-badge-i { background: var(--ipa-intro-bg); color: var(--ipa-intro); border: 2px solid var(--ipa-intro-border); }
-        .ipa-badge-p { background: var(--ipa-practice-bg); color: var(--ipa-practice); border: 2px solid var(--ipa-practice-border); }
-        .ipa-badge-a { background: var(--ipa-assured-bg); color: var(--ipa-assured); border: 2px solid var(--ipa-assured-border); }
-        .ipa-badge-gap { background: var(--ipa-gap-bg); color: var(--ipa-gap); border: 2px solid var(--ipa-gap); }
-        /* Input section */
-        .input-section {
-            background: var(--bg-secondary); border-radius: var(--border-radius-lg);
-            padding: 1.5rem; box-shadow: var(--shadow-sm); margin-bottom: 2rem;
-        }
-        .input-section h3 { font-size: 1rem; font-weight: 600; color: var(--mq-crimson); margin-bottom: 1rem; padding-bottom: 0.5rem; border-bottom: 1px solid var(--border-color); }
-        .input-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
-        .form-group { margin-bottom: 1rem; }
-        .form-group:last-child { margin-bottom: 0; }
-        .form-group label { display: block; font-size: 0.85rem; font-weight: 500; margin-bottom: 0.375rem; }
-        .form-group textarea, .form-group input, .form-group select {
-            width: 100%; padding: 0.625rem 0.875rem;
-            border: 1.5px solid var(--border-color); border-radius: var(--border-radius);
-            font-family: var(--font-family); font-size: 0.85rem; color: var(--text-primary);
-            background: var(--bg-secondary); transition: border-color var(--transition);
-        }
-        .form-group textarea:focus, .form-group input:focus, .form-group select:focus {
-            outline: none; border-color: var(--mq-crimson); box-shadow: 0 0 0 3px rgba(166,25,46,0.15);
-        }
-        .form-group textarea { resize: vertical; min-height: 80px; }
-        .help-text { font-size: 0.75rem; color: var(--text-muted); margin-top: 0.25rem; font-style: italic; }
-        /* Unit cards */
-        .units-section { margin-top: 1.5rem; }
-        .units-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; }
-        .units-header h4 { font-size: 0.95rem; font-weight: 600; color: var(--text-primary); }
-        .unit-cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1rem; }
-        .unit-card {
-            background: var(--bg-primary); border: 1.5px solid var(--border-color);
-            border-radius: var(--border-radius); padding: 1rem; position: relative;
-            transition: border-color var(--transition);
-        }
-        .unit-card:hover { border-color: var(--mq-crimson); }
-        .unit-card-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 0.75rem; }
-        .unit-card-code { font-size: 0.9rem; font-weight: 600; color: var(--mq-crimson); }
-        .unit-card-level {
-            font-size: 0.65rem; font-weight: 500; padding: 0.2rem 0.5rem;
-            border-radius: 10px; background: var(--border-color); color: var(--text-secondary);
-        }
-        .unit-card-name { font-size: 0.8rem; color: var(--text-secondary); margin-bottom: 0.5rem; }
-        .unit-card-ulos { font-size: 0.7rem; color: var(--text-muted); }
-        .unit-card-actions { display: flex; gap: 0.5rem; margin-top: 0.75rem; }
-        .unit-card-actions button {
-            font-size: 0.7rem; padding: 0.25rem 0.5rem; border: 1px solid var(--border-color);
-            border-radius: 4px; background: var(--bg-secondary); color: var(--text-secondary);
-            cursor: pointer; font-family: var(--font-family); transition: all var(--transition);
-        }
-        .unit-card-actions button:hover { border-color: var(--mq-crimson); color: var(--mq-crimson); }
-        .unit-card-actions button.delete:hover { border-color: var(--ipa-gap); color: var(--ipa-gap); }
-        /* Add unit form */
-        .add-unit-form {
-            background: var(--bg-tertiary); border: 1.5px dashed var(--border-color);
-            border-radius: var(--border-radius); padding: 1.25rem; margin-top: 1rem;
-        }
-        .add-unit-form h5 { font-size: 0.85rem; font-weight: 600; color: var(--text-primary); margin-bottom: 0.75rem; }
-        .add-unit-grid { display: grid; grid-template-columns: 120px 1fr auto; gap: 0.75rem; align-items: end; }
-        .add-unit-grid .form-group { margin-bottom: 0; }
+        *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+        html{font-size:16px;scroll-behavior:smooth}
+        body{font-family:var(--font);color:var(--text-primary);background:var(--bg-primary);line-height:1.6;min-height:100vh;display:flex;flex-direction:column;transition:background 0.3s,color 0.3s}
+        /* Header */
+        .header{background:var(--bg-secondary);border-bottom:3px solid var(--mq-crimson);box-shadow:var(--shadow-sm);position:sticky;top:0;z-index:100}
+        .header-content{max-width:1400px;margin:0 auto;padding:1rem 2rem;display:flex;align-items:center;justify-content:space-between;gap:1rem}
+        .logo-area{display:flex;align-items:center;gap:0.75rem}
+        .logo-mark{width:44px;height:44px;background:var(--mq-crimson);color:#fff;border-radius:var(--radius);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:0.75rem}
+        .logo-text h1{font-size:1.2rem;font-weight:600;color:var(--text-primary);line-height:1.2}
+        .logo-text p{font-size:0.8rem;color:var(--text-muted)}
+        .header-nav{display:flex;gap:1.5rem;align-items:center}
+        .header-nav a{font-size:0.85rem;color:var(--text-secondary);text-decoration:none;font-weight:500}
+        .header-nav a:hover{color:var(--mq-crimson)}
+        .theme-toggle{width:36px;height:36px;border:1.5px solid var(--border-color);border-radius:var(--radius);background:var(--bg-secondary);color:var(--text-secondary);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:1.1rem}
+        .theme-toggle:hover{border-color:var(--mq-crimson);color:var(--mq-crimson)}
+        /* Main */
+        .main{max-width:1400px;margin:0 auto;padding:2rem;flex:1;width:100%}
+        /* Steps */
+        .step{background:var(--bg-secondary);border-radius:var(--radius-lg);padding:1.5rem 2rem;margin-bottom:1.5rem;box-shadow:var(--shadow-sm)}
+        .step-header{display:flex;align-items:center;gap:0.75rem;margin-bottom:1.25rem;padding-bottom:0.75rem;border-bottom:1px solid var(--border-color)}
+        .step-num{width:32px;height:32px;background:var(--mq-crimson);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:0.85rem;flex-shrink:0}
+        .step-title{font-size:1rem;font-weight:600;color:var(--text-primary)}
+        .step-desc{font-size:0.8rem;color:var(--text-muted);margin-left:auto}
+        /* Form */
+        .form-row{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-bottom:1rem}
+        .form-group{margin-bottom:1rem}
+        .form-group:last-child{margin-bottom:0}
+        .form-group label{display:block;font-size:0.85rem;font-weight:500;margin-bottom:0.375rem}
+        .form-group textarea,.form-group input,.form-group select{width:100%;padding:0.625rem 0.875rem;border:1.5px solid var(--border-color);border-radius:var(--radius);font-family:var(--font);font-size:0.85rem;color:var(--text-primary);background:var(--bg-secondary);transition:border-color var(--transition)}
+        .form-group textarea:focus,.form-group input:focus,.form-group select:focus{outline:none;border-color:var(--mq-crimson);box-shadow:0 0 0 3px rgba(166,25,46,0.15)}
+        .form-group textarea{resize:vertical;min-height:70px}
+        .help-text{font-size:0.75rem;color:var(--text-muted);margin-top:0.25rem;font-style:italic}
+        /* Unit list */
+        .unit-list{border:1.5px solid var(--border-color);border-radius:var(--radius);overflow:hidden}
+        .unit-list-header{display:grid;grid-template-columns:100px 1fr 2fr 40px;gap:0.5rem;padding:0.5rem 0.75rem;background:var(--mq-crimson);color:#fff;font-size:0.7rem;font-weight:600;text-transform:uppercase;letter-spacing:0.5px}
+        .unit-row{display:grid;grid-template-columns:100px 1fr 2fr 40px;gap:0.5rem;padding:0.5rem 0.75rem;border-bottom:1px solid var(--border-color);align-items:center;font-size:0.8rem;transition:background var(--transition)}
+        .unit-row:last-child{border-bottom:none}
+        .unit-row:hover{background:var(--bg-primary)}
+        .unit-row input{padding:0.375rem 0.5rem;font-size:0.8rem;border:1px solid transparent;border-radius:4px;background:transparent;color:var(--text-primary);font-family:var(--font);width:100%}
+        .unit-row input:hover{border-color:var(--border-color)}
+        .unit-row input:focus{border-color:var(--mq-crimson);background:var(--bg-secondary);outline:none}
+        .unit-row .code-input{font-weight:600;color:var(--mq-crimson)}
+        .unit-row .delete-btn{width:28px;height:28px;border:none;background:transparent;color:var(--text-muted);cursor:pointer;border-radius:4px;font-size:1rem;display:flex;align-items:center;justify-content:center}
+        .unit-row .delete-btn:hover{background:var(--ipa-gap-bg);color:var(--ipa-gap)}
+        .unit-add-row{display:grid;grid-template-columns:100px 1fr 2fr 40px;gap:0.5rem;padding:0.5rem 0.75rem;background:var(--bg-tertiary);align-items:center}
+        .unit-add-row input{padding:0.375rem 0.5rem;font-size:0.8rem;border:1px solid var(--border-color);border-radius:4px;background:var(--bg-secondary);color:var(--text-primary);font-family:var(--font);width:100%}
+        .unit-add-row .add-btn{width:28px;height:28px;border:1.5px solid var(--mq-crimson);background:transparent;color:var(--mq-crimson);cursor:pointer;border-radius:4px;font-size:1.2rem;font-weight:700;display:flex;align-items:center;justify-content:center}
+        .unit-add-row .add-btn:hover{background:var(--mq-crimson);color:#fff}
+        .unit-level-badge{font-size:0.65rem;font-weight:500;padding:0.15rem 0.4rem;border-radius:8px;background:var(--border-color);color:var(--text-secondary);white-space:nowrap}
         /* Buttons */
-        .btn-primary {
-            padding: 0.75rem 1.5rem; background: var(--mq-crimson); color: #fff;
-            border: none; border-radius: var(--border-radius); font-family: var(--font-family);
-            font-size: 0.9rem; font-weight: 600; cursor: pointer; transition: all var(--transition);
-            display: inline-flex; align-items: center; gap: 0.5rem;
-        }
-        .btn-primary:hover { background: var(--mq-crimson-dark); transform: translateY(-1px); }
-        .btn-primary:disabled { background: var(--text-muted); cursor: not-allowed; transform: none; }
-        .btn-secondary {
-            padding: 0.625rem 1.25rem; background: transparent; color: var(--text-secondary);
-            border: 1.5px solid var(--border-color); border-radius: var(--border-radius);
-            font-family: var(--font-family); font-size: 0.85rem; font-weight: 500;
-            cursor: pointer; transition: all var(--transition);
-            display: inline-flex; align-items: center; gap: 0.5rem;
-        }
-        .btn-secondary:hover { border-color: var(--mq-crimson); color: var(--mq-crimson); }
-        .btn-sm {
-            padding: 0.5rem 1rem; font-size: 0.8rem; font-weight: 500;
-            border: 1.5px solid var(--border-color); border-radius: var(--border-radius);
-            background: var(--bg-secondary); color: var(--text-secondary);
-            cursor: pointer; font-family: var(--font-family); transition: all var(--transition);
-            display: inline-flex; align-items: center; gap: 0.375rem;
-        }
-        .btn-sm:hover { border-color: var(--mq-crimson); color: var(--mq-crimson); }
-        /* Views */
-        .views-section { margin-top: 2rem; }
-        .view-tabs {
-            display: flex; gap: 0.5rem; margin-bottom: 1.5rem;
-            background: var(--bg-secondary); padding: 0.375rem;
-            border-radius: var(--border-radius-lg); box-shadow: var(--shadow-sm); width: fit-content;
-        }
-        .view-tab {
-            padding: 0.625rem 1.25rem; border: none; background: transparent;
-            border-radius: var(--border-radius); font-family: var(--font-family);
-            font-size: 0.85rem; font-weight: 500; color: var(--text-muted);
-            cursor: pointer; transition: all var(--transition);
-        }
-        .view-tab:hover { color: var(--text-primary); background: var(--bg-primary); }
-        .view-tab.active { background: var(--mq-crimson); color: #fff; }
-        .view-panel { display: none; }
-        .view-panel.active { display: block; }
+        .btn-primary{padding:0.75rem 1.5rem;background:var(--mq-crimson);color:#fff;border:none;border-radius:var(--radius);font-family:var(--font);font-size:0.9rem;font-weight:600;cursor:pointer;transition:all var(--transition);display:inline-flex;align-items:center;gap:0.5rem}
+        .btn-primary:hover{background:var(--mq-crimson-dark);transform:translateY(-1px)}
+        .btn-primary:disabled{background:var(--text-muted);cursor:not-allowed;transform:none}
+        .btn-secondary{padding:0.625rem 1.25rem;background:transparent;color:var(--text-secondary);border:1.5px solid var(--border-color);border-radius:var(--radius);font-family:var(--font);font-size:0.85rem;font-weight:500;cursor:pointer;transition:all var(--transition);display:inline-flex;align-items:center;gap:0.5rem}
+        .btn-secondary:hover{border-color:var(--mq-crimson);color:var(--mq-crimson)}
+        .btn-row{display:flex;gap:1rem;margin-top:1.25rem;flex-wrap:wrap;align-items:center}
         /* IPA Matrix */
-        .ipa-matrix-wrap {
-            background: var(--bg-secondary); border-radius: var(--border-radius-lg);
-            padding: 1.5rem; box-shadow: var(--shadow-sm); overflow-x: auto;
-        }
-        .ipa-matrix-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; }
-        .ipa-matrix-header h3 { font-size: 1rem; font-weight: 600; color: var(--text-primary); }
-        .ipa-matrix {
-            width: 100%; border-collapse: collapse; font-size: 0.8rem;
-        }
-        .ipa-matrix th {
-            padding: 0.625rem 0.5rem; text-align: center; font-weight: 600;
-            font-size: 0.7rem; border: 1px solid var(--border-color);
-            background: var(--bg-primary); color: var(--text-secondary);
-        }
-        .ipa-matrix th.level-header {
-            background: var(--mq-crimson); color: #fff; font-size: 0.65rem;
-            letter-spacing: 0.5px; text-transform: uppercase;
-        }
-        .ipa-matrix th:first-child { text-align: left; min-width: 200px; background: var(--bg-primary); }
-        .ipa-matrix td {
-            padding: 0.5rem; text-align: center; border: 1px solid var(--border-color);
-            vertical-align: middle; min-width: 60px;
-        }
-        .ipa-matrix td:first-child {
-            text-align: left; font-weight: 500; font-size: 0.75rem;
-            color: var(--text-primary); min-width: 200px; max-width: 280px;
-        }
-        .ipa-matrix tr:nth-child(even) td { background: var(--bg-primary); }
-        .ipa-cell {
-            width: 32px; height: 32px; border-radius: 50%; display: inline-flex;
-            align-items: center; justify-content: center; font-weight: 700; font-size: 0.7rem;
-            cursor: pointer; transition: transform 0.15s ease;
-        }
-        .ipa-cell:hover { transform: scale(1.2); }
-        .ipa-cell-i { background: var(--ipa-intro-bg); color: var(--ipa-intro); border: 2px solid var(--ipa-intro-border); }
-        .ipa-cell-p { background: var(--ipa-practice-bg); color: var(--ipa-practice); border: 2px solid var(--ipa-practice-border); }
-        .ipa-cell-a { background: var(--ipa-assured-bg); color: var(--ipa-assured); border: 2px solid var(--ipa-assured-border); }
-        /* Gap warnings */
-        .gap-panel {
-            margin-top: 1.5rem; background: var(--ipa-gap-bg); border: 1px solid var(--ipa-gap);
-            border-radius: var(--border-radius); padding: 1rem 1.25rem;
-        }
-        .gap-panel h4 { font-size: 0.9rem; font-weight: 600; color: var(--ipa-gap); margin-bottom: 0.75rem; }
-        .gap-item { font-size: 0.8rem; color: var(--text-primary); margin-bottom: 0.5rem; padding-left: 1rem; position: relative; }
-        .gap-item::before { content: '⚠'; position: absolute; left: 0; }
-        .no-gaps { background: var(--ipa-assured-bg); border-color: var(--ipa-assured-border); }
-        .no-gaps h4 { color: var(--ipa-assured); }
-        /* Bloom's view */
-        .blooms-chart {
-            background: var(--bg-secondary); border-radius: var(--border-radius-lg);
-            padding: 1.5rem; box-shadow: var(--shadow-sm);
-        }
-        .blooms-row { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.75rem; padding: 0.5rem 0; border-bottom: 1px solid var(--border-color); }
-        .blooms-clo-label { min-width: 60px; font-size: 0.8rem; font-weight: 600; color: var(--mq-crimson); }
-        .blooms-progression { display: flex; gap: 0.375rem; flex-wrap: wrap; flex: 1; }
-        .blooms-unit-tag {
-            padding: 0.25rem 0.625rem; border-radius: 12px; font-size: 0.7rem; font-weight: 500;
-            display: flex; align-items: center; gap: 0.25rem;
-        }
-        .blooms-level-1 { background: #e3f2fd; color: #1565c0; }
-        .blooms-level-2 { background: #e8f5e9; color: #2e7d32; }
-        .blooms-level-3 { background: #fff3e0; color: #e65100; }
-        .blooms-level-4 { background: #fce4ec; color: #c62828; }
-        .blooms-level-5 { background: #f3e5f5; color: #6a1b9a; }
-        .blooms-level-6 { background: #ede7f6; color: #4527a0; }
-        [data-theme="dark"] .blooms-level-1 { background: #1a2a4a; color: #64b5f6; }
-        [data-theme="dark"] .blooms-level-2 { background: #1b3d1b; color: #81c784; }
-        [data-theme="dark"] .blooms-level-3 { background: #3d2e00; color: #ffb74d; }
-        [data-theme="dark"] .blooms-level-4 { background: #3d1b1b; color: #ef9a9a; }
-        [data-theme="dark"] .blooms-level-5 { background: #2a1a3d; color: #ce93d8; }
-        [data-theme="dark"] .blooms-level-6 { background: #1a1a3d; color: #b39ddb; }
-        /* Assessment view */
-        .assessment-map {
-            background: var(--bg-secondary); border-radius: var(--border-radius-lg);
-            padding: 1.5rem; box-shadow: var(--shadow-sm);
-        }
-        .assessment-row { margin-bottom: 1rem; padding-bottom: 1rem; border-bottom: 1px solid var(--border-color); }
-        .assessment-row:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
-        .assessment-clo { font-size: 0.85rem; font-weight: 600; color: var(--mq-crimson); margin-bottom: 0.5rem; }
-        .assessment-units { display: flex; gap: 0.5rem; flex-wrap: wrap; }
-        .assessment-unit-tag {
-            padding: 0.375rem 0.75rem; border-radius: var(--border-radius);
-            font-size: 0.75rem; border: 1px solid var(--border-color); background: var(--bg-primary);
-        }
-        .assessment-unit-tag.assured { border-color: var(--ipa-assured-border); background: var(--ipa-assured-bg); color: var(--ipa-assured); }
-        .assessment-unit-tag.no-assessment { border-color: var(--ipa-gap); background: var(--ipa-gap-bg); color: var(--ipa-gap); }
-        /* Empty state */
-        .empty-state {
-            text-align: center; padding: 3rem 2rem; color: var(--text-muted);
-        }
-        .empty-state p { font-size: 0.9rem; margin-bottom: 0.5rem; }
-        .empty-state .hint { font-size: 0.8rem; }
+        .matrix-section{margin-top:2rem;background:var(--bg-secondary);border-radius:var(--radius-lg);box-shadow:var(--shadow-md);overflow:hidden}
+        .matrix-header{display:flex;align-items:center;justify-content:space-between;padding:1.25rem 1.5rem;background:linear-gradient(135deg,var(--mq-crimson),var(--mq-crimson-dark))}
+        .matrix-title{font-size:1.1rem;font-weight:600;color:#fff}
+        .matrix-actions{display:flex;gap:0.5rem}
+        .matrix-actions button{padding:0.375rem 0.75rem;font-size:0.75rem;font-weight:500;border:1.5px solid rgba(255,255,255,0.3);background:rgba(255,255,255,0.1);color:#fff;border-radius:var(--radius);cursor:pointer;font-family:var(--font);transition:all var(--transition)}
+        .matrix-actions button:hover{background:rgba(255,255,255,0.2);border-color:rgba(255,255,255,0.6)}
+        .matrix-body{padding:1.5rem;overflow-x:auto}
+        .ipa-legend{display:flex;gap:1.5rem;margin-bottom:1.25rem;flex-wrap:wrap;font-size:0.8rem;align-items:center}
+        .ipa-legend-item{display:flex;align-items:center;gap:0.4rem}
+        .ipa-dot{width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:0.65rem}
+        .ipa-dot-i{background:var(--ipa-i-bg);color:var(--ipa-i);border:2px solid var(--ipa-i-border)}
+        .ipa-dot-p{background:var(--ipa-p-bg);color:var(--ipa-p);border:2px solid var(--ipa-p-border)}
+        .ipa-dot-a{background:var(--ipa-a-bg);color:var(--ipa-a);border:2px solid var(--ipa-a-border)}
+        .ipa-dot-gap{background:var(--ipa-gap-bg);color:var(--ipa-gap);border:2px solid var(--ipa-gap)}
+        /* Matrix table */
+        .ipa-table{width:100%;border-collapse:collapse;font-size:0.8rem}
+        .ipa-table th{padding:0.5rem;text-align:center;font-weight:600;font-size:0.7rem;border:1px solid var(--border-color);background:var(--bg-primary);color:var(--text-secondary)}
+        .ipa-table th.level-group{background:var(--mq-crimson);color:#fff;font-size:0.65rem;letter-spacing:0.5px;text-transform:uppercase}
+        .ipa-table th.clo-col{text-align:left;min-width:220px;max-width:300px}
+        .ipa-table th.unit-col{min-width:70px;writing-mode:horizontal-tb;font-size:0.65rem;padding:0.5rem 0.25rem}
+        .ipa-table td{padding:0.4rem;text-align:center;border:1px solid var(--border-color);vertical-align:middle}
+        .ipa-table td.clo-cell{text-align:left;font-size:0.75rem;padding:0.5rem 0.75rem}
+        .ipa-table td.clo-cell strong{color:var(--mq-crimson)}
+        .ipa-table tr:nth-child(even) td{background:rgba(0,0,0,0.02)}
+        [data-theme="dark"] .ipa-table tr:nth-child(even) td{background:rgba(255,255,255,0.02)}
+        .ipa-cell{width:30px;height:30px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-weight:700;font-size:0.65rem;cursor:pointer;transition:transform 0.15s,box-shadow 0.15s;user-select:none}
+        .ipa-cell:hover{transform:scale(1.25);box-shadow:0 2px 8px var(--shadow-color)}
+        .ipa-cell-i{background:var(--ipa-i-bg);color:var(--ipa-i);border:2px solid var(--ipa-i-border)}
+        .ipa-cell-p{background:var(--ipa-p-bg);color:var(--ipa-p);border:2px solid var(--ipa-p-border)}
+        .ipa-cell-a{background:var(--ipa-a-bg);color:var(--ipa-a);border:2px solid var(--ipa-a-border)}
+        .ipa-cell-empty{border:1.5px dashed var(--border-color);color:var(--text-muted);font-size:0.6rem}
+        .ipa-cell-empty:hover{border-color:var(--mq-crimson);color:var(--mq-crimson)}
+        /* Status column */
+        .status-ok{color:var(--ipa-a);font-weight:600;font-size:0.75rem}
+        .status-gap{color:var(--ipa-gap);font-weight:600;font-size:0.75rem}
+        /* Gap summary */
+        .gap-summary{margin-top:1.5rem;padding:1.25rem;border-radius:var(--radius);border:1.5px solid var(--border-color)}
+        .gap-summary.has-gaps{border-color:var(--ipa-gap);background:var(--ipa-gap-bg)}
+        .gap-summary.no-gaps{border-color:var(--ipa-a-border);background:var(--ipa-a-bg)}
+        .gap-summary h4{font-size:0.9rem;font-weight:600;margin-bottom:0.75rem}
+        .gap-summary.has-gaps h4{color:var(--ipa-gap)}
+        .gap-summary.no-gaps h4{color:var(--ipa-a)}
+        .gap-item{font-size:0.8rem;margin-bottom:0.4rem;padding-left:1.25rem;position:relative;color:var(--text-primary)}
+        .gap-item::before{content:'⚠';position:absolute;left:0}
+        .gap-item.critical::before{content:'✗'}
+        .gap-item.critical{font-weight:500}
+        /* Loading */
+        .loading-overlay{text-align:center;padding:2rem}
+        .spinner{width:36px;height:36px;border:3px solid var(--border-color);border-top-color:var(--mq-crimson);border-radius:50%;margin:0 auto 1rem;animation:spin 0.8s linear infinite}
+        @keyframes spin{to{transform:rotate(360deg)}}
+        .loading-overlay p{font-size:0.85rem;color:var(--text-muted)}
         /* Footer */
-        .footer { background: #1a1a2e; color: #c0c0c0; padding: 1.5rem 2rem; margin-top: auto; }
-        .footer-content { max-width: 1400px; margin: 0 auto; text-align: center; }
-        .footer-content p { font-size: 0.85rem; margin-bottom: 0.25rem; }
-        .footer-sub { font-size: 0.75rem; color: #888; }
-        .footer a { color: #c0c0c0; text-decoration: none; }
-        .footer a:hover { color: #fff; }
+        .footer{background:#1a1a2e;color:#c0c0c0;padding:1.5rem 2rem;margin-top:auto}
+        .footer-content{max-width:1400px;margin:0 auto;text-align:center}
+        .footer-content p{font-size:0.85rem;margin-bottom:0.25rem}
+        .footer-sub{font-size:0.75rem;color:#888}
+        .footer a{color:#c0c0c0;text-decoration:none}
+        .footer a:hover{color:#fff}
         /* Print */
-        @media print {
-            .header, .footer, .input-section, .view-tabs, .btn-primary, .btn-secondary,
-            .btn-sm, .theme-toggle, .unit-card-actions, .add-unit-form { display: none !important; }
-            body { background: #fff !important; color: #000 !important; }
-            .main-content { padding: 0 !important; max-width: none !important; }
-            .ipa-matrix-wrap, .blooms-chart, .assessment-map { box-shadow: none !important; border: 1px solid #ccc !important; }
-            .ipa-matrix th.level-header { background: #a6192e !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-            .ipa-cell { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-            @page { margin: 1.5cm; size: landscape; }
+        @media print{
+            .header,.footer,.step,.btn-primary,.btn-secondary,.btn-row,.matrix-actions,.ipa-legend,.theme-toggle{display:none !important}
+            body{background:#fff !important;color:#000 !important}
+            .main{padding:0 !important;max-width:none !important}
+            .matrix-section{box-shadow:none !important;margin-top:0 !important}
+            .matrix-header{background:#fff !important;border-bottom:2px solid #a6192e !important;padding:0.5rem 0 !important}
+            .matrix-title{color:#a6192e !important}
+            .matrix-body{padding:0.5rem 0 !important}
+            .ipa-cell,.ipa-dot{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+            .ipa-table th.level-group{background:#a6192e !important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+            @page{margin:1.5cm;size:landscape}
         }
-        /* Responsive */
-        @media (max-width: 900px) {
-            .input-grid { grid-template-columns: 1fr; }
-            .header-content { flex-direction: column; align-items: flex-start; }
-            .add-unit-grid { grid-template-columns: 1fr; }
-            .view-tabs { width: 100%; flex-wrap: wrap; }
-            .view-tab { flex: 1; text-align: center; font-size: 0.75rem; padding: 0.5rem 0.75rem; }
+        @media(max-width:900px){
+            .form-row{grid-template-columns:1fr}
+            .header-content{flex-direction:column;align-items:flex-start}
+            .unit-list-header,.unit-row,.unit-add-row{grid-template-columns:80px 1fr 40px}
+            .unit-list-header span:nth-child(3),.unit-row input:nth-child(3){display:none}
         }
     </style>
 </head>
@@ -362,125 +202,115 @@
                     <p>Faculty of Arts | Macquarie University</p>
                 </div>
             </div>
-            <div class="header-actions">
-                <nav class="header-nav">
-                    <a href="index.html">LO Generator</a>
-                    <a href="https://lt.arts.mq.edu.au/curriculum-design/assessment/ipa-implementation/" target="_blank" rel="noopener">IPA Framework</a>
-                    <a href="https://lt.arts.mq.edu.au/curriculum-design/constructive-alignment/" target="_blank" rel="noopener">Constructive Alignment</a>
-                </nav>
+            <nav class="header-nav">
+                <a href="index.html">LO Generator</a>
+                <a href="https://lt.arts.mq.edu.au/curriculum-design/assessment/ipa-implementation/" target="_blank" rel="noopener">IPA Framework</a>
                 <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">&#9790;</button>
-            </div>
+            </nav>
         </div>
     </header>
 
-    <main class="main-content">
-        <!-- Intro -->
-        <div class="intro-banner">
-            <h2>Map your curriculum's IPA progression</h2>
-            <p>Visualise where Course Learning Outcomes are <strong>Introduced</strong>, <strong>Practised</strong>, and <strong>Assured</strong> across your course or major — ensuring TEQSA Standard 1.4.4 compliance.</p>
-            <div class="ipa-legend">
-                <div class="ipa-legend-item"><span class="ipa-badge ipa-badge-i">I</span> Introduced (foundational knowledge, 1000-level)</div>
-                <div class="ipa-legend-item"><span class="ipa-badge ipa-badge-p">P</span> Practised (developing skills, 2000-level)</div>
-                <div class="ipa-legend-item"><span class="ipa-badge ipa-badge-a">A</span> Assured (demonstrated mastery, 3000-level)</div>
-                <div class="ipa-legend-item"><span class="ipa-badge ipa-badge-gap">!</span> Gap (missing IPA stage)</div>
+    <main class="main">
+        <!-- Step 1: CLOs -->
+        <div class="step" id="step-clos">
+            <div class="step-header">
+                <span class="step-num">1</span>
+                <span class="step-title">Course Learning Outcomes</span>
+                <span class="step-desc">Paste your CLOs — one per line</span>
             </div>
-        </div>
-
-        <!-- Input -->
-        <div class="input-section" id="input-section">
-            <h3>1. Enter your Course/Major details</h3>
-            <div class="input-grid">
+            <div class="form-row">
                 <div>
                     <div class="form-group">
                         <label for="course-name">Course / Major Name</label>
                         <input type="text" id="course-name" placeholder="e.g., Bachelor of Media and Communications">
                     </div>
                     <div class="form-group">
-                        <label for="clo-input">Course Learning Outcomes (CLOs)</label>
-                        <textarea id="clo-input" rows="8" placeholder="Paste your CLOs here, one per line (numbered or not)...&#10;&#10;1. Analyse media texts...&#10;2. Produce creative content...&#10;3. Evaluate ethical responsibilities..."></textarea>
-                        <span class="help-text">Each line becomes one CLO. Numbering is optional.</span>
+                        <label for="discipline">Discipline</label>
+                        <input type="text" id="discipline" placeholder="e.g., Media Studies, History, Philosophy">
                     </div>
-                    <button class="btn-primary" id="load-clos-btn">Load CLOs</button>
                 </div>
                 <div>
-                    <div class="units-section">
-                        <div class="units-header">
-                            <h4>Units in this course/major (<span id="unit-count">0</span>)</h4>
-                            <button class="btn-sm" id="paste-units-btn">Paste from spreadsheet</button>
-                        </div>
-                        <div class="unit-cards" id="unit-cards"></div>
-                        <div class="add-unit-form" id="add-unit-form">
-                            <h5>Add a unit</h5>
-                            <div class="add-unit-grid">
-                                <div class="form-group">
-                                    <label for="new-unit-code">Code</label>
-                                    <input type="text" id="new-unit-code" placeholder="MECO1001">
-                                </div>
-                                <div class="form-group">
-                                    <label for="new-unit-name">Unit Name</label>
-                                    <input type="text" id="new-unit-name" placeholder="Introduction to Media">
-                                </div>
-                                <button class="btn-secondary" id="add-unit-btn">+ Add</button>
-                            </div>
-                            <div class="form-group" style="margin-top:0.75rem;">
-                                <label for="new-unit-ulos">ULOs (optional, one per line)</label>
-                                <textarea id="new-unit-ulos" rows="3" placeholder="1. Identify key media concepts...&#10;2. Describe the history of..."></textarea>
-                            </div>
-                        </div>
+                    <div class="form-group">
+                        <label for="clo-input">CLOs (one per line)</label>
+                        <textarea id="clo-input" rows="6" placeholder="1. Analyse and evaluate media theories...&#10;2. Produce and deploy multimodal media content...&#10;3. Examine and articulate ethical impacts...&#10;4. Implement and apply professional communication..."></textarea>
+                        <span class="help-text">Numbering is optional. Each line = one CLO.</span>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- Paste units modal -->
-        <div id="paste-modal" style="display:none; position:fixed; top:0; left:0; right:0; bottom:0; background:rgba(0,0,0,0.5); z-index:200; display:none; align-items:center; justify-content:center;">
-            <div style="background:var(--bg-secondary); border-radius:var(--border-radius-lg); padding:2rem; max-width:600px; width:90%; max-height:80vh; overflow-y:auto;">
-                <h3 style="font-size:1rem; margin-bottom:1rem; color:var(--mq-crimson);">Paste Units from Spreadsheet</h3>
-                <p style="font-size:0.8rem; color:var(--text-muted); margin-bottom:1rem;">Paste tab-separated data: Unit Code, Unit Name, ULOs (semicolon-separated). One unit per line.</p>
-                <textarea id="paste-units-data" rows="8" style="width:100%; padding:0.75rem; border:1.5px solid var(--border-color); border-radius:var(--border-radius); font-family:var(--font-family); font-size:0.8rem; color:var(--text-primary); background:var(--bg-secondary);" placeholder="MECO1001&#9;Introduction to Media&#9;Identify key concepts;Describe media history&#10;MECO2001&#9;Media Analysis&#9;Analyse media texts;Compare theoretical frameworks"></textarea>
-                <div style="display:flex; gap:0.75rem; margin-top:1rem;">
-                    <button class="btn-primary" id="paste-units-confirm">Import Units</button>
-                    <button class="btn-secondary" id="paste-units-cancel">Cancel</button>
+        <!-- Step 2: Units -->
+        <div class="step" id="step-units">
+            <div class="step-header">
+                <span class="step-num">2</span>
+                <span class="step-title">Units</span>
+                <span class="step-desc">Add units in this course/major — edit inline anytime</span>
+            </div>
+            <div class="form-group">
+                <div class="unit-list" id="unit-list">
+                    <div class="unit-list-header">
+                        <span>Code</span>
+                        <span>Unit Name</span>
+                        <span>Description / ULOs (brief)</span>
+                        <span></span>
+                    </div>
+                    <div id="unit-rows"></div>
+                    <div class="unit-add-row">
+                        <input type="text" id="add-code" placeholder="MECO1001">
+                        <input type="text" id="add-name" placeholder="Introduction to Media">
+                        <input type="text" id="add-desc" placeholder="Key concepts, media history, foundational analysis...">
+                        <button class="add-btn" id="add-unit-btn" title="Add unit">+</button>
+                    </div>
                 </div>
+                <span class="help-text">The unit level is detected from the code (e.g., MECO1001 = 1000-level). Add a brief description or key ULOs to help the AI map IPA accurately.</span>
+            </div>
+            <div class="btn-row">
+                <button class="btn-secondary" id="paste-bulk-btn">Paste multiple units</button>
+                <span style="font-size:0.75rem;color:var(--text-muted);">Tab-separated: Code, Name, Description</span>
             </div>
         </div>
 
-        <!-- Views -->
-        <div class="views-section" id="views-section" style="display:none;">
-            <div class="view-tabs">
-                <button class="view-tab active" data-view="ipa-matrix">IPA Matrix</button>
-                <button class="view-tab" data-view="blooms">Bloom's Escalation</button>
-                <button class="view-tab" data-view="assessment">Assessment Map</button>
+        <!-- Step 3: Generate -->
+        <div class="step" id="step-generate">
+            <div class="step-header">
+                <span class="step-num">3</span>
+                <span class="step-title">Generate IPA Mapping</span>
+                <span class="step-desc">AI analyses your curriculum and maps I, P, A for each CLO × unit</span>
             </div>
-
-            <div class="view-panel active" id="view-ipa-matrix">
-                <div class="ipa-matrix-wrap">
-                    <div class="ipa-matrix-header">
-                        <h3 id="matrix-title">IPA Matrix</h3>
-                        <div style="display:flex; gap:0.5rem;">
-                            <button class="btn-sm" id="print-matrix-btn">&#128424; Print</button>
-                            <button class="btn-sm" id="export-csv-btn">&#128196; Export CSV</button>
-                        </div>
-                    </div>
-                    <div id="ipa-matrix-content"></div>
-                </div>
-                <div id="gap-panel"></div>
+            <p style="font-size:0.85rem;color:var(--text-secondary);margin-bottom:1rem;">
+                The AI will determine where each CLO is Introduced, Practised, and Assured based on the unit descriptions and level. IPA stages are <strong>not</strong> locked to unit levels — a 1000-level unit can Practise, and a 2000-level can Assure. The key requirement is: <strong>all CLOs must be Assured by the end of 3000-level.</strong>
+            </p>
+            <div class="btn-row">
+                <button class="btn-primary" id="generate-ipa-btn">Generate IPA Matrix</button>
+                <span id="generate-status" style="font-size:0.8rem;color:var(--text-muted);"></span>
             </div>
+        </div>
 
-            <div class="view-panel" id="view-blooms">
-                <div class="blooms-chart">
-                    <h3 style="font-size:1rem; font-weight:600; color:var(--text-primary); margin-bottom:1rem;">Bloom's Escalation by CLO</h3>
-                    <p style="font-size:0.8rem; color:var(--text-muted); margin-bottom:1.5rem;">Shows the Bloom's taxonomy level of ULOs mapped to each CLO, ordered by unit level. Expect progression from lower levels (Remember/Understand) to higher (Evaluate/Create).</p>
-                    <div id="blooms-content"></div>
+        <!-- Loading -->
+        <div class="loading-overlay" id="loading" style="display:none">
+            <div class="spinner"></div>
+            <p>Analysing your curriculum and generating IPA mapping...</p>
+        </div>
+
+        <!-- Matrix output -->
+        <div class="matrix-section" id="matrix-section" style="display:none">
+            <div class="matrix-header">
+                <span class="matrix-title" id="matrix-title">IPA Matrix</span>
+                <div class="matrix-actions">
+                    <button id="export-csv-btn">Export CSV</button>
+                    <button id="print-btn">Print / PDF</button>
                 </div>
             </div>
-
-            <div class="view-panel" id="view-assessment">
-                <div class="assessment-map">
-                    <h3 style="font-size:1rem; font-weight:600; color:var(--text-primary); margin-bottom:1rem;">Assessment Alignment by CLO</h3>
-                    <p style="font-size:0.8rem; color:var(--text-muted); margin-bottom:1.5rem;">Shows which units have assessments that assure each CLO. Flags CLOs that are marked as "Assured" but have no clear assessment.</p>
-                    <div id="assessment-content"></div>
+            <div class="matrix-body">
+                <div class="ipa-legend">
+                    <div class="ipa-legend-item"><span class="ipa-dot ipa-dot-i">I</span> Introduced</div>
+                    <div class="ipa-legend-item"><span class="ipa-dot ipa-dot-p">P</span> Practised</div>
+                    <div class="ipa-legend-item"><span class="ipa-dot ipa-dot-a">A</span> Assured</div>
+                    <div class="ipa-legend-item"><span class="ipa-dot ipa-dot-gap">!</span> Gap</div>
+                    <span style="margin-left:auto;font-size:0.75rem;color:var(--text-muted);">Click any cell to change its value</span>
                 </div>
+                <div id="matrix-content"></div>
+                <div id="gap-summary"></div>
             </div>
         </div>
     </main>
@@ -488,466 +318,350 @@
     <footer class="footer">
         <div class="footer-content">
             <p>IPA Curriculum Visualiser | Faculty of Arts | Macquarie University</p>
-            <p class="footer-sub">Based on the FoA IPA Framework (Introduced, Practised, Assured) | TEQSA Standard 1.4.4</p>
+            <p class="footer-sub">Based on the FoA IPA Framework | TEQSA Standard 1.4.4 compliance</p>
             <p class="footer-sub">For support: <a href="mailto:artslandt@mq.edu.au">artslandt@mq.edu.au</a></p>
         </div>
     </footer>
-<script>
+    <script>
+    const WORKER_URL = 'https://lo-generator-proxy.james-tracy.workers.dev';
+
+    const IPA_SYSTEM_PROMPT = `You are a curriculum design expert at Macquarie University's Faculty of Arts. Your task is to generate an IPA (Introduced, Practised, Assured) mapping for a course or major.
+
+## THE IPA FRAMEWORK
+The IPA Framework maps where Course Learning Outcomes (CLOs) are:
+- **Introduced (I):** Students are first exposed to concepts, foundational knowledge, comprehension, recall, initial exploration
+- **Practised (P):** Students actively engage with complex tasks, developing analytical, comparative, and evaluative skills through repeated practice
+- **Assured (A):** Students demonstrate mastery and independence — this is where CLO achievement is formally assessed
+
+## CRITICAL RULES
+1. IPA stages are NOT rigidly locked to unit levels. A 1000-level unit CAN practise. A 2000-level unit CAN assure.
+2. However, the logical flow should generally progress from I → P → A across the course.
+3. **ALL CLOs MUST be Assured (A) in at least one unit by the end of 3000-level.** This is the non-negotiable TEQSA compliance requirement.
+4. A CLO can appear as I in multiple units, P in multiple units, and A in multiple units.
+5. Not every CLO needs to appear in every unit. Only map where there is genuine alignment.
+6. Consider the unit description/ULOs to determine what is actually taught and assessed.
+
+## YOUR TASK
+Given the CLOs and units below, produce an IPA mapping. For each CLO × unit combination, assign I, P, A, or leave blank (no alignment).
+
+## OUTPUT FORMAT
+Respond ONLY with a JSON object in this exact format:
+{
+  "mapping": [
+    {"clo": 1, "unit": "CODE1001", "ipa": "I", "rationale": "brief reason"},
+    {"clo": 1, "unit": "CODE2001", "ipa": "P", "rationale": "brief reason"},
+    {"clo": 1, "unit": "CODE3001", "ipa": "A", "rationale": "brief reason"}
+  ],
+  "notes": "Any overall observations about gaps or strengths in the curriculum"
+}
+
+Only include entries where there IS alignment (I, P, or A). Do not include blank entries.
+Keep rationales to one short sentence each.`;
+
     document.addEventListener('DOMContentLoaded', () => {
-        // State
-        let clos = []; // [{num, text, verb}]
-        let units = []; // [{code, name, level, ulos:[{text,verb,bloomsLevel}], ipaMapping:{cloIndex:'I'|'P'|'A'}, assessments:[string]}]
-
-        // Bloom's verb detection
-        const BLOOMS_VERBS = {
-            1: ['define','describe','identify','label','list','name','outline','recall','recognise','recognize','state','match','select'],
-            2: ['classify','compare','contrast','discuss','distinguish','explain','illustrate','interpret','summarise','summarize','paraphrase','infer'],
-            3: ['apply','calculate','carry out','construct','implement','modify','solve','use','demonstrate','execute','operate'],
-            4: ['analyse','analyze','categorise','categorize','deconstruct','differentiate','examine','investigate','research','organise','organize','attribute'],
-            5: ['appraise','argue','assess','critique','defend','evaluate','justify','recommend','review','judge','monitor'],
-            6: ['compose','construct','create','design','develop','formulate','generate','hypothesise','hypothesize','produce','synthesise','synthesize','plan','invent']
-        };
-
-        function detectBloomsLevel(text) {
-            const lower = text.toLowerCase().trim();
-            for (let level = 6; level >= 1; level--) {
-                for (let verb of BLOOMS_VERBS[level]) {
-                    if (lower.startsWith(verb)) return level;
-                }
-            }
-            // Check first few words
-            const firstWords = lower.split(/\s+/).slice(0, 3).join(' ');
-            for (let level = 6; level >= 1; level--) {
-                for (let verb of BLOOMS_VERBS[level]) {
-                    if (firstWords.includes(verb)) return level;
-                }
-            }
-            return 0; // unknown
-        }
-
-        function getBloomsLabel(level) {
-            const labels = { 1:'Remember', 2:'Understand', 3:'Apply', 4:'Analyse', 5:'Evaluate', 6:'Create' };
-            return labels[level] || 'Unknown';
-        }
-
-        function getUnitLevel(code) {
-            const match = code.match(/(\d)\d{3}/);
-            if (match) return parseInt(match[1]) * 1000;
-            return 0;
-        }
-
-        function getFirstVerb(text) {
-            const words = text.trim().split(/[\s,]+/);
-            return words[0] || '';
-        }
-
-        // Infer IPA based on unit level relative to CLO
-        function inferIPA(unitLevel) {
-            if (unitLevel <= 1000) return 'I';
-            if (unitLevel <= 2000) return 'P';
-            return 'A';
-        }
+        let clos = [];
+        let units = []; // [{code, name, desc, level}]
+        let ipaData = {}; // {`${cloIdx}-${unitIdx}`: 'I'|'P'|'A'}
 
         // Dark mode
         const themeToggle = document.getElementById('theme-toggle');
-        function setTheme(theme) {
-            document.documentElement.setAttribute('data-theme', theme);
-            localStorage.setItem('ipa-vis-theme', theme);
-            themeToggle.innerHTML = theme === 'dark' ? '&#9788;' : '&#9790;';
-        }
-        setTheme(localStorage.getItem('ipa-vis-theme') || localStorage.getItem('lo-gen-theme') || 'light');
-        themeToggle.addEventListener('click', () => {
-            setTheme(document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
-        });
+        function setTheme(t) { document.documentElement.setAttribute('data-theme',t); localStorage.setItem('ipa-vis-theme',t); themeToggle.innerHTML=t==='dark'?'&#9788;':'&#9790;'; }
+        setTheme(localStorage.getItem('ipa-vis-theme')||localStorage.getItem('lo-gen-theme')||'light');
+        themeToggle.addEventListener('click',()=>setTheme(document.documentElement.getAttribute('data-theme')==='dark'?'light':'dark'));
 
-        // View tabs
-        document.querySelectorAll('.view-tab').forEach(tab => {
-            tab.addEventListener('click', () => {
-                document.querySelectorAll('.view-tab').forEach(t => t.classList.remove('active'));
-                tab.classList.add('active');
-                document.querySelectorAll('.view-panel').forEach(p => p.classList.remove('active'));
-                document.getElementById('view-' + tab.getAttribute('data-view')).classList.add('active');
-            });
-        });
+        // Unit management
+        function renderUnits() {
+            const container = document.getElementById('unit-rows');
+            container.innerHTML = units.map((u, i) => `
+                <div class="unit-row" data-idx="${i}">
+                    <input type="text" class="code-input" value="${escapeAttr(u.code)}" data-field="code" data-idx="${i}">
+                    <input type="text" value="${escapeAttr(u.name)}" data-field="name" data-idx="${i}">
+                    <input type="text" value="${escapeAttr(u.desc)}" data-field="desc" data-idx="${i}" placeholder="Description / ULOs...">
+                    <button class="delete-btn" data-idx="${i}" title="Remove">&#10005;</button>
+                </div>
+            `).join('');
 
-        // Load CLOs
-        document.getElementById('load-clos-btn').addEventListener('click', () => {
-            const input = document.getElementById('clo-input').value.trim();
-            if (!input) return alert('Please paste your CLOs.');
-
-            clos = input.split('\n')
-                .filter(l => l.trim())
-                .map((l, i) => {
-                    const cleaned = l.replace(/^\d+[\.\)]\s*/, '').trim();
-                    return {
-                        num: i + 1,
-                        text: cleaned,
-                        verb: getFirstVerb(cleaned),
-                        bloomsLevel: detectBloomsLevel(cleaned)
-                    };
+            // Attach events
+            container.querySelectorAll('input').forEach(inp => {
+                inp.addEventListener('change', (e) => {
+                    const idx = parseInt(e.target.getAttribute('data-idx'));
+                    const field = e.target.getAttribute('data-field');
+                    units[idx][field] = e.target.value;
+                    if (field === 'code') units[idx].level = getUnitLevel(e.target.value);
                 });
-
-            if (clos.length === 0) return alert('No CLOs found.');
-
-            // Auto-generate IPA mappings for existing units
-            units.forEach(u => generateIPAMapping(u));
-            renderAll();
-        });
+            });
+            container.querySelectorAll('.delete-btn').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    const idx = parseInt(e.target.getAttribute('data-idx'));
+                    units.splice(idx, 1);
+                    renderUnits();
+                });
+            });
+        }
 
         // Add unit
-        document.getElementById('add-unit-btn').addEventListener('click', () => {
-            const code = document.getElementById('new-unit-code').value.trim();
-            const name = document.getElementById('new-unit-name').value.trim();
-            const ulosText = document.getElementById('new-unit-ulos').value.trim();
+        document.getElementById('add-unit-btn').addEventListener('click', addUnit);
+        document.getElementById('add-code').addEventListener('keydown', (e) => { if (e.key === 'Enter') { e.preventDefault(); addUnit(); } });
+        document.getElementById('add-name').addEventListener('keydown', (e) => { if (e.key === 'Enter') { e.preventDefault(); addUnit(); } });
+        document.getElementById('add-desc').addEventListener('keydown', (e) => { if (e.key === 'Enter') { e.preventDefault(); addUnit(); } });
 
-            if (!code) return alert('Please enter a unit code.');
+        function addUnit() {
+            const code = document.getElementById('add-code').value.trim();
+            const name = document.getElementById('add-name').value.trim();
+            const desc = document.getElementById('add-desc').value.trim();
+            if (!code) return;
+            units.push({ code, name: name || code, desc: desc || '', level: getUnitLevel(code) });
+            document.getElementById('add-code').value = '';
+            document.getElementById('add-name').value = '';
+            document.getElementById('add-desc').value = '';
+            document.getElementById('add-code').focus();
+            renderUnits();
+        }
 
-            const level = getUnitLevel(code);
-            const ulos = ulosText ? ulosText.split('\n').filter(l => l.trim()).map(l => {
-                const cleaned = l.replace(/^\d+[\.\)]\s*/, '').trim();
-                return { text: cleaned, verb: getFirstVerb(cleaned), bloomsLevel: detectBloomsLevel(cleaned) };
-            }) : [];
-
-            const unit = { code, name: name || code, level, ulos, ipaMapping: {}, assessments: [] };
-            generateIPAMapping(unit);
-            units.push(unit);
-
-            // Clear inputs
-            document.getElementById('new-unit-code').value = '';
-            document.getElementById('new-unit-name').value = '';
-            document.getElementById('new-unit-ulos').value = '';
-
-            renderAll();
+        // Paste bulk units
+        document.getElementById('paste-bulk-btn').addEventListener('click', () => {
+            const raw = prompt('Paste tab-separated units (Code\\tName\\tDescription), one per line:');
+            if (!raw) return;
+            raw.split('\n').filter(l => l.trim()).forEach(line => {
+                const parts = line.split('\t');
+                const code = (parts[0] || '').trim();
+                const name = (parts[1] || '').trim();
+                const desc = (parts[2] || '').trim();
+                if (code) units.push({ code, name: name || code, desc, level: getUnitLevel(code) });
+            });
+            renderUnits();
         });
 
-        // Generate IPA mapping for a unit based on its level
-        function generateIPAMapping(unit) {
-            unit.ipaMapping = {};
-            if (clos.length === 0) return;
+        // Generate IPA mapping
+        document.getElementById('generate-ipa-btn').addEventListener('click', async () => {
+            // Parse CLOs
+            const cloInput = document.getElementById('clo-input').value.trim();
+            if (!cloInput) return alert('Please enter your CLOs in Step 1.');
+            if (units.length === 0) return alert('Please add at least one unit in Step 2.');
 
-            const ipa = inferIPA(unit.level);
+            clos = cloInput.split('\n').filter(l => l.trim()).map((l, i) => ({
+                num: i + 1,
+                text: l.replace(/^\d+[\.\)]\s*/, '').trim()
+            }));
 
-            // For each CLO, check if any ULO in this unit relates to it
-            // Simple heuristic: if unit has ULOs, try to match keywords
-            // If no ULOs, assign all CLOs the inferred IPA level
-            if (unit.ulos.length === 0) {
-                // Assign all CLOs at this IPA level
-                clos.forEach((clo, i) => {
-                    unit.ipaMapping[i] = ipa;
+            const courseName = document.getElementById('course-name').value.trim();
+            const discipline = document.getElementById('discipline').value.trim();
+
+            // Sort units by level for the prompt
+            const sortedUnits = [...units].sort((a, b) => a.level - b.level);
+
+            // Build prompt
+            let userMsg = '';
+            if (courseName) userMsg += `**Course/Major:** ${courseName}\n`;
+            if (discipline) userMsg += `**Discipline:** ${discipline}\n\n`;
+
+            userMsg += '**CLOs:**\n';
+            clos.forEach(c => { userMsg += `${c.num}. ${c.text}\n`; });
+
+            userMsg += '\n**Units (ordered by level):**\n';
+            sortedUnits.forEach(u => {
+                userMsg += `- ${u.code} (${u.level}-level): ${u.name}`;
+                if (u.desc) userMsg += ` — ${u.desc}`;
+                userMsg += '\n';
+            });
+
+            userMsg += '\nPlease generate the IPA mapping as JSON.';
+
+            // Call API
+            document.getElementById('loading').style.display = 'block';
+            document.getElementById('matrix-section').style.display = 'none';
+            document.getElementById('generate-ipa-btn').disabled = true;
+            document.getElementById('generate-status').textContent = 'Analysing curriculum...';
+
+            try {
+                const response = await fetch(WORKER_URL, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        system: IPA_SYSTEM_PROMPT,
+                        messages: [{ role: 'user', content: userMsg }]
+                    })
                 });
-            } else {
-                // Try to match ULOs to CLOs by keyword similarity
-                clos.forEach((clo, i) => {
-                    const cloWords = new Set(clo.text.toLowerCase().split(/\W+/).filter(w => w.length > 3));
-                    let bestMatch = 0;
-                    unit.ulos.forEach(ulo => {
-                        const uloWords = ulo.text.toLowerCase().split(/\W+/).filter(w => w.length > 3);
-                        const overlap = uloWords.filter(w => cloWords.has(w)).length;
-                        if (overlap > bestMatch) bestMatch = overlap;
-                    });
-                    if (bestMatch >= 2) {
-                        unit.ipaMapping[i] = ipa;
+
+                if (!response.ok) {
+                    const err = await response.json().catch(() => ({}));
+                    throw new Error(err.error || 'Server error: ' + response.status);
+                }
+
+                const data = await response.json();
+                const content = data.content || '';
+
+                // Parse JSON from response
+                const jsonMatch = content.match(/\{[\s\S]*\}/);
+                if (!jsonMatch) throw new Error('Could not parse AI response. Please try again.');
+
+                const parsed = JSON.parse(jsonMatch[0]);
+                if (!parsed.mapping || !Array.isArray(parsed.mapping)) throw new Error('Invalid response format.');
+
+                // Build ipaData from response
+                ipaData = {};
+                parsed.mapping.forEach(entry => {
+                    const cloIdx = entry.clo - 1;
+                    const unitIdx = units.findIndex(u => u.code.toLowerCase() === entry.unit.toLowerCase());
+                    if (cloIdx >= 0 && cloIdx < clos.length && unitIdx >= 0) {
+                        const key = `${cloIdx}-${unitIdx}`;
+                        ipaData[key] = entry.ipa.toUpperCase();
                     }
                 });
 
-                // If very few matches, fall back to assigning all
-                const mappedCount = Object.keys(unit.ipaMapping).length;
-                if (mappedCount < clos.length * 0.3) {
-                    clos.forEach((clo, i) => {
-                        if (!unit.ipaMapping[i]) unit.ipaMapping[i] = ipa;
-                    });
+                renderMatrix();
+                document.getElementById('matrix-section').style.display = 'block';
+                document.getElementById('matrix-section').scrollIntoView({ behavior: 'smooth', block: 'start' });
+                document.getElementById('generate-status').textContent = 'Mapping complete. Click cells to edit.';
+
+                // Show notes if any
+                if (parsed.notes) {
+                    document.getElementById('generate-status').textContent = parsed.notes;
                 }
+
+            } catch (error) {
+                alert('Error: ' + error.message);
+                document.getElementById('generate-status').textContent = 'Failed — ' + error.message;
+            } finally {
+                document.getElementById('loading').style.display = 'none';
+                document.getElementById('generate-ipa-btn').disabled = false;
             }
-        }
-
-        // Paste units modal
-        document.getElementById('paste-units-btn').addEventListener('click', () => {
-            document.getElementById('paste-modal').style.display = 'flex';
-        });
-        document.getElementById('paste-units-cancel').addEventListener('click', () => {
-            document.getElementById('paste-modal').style.display = 'none';
-        });
-        document.getElementById('paste-units-confirm').addEventListener('click', () => {
-            const data = document.getElementById('paste-units-data').value.trim();
-            if (!data) return;
-
-            const lines = data.split('\n').filter(l => l.trim());
-            lines.forEach(line => {
-                const parts = line.split('\t');
-                if (parts.length < 2) return;
-                const code = parts[0].trim();
-                const name = parts[1].trim();
-                const ulosRaw = parts[2] ? parts[2].split(';').filter(u => u.trim()) : [];
-                const level = getUnitLevel(code);
-                const ulos = ulosRaw.map(u => {
-                    const cleaned = u.trim().replace(/^\d+[\.\)]\s*/, '');
-                    return { text: cleaned, verb: getFirstVerb(cleaned), bloomsLevel: detectBloomsLevel(cleaned) };
-                });
-                const unit = { code, name, level, ulos, ipaMapping: {}, assessments: [] };
-                generateIPAMapping(unit);
-                units.push(unit);
-            });
-
-            document.getElementById('paste-modal').style.display = 'none';
-            document.getElementById('paste-units-data').value = '';
-            renderAll();
         });
 
-        // Cycle IPA value on click
-        function cycleIPA(unitIdx, cloIdx) {
-            const unit = units[unitIdx];
-            const current = unit.ipaMapping[cloIdx] || '';
-            const cycle = { '': 'I', 'I': 'P', 'P': 'A', 'A': '' };
-            unit.ipaMapping[cloIdx] = cycle[current];
-            renderAll();
-        }
+        // Render matrix
+        function renderMatrix() {
+            const sortedUnits = [...units].map((u, i) => ({ ...u, origIdx: i })).sort((a, b) => a.level - b.level);
+            const levels = [...new Set(sortedUnits.map(u => u.level))].sort((a, b) => a - b);
 
-        // Delete unit
-        function deleteUnit(idx) {
-            if (confirm('Remove ' + units[idx].code + '?')) {
-                units.splice(idx, 1);
-                renderAll();
-            }
-        }
+            let html = '<table class="ipa-table"><thead>';
 
-        // Render everything
-        function renderAll() {
-            renderUnitCards();
-            if (clos.length > 0 && units.length > 0) {
-                document.getElementById('views-section').style.display = 'block';
-                renderIPAMatrix();
-                renderGapAnalysis();
-                renderBloomsView();
-                renderAssessmentView();
-            } else {
-                document.getElementById('views-section').style.display = 'none';
-            }
-            document.getElementById('unit-count').textContent = units.length;
-        }
-
-        function renderUnitCards() {
-            const container = document.getElementById('unit-cards');
-            if (units.length === 0) {
-                container.innerHTML = '<div class="empty-state"><p>No units added yet.</p><p class="hint">Add units below or paste from a spreadsheet.</p></div>';
-                return;
-            }
-
-            // Sort by level
-            const sorted = [...units].map((u, i) => ({ ...u, originalIdx: i }));
-            sorted.sort((a, b) => a.level - b.level);
-
-            container.innerHTML = sorted.map(u => `
-                <div class="unit-card">
-                    <div class="unit-card-header">
-                        <span class="unit-card-code">${escapeHtml(u.code)}</span>
-                        <span class="unit-card-level">${u.level}-level</span>
-                    </div>
-                    <div class="unit-card-name">${escapeHtml(u.name)}</div>
-                    <div class="unit-card-ulos">${u.ulos.length} ULO${u.ulos.length !== 1 ? 's' : ''} | IPA: ${inferIPA(u.level)}</div>
-                    <div class="unit-card-actions">
-                        <button onclick="deleteUnit(${u.originalIdx})" class="delete">Remove</button>
-                    </div>
-                </div>
-            `).join('');
-        }
-        // Make deleteUnit global
-        window.deleteUnit = deleteUnit;
-        window.cycleIPA = cycleIPA;
-
-        // Render IPA Matrix
-        function renderIPAMatrix() {
-            const sorted = [...units].map((u, i) => ({ ...u, originalIdx: i }));
-            sorted.sort((a, b) => a.level - b.level);
-
-            // Group by level
-            const levels = [...new Set(sorted.map(u => u.level))].sort((a, b) => a - b);
-
-            let html = '<table class="ipa-matrix"><thead>';
-
-            // Level group header
-            html += '<tr><th></th>';
+            // Level group row
+            html += '<tr><th class="clo-col"></th>';
             levels.forEach(level => {
-                const unitsAtLevel = sorted.filter(u => u.level === level);
-                html += `<th class="level-header" colspan="${unitsAtLevel.length}">${level}-level</th>`;
+                const count = sortedUnits.filter(u => u.level === level).length;
+                html += `<th class="level-group" colspan="${count}">${level}-level</th>`;
             });
-            html += '</tr>';
+            html += '<th class="level-group">Status</th></tr>';
 
-            // Unit code header
-            html += '<tr><th>CLO</th>';
-            sorted.forEach(u => {
-                html += `<th title="${escapeHtml(u.name)}">${escapeHtml(u.code)}</th>`;
+            // Unit code row
+            html += '<tr><th class="clo-col">Course Learning Outcome</th>';
+            sortedUnits.forEach(u => {
+                html += `<th class="unit-col" title="${escapeAttr(u.name)}">${escapeHtml(u.code)}</th>`;
             });
-            html += '</tr></thead><tbody>';
+            html += '<th class="unit-col">Assured?</th></tr>';
+            html += '</thead><tbody>';
 
             // CLO rows
             clos.forEach((clo, cloIdx) => {
-                const shortText = clo.text.length > 50 ? clo.text.substring(0, 50) + '...' : clo.text;
-                html += `<tr><td title="${escapeHtml(clo.text)}"><strong>CLO ${clo.num}.</strong> ${escapeHtml(shortText)}</td>`;
-                sorted.forEach(u => {
-                    const ipa = u.ipaMapping[cloIdx] || '';
-                    let cellHtml = '';
-                    if (ipa) {
-                        const cls = ipa === 'I' ? 'ipa-cell-i' : ipa === 'P' ? 'ipa-cell-p' : 'ipa-cell-a';
-                        cellHtml = `<span class="ipa-cell ${cls}" onclick="cycleIPA(${u.originalIdx},${cloIdx})" title="Click to change">${ipa}</span>`;
-                    } else {
-                        cellHtml = `<span class="ipa-cell" onclick="cycleIPA(${u.originalIdx},${cloIdx})" title="Click to assign" style="border:1.5px dashed var(--border-color);color:var(--text-muted);font-size:0.6rem;">+</span>`;
-                    }
-                    html += `<td>${cellHtml}</td>`;
+                const shortText = clo.text.length > 55 ? clo.text.substring(0, 55) + '...' : clo.text;
+                html += `<tr><td class="clo-cell" title="${escapeAttr(clo.text)}"><strong>CLO ${clo.num}.</strong> ${escapeHtml(shortText)}</td>`;
+
+                let isAssured = false;
+                sortedUnits.forEach(u => {
+                    const key = `${cloIdx}-${u.origIdx}`;
+                    const val = ipaData[key] || '';
+                    if (val === 'A') isAssured = true;
+
+                    let cellClass = 'ipa-cell-empty';
+                    let label = '+';
+                    if (val === 'I') { cellClass = 'ipa-cell-i'; label = 'I'; }
+                    else if (val === 'P') { cellClass = 'ipa-cell-p'; label = 'P'; }
+                    else if (val === 'A') { cellClass = 'ipa-cell-a'; label = 'A'; }
+
+                    html += `<td><span class="ipa-cell ${cellClass}" data-clo="${cloIdx}" data-unit="${u.origIdx}" title="Click to change">${label}</span></td>`;
                 });
+
+                // Status column
+                if (isAssured) {
+                    html += '<td><span class="status-ok">✓</span></td>';
+                } else {
+                    html += '<td><span class="status-gap">✗ Not assured</span></td>';
+                }
                 html += '</tr>';
             });
 
             html += '</tbody></table>';
-            document.getElementById('ipa-matrix-content').innerHTML = html;
+            document.getElementById('matrix-content').innerHTML = html;
             document.getElementById('matrix-title').textContent = document.getElementById('course-name').value || 'IPA Matrix';
+
+            // Attach click handlers
+            document.querySelectorAll('.ipa-cell').forEach(cell => {
+                cell.addEventListener('click', () => {
+                    const cloIdx = parseInt(cell.getAttribute('data-clo'));
+                    const unitIdx = parseInt(cell.getAttribute('data-unit'));
+                    const key = `${cloIdx}-${unitIdx}`;
+                    const current = ipaData[key] || '';
+                    const cycle = { '': 'I', 'I': 'P', 'P': 'A', 'A': '' };
+                    const next = cycle[current];
+                    if (next) { ipaData[key] = next; } else { delete ipaData[key]; }
+                    renderMatrix();
+                });
+            });
+
+            renderGapSummary();
         }
 
         // Gap analysis
-        function renderGapAnalysis() {
+        function renderGapSummary() {
             const gaps = [];
+            let allAssured = true;
 
             clos.forEach((clo, cloIdx) => {
-                const stages = { I: false, P: false, A: false };
-                units.forEach(u => {
-                    const ipa = u.ipaMapping[cloIdx];
-                    if (ipa) stages[ipa] = true;
+                let hasI = false, hasP = false, hasA = false;
+                units.forEach((u, uIdx) => {
+                    const val = ipaData[`${cloIdx}-${uIdx}`] || '';
+                    if (val === 'I') hasI = true;
+                    if (val === 'P') hasP = true;
+                    if (val === 'A') hasA = true;
                 });
 
-                if (!stages.I) gaps.push(`CLO ${clo.num} is never <strong>Introduced</strong> — students aren't given foundational exposure.`);
-                if (!stages.P) gaps.push(`CLO ${clo.num} is never <strong>Practised</strong> — students don't get opportunities to develop these skills.`);
-                if (!stages.A) gaps.push(`CLO ${clo.num} is never <strong>Assured</strong> — mastery is not formally demonstrated or assessed.`);
-
-                // Check progression order
-                let introLevel = 9999, practiceLevel = 0, assuredLevel = 0;
-                units.forEach(u => {
-                    const ipa = u.ipaMapping[cloIdx];
-                    if (ipa === 'I' && u.level < introLevel) introLevel = u.level;
-                    if (ipa === 'P' && u.level > practiceLevel) practiceLevel = u.level;
-                    if (ipa === 'A' && u.level > assuredLevel) assuredLevel = u.level;
-                });
-                if (stages.I && stages.A && introLevel >= assuredLevel) {
-                    gaps.push(`CLO ${clo.num} is Introduced at ${introLevel}-level but Assured at the same or lower level — progression may be inverted.`);
+                if (!hasA) {
+                    gaps.push({ critical: true, text: `CLO ${clo.num} is <strong>never Assured</strong> — students do not demonstrate mastery of this outcome anywhere in the course.` });
+                    allAssured = false;
+                }
+                if (!hasI) {
+                    gaps.push({ critical: false, text: `CLO ${clo.num} is never formally Introduced — students may lack foundational exposure.` });
+                }
+                if (!hasP && hasA) {
+                    gaps.push({ critical: false, text: `CLO ${clo.num} jumps from Introduction to Assurance without Practice — students may not have sufficient development opportunities.` });
                 }
             });
 
-            const panel = document.getElementById('gap-panel');
+            const container = document.getElementById('gap-summary');
             if (gaps.length === 0) {
-                panel.innerHTML = `<div class="gap-panel no-gaps"><h4>✓ No IPA gaps detected</h4><p style="font-size:0.8rem;">All CLOs have complete I → P → A coverage. Well done!</p></div>`;
+                container.innerHTML = `<div class="gap-summary no-gaps"><h4>✓ All CLOs have complete IPA coverage</h4><p style="font-size:0.8rem;color:var(--text-secondary);">Every CLO is Introduced, Practised, and Assured. TEQSA Standard 1.4.4 requirements are met.</p></div>`;
             } else {
-                panel.innerHTML = `<div class="gap-panel"><h4>IPA Compliance Gaps (${gaps.length})</h4>${gaps.map(g => `<div class="gap-item">${g}</div>`).join('')}</div>`;
+                const critCount = gaps.filter(g => g.critical).length;
+                let heading = `${gaps.length} issue${gaps.length !== 1 ? 's' : ''} found`;
+                if (critCount > 0) heading = `⚠ ${critCount} CLO${critCount !== 1 ? 's' : ''} not Assured — TEQSA compliance gap`;
+                container.innerHTML = `<div class="gap-summary has-gaps"><h4>${heading}</h4>${gaps.map(g => `<div class="gap-item${g.critical ? ' critical' : ''}">${g.text}</div>`).join('')}</div>`;
             }
-        }
-// Bloom's escalation view
-        function renderBloomsView() {
-            const container = document.getElementById('blooms-content');
-            const sorted = [...units].sort((a, b) => a.level - b.level);
-
-            let html = '';
-            clos.forEach((clo, cloIdx) => {
-                html += `<div class="blooms-row"><div class="blooms-clo-label">CLO ${clo.num}</div><div class="blooms-progression">`;
-
-                sorted.forEach(u => {
-                    const ipa = u.ipaMapping[cloIdx];
-                    if (!ipa) return;
-
-                    // Find relevant ULO bloom's level for this CLO in this unit
-                    let bloomLevel = 0;
-                    if (u.ulos.length > 0) {
-                        // Try to find the most relevant ULO
-                        const cloWords = new Set(clo.text.toLowerCase().split(/\W+/).filter(w => w.length > 3));
-                        let bestMatch = 0, bestBlooms = 0;
-                        u.ulos.forEach(ulo => {
-                            const uloWords = ulo.text.toLowerCase().split(/\W+/).filter(w => w.length > 3);
-                            const overlap = uloWords.filter(w => cloWords.has(w)).length;
-                            if (overlap > bestMatch || (overlap === bestMatch && ulo.bloomsLevel > bestBlooms)) {
-                                bestMatch = overlap;
-                                bestBlooms = ulo.bloomsLevel;
-                            }
-                        });
-                        bloomLevel = bestBlooms || (u.ulos[0] ? u.ulos[0].bloomsLevel : 0);
-                    }
-
-                    // If no ULO bloom's found, infer from IPA stage
-                    if (bloomLevel === 0) {
-                        if (ipa === 'I') bloomLevel = 1; // Remember/Understand
-                        else if (ipa === 'P') bloomLevel = 3; // Apply/Analyse
-                        else bloomLevel = 5; // Evaluate/Create
-                    }
-
-                    const levelClass = 'blooms-level-' + bloomLevel;
-                    const label = getBloomsLabel(bloomLevel);
-                    html += `<span class="blooms-unit-tag ${levelClass}" title="${escapeHtml(u.name)} (${ipa}): ${label}">
-                        <strong>${u.code}</strong> ${label} (${ipa})
-                    </span>`;
-                });
-
-                html += '</div></div>';
-            });
-
-            container.innerHTML = html || '<div class="empty-state"><p>Add units with ULOs to see Bloom\'s progression.</p></div>';
-        }
-
-        // Assessment alignment view
-        function renderAssessmentView() {
-            const container = document.getElementById('assessment-content');
-            const sorted = [...units].sort((a, b) => a.level - b.level);
-
-            let html = '';
-            clos.forEach((clo, cloIdx) => {
-                const shortText = clo.text.length > 60 ? clo.text.substring(0, 60) + '...' : clo.text;
-                html += `<div class="assessment-row">`;
-                html += `<div class="assessment-clo">CLO ${clo.num}. ${escapeHtml(shortText)}</div>`;
-                html += `<div class="assessment-units">`;
-
-                let hasAssured = false;
-                sorted.forEach(u => {
-                    const ipa = u.ipaMapping[cloIdx];
-                    if (!ipa) return;
-
-                    if (ipa === 'A') {
-                        hasAssured = true;
-                        // Check if unit has assessment info
-                        if (u.assessments && u.assessments.length > 0) {
-                            html += `<span class="assessment-unit-tag assured">${u.code}: ${escapeHtml(u.assessments[0])}</span>`;
-                        } else {
-                            html += `<span class="assessment-unit-tag assured">${u.code} (Assured) ✓</span>`;
-                        }
-                    } else {
-                        html += `<span class="assessment-unit-tag">${u.code} (${ipa})</span>`;
-                    }
-                });
-
-                if (!hasAssured) {
-                    html += `<span class="assessment-unit-tag no-assessment">⚠ No unit assures this CLO</span>`;
-                }
-
-                html += '</div></div>';
-            });
-
-            container.innerHTML = html || '<div class="empty-state"><p>Load CLOs and add units to see assessment alignment.</p></div>';
         }
 
         // Export CSV
         document.getElementById('export-csv-btn').addEventListener('click', () => {
             if (clos.length === 0 || units.length === 0) return;
-            const sorted = [...units].sort((a, b) => a.level - b.level);
+            const sorted = [...units].map((u, i) => ({ ...u, origIdx: i })).sort((a, b) => a.level - b.level);
 
-            let csv = 'CLO,' + sorted.map(u => '"' + u.code + ' (' + u.level + '-level)"').join(',') + ',Has I,Has P,Has A,Complete\n';
+            let csv = 'CLO,' + sorted.map(u => `"${u.code} (${u.level})"` ).join(',') + ',Has I,Has P,Has A,Status\n';
 
             clos.forEach((clo, cloIdx) => {
-                const shortText = clo.text.substring(0, 40).replace(/"/g, "'");
-                let row = '"CLO ' + clo.num + '. ' + shortText + '..."';
+                const short = clo.text.substring(0, 40).replace(/"/g, "'");
+                let row = `"CLO ${clo.num}. ${short}..."`;
                 let hasI = false, hasP = false, hasA = false;
 
                 sorted.forEach(u => {
-                    const ipa = u.ipaMapping[cloIdx] || '';
-                    row += ',' + ipa;
-                    if (ipa === 'I') hasI = true;
-                    if (ipa === 'P') hasP = true;
-                    if (ipa === 'A') hasA = true;
+                    const val = ipaData[`${cloIdx}-${u.origIdx}`] || '';
+                    row += ',' + val;
+                    if (val === 'I') hasI = true;
+                    if (val === 'P') hasP = true;
+                    if (val === 'A') hasA = true;
                 });
 
-                row += ',' + (hasI ? 'Yes' : 'NO') + ',' + (hasP ? 'Yes' : 'NO') + ',' + (hasA ? 'Yes' : 'NO') + ',' + (hasI && hasP && hasA ? 'Complete' : 'GAPS');
+                row += ',' + (hasI ? 'Yes' : 'NO');
+                row += ',' + (hasP ? 'Yes' : 'NO');
+                row += ',' + (hasA ? 'Yes' : 'NO');
+                row += ',' + (hasA ? 'Complete' : 'NOT ASSURED');
                 csv += row + '\n';
             });
 
@@ -961,13 +675,18 @@
         });
 
         // Print
-        document.getElementById('print-matrix-btn').addEventListener('click', () => { window.print(); });
+        document.getElementById('print-btn').addEventListener('click', () => window.print());
 
-        // Utility
+        // Utilities
+        function getUnitLevel(code) {
+            const match = code.match(/(\d)\d{3}/);
+            return match ? parseInt(match[1]) * 1000 : 1000;
+        }
         function escapeHtml(t) { const d = document.createElement('div'); d.textContent = t; return d.innerHTML; }
+        function escapeAttr(t) { return (t || '').replace(/"/g, '&quot;').replace(/</g, '&lt;').replace(/>/g, '&gt;'); }
 
         // Initial render
-        renderAll();
+        renderUnits();
     });
     </script>
 </body>
