@@ -1,991 +1,974 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
-<html>
+<!DOCTYPE html>
+<html lang="en-AU" data-theme="light">
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  <meta http-equiv="Content-Style-Type" content="text/css">
-  <title></title>
-  <meta name="Generator" content="Cocoa HTML Writer">
-  <meta name="CocoaVersion" content="2685.6">
-  <style type="text/css">
-    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 13.0px Courier; -webkit-text-stroke: #000000}
-    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 13.0px Courier; -webkit-text-stroke: #000000; min-height: 16.0px}
-    span.s1 {font-kerning: none}
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IPA Curriculum Visualiser | Faculty of Arts</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root, [data-theme="light"] {
+            --mq-crimson: #a6192e;
+            --mq-crimson-dark: #8c1527;
+            --mq-crimson-light: #d4213a;
+            --mq-sand: #f5f0eb;
+            --mq-charcoal: #2d2d2d;
+            --mq-grey-dark: #4a4a4a;
+            --mq-grey-mid: #6b6b6b;
+            --mq-grey-light: #e8e4e0;
+            --mq-white: #ffffff;
+            --ipa-intro: #1565c0;
+            --ipa-intro-bg: #e3f2fd;
+            --ipa-intro-border: #90caf9;
+            --ipa-practice: #f57c00;
+            --ipa-practice-bg: #fff3e0;
+            --ipa-practice-border: #ffcc80;
+            --ipa-assured: #2e7d32;
+            --ipa-assured-bg: #e8f5e9;
+            --ipa-assured-border: #a5d6a7;
+            --ipa-gap: #c62828;
+            --ipa-gap-bg: #ffebee;
+            --bg-primary: var(--mq-sand);
+            --bg-secondary: var(--mq-white);
+            --bg-tertiary: #f0f7ff;
+            --text-primary: var(--mq-charcoal);
+            --text-secondary: var(--mq-grey-dark);
+            --text-muted: var(--mq-grey-mid);
+            --border-color: var(--mq-grey-light);
+            --shadow-color: rgba(0,0,0,0.08);
+        }
+        [data-theme="dark"] {
+            --mq-crimson: #e63950;
+            --mq-crimson-dark: #c62840;
+            --mq-crimson-light: #ff5a6e;
+            --mq-sand: #1a1a2e;
+            --mq-charcoal: #e8e8e8;
+            --mq-grey-dark: #c0c0c0;
+            --mq-grey-mid: #888888;
+            --mq-grey-light: #333355;
+            --mq-white: #16213e;
+            --ipa-intro: #64b5f6;
+            --ipa-intro-bg: #1a2a4a;
+            --ipa-intro-border: #1e3a5f;
+            --ipa-practice: #ffb74d;
+            --ipa-practice-bg: #3d2e00;
+            --ipa-practice-border: #5a4400;
+            --ipa-assured: #81c784;
+            --ipa-assured-bg: #1b3d1b;
+            --ipa-assured-border: #2e5a2e;
+            --ipa-gap: #ef9a9a;
+            --ipa-gap-bg: #3d1b1b;
+            --bg-primary: #0f0f1a;
+            --bg-secondary: #1a1a2e;
+            --bg-tertiary: #1e2a4a;
+            --text-primary: #e8e8e8;
+            --text-secondary: #c0c0c0;
+            --text-muted: #888888;
+            --border-color: #333355;
+            --shadow-color: rgba(0,0,0,0.3);
+        }
+        :root {
+            --font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            --border-radius: 8px;
+            --border-radius-lg: 12px;
+            --shadow-sm: 0 1px 3px var(--shadow-color);
+            --shadow-md: 0 4px 12px var(--shadow-color);
+            --transition: 0.2s ease;
+        }
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        html { font-size: 16px; scroll-behavior: smooth; }
+        body {
+            font-family: var(--font-family); color: var(--text-primary);
+            background: var(--bg-primary); line-height: 1.6;
+            min-height: 100vh; display: flex; flex-direction: column;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+        .header {
+            background: var(--bg-secondary); border-bottom: 3px solid var(--mq-crimson);
+            box-shadow: var(--shadow-sm); position: sticky; top: 0; z-index: 100;
+        }
+        .header-content {
+            max-width: 1400px; margin: 0 auto; padding: 1rem 2rem;
+            display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+        }
+        .logo-area { display: flex; align-items: center; gap: 0.75rem; }
+        .logo-mark {
+            width: 44px; height: 44px; background: var(--mq-crimson); color: #fff;
+            border-radius: var(--border-radius); display: flex; align-items: center;
+            justify-content: center; font-weight: 700; font-size: 0.75rem;
+        }
+        .logo-text h1 { font-size: 1.2rem; font-weight: 600; color: var(--text-primary); line-height: 1.2; }
+        .logo-text p { font-size: 0.8rem; color: var(--text-muted); }
+        .header-actions { display: flex; align-items: center; gap: 1rem; }
+        .header-nav { display: flex; gap: 1.5rem; }
+        .header-nav a { font-size: 0.85rem; color: var(--text-secondary); text-decoration: none; font-weight: 500; transition: color var(--transition); }
+        .header-nav a:hover { color: var(--mq-crimson); }
+        .theme-toggle {
+            width: 36px; height: 36px; border: 1.5px solid var(--border-color);
+            border-radius: var(--border-radius); background: var(--bg-secondary);
+            color: var(--text-secondary); cursor: pointer; display: flex;
+            align-items: center; justify-content: center; font-size: 1.1rem;
+            transition: all var(--transition);
+        }
+        .theme-toggle:hover { border-color: var(--mq-crimson); color: var(--mq-crimson); }
+        .main-content { max-width: 1400px; margin: 0 auto; padding: 2rem; flex: 1; width: 100%; }
+        /* Intro section */
+        .intro-banner {
+            background: var(--bg-secondary); border-radius: var(--border-radius-lg);
+            padding: 1.5rem 2rem; margin-bottom: 2rem; box-shadow: var(--shadow-sm);
+            border-left: 4px solid var(--mq-crimson);
+        }
+        .intro-banner h2 { font-size: 1.1rem; font-weight: 600; color: var(--mq-crimson); margin-bottom: 0.5rem; }
+        .intro-banner p { font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 0.25rem; }
+        .ipa-legend {
+            display: flex; gap: 1.5rem; margin-top: 1rem; flex-wrap: wrap;
+        }
+        .ipa-legend-item { display: flex; align-items: center; gap: 0.5rem; font-size: 0.8rem; }
+        .ipa-badge {
+            width: 28px; height: 28px; border-radius: 50%; display: flex;
+            align-items: center; justify-content: center; font-weight: 700; font-size: 0.75rem;
+        }
+        .ipa-badge-i { background: var(--ipa-intro-bg); color: var(--ipa-intro); border: 2px solid var(--ipa-intro-border); }
+        .ipa-badge-p { background: var(--ipa-practice-bg); color: var(--ipa-practice); border: 2px solid var(--ipa-practice-border); }
+        .ipa-badge-a { background: var(--ipa-assured-bg); color: var(--ipa-assured); border: 2px solid var(--ipa-assured-border); }
+        .ipa-badge-gap { background: var(--ipa-gap-bg); color: var(--ipa-gap); border: 2px solid var(--ipa-gap); }
+        /* Input section */
+        .input-section {
+            background: var(--bg-secondary); border-radius: var(--border-radius-lg);
+            padding: 1.5rem; box-shadow: var(--shadow-sm); margin-bottom: 2rem;
+        }
+        .input-section h3 { font-size: 1rem; font-weight: 600; color: var(--mq-crimson); margin-bottom: 1rem; padding-bottom: 0.5rem; border-bottom: 1px solid var(--border-color); }
+        .input-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+        .form-group { margin-bottom: 1rem; }
+        .form-group:last-child { margin-bottom: 0; }
+        .form-group label { display: block; font-size: 0.85rem; font-weight: 500; margin-bottom: 0.375rem; }
+        .form-group textarea, .form-group input, .form-group select {
+            width: 100%; padding: 0.625rem 0.875rem;
+            border: 1.5px solid var(--border-color); border-radius: var(--border-radius);
+            font-family: var(--font-family); font-size: 0.85rem; color: var(--text-primary);
+            background: var(--bg-secondary); transition: border-color var(--transition);
+        }
+        .form-group textarea:focus, .form-group input:focus, .form-group select:focus {
+            outline: none; border-color: var(--mq-crimson); box-shadow: 0 0 0 3px rgba(166,25,46,0.15);
+        }
+        .form-group textarea { resize: vertical; min-height: 80px; }
+        .help-text { font-size: 0.75rem; color: var(--text-muted); margin-top: 0.25rem; font-style: italic; }
+        /* Unit cards */
+        .units-section { margin-top: 1.5rem; }
+        .units-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; }
+        .units-header h4 { font-size: 0.95rem; font-weight: 600; color: var(--text-primary); }
+        .unit-cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1rem; }
+        .unit-card {
+            background: var(--bg-primary); border: 1.5px solid var(--border-color);
+            border-radius: var(--border-radius); padding: 1rem; position: relative;
+            transition: border-color var(--transition);
+        }
+        .unit-card:hover { border-color: var(--mq-crimson); }
+        .unit-card-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 0.75rem; }
+        .unit-card-code { font-size: 0.9rem; font-weight: 600; color: var(--mq-crimson); }
+        .unit-card-level {
+            font-size: 0.65rem; font-weight: 500; padding: 0.2rem 0.5rem;
+            border-radius: 10px; background: var(--border-color); color: var(--text-secondary);
+        }
+        .unit-card-name { font-size: 0.8rem; color: var(--text-secondary); margin-bottom: 0.5rem; }
+        .unit-card-ulos { font-size: 0.7rem; color: var(--text-muted); }
+        .unit-card-actions { display: flex; gap: 0.5rem; margin-top: 0.75rem; }
+        .unit-card-actions button {
+            font-size: 0.7rem; padding: 0.25rem 0.5rem; border: 1px solid var(--border-color);
+            border-radius: 4px; background: var(--bg-secondary); color: var(--text-secondary);
+            cursor: pointer; font-family: var(--font-family); transition: all var(--transition);
+        }
+        .unit-card-actions button:hover { border-color: var(--mq-crimson); color: var(--mq-crimson); }
+        .unit-card-actions button.delete:hover { border-color: var(--ipa-gap); color: var(--ipa-gap); }
+        /* Add unit form */
+        .add-unit-form {
+            background: var(--bg-tertiary); border: 1.5px dashed var(--border-color);
+            border-radius: var(--border-radius); padding: 1.25rem; margin-top: 1rem;
+        }
+        .add-unit-form h5 { font-size: 0.85rem; font-weight: 600; color: var(--text-primary); margin-bottom: 0.75rem; }
+        .add-unit-grid { display: grid; grid-template-columns: 120px 1fr auto; gap: 0.75rem; align-items: end; }
+        .add-unit-grid .form-group { margin-bottom: 0; }
+        /* Buttons */
+        .btn-primary {
+            padding: 0.75rem 1.5rem; background: var(--mq-crimson); color: #fff;
+            border: none; border-radius: var(--border-radius); font-family: var(--font-family);
+            font-size: 0.9rem; font-weight: 600; cursor: pointer; transition: all var(--transition);
+            display: inline-flex; align-items: center; gap: 0.5rem;
+        }
+        .btn-primary:hover { background: var(--mq-crimson-dark); transform: translateY(-1px); }
+        .btn-primary:disabled { background: var(--text-muted); cursor: not-allowed; transform: none; }
+        .btn-secondary {
+            padding: 0.625rem 1.25rem; background: transparent; color: var(--text-secondary);
+            border: 1.5px solid var(--border-color); border-radius: var(--border-radius);
+            font-family: var(--font-family); font-size: 0.85rem; font-weight: 500;
+            cursor: pointer; transition: all var(--transition);
+            display: inline-flex; align-items: center; gap: 0.5rem;
+        }
+        .btn-secondary:hover { border-color: var(--mq-crimson); color: var(--mq-crimson); }
+        .btn-sm {
+            padding: 0.5rem 1rem; font-size: 0.8rem; font-weight: 500;
+            border: 1.5px solid var(--border-color); border-radius: var(--border-radius);
+            background: var(--bg-secondary); color: var(--text-secondary);
+            cursor: pointer; font-family: var(--font-family); transition: all var(--transition);
+            display: inline-flex; align-items: center; gap: 0.375rem;
+        }
+        .btn-sm:hover { border-color: var(--mq-crimson); color: var(--mq-crimson); }
+        /* Views */
+        .views-section { margin-top: 2rem; }
+        .view-tabs {
+            display: flex; gap: 0.5rem; margin-bottom: 1.5rem;
+            background: var(--bg-secondary); padding: 0.375rem;
+            border-radius: var(--border-radius-lg); box-shadow: var(--shadow-sm); width: fit-content;
+        }
+        .view-tab {
+            padding: 0.625rem 1.25rem; border: none; background: transparent;
+            border-radius: var(--border-radius); font-family: var(--font-family);
+            font-size: 0.85rem; font-weight: 500; color: var(--text-muted);
+            cursor: pointer; transition: all var(--transition);
+        }
+        .view-tab:hover { color: var(--text-primary); background: var(--bg-primary); }
+        .view-tab.active { background: var(--mq-crimson); color: #fff; }
+        .view-panel { display: none; }
+        .view-panel.active { display: block; }
+        /* IPA Matrix */
+        .ipa-matrix-wrap {
+            background: var(--bg-secondary); border-radius: var(--border-radius-lg);
+            padding: 1.5rem; box-shadow: var(--shadow-sm); overflow-x: auto;
+        }
+        .ipa-matrix-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; }
+        .ipa-matrix-header h3 { font-size: 1rem; font-weight: 600; color: var(--text-primary); }
+        .ipa-matrix {
+            width: 100%; border-collapse: collapse; font-size: 0.8rem;
+        }
+        .ipa-matrix th {
+            padding: 0.625rem 0.5rem; text-align: center; font-weight: 600;
+            font-size: 0.7rem; border: 1px solid var(--border-color);
+            background: var(--bg-primary); color: var(--text-secondary);
+        }
+        .ipa-matrix th.level-header {
+            background: var(--mq-crimson); color: #fff; font-size: 0.65rem;
+            letter-spacing: 0.5px; text-transform: uppercase;
+        }
+        .ipa-matrix th:first-child { text-align: left; min-width: 200px; background: var(--bg-primary); }
+        .ipa-matrix td {
+            padding: 0.5rem; text-align: center; border: 1px solid var(--border-color);
+            vertical-align: middle; min-width: 60px;
+        }
+        .ipa-matrix td:first-child {
+            text-align: left; font-weight: 500; font-size: 0.75rem;
+            color: var(--text-primary); min-width: 200px; max-width: 280px;
+        }
+        .ipa-matrix tr:nth-child(even) td { background: var(--bg-primary); }
+        .ipa-cell {
+            width: 32px; height: 32px; border-radius: 50%; display: inline-flex;
+            align-items: center; justify-content: center; font-weight: 700; font-size: 0.7rem;
+            cursor: pointer; transition: transform 0.15s ease;
+        }
+        .ipa-cell:hover { transform: scale(1.2); }
+        .ipa-cell-i { background: var(--ipa-intro-bg); color: var(--ipa-intro); border: 2px solid var(--ipa-intro-border); }
+        .ipa-cell-p { background: var(--ipa-practice-bg); color: var(--ipa-practice); border: 2px solid var(--ipa-practice-border); }
+        .ipa-cell-a { background: var(--ipa-assured-bg); color: var(--ipa-assured); border: 2px solid var(--ipa-assured-border); }
+        /* Gap warnings */
+        .gap-panel {
+            margin-top: 1.5rem; background: var(--ipa-gap-bg); border: 1px solid var(--ipa-gap);
+            border-radius: var(--border-radius); padding: 1rem 1.25rem;
+        }
+        .gap-panel h4 { font-size: 0.9rem; font-weight: 600; color: var(--ipa-gap); margin-bottom: 0.75rem; }
+        .gap-item { font-size: 0.8rem; color: var(--text-primary); margin-bottom: 0.5rem; padding-left: 1rem; position: relative; }
+        .gap-item::before { content: '⚠'; position: absolute; left: 0; }
+        .no-gaps { background: var(--ipa-assured-bg); border-color: var(--ipa-assured-border); }
+        .no-gaps h4 { color: var(--ipa-assured); }
+        /* Bloom's view */
+        .blooms-chart {
+            background: var(--bg-secondary); border-radius: var(--border-radius-lg);
+            padding: 1.5rem; box-shadow: var(--shadow-sm);
+        }
+        .blooms-row { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.75rem; padding: 0.5rem 0; border-bottom: 1px solid var(--border-color); }
+        .blooms-clo-label { min-width: 60px; font-size: 0.8rem; font-weight: 600; color: var(--mq-crimson); }
+        .blooms-progression { display: flex; gap: 0.375rem; flex-wrap: wrap; flex: 1; }
+        .blooms-unit-tag {
+            padding: 0.25rem 0.625rem; border-radius: 12px; font-size: 0.7rem; font-weight: 500;
+            display: flex; align-items: center; gap: 0.25rem;
+        }
+        .blooms-level-1 { background: #e3f2fd; color: #1565c0; }
+        .blooms-level-2 { background: #e8f5e9; color: #2e7d32; }
+        .blooms-level-3 { background: #fff3e0; color: #e65100; }
+        .blooms-level-4 { background: #fce4ec; color: #c62828; }
+        .blooms-level-5 { background: #f3e5f5; color: #6a1b9a; }
+        .blooms-level-6 { background: #ede7f6; color: #4527a0; }
+        [data-theme="dark"] .blooms-level-1 { background: #1a2a4a; color: #64b5f6; }
+        [data-theme="dark"] .blooms-level-2 { background: #1b3d1b; color: #81c784; }
+        [data-theme="dark"] .blooms-level-3 { background: #3d2e00; color: #ffb74d; }
+        [data-theme="dark"] .blooms-level-4 { background: #3d1b1b; color: #ef9a9a; }
+        [data-theme="dark"] .blooms-level-5 { background: #2a1a3d; color: #ce93d8; }
+        [data-theme="dark"] .blooms-level-6 { background: #1a1a3d; color: #b39ddb; }
+        /* Assessment view */
+        .assessment-map {
+            background: var(--bg-secondary); border-radius: var(--border-radius-lg);
+            padding: 1.5rem; box-shadow: var(--shadow-sm);
+        }
+        .assessment-row { margin-bottom: 1rem; padding-bottom: 1rem; border-bottom: 1px solid var(--border-color); }
+        .assessment-row:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+        .assessment-clo { font-size: 0.85rem; font-weight: 600; color: var(--mq-crimson); margin-bottom: 0.5rem; }
+        .assessment-units { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+        .assessment-unit-tag {
+            padding: 0.375rem 0.75rem; border-radius: var(--border-radius);
+            font-size: 0.75rem; border: 1px solid var(--border-color); background: var(--bg-primary);
+        }
+        .assessment-unit-tag.assured { border-color: var(--ipa-assured-border); background: var(--ipa-assured-bg); color: var(--ipa-assured); }
+        .assessment-unit-tag.no-assessment { border-color: var(--ipa-gap); background: var(--ipa-gap-bg); color: var(--ipa-gap); }
+        /* Empty state */
+        .empty-state {
+            text-align: center; padding: 3rem 2rem; color: var(--text-muted);
+        }
+        .empty-state p { font-size: 0.9rem; margin-bottom: 0.5rem; }
+        .empty-state .hint { font-size: 0.8rem; }
+        /* Footer */
+        .footer { background: #1a1a2e; color: #c0c0c0; padding: 1.5rem 2rem; margin-top: auto; }
+        .footer-content { max-width: 1400px; margin: 0 auto; text-align: center; }
+        .footer-content p { font-size: 0.85rem; margin-bottom: 0.25rem; }
+        .footer-sub { font-size: 0.75rem; color: #888; }
+        .footer a { color: #c0c0c0; text-decoration: none; }
+        .footer a:hover { color: #fff; }
+        /* Print */
+        @media print {
+            .header, .footer, .input-section, .view-tabs, .btn-primary, .btn-secondary,
+            .btn-sm, .theme-toggle, .unit-card-actions, .add-unit-form { display: none !important; }
+            body { background: #fff !important; color: #000 !important; }
+            .main-content { padding: 0 !important; max-width: none !important; }
+            .ipa-matrix-wrap, .blooms-chart, .assessment-map { box-shadow: none !important; border: 1px solid #ccc !important; }
+            .ipa-matrix th.level-header { background: #a6192e !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+            .ipa-cell { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+            @page { margin: 1.5cm; size: landscape; }
+        }
+        /* Responsive */
+        @media (max-width: 900px) {
+            .input-grid { grid-template-columns: 1fr; }
+            .header-content { flex-direction: column; align-items: flex-start; }
+            .add-unit-grid { grid-template-columns: 1fr; }
+            .view-tabs { width: 100%; flex-wrap: wrap; }
+            .view-tab { flex: 1; text-align: center; font-size: 0.75rem; padding: 0.5rem 0.75rem; }
+        }
+    </style>
 </head>
 <body>
-<p class="p1"><span class="s1">&lt;!DOCTYPE html&gt;</span></p>
-<p class="p1"><span class="s1">&lt;html lang="en-AU" data-theme="light"&gt;</span></p>
-<p class="p1"><span class="s1">&lt;head&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;meta charset="UTF-8"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;title&gt;IPA Curriculum Visualiser | Faculty of Arts&lt;/title&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;link rel="preconnect" href="https://fonts.googleapis.com"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;link rel="preconnect" href="https://fonts.gstatic.com" crossorigin&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;style&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>:root, [data-theme="light"] {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>--mq-crimson: #a6192e;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>--mq-crimson-dark: #8c1527;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>--mq-crimson-light: #d4213a;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>--mq-sand: #f5f0eb;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>--mq-charcoal: #2d2d2d;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>--mq-grey-dark: #4a4a4a;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>--mq-grey-mid: #6b6b6b;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>--mq-grey-light: #e8e4e0;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>--mq-white: #ffffff;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>--ipa-intro: #1565c0;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>--ipa-intro-bg: #e3f2fd;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>--ipa-intro-border: #90caf9;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>--ipa-practice: #f57c00;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>--ipa-practice-bg: #fff3e0;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>--ipa-practice-border: #ffcc80;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>--ipa-assured: #2e7d32;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>--ipa-assured-bg: #e8f5e9;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>--ipa-assured-border: #a5d6a7;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>--ipa-gap: #c62828;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>--ipa-gap-bg: #ffebee;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>--bg-primary: var(--mq-sand);</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>--bg-secondary: var(--mq-white);</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>--bg-tertiary: #f0f7ff;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>--text-primary: var(--mq-charcoal);</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>--text-secondary: var(--mq-grey-dark);</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>--text-muted: var(--mq-grey-mid);</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>--border-color: var(--mq-grey-light);</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>--shadow-color: rgba(0,0,0,0.08);</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>[data-theme="dark"] {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>--mq-crimson: #e63950;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>--mq-crimson-dark: #c62840;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>--mq-crimson-light: #ff5a6e;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>--mq-sand: #1a1a2e;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>--mq-charcoal: #e8e8e8;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>--mq-grey-dark: #c0c0c0;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>--mq-grey-mid: #888888;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>--mq-grey-light: #333355;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>--mq-white: #16213e;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>--ipa-intro: #64b5f6;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>--ipa-intro-bg: #1a2a4a;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>--ipa-intro-border: #1e3a5f;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>--ipa-practice: #ffb74d;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>--ipa-practice-bg: #3d2e00;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>--ipa-practice-border: #5a4400;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>--ipa-assured: #81c784;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>--ipa-assured-bg: #1b3d1b;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>--ipa-assured-border: #2e5a2e;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>--ipa-gap: #ef9a9a;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>--ipa-gap-bg: #3d1b1b;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>--bg-primary: #0f0f1a;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>--bg-secondary: #1a1a2e;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>--bg-tertiary: #1e2a4a;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>--text-primary: #e8e8e8;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>--text-secondary: #c0c0c0;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>--text-muted: #888888;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>--border-color: #333355;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>--shadow-color: rgba(0,0,0,0.3);</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>:root {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>--font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>--border-radius: 8px;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>--border-radius-lg: 12px;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>--shadow-sm: 0 1px 3px var(--shadow-color);</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>--shadow-md: 0 4px 12px var(--shadow-color);</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>--transition: 0.2s ease;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>html { font-size: 16px; scroll-behavior: smooth; }</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>body {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>font-family: var(--font-family); color: var(--text-primary);</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>background: var(--bg-primary); line-height: 1.6;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>min-height: 100vh; display: flex; flex-direction: column;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>transition: background-color 0.3s ease, color 0.3s ease;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>.header {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>background: var(--bg-secondary); border-bottom: 3px solid var(--mq-crimson);</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>box-shadow: var(--shadow-sm); position: sticky; top: 0; z-index: 100;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>.header-content {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>max-width: 1400px; margin: 0 auto; padding: 1rem 2rem;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>display: flex; align-items: center; justify-content: space-between; gap: 1rem;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>.logo-area { display: flex; align-items: center; gap: 0.75rem; }</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>.logo-mark {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>width: 44px; height: 44px; background: var(--mq-crimson); color: #fff;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>border-radius: var(--border-radius); display: flex; align-items: center;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>justify-content: center; font-weight: 700; font-size: 0.75rem;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>.logo-text h1 { font-size: 1.2rem; font-weight: 600; color: var(--text-primary); line-height: 1.2; }</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>.logo-text p { font-size: 0.8rem; color: var(--text-muted); }</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>.header-actions { display: flex; align-items: center; gap: 1rem; }</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>.header-nav { display: flex; gap: 1.5rem; }</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>.header-nav a { font-size: 0.85rem; color: var(--text-secondary); text-decoration: none; font-weight: 500; transition: color var(--transition); }</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>.header-nav a:hover { color: var(--mq-crimson); }</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>.theme-toggle {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>width: 36px; height: 36px; border: 1.5px solid var(--border-color);</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>border-radius: var(--border-radius); background: var(--bg-secondary);</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>color: var(--text-secondary); cursor: pointer; display: flex;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>align-items: center; justify-content: center; font-size: 1.1rem;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>transition: all var(--transition);</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>.theme-toggle:hover { border-color: var(--mq-crimson); color: var(--mq-crimson); }</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>.main-content { max-width: 1400px; margin: 0 auto; padding: 2rem; flex: 1; width: 100%; }</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>/* Intro section */</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>.intro-banner {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>background: var(--bg-secondary); border-radius: var(--border-radius-lg);</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>padding: 1.5rem 2rem; margin-bottom: 2rem; box-shadow: var(--shadow-sm);</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>border-left: 4px solid var(--mq-crimson);</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>.intro-banner h2 { font-size: 1.1rem; font-weight: 600; color: var(--mq-crimson); margin-bottom: 0.5rem; }</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>.intro-banner p { font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 0.25rem; }</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>.ipa-legend {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>display: flex; gap: 1.5rem; margin-top: 1rem; flex-wrap: wrap;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>.ipa-legend-item { display: flex; align-items: center; gap: 0.5rem; font-size: 0.8rem; }</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>.ipa-badge {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>width: 28px; height: 28px; border-radius: 50%; display: flex;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>align-items: center; justify-content: center; font-weight: 700; font-size: 0.75rem;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>.ipa-badge-i { background: var(--ipa-intro-bg); color: var(--ipa-intro); border: 2px solid var(--ipa-intro-border); }</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>.ipa-badge-p { background: var(--ipa-practice-bg); color: var(--ipa-practice); border: 2px solid var(--ipa-practice-border); }</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>.ipa-badge-a { background: var(--ipa-assured-bg); color: var(--ipa-assured); border: 2px solid var(--ipa-assured-border); }</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>.ipa-badge-gap { background: var(--ipa-gap-bg); color: var(--ipa-gap); border: 2px solid var(--ipa-gap); }</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>/* Input section */</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>.input-section {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>background: var(--bg-secondary); border-radius: var(--border-radius-lg);</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>padding: 1.5rem; box-shadow: var(--shadow-sm); margin-bottom: 2rem;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>.input-section h3 { font-size: 1rem; font-weight: 600; color: var(--mq-crimson); margin-bottom: 1rem; padding-bottom: 0.5rem; border-bottom: 1px solid var(--border-color); }</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>.input-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>.form-group { margin-bottom: 1rem; }</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>.form-group:last-child { margin-bottom: 0; }</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>.form-group label { display: block; font-size: 0.85rem; font-weight: 500; margin-bottom: 0.375rem; }</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>.form-group textarea, .form-group input, .form-group select {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>width: 100%; padding: 0.625rem 0.875rem;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>border: 1.5px solid var(--border-color); border-radius: var(--border-radius);</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>font-family: var(--font-family); font-size: 0.85rem; color: var(--text-primary);</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>background: var(--bg-secondary); transition: border-color var(--transition);</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>.form-group textarea:focus, .form-group input:focus, .form-group select:focus {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>outline: none; border-color: var(--mq-crimson); box-shadow: 0 0 0 3px rgba(166,25,46,0.15);</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>.form-group textarea { resize: vertical; min-height: 80px; }</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>.help-text { font-size: 0.75rem; color: var(--text-muted); margin-top: 0.25rem; font-style: italic; }</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>/* Unit cards */</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>.units-section { margin-top: 1.5rem; }</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>.units-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; }</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>.units-header h4 { font-size: 0.95rem; font-weight: 600; color: var(--text-primary); }</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>.unit-cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1rem; }</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>.unit-card {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>background: var(--bg-primary); border: 1.5px solid var(--border-color);</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>border-radius: var(--border-radius); padding: 1rem; position: relative;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>transition: border-color var(--transition);</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>.unit-card:hover { border-color: var(--mq-crimson); }</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>.unit-card-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 0.75rem; }</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>.unit-card-code { font-size: 0.9rem; font-weight: 600; color: var(--mq-crimson); }</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>.unit-card-level {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>font-size: 0.65rem; font-weight: 500; padding: 0.2rem 0.5rem;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>border-radius: 10px; background: var(--border-color); color: var(--text-secondary);</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>.unit-card-name { font-size: 0.8rem; color: var(--text-secondary); margin-bottom: 0.5rem; }</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>.unit-card-ulos { font-size: 0.7rem; color: var(--text-muted); }</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>.unit-card-actions { display: flex; gap: 0.5rem; margin-top: 0.75rem; }</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>.unit-card-actions button {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>font-size: 0.7rem; padding: 0.25rem 0.5rem; border: 1px solid var(--border-color);</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>border-radius: 4px; background: var(--bg-secondary); color: var(--text-secondary);</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>cursor: pointer; font-family: var(--font-family); transition: all var(--transition);</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>.unit-card-actions button:hover { border-color: var(--mq-crimson); color: var(--mq-crimson); }</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>.unit-card-actions button.delete:hover { border-color: var(--ipa-gap); color: var(--ipa-gap); }</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>/* Add unit form */</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>.add-unit-form {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>background: var(--bg-tertiary); border: 1.5px dashed var(--border-color);</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>border-radius: var(--border-radius); padding: 1.25rem; margin-top: 1rem;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>.add-unit-form h5 { font-size: 0.85rem; font-weight: 600; color: var(--text-primary); margin-bottom: 0.75rem; }</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>.add-unit-grid { display: grid; grid-template-columns: 120px 1fr auto; gap: 0.75rem; align-items: end; }</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>.add-unit-grid .form-group { margin-bottom: 0; }</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>/* Buttons */</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>.btn-primary {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>padding: 0.75rem 1.5rem; background: var(--mq-crimson); color: #fff;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>border: none; border-radius: var(--border-radius); font-family: var(--font-family);</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>font-size: 0.9rem; font-weight: 600; cursor: pointer; transition: all var(--transition);</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>display: inline-flex; align-items: center; gap: 0.5rem;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>.btn-primary:hover { background: var(--mq-crimson-dark); transform: translateY(-1px); }</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>.btn-primary:disabled { background: var(--text-muted); cursor: not-allowed; transform: none; }</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>.btn-secondary {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>padding: 0.625rem 1.25rem; background: transparent; color: var(--text-secondary);</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>border: 1.5px solid var(--border-color); border-radius: var(--border-radius);</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>font-family: var(--font-family); font-size: 0.85rem; font-weight: 500;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>cursor: pointer; transition: all var(--transition);</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>display: inline-flex; align-items: center; gap: 0.5rem;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>.btn-secondary:hover { border-color: var(--mq-crimson); color: var(--mq-crimson); }</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>.btn-sm {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>padding: 0.5rem 1rem; font-size: 0.8rem; font-weight: 500;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>border: 1.5px solid var(--border-color); border-radius: var(--border-radius);</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>background: var(--bg-secondary); color: var(--text-secondary);</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>cursor: pointer; font-family: var(--font-family); transition: all var(--transition);</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>display: inline-flex; align-items: center; gap: 0.375rem;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>.btn-sm:hover { border-color: var(--mq-crimson); color: var(--mq-crimson); }</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>/* Views */</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>.views-section { margin-top: 2rem; }</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>.view-tabs {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>display: flex; gap: 0.5rem; margin-bottom: 1.5rem;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>background: var(--bg-secondary); padding: 0.375rem;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>border-radius: var(--border-radius-lg); box-shadow: var(--shadow-sm); width: fit-content;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>.view-tab {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>padding: 0.625rem 1.25rem; border: none; background: transparent;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>border-radius: var(--border-radius); font-family: var(--font-family);</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>font-size: 0.85rem; font-weight: 500; color: var(--text-muted);</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>cursor: pointer; transition: all var(--transition);</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>.view-tab:hover { color: var(--text-primary); background: var(--bg-primary); }</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>.view-tab.active { background: var(--mq-crimson); color: #fff; }</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>.view-panel { display: none; }</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>.view-panel.active { display: block; }</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>/* IPA Matrix */</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>.ipa-matrix-wrap {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>background: var(--bg-secondary); border-radius: var(--border-radius-lg);</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>padding: 1.5rem; box-shadow: var(--shadow-sm); overflow-x: auto;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>.ipa-matrix-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; }</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>.ipa-matrix-header h3 { font-size: 1rem; font-weight: 600; color: var(--text-primary); }</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>.ipa-matrix {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>width: 100%; border-collapse: collapse; font-size: 0.8rem;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>.ipa-matrix th {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>padding: 0.625rem 0.5rem; text-align: center; font-weight: 600;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>font-size: 0.7rem; border: 1px solid var(--border-color);</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>background: var(--bg-primary); color: var(--text-secondary);</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>.ipa-matrix th.level-header {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>background: var(--mq-crimson); color: #fff; font-size: 0.65rem;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>letter-spacing: 0.5px; text-transform: uppercase;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>.ipa-matrix th:first-child { text-align: left; min-width: 200px; background: var(--bg-primary); }</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>.ipa-matrix td {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>padding: 0.5rem; text-align: center; border: 1px solid var(--border-color);</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>vertical-align: middle; min-width: 60px;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>.ipa-matrix td:first-child {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>text-align: left; font-weight: 500; font-size: 0.75rem;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>color: var(--text-primary); min-width: 200px; max-width: 280px;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>.ipa-matrix tr:nth-child(even) td { background: var(--bg-primary); }</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>.ipa-cell {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>width: 32px; height: 32px; border-radius: 50%; display: inline-flex;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>align-items: center; justify-content: center; font-weight: 700; font-size: 0.7rem;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>cursor: pointer; transition: transform 0.15s ease;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>.ipa-cell:hover { transform: scale(1.2); }</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>.ipa-cell-i { background: var(--ipa-intro-bg); color: var(--ipa-intro); border: 2px solid var(--ipa-intro-border); }</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>.ipa-cell-p { background: var(--ipa-practice-bg); color: var(--ipa-practice); border: 2px solid var(--ipa-practice-border); }</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>.ipa-cell-a { background: var(--ipa-assured-bg); color: var(--ipa-assured); border: 2px solid var(--ipa-assured-border); }</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>/* Gap warnings */</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>.gap-panel {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>margin-top: 1.5rem; background: var(--ipa-gap-bg); border: 1px solid var(--ipa-gap);</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>border-radius: var(--border-radius); padding: 1rem 1.25rem;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>.gap-panel h4 { font-size: 0.9rem; font-weight: 600; color: var(--ipa-gap); margin-bottom: 0.75rem; }</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>.gap-item { font-size: 0.8rem; color: var(--text-primary); margin-bottom: 0.5rem; padding-left: 1rem; position: relative; }</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>.gap-item::before { content: '⚠'; position: absolute; left: 0; }</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>.no-gaps { background: var(--ipa-assured-bg); border-color: var(--ipa-assured-border); }</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>.no-gaps h4 { color: var(--ipa-assured); }</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>/* Bloom's view */</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>.blooms-chart {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>background: var(--bg-secondary); border-radius: var(--border-radius-lg);</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>padding: 1.5rem; box-shadow: var(--shadow-sm);</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>.blooms-row { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.75rem; padding: 0.5rem 0; border-bottom: 1px solid var(--border-color); }</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>.blooms-clo-label { min-width: 60px; font-size: 0.8rem; font-weight: 600; color: var(--mq-crimson); }</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>.blooms-progression { display: flex; gap: 0.375rem; flex-wrap: wrap; flex: 1; }</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>.blooms-unit-tag {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>padding: 0.25rem 0.625rem; border-radius: 12px; font-size: 0.7rem; font-weight: 500;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>display: flex; align-items: center; gap: 0.25rem;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>.blooms-level-1 { background: #e3f2fd; color: #1565c0; }</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>.blooms-level-2 { background: #e8f5e9; color: #2e7d32; }</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>.blooms-level-3 { background: #fff3e0; color: #e65100; }</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>.blooms-level-4 { background: #fce4ec; color: #c62828; }</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>.blooms-level-5 { background: #f3e5f5; color: #6a1b9a; }</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>.blooms-level-6 { background: #ede7f6; color: #4527a0; }</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>[data-theme="dark"] .blooms-level-1 { background: #1a2a4a; color: #64b5f6; }</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>[data-theme="dark"] .blooms-level-2 { background: #1b3d1b; color: #81c784; }</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>[data-theme="dark"] .blooms-level-3 { background: #3d2e00; color: #ffb74d; }</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>[data-theme="dark"] .blooms-level-4 { background: #3d1b1b; color: #ef9a9a; }</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>[data-theme="dark"] .blooms-level-5 { background: #2a1a3d; color: #ce93d8; }</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>[data-theme="dark"] .blooms-level-6 { background: #1a1a3d; color: #b39ddb; }</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>/* Assessment view */</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>.assessment-map {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>background: var(--bg-secondary); border-radius: var(--border-radius-lg);</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>padding: 1.5rem; box-shadow: var(--shadow-sm);</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>.assessment-row { margin-bottom: 1rem; padding-bottom: 1rem; border-bottom: 1px solid var(--border-color); }</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>.assessment-row:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>.assessment-clo { font-size: 0.85rem; font-weight: 600; color: var(--mq-crimson); margin-bottom: 0.5rem; }</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>.assessment-units { display: flex; gap: 0.5rem; flex-wrap: wrap; }</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>.assessment-unit-tag {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>padding: 0.375rem 0.75rem; border-radius: var(--border-radius);</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>font-size: 0.75rem; border: 1px solid var(--border-color); background: var(--bg-primary);</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>.assessment-unit-tag.assured { border-color: var(--ipa-assured-border); background: var(--ipa-assured-bg); color: var(--ipa-assured); }</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>.assessment-unit-tag.no-assessment { border-color: var(--ipa-gap); background: var(--ipa-gap-bg); color: var(--ipa-gap); }</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>/* Empty state */</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>.empty-state {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>text-align: center; padding: 3rem 2rem; color: var(--text-muted);</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>.empty-state p { font-size: 0.9rem; margin-bottom: 0.5rem; }</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>.empty-state .hint { font-size: 0.8rem; }</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>/* Footer */</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>.footer { background: #1a1a2e; color: #c0c0c0; padding: 1.5rem 2rem; margin-top: auto; }</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>.footer-content { max-width: 1400px; margin: 0 auto; text-align: center; }</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>.footer-content p { font-size: 0.85rem; margin-bottom: 0.25rem; }</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>.footer-sub { font-size: 0.75rem; color: #888; }</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>.footer a { color: #c0c0c0; text-decoration: none; }</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>.footer a:hover { color: #fff; }</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>/* Print */</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>@media print {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>.header, .footer, .input-section, .view-tabs, .btn-primary, .btn-secondary,</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>.btn-sm, .theme-toggle, .unit-card-actions, .add-unit-form { display: none !important; }</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>body { background: #fff !important; color: #000 !important; }</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>.main-content { padding: 0 !important; max-width: none !important; }</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>.ipa-matrix-wrap, .blooms-chart, .assessment-map { box-shadow: none !important; border: 1px solid #ccc !important; }</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>.ipa-matrix th.level-header { background: #a6192e !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>.ipa-cell { -webkit-print-color-adjust: exact; print-color-adjust: exact; }</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>@page { margin: 1.5cm; size: landscape; }</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>/* Responsive */</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>@media (max-width: 900px) {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>.input-grid { grid-template-columns: 1fr; }</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>.header-content { flex-direction: column; align-items: flex-start; }</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>.add-unit-grid { grid-template-columns: 1fr; }</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>.view-tabs { width: 100%; flex-wrap: wrap; }</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>.view-tab { flex: 1; text-align: center; font-size: 0.75rem; padding: 0.5rem 0.75rem; }</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;/style&gt;</span></p>
-<p class="p1"><span class="s1">&lt;/head&gt;</span></p>
-<p class="p1"><span class="s1">&lt;body&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;header class="header"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;div class="header-content"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;div class="logo-area"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;div class="logo-mark"&gt;IPA&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;div class="logo-text"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>&lt;h1&gt;IPA Curriculum Visualiser&lt;/h1&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>&lt;p&gt;Faculty of Arts | Macquarie University&lt;/p&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;div class="header-actions"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;nav class="header-nav"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>&lt;a href="index.html"&gt;LO Generator&lt;/a&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>&lt;a href="https://lt.arts.mq.edu.au/curriculum-design/assessment/ipa-implementation/" target="_blank" rel="noopener"&gt;IPA Framework&lt;/a&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>&lt;a href="https://lt.arts.mq.edu.au/curriculum-design/constructive-alignment/" target="_blank" rel="noopener"&gt;Constructive Alignment&lt;/a&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;/nav&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode"&gt;&amp;#9790;&lt;/button&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;/header&gt;</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;main class="main-content"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;!-- Intro --&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;div class="intro-banner"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;h2&gt;Map your curriculum's IPA progression&lt;/h2&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;p&gt;Visualise where Course Learning Outcomes are &lt;strong&gt;Introduced&lt;/strong&gt;, &lt;strong&gt;Practised&lt;/strong&gt;, and &lt;strong&gt;Assured&lt;/strong&gt; across your course or major — ensuring TEQSA Standard 1.4.4 compliance.&lt;/p&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;div class="ipa-legend"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;div class="ipa-legend-item"&gt;&lt;span class="ipa-badge ipa-badge-i"&gt;I&lt;/span&gt; Introduced (foundational knowledge, 1000-level)&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;div class="ipa-legend-item"&gt;&lt;span class="ipa-badge ipa-badge-p"&gt;P&lt;/span&gt; Practised (developing skills, 2000-level)&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;div class="ipa-legend-item"&gt;&lt;span class="ipa-badge ipa-badge-a"&gt;A&lt;/span&gt; Assured (demonstrated mastery, 3000-level)&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;div class="ipa-legend-item"&gt;&lt;span class="ipa-badge ipa-badge-gap"&gt;!&lt;/span&gt; Gap (missing IPA stage)&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;!-- Input --&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;div class="input-section" id="input-section"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;h3&gt;1. Enter your Course/Major details&lt;/h3&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;div class="input-grid"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>&lt;div class="form-group"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>&lt;label for="course-name"&gt;Course / Major Name&lt;/label&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>&lt;input type="text" id="course-name" placeholder="e.g., Bachelor of Media and Communications"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>&lt;div class="form-group"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>&lt;label for="clo-input"&gt;Course Learning Outcomes (CLOs)&lt;/label&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>&lt;textarea id="clo-input" rows="8" placeholder="Paste your CLOs here, one per line (numbered or not)...&amp;#10;&amp;#10;1. Analyse media texts...&amp;#10;2. Produce creative content...&amp;#10;3. Evaluate ethical responsibilities..."&gt;&lt;/textarea&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>&lt;span class="help-text"&gt;Each line becomes one CLO. Numbering is optional.&lt;/span&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>&lt;button class="btn-primary" id="load-clos-btn"&gt;Load CLOs&lt;/button&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>&lt;div class="units-section"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>&lt;div class="units-header"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                            </span>&lt;h4&gt;Units in this course/major (&lt;span id="unit-count"&gt;0&lt;/span&gt;)&lt;/h4&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                            </span>&lt;button class="btn-sm" id="paste-units-btn"&gt;Paste from spreadsheet&lt;/button&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>&lt;div class="unit-cards" id="unit-cards"&gt;&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>&lt;div class="add-unit-form" id="add-unit-form"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                            </span>&lt;h5&gt;Add a unit&lt;/h5&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                            </span>&lt;div class="add-unit-grid"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                                </span>&lt;div class="form-group"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                                    </span>&lt;label for="new-unit-code"&gt;Code&lt;/label&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                                    </span>&lt;input type="text" id="new-unit-code" placeholder="MECO1001"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                                </span>&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                                </span>&lt;div class="form-group"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                                    </span>&lt;label for="new-unit-name"&gt;Unit Name&lt;/label&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                                    </span>&lt;input type="text" id="new-unit-name" placeholder="Introduction to Media"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                                </span>&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                                </span>&lt;button class="btn-secondary" id="add-unit-btn"&gt;+ Add&lt;/button&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                            </span>&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                            </span>&lt;div class="form-group" style="margin-top:0.75rem;"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                                </span>&lt;label for="new-unit-ulos"&gt;ULOs (optional, one per line)&lt;/label&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                                </span>&lt;textarea id="new-unit-ulos" rows="3" placeholder="1. Identify key media concepts...&amp;#10;2. Describe the history of..."&gt;&lt;/textarea&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                            </span>&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;!-- Paste units modal --&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;div id="paste-modal" style="display:none; position:fixed; top:0; left:0; right:0; bottom:0; background:rgba(0,0,0,0.5); z-index:200; display:none; align-items:center; justify-content:center;"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;div style="background:var(--bg-secondary); border-radius:var(--border-radius-lg); padding:2rem; max-width:600px; width:90%; max-height:80vh; overflow-y:auto;"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;h3 style="font-size:1rem; margin-bottom:1rem; color:var(--mq-crimson);"&gt;Paste Units from Spreadsheet&lt;/h3&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;p style="font-size:0.8rem; color:var(--text-muted); margin-bottom:1rem;"&gt;Paste tab-separated data: Unit Code, Unit Name, ULOs (semicolon-separated). One unit per line.&lt;/p&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;textarea id="paste-units-data" rows="8" style="width:100%; padding:0.75rem; border:1.5px solid var(--border-color); border-radius:var(--border-radius); font-family:var(--font-family); font-size:0.8rem; color:var(--text-primary); background:var(--bg-secondary);" placeholder="MECO1001&amp;#9;Introduction to Media&amp;#9;Identify key concepts;Describe media history&amp;#10;MECO2001&amp;#9;Media Analysis&amp;#9;Analyse media texts;Compare theoretical frameworks"&gt;&lt;/textarea&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;div style="display:flex; gap:0.75rem; margin-top:1rem;"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>&lt;button class="btn-primary" id="paste-units-confirm"&gt;Import Units&lt;/button&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>&lt;button class="btn-secondary" id="paste-units-cancel"&gt;Cancel&lt;/button&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;!-- Views --&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;div class="views-section" id="views-section" style="display:none;"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;div class="view-tabs"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;button class="view-tab active" data-view="ipa-matrix"&gt;IPA Matrix&lt;/button&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;button class="view-tab" data-view="blooms"&gt;Bloom's Escalation&lt;/button&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;button class="view-tab" data-view="assessment"&gt;Assessment Map&lt;/button&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;div class="view-panel active" id="view-ipa-matrix"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;div class="ipa-matrix-wrap"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>&lt;div class="ipa-matrix-header"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>&lt;h3 id="matrix-title"&gt;IPA Matrix&lt;/h3&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>&lt;div style="display:flex; gap:0.5rem;"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                            </span>&lt;button class="btn-sm" id="print-matrix-btn"&gt;&amp;#128424; Print&lt;/button&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                            </span>&lt;button class="btn-sm" id="export-csv-btn"&gt;&amp;#128196; Export CSV&lt;/button&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>&lt;div id="ipa-matrix-content"&gt;&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;div id="gap-panel"&gt;&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;div class="view-panel" id="view-blooms"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;div class="blooms-chart"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>&lt;h3 style="font-size:1rem; font-weight:600; color:var(--text-primary); margin-bottom:1rem;"&gt;Bloom's Escalation by CLO&lt;/h3&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>&lt;p style="font-size:0.8rem; color:var(--text-muted); margin-bottom:1.5rem;"&gt;Shows the Bloom's taxonomy level of ULOs mapped to each CLO, ordered by unit level. Expect progression from lower levels (Remember/Understand) to higher (Evaluate/Create).&lt;/p&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>&lt;div id="blooms-content"&gt;&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;div class="view-panel" id="view-assessment"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;div class="assessment-map"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>&lt;h3 style="font-size:1rem; font-weight:600; color:var(--text-primary); margin-bottom:1rem;"&gt;Assessment Alignment by CLO&lt;/h3&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>&lt;p style="font-size:0.8rem; color:var(--text-muted); margin-bottom:1.5rem;"&gt;Shows which units have assessments that assure each CLO. Flags CLOs that are marked as "Assured" but have no clear assessment.&lt;/p&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>&lt;div id="assessment-content"&gt;&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;/main&gt;</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;footer class="footer"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;div class="footer-content"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;p&gt;IPA Curriculum Visualiser | Faculty of Arts | Macquarie University&lt;/p&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;p class="footer-sub"&gt;Based on the FoA IPA Framework (Introduced, Practised, Assured) | TEQSA Standard 1.4.4&lt;/p&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;p class="footer-sub"&gt;For support: &lt;a href="mailto:artslandt@mq.edu.au"&gt;artslandt@mq.edu.au&lt;/a&gt;&lt;/p&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;/footer&gt;</span></p>
-<p class="p1"><span class="s1">&lt;script&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>document.addEventListener('DOMContentLoaded', () =&gt; {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>// State</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>let clos = []; // [{num, text, verb}]</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>let units = []; // [{code, name, level, ulos:[{text,verb,bloomsLevel}], ipaMapping:{cloIndex:'I'|'P'|'A'}, assessments:[string]}]</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>// Bloom's verb detection</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>const BLOOMS_VERBS = {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>1: ['define','describe','identify','label','list','name','outline','recall','recognise','recognize','state','match','select'],</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>2: ['classify','compare','contrast','discuss','distinguish','explain','illustrate','interpret','summarise','summarize','paraphrase','infer'],</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>3: ['apply','calculate','carry out','construct','implement','modify','solve','use','demonstrate','execute','operate'],</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>4: ['analyse','analyze','categorise','categorize','deconstruct','differentiate','examine','investigate','research','organise','organize','attribute'],</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>5: ['appraise','argue','assess','critique','defend','evaluate','justify','recommend','review','judge','monitor'],</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>6: ['compose','construct','create','design','develop','formulate','generate','hypothesise','hypothesize','produce','synthesise','synthesize','plan','invent']</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>};</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>function detectBloomsLevel(text) {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>const lower = text.toLowerCase().trim();</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>for (let level = 6; level &gt;= 1; level--) {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>for (let verb of BLOOMS_VERBS[level]) {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>if (lower.startsWith(verb)) return level;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>}</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>}</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>// Check first few words</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>const firstWords = lower.split(/\s+/).slice(0, 3).join(' ');</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>for (let level = 6; level &gt;= 1; level--) {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>for (let verb of BLOOMS_VERBS[level]) {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>if (firstWords.includes(verb)) return level;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>}</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>}</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>return 0; // unknown</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>function getBloomsLabel(level) {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>const labels = { 1:'Remember', 2:'Understand', 3:'Apply', 4:'Analyse', 5:'Evaluate', 6:'Create' };</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>return labels[level] || 'Unknown';</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>function getUnitLevel(code) {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>const match = code.match(/(\d)\d{3}/);</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>if (match) return parseInt(match[1]) * 1000;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>return 0;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>function getFirstVerb(text) {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>const words = text.trim().split(/[\s,]+/);</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>return words[0] || '';</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>// Infer IPA based on unit level relative to CLO</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>function inferIPA(unitLevel) {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>if (unitLevel &lt;= 1000) return 'I';</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>if (unitLevel &lt;= 2000) return 'P';</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>return 'A';</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>// Dark mode</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>const themeToggle = document.getElementById('theme-toggle');</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>function setTheme(theme) {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>document.documentElement.setAttribute('data-theme', theme);</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>localStorage.setItem('ipa-vis-theme', theme);</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>themeToggle.innerHTML = theme === 'dark' ? '&amp;#9788;' : '&amp;#9790;';</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>setTheme(localStorage.getItem('ipa-vis-theme') || localStorage.getItem('lo-gen-theme') || 'light');</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>themeToggle.addEventListener('click', () =&gt; {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>setTheme(document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>});</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>// View tabs</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>document.querySelectorAll('.view-tab').forEach(tab =&gt; {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>tab.addEventListener('click', () =&gt; {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>document.querySelectorAll('.view-tab').forEach(t =&gt; t.classList.remove('active'));</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>tab.classList.add('active');</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>document.querySelectorAll('.view-panel').forEach(p =&gt; p.classList.remove('active'));</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>document.getElementById('view-' + tab.getAttribute('data-view')).classList.add('active');</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>});</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>});</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>// Load CLOs</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>document.getElementById('load-clos-btn').addEventListener('click', () =&gt; {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>const input = document.getElementById('clo-input').value.trim();</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>if (!input) return alert('Please paste your CLOs.');</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>clos = input.split('\n')</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>.filter(l =&gt; l.trim())</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>.map((l, i) =&gt; {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>const cleaned = l.replace(/^\d+[\.\)]\s*/, '').trim();</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>return {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>num: i + 1,</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>text: cleaned,</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>verb: getFirstVerb(cleaned),</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>bloomsLevel: detectBloomsLevel(cleaned)</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>};</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>});</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>if (clos.length === 0) return alert('No CLOs found.');</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>// Auto-generate IPA mappings for existing units</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>units.forEach(u =&gt; generateIPAMapping(u));</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>renderAll();</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>});</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>// Add unit</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>document.getElementById('add-unit-btn').addEventListener('click', () =&gt; {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>const code = document.getElementById('new-unit-code').value.trim();</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>const name = document.getElementById('new-unit-name').value.trim();</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>const ulosText = document.getElementById('new-unit-ulos').value.trim();</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>if (!code) return alert('Please enter a unit code.');</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>const level = getUnitLevel(code);</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>const ulos = ulosText ? ulosText.split('\n').filter(l =&gt; l.trim()).map(l =&gt; {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>const cleaned = l.replace(/^\d+[\.\)]\s*/, '').trim();</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>return { text: cleaned, verb: getFirstVerb(cleaned), bloomsLevel: detectBloomsLevel(cleaned) };</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>}) : [];</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>const unit = { code, name: name || code, level, ulos, ipaMapping: {}, assessments: [] };</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>generateIPAMapping(unit);</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>units.push(unit);</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>// Clear inputs</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>document.getElementById('new-unit-code').value = '';</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>document.getElementById('new-unit-name').value = '';</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>document.getElementById('new-unit-ulos').value = '';</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>renderAll();</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>});</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>// Generate IPA mapping for a unit based on its level</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>function generateIPAMapping(unit) {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>unit.ipaMapping = {};</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>if (clos.length === 0) return;</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>const ipa = inferIPA(unit.level);</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>// For each CLO, check if any ULO in this unit relates to it</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>// Simple heuristic: if unit has ULOs, try to match keywords</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>// If no ULOs, assign all CLOs the inferred IPA level</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>if (unit.ulos.length === 0) {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>// Assign all CLOs at this IPA level</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>clos.forEach((clo, i) =&gt; {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>unit.ipaMapping[i] = ipa;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>});</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>} else {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>// Try to match ULOs to CLOs by keyword similarity</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>clos.forEach((clo, i) =&gt; {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>const cloWords = new Set(clo.text.toLowerCase().split(/\W+/).filter(w =&gt; w.length &gt; 3));</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>let bestMatch = 0;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>unit.ulos.forEach(ulo =&gt; {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>const uloWords = ulo.text.toLowerCase().split(/\W+/).filter(w =&gt; w.length &gt; 3);</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>const overlap = uloWords.filter(w =&gt; cloWords.has(w)).length;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>if (overlap &gt; bestMatch) bestMatch = overlap;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>});</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>if (bestMatch &gt;= 2) {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>unit.ipaMapping[i] = ipa;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>}</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>});</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>// If very few matches, fall back to assigning all</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>const mappedCount = Object.keys(unit.ipaMapping).length;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>if (mappedCount &lt; clos.length * 0.3) {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>clos.forEach((clo, i) =&gt; {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>if (!unit.ipaMapping[i]) unit.ipaMapping[i] = ipa;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>});</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>}</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>}</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>// Paste units modal</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>document.getElementById('paste-units-btn').addEventListener('click', () =&gt; {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>document.getElementById('paste-modal').style.display = 'flex';</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>});</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>document.getElementById('paste-units-cancel').addEventListener('click', () =&gt; {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>document.getElementById('paste-modal').style.display = 'none';</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>});</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>document.getElementById('paste-units-confirm').addEventListener('click', () =&gt; {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>const data = document.getElementById('paste-units-data').value.trim();</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>if (!data) return;</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>const lines = data.split('\n').filter(l =&gt; l.trim());</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>lines.forEach(line =&gt; {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>const parts = line.split('\t');</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>if (parts.length &lt; 2) return;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>const code = parts[0].trim();</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>const name = parts[1].trim();</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>const ulosRaw = parts[2] ? parts[2].split(';').filter(u =&gt; u.trim()) : [];</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>const level = getUnitLevel(code);</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>const ulos = ulosRaw.map(u =&gt; {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>const cleaned = u.trim().replace(/^\d+[\.\)]\s*/, '');</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>return { text: cleaned, verb: getFirstVerb(cleaned), bloomsLevel: detectBloomsLevel(cleaned) };</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>});</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>const unit = { code, name, level, ulos, ipaMapping: {}, assessments: [] };</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>generateIPAMapping(unit);</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>units.push(unit);</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>});</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>document.getElementById('paste-modal').style.display = 'none';</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>document.getElementById('paste-units-data').value = '';</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>renderAll();</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>});</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>// Cycle IPA value on click</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>function cycleIPA(unitIdx, cloIdx) {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>const unit = units[unitIdx];</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>const current = unit.ipaMapping[cloIdx] || '';</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>const cycle = { '': 'I', 'I': 'P', 'P': 'A', 'A': '' };</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>unit.ipaMapping[cloIdx] = cycle[current];</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>renderAll();</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>// Delete unit</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>function deleteUnit(idx) {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>if (confirm('Remove ' + units[idx].code + '?')) {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>units.splice(idx, 1);</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>renderAll();</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>}</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>// Render everything</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>function renderAll() {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>renderUnitCards();</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>if (clos.length &gt; 0 &amp;&amp; units.length &gt; 0) {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>document.getElementById('views-section').style.display = 'block';</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>renderIPAMatrix();</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>renderGapAnalysis();</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>renderBloomsView();</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>renderAssessmentView();</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>} else {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>document.getElementById('views-section').style.display = 'none';</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>}</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>document.getElementById('unit-count').textContent = units.length;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>function renderUnitCards() {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>const container = document.getElementById('unit-cards');</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>if (units.length === 0) {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>container.innerHTML = '&lt;div class="empty-state"&gt;&lt;p&gt;No units added yet.&lt;/p&gt;&lt;p class="hint"&gt;Add units below or paste from a spreadsheet.&lt;/p&gt;&lt;/div&gt;';</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>return;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>}</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>// Sort by level</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>const sorted = [...units].map((u, i) =&gt; ({ ...u, originalIdx: i }));</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>sorted.sort((a, b) =&gt; a.level - b.level);</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>container.innerHTML = sorted.map(u =&gt; `</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;div class="unit-card"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>&lt;div class="unit-card-header"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>&lt;span class="unit-card-code"&gt;${escapeHtml(u.code)}&lt;/span&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>&lt;span class="unit-card-level"&gt;${u.level}-level&lt;/span&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>&lt;div class="unit-card-name"&gt;${escapeHtml(u.name)}&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>&lt;div class="unit-card-ulos"&gt;${u.ulos.length} ULO${u.ulos.length !== 1 ? 's' : ''} | IPA: ${inferIPA(u.level)}&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>&lt;div class="unit-card-actions"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>&lt;button onclick="deleteUnit(${u.originalIdx})" class="delete"&gt;Remove&lt;/button&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>`).join('');</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>// Make deleteUnit global</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>window.deleteUnit = deleteUnit;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>window.cycleIPA = cycleIPA;</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>// Render IPA Matrix</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>function renderIPAMatrix() {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>const sorted = [...units].map((u, i) =&gt; ({ ...u, originalIdx: i }));</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>sorted.sort((a, b) =&gt; a.level - b.level);</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>// Group by level</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>const levels = [...new Set(sorted.map(u =&gt; u.level))].sort((a, b) =&gt; a - b);</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>let html = '&lt;table class="ipa-matrix"&gt;&lt;thead&gt;';</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>// Level group header</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>html += '&lt;tr&gt;&lt;th&gt;&lt;/th&gt;';</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>levels.forEach(level =&gt; {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>const unitsAtLevel = sorted.filter(u =&gt; u.level === level);</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>html += `&lt;th class="level-header" colspan="${unitsAtLevel.length}"&gt;${level}-level&lt;/th&gt;`;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>});</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>html += '&lt;/tr&gt;';</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>// Unit code header</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>html += '&lt;tr&gt;&lt;th&gt;CLO&lt;/th&gt;';</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>sorted.forEach(u =&gt; {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>html += `&lt;th title="${escapeHtml(u.name)}"&gt;${escapeHtml(u.code)}&lt;/th&gt;`;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>});</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>html += '&lt;/tr&gt;&lt;/thead&gt;&lt;tbody&gt;';</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>// CLO rows</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>clos.forEach((clo, cloIdx) =&gt; {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>const shortText = clo.text.length &gt; 50 ? clo.text.substring(0, 50) + '...' : clo.text;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>html += `&lt;tr&gt;&lt;td title="${escapeHtml(clo.text)}"&gt;&lt;strong&gt;CLO ${clo.num}.&lt;/strong&gt; ${escapeHtml(shortText)}&lt;/td&gt;`;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>sorted.forEach(u =&gt; {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>const ipa = u.ipaMapping[cloIdx] || '';</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>let cellHtml = '';</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>if (ipa) {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>const cls = ipa === 'I' ? 'ipa-cell-i' : ipa === 'P' ? 'ipa-cell-p' : 'ipa-cell-a';</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>cellHtml = `&lt;span class="ipa-cell ${cls}" onclick="cycleIPA(${u.originalIdx},${cloIdx})" title="Click to change"&gt;${ipa}&lt;/span&gt;`;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>} else {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>cellHtml = `&lt;span class="ipa-cell" onclick="cycleIPA(${u.originalIdx},${cloIdx})" title="Click to assign" style="border:1.5px dashed var(--border-color);color:var(--text-muted);font-size:0.6rem;"&gt;+&lt;/span&gt;`;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>}</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>html += `&lt;td&gt;${cellHtml}&lt;/td&gt;`;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>});</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>html += '&lt;/tr&gt;';</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>});</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>html += '&lt;/tbody&gt;&lt;/table&gt;';</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>document.getElementById('ipa-matrix-content').innerHTML = html;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>document.getElementById('matrix-title').textContent = document.getElementById('course-name').value || 'IPA Matrix';</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>// Gap analysis</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>function renderGapAnalysis() {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>const gaps = [];</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>clos.forEach((clo, cloIdx) =&gt; {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>const stages = { I: false, P: false, A: false };</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>units.forEach(u =&gt; {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>const ipa = u.ipaMapping[cloIdx];</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>if (ipa) stages[ipa] = true;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>});</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>if (!stages.I) gaps.push(`CLO ${clo.num} is never &lt;strong&gt;Introduced&lt;/strong&gt; — students aren't given foundational exposure.`);</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>if (!stages.P) gaps.push(`CLO ${clo.num} is never &lt;strong&gt;Practised&lt;/strong&gt; — students don't get opportunities to develop these skills.`);</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>if (!stages.A) gaps.push(`CLO ${clo.num} is never &lt;strong&gt;Assured&lt;/strong&gt; — mastery is not formally demonstrated or assessed.`);</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>// Check progression order</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>let introLevel = 9999, practiceLevel = 0, assuredLevel = 0;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>units.forEach(u =&gt; {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>const ipa = u.ipaMapping[cloIdx];</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>if (ipa === 'I' &amp;&amp; u.level &lt; introLevel) introLevel = u.level;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>if (ipa === 'P' &amp;&amp; u.level &gt; practiceLevel) practiceLevel = u.level;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>if (ipa === 'A' &amp;&amp; u.level &gt; assuredLevel) assuredLevel = u.level;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>});</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>if (stages.I &amp;&amp; stages.A &amp;&amp; introLevel &gt;= assuredLevel) {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>gaps.push(`CLO ${clo.num} is Introduced at ${introLevel}-level but Assured at the same or lower level — progression may be inverted.`);</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>}</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>});</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>const panel = document.getElementById('gap-panel');</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>if (gaps.length === 0) {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>panel.innerHTML = `&lt;div class="gap-panel no-gaps"&gt;&lt;h4&gt;✓ No IPA gaps detected&lt;/h4&gt;&lt;p style="font-size:0.8rem;"&gt;All CLOs have complete I → P → A coverage. Well done!&lt;/p&gt;&lt;/div&gt;`;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>} else {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>panel.innerHTML = `&lt;div class="gap-panel"&gt;&lt;h4&gt;IPA Compliance Gaps (${gaps.length})&lt;/h4&gt;${gaps.map(g =&gt; `&lt;div class="gap-item"&gt;${g}&lt;/div&gt;`).join('')}&lt;/div&gt;`;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>}</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
-<p class="p1"><span class="s1">// Bloom's escalation view</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>function renderBloomsView() {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>const container = document.getElementById('blooms-content');</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>const sorted = [...units].sort((a, b) =&gt; a.level - b.level);</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>let html = '';</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>clos.forEach((clo, cloIdx) =&gt; {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>html += `&lt;div class="blooms-row"&gt;&lt;div class="blooms-clo-label"&gt;CLO ${clo.num}&lt;/div&gt;&lt;div class="blooms-progression"&gt;`;</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>sorted.forEach(u =&gt; {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>const ipa = u.ipaMapping[cloIdx];</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>if (!ipa) return;</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>// Find relevant ULO bloom's level for this CLO in this unit</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>let bloomLevel = 0;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>if (u.ulos.length &gt; 0) {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>// Try to find the most relevant ULO</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>const cloWords = new Set(clo.text.toLowerCase().split(/\W+/).filter(w =&gt; w.length &gt; 3));</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>let bestMatch = 0, bestBlooms = 0;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>u.ulos.forEach(ulo =&gt; {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                            </span>const uloWords = ulo.text.toLowerCase().split(/\W+/).filter(w =&gt; w.length &gt; 3);</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                            </span>const overlap = uloWords.filter(w =&gt; cloWords.has(w)).length;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                            </span>if (overlap &gt; bestMatch || (overlap === bestMatch &amp;&amp; ulo.bloomsLevel &gt; bestBlooms)) {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                                </span>bestMatch = overlap;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                                </span>bestBlooms = ulo.bloomsLevel;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                            </span>}</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>});</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>bloomLevel = bestBlooms || (u.ulos[0] ? u.ulos[0].bloomsLevel : 0);</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>}</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>// If no ULO bloom's found, infer from IPA stage</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>if (bloomLevel === 0) {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>if (ipa === 'I') bloomLevel = 1; // Remember/Understand</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>else if (ipa === 'P') bloomLevel = 3; // Apply/Analyse</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>else bloomLevel = 5; // Evaluate/Create</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>}</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>const levelClass = 'blooms-level-' + bloomLevel;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>const label = getBloomsLabel(bloomLevel);</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>html += `&lt;span class="blooms-unit-tag ${levelClass}" title="${escapeHtml(u.name)} (${ipa}): ${label}"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>&lt;strong&gt;${u.code}&lt;/strong&gt; ${label} (${ipa})</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>&lt;/span&gt;`;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>});</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>html += '&lt;/div&gt;&lt;/div&gt;';</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>});</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>container.innerHTML = html || '&lt;div class="empty-state"&gt;&lt;p&gt;Add units with ULOs to see Bloom\'s progression.&lt;/p&gt;&lt;/div&gt;';</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>// Assessment alignment view</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>function renderAssessmentView() {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>const container = document.getElementById('assessment-content');</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>const sorted = [...units].sort((a, b) =&gt; a.level - b.level);</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>let html = '';</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>clos.forEach((clo, cloIdx) =&gt; {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>const shortText = clo.text.length &gt; 60 ? clo.text.substring(0, 60) + '...' : clo.text;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>html += `&lt;div class="assessment-row"&gt;`;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>html += `&lt;div class="assessment-clo"&gt;CLO ${clo.num}. ${escapeHtml(shortText)}&lt;/div&gt;`;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>html += `&lt;div class="assessment-units"&gt;`;</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>let hasAssured = false;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>sorted.forEach(u =&gt; {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>const ipa = u.ipaMapping[cloIdx];</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>if (!ipa) return;</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>if (ipa === 'A') {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>hasAssured = true;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>// Check if unit has assessment info</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>if (u.assessments &amp;&amp; u.assessments.length &gt; 0) {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                            </span>html += `&lt;span class="assessment-unit-tag assured"&gt;${u.code}: ${escapeHtml(u.assessments[0])}&lt;/span&gt;`;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>} else {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                            </span>html += `&lt;span class="assessment-unit-tag assured"&gt;${u.code} (Assured) ✓&lt;/span&gt;`;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>}</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>} else {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>html += `&lt;span class="assessment-unit-tag"&gt;${u.code} (${ipa})&lt;/span&gt;`;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>}</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>});</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>if (!hasAssured) {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>html += `&lt;span class="assessment-unit-tag no-assessment"&gt;⚠ No unit assures this CLO&lt;/span&gt;`;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>}</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>html += '&lt;/div&gt;&lt;/div&gt;';</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>});</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>container.innerHTML = html || '&lt;div class="empty-state"&gt;&lt;p&gt;Load CLOs and add units to see assessment alignment.&lt;/p&gt;&lt;/div&gt;';</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>// Export CSV</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>document.getElementById('export-csv-btn').addEventListener('click', () =&gt; {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>if (clos.length === 0 || units.length === 0) return;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>const sorted = [...units].sort((a, b) =&gt; a.level - b.level);</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>let csv = 'CLO,' + sorted.map(u =&gt; '"' + u.code + ' (' + u.level + '-level)"').join(',') + ',Has I,Has P,Has A,Complete\n';</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>clos.forEach((clo, cloIdx) =&gt; {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>const shortText = clo.text.substring(0, 40).replace(/"/g, "'");</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>let row = '"CLO ' + clo.num + '. ' + shortText + '..."';</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>let hasI = false, hasP = false, hasA = false;</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>sorted.forEach(u =&gt; {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>const ipa = u.ipaMapping[cloIdx] || '';</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>row += ',' + ipa;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>if (ipa === 'I') hasI = true;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>if (ipa === 'P') hasP = true;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>if (ipa === 'A') hasA = true;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>});</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>row += ',' + (hasI ? 'Yes' : 'NO') + ',' + (hasP ? 'Yes' : 'NO') + ',' + (hasA ? 'Yes' : 'NO') + ',' + (hasI &amp;&amp; hasP &amp;&amp; hasA ? 'Complete' : 'GAPS');</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>csv += row + '\n';</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>});</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>const blob = new Blob([csv], { type: 'text/csv' });</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>const url = URL.createObjectURL(blob);</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>const a = document.createElement('a');</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>a.href = url;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>a.download = 'ipa-matrix-' + (document.getElementById('course-name').value || 'course').replace(/\s+/g, '-').toLowerCase() + '.csv';</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>document.body.appendChild(a); a.click(); document.body.removeChild(a);</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>URL.revokeObjectURL(url);</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>});</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>// Print</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>document.getElementById('print-matrix-btn').addEventListener('click', () =&gt; { window.print(); });</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>// Utility</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>function escapeHtml(t) { const d = document.createElement('div'); d.textContent = t; return d.innerHTML; }</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>// Initial render</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>renderAll();</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>});</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;/script&gt;</span></p>
-<p class="p1"><span class="s1">&lt;/body&gt;</span></p>
-<p class="p1"><span class="s1">&lt;/html&gt;</span></p>
+    <header class="header">
+        <div class="header-content">
+            <div class="logo-area">
+                <div class="logo-mark">IPA</div>
+                <div class="logo-text">
+                    <h1>IPA Curriculum Visualiser</h1>
+                    <p>Faculty of Arts | Macquarie University</p>
+                </div>
+            </div>
+            <div class="header-actions">
+                <nav class="header-nav">
+                    <a href="index.html">LO Generator</a>
+                    <a href="https://lt.arts.mq.edu.au/curriculum-design/assessment/ipa-implementation/" target="_blank" rel="noopener">IPA Framework</a>
+                    <a href="https://lt.arts.mq.edu.au/curriculum-design/constructive-alignment/" target="_blank" rel="noopener">Constructive Alignment</a>
+                </nav>
+                <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">&#9790;</button>
+            </div>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <!-- Intro -->
+        <div class="intro-banner">
+            <h2>Map your curriculum's IPA progression</h2>
+            <p>Visualise where Course Learning Outcomes are <strong>Introduced</strong>, <strong>Practised</strong>, and <strong>Assured</strong> across your course or major — ensuring TEQSA Standard 1.4.4 compliance.</p>
+            <div class="ipa-legend">
+                <div class="ipa-legend-item"><span class="ipa-badge ipa-badge-i">I</span> Introduced (foundational knowledge, 1000-level)</div>
+                <div class="ipa-legend-item"><span class="ipa-badge ipa-badge-p">P</span> Practised (developing skills, 2000-level)</div>
+                <div class="ipa-legend-item"><span class="ipa-badge ipa-badge-a">A</span> Assured (demonstrated mastery, 3000-level)</div>
+                <div class="ipa-legend-item"><span class="ipa-badge ipa-badge-gap">!</span> Gap (missing IPA stage)</div>
+            </div>
+        </div>
+
+        <!-- Input -->
+        <div class="input-section" id="input-section">
+            <h3>1. Enter your Course/Major details</h3>
+            <div class="input-grid">
+                <div>
+                    <div class="form-group">
+                        <label for="course-name">Course / Major Name</label>
+                        <input type="text" id="course-name" placeholder="e.g., Bachelor of Media and Communications">
+                    </div>
+                    <div class="form-group">
+                        <label for="clo-input">Course Learning Outcomes (CLOs)</label>
+                        <textarea id="clo-input" rows="8" placeholder="Paste your CLOs here, one per line (numbered or not)...&#10;&#10;1. Analyse media texts...&#10;2. Produce creative content...&#10;3. Evaluate ethical responsibilities..."></textarea>
+                        <span class="help-text">Each line becomes one CLO. Numbering is optional.</span>
+                    </div>
+                    <button class="btn-primary" id="load-clos-btn">Load CLOs</button>
+                </div>
+                <div>
+                    <div class="units-section">
+                        <div class="units-header">
+                            <h4>Units in this course/major (<span id="unit-count">0</span>)</h4>
+                            <button class="btn-sm" id="paste-units-btn">Paste from spreadsheet</button>
+                        </div>
+                        <div class="unit-cards" id="unit-cards"></div>
+                        <div class="add-unit-form" id="add-unit-form">
+                            <h5>Add a unit</h5>
+                            <div class="add-unit-grid">
+                                <div class="form-group">
+                                    <label for="new-unit-code">Code</label>
+                                    <input type="text" id="new-unit-code" placeholder="MECO1001">
+                                </div>
+                                <div class="form-group">
+                                    <label for="new-unit-name">Unit Name</label>
+                                    <input type="text" id="new-unit-name" placeholder="Introduction to Media">
+                                </div>
+                                <button class="btn-secondary" id="add-unit-btn">+ Add</button>
+                            </div>
+                            <div class="form-group" style="margin-top:0.75rem;">
+                                <label for="new-unit-ulos">ULOs (optional, one per line)</label>
+                                <textarea id="new-unit-ulos" rows="3" placeholder="1. Identify key media concepts...&#10;2. Describe the history of..."></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Paste units modal -->
+        <div id="paste-modal" style="display:none; position:fixed; top:0; left:0; right:0; bottom:0; background:rgba(0,0,0,0.5); z-index:200; display:none; align-items:center; justify-content:center;">
+            <div style="background:var(--bg-secondary); border-radius:var(--border-radius-lg); padding:2rem; max-width:600px; width:90%; max-height:80vh; overflow-y:auto;">
+                <h3 style="font-size:1rem; margin-bottom:1rem; color:var(--mq-crimson);">Paste Units from Spreadsheet</h3>
+                <p style="font-size:0.8rem; color:var(--text-muted); margin-bottom:1rem;">Paste tab-separated data: Unit Code, Unit Name, ULOs (semicolon-separated). One unit per line.</p>
+                <textarea id="paste-units-data" rows="8" style="width:100%; padding:0.75rem; border:1.5px solid var(--border-color); border-radius:var(--border-radius); font-family:var(--font-family); font-size:0.8rem; color:var(--text-primary); background:var(--bg-secondary);" placeholder="MECO1001&#9;Introduction to Media&#9;Identify key concepts;Describe media history&#10;MECO2001&#9;Media Analysis&#9;Analyse media texts;Compare theoretical frameworks"></textarea>
+                <div style="display:flex; gap:0.75rem; margin-top:1rem;">
+                    <button class="btn-primary" id="paste-units-confirm">Import Units</button>
+                    <button class="btn-secondary" id="paste-units-cancel">Cancel</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Views -->
+        <div class="views-section" id="views-section" style="display:none;">
+            <div class="view-tabs">
+                <button class="view-tab active" data-view="ipa-matrix">IPA Matrix</button>
+                <button class="view-tab" data-view="blooms">Bloom's Escalation</button>
+                <button class="view-tab" data-view="assessment">Assessment Map</button>
+            </div>
+
+            <div class="view-panel active" id="view-ipa-matrix">
+                <div class="ipa-matrix-wrap">
+                    <div class="ipa-matrix-header">
+                        <h3 id="matrix-title">IPA Matrix</h3>
+                        <div style="display:flex; gap:0.5rem;">
+                            <button class="btn-sm" id="print-matrix-btn">&#128424; Print</button>
+                            <button class="btn-sm" id="export-csv-btn">&#128196; Export CSV</button>
+                        </div>
+                    </div>
+                    <div id="ipa-matrix-content"></div>
+                </div>
+                <div id="gap-panel"></div>
+            </div>
+
+            <div class="view-panel" id="view-blooms">
+                <div class="blooms-chart">
+                    <h3 style="font-size:1rem; font-weight:600; color:var(--text-primary); margin-bottom:1rem;">Bloom's Escalation by CLO</h3>
+                    <p style="font-size:0.8rem; color:var(--text-muted); margin-bottom:1.5rem;">Shows the Bloom's taxonomy level of ULOs mapped to each CLO, ordered by unit level. Expect progression from lower levels (Remember/Understand) to higher (Evaluate/Create).</p>
+                    <div id="blooms-content"></div>
+                </div>
+            </div>
+
+            <div class="view-panel" id="view-assessment">
+                <div class="assessment-map">
+                    <h3 style="font-size:1rem; font-weight:600; color:var(--text-primary); margin-bottom:1rem;">Assessment Alignment by CLO</h3>
+                    <p style="font-size:0.8rem; color:var(--text-muted); margin-bottom:1.5rem;">Shows which units have assessments that assure each CLO. Flags CLOs that are marked as "Assured" but have no clear assessment.</p>
+                    <div id="assessment-content"></div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <p>IPA Curriculum Visualiser | Faculty of Arts | Macquarie University</p>
+            <p class="footer-sub">Based on the FoA IPA Framework (Introduced, Practised, Assured) | TEQSA Standard 1.4.4</p>
+            <p class="footer-sub">For support: <a href="mailto:artslandt@mq.edu.au">artslandt@mq.edu.au</a></p>
+        </div>
+    </footer>
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        // State
+        let clos = []; // [{num, text, verb}]
+        let units = []; // [{code, name, level, ulos:[{text,verb,bloomsLevel}], ipaMapping:{cloIndex:'I'|'P'|'A'}, assessments:[string]}]
+
+        // Bloom's verb detection
+        const BLOOMS_VERBS = {
+            1: ['define','describe','identify','label','list','name','outline','recall','recognise','recognize','state','match','select'],
+            2: ['classify','compare','contrast','discuss','distinguish','explain','illustrate','interpret','summarise','summarize','paraphrase','infer'],
+            3: ['apply','calculate','carry out','construct','implement','modify','solve','use','demonstrate','execute','operate'],
+            4: ['analyse','analyze','categorise','categorize','deconstruct','differentiate','examine','investigate','research','organise','organize','attribute'],
+            5: ['appraise','argue','assess','critique','defend','evaluate','justify','recommend','review','judge','monitor'],
+            6: ['compose','construct','create','design','develop','formulate','generate','hypothesise','hypothesize','produce','synthesise','synthesize','plan','invent']
+        };
+
+        function detectBloomsLevel(text) {
+            const lower = text.toLowerCase().trim();
+            for (let level = 6; level >= 1; level--) {
+                for (let verb of BLOOMS_VERBS[level]) {
+                    if (lower.startsWith(verb)) return level;
+                }
+            }
+            // Check first few words
+            const firstWords = lower.split(/\s+/).slice(0, 3).join(' ');
+            for (let level = 6; level >= 1; level--) {
+                for (let verb of BLOOMS_VERBS[level]) {
+                    if (firstWords.includes(verb)) return level;
+                }
+            }
+            return 0; // unknown
+        }
+
+        function getBloomsLabel(level) {
+            const labels = { 1:'Remember', 2:'Understand', 3:'Apply', 4:'Analyse', 5:'Evaluate', 6:'Create' };
+            return labels[level] || 'Unknown';
+        }
+
+        function getUnitLevel(code) {
+            const match = code.match(/(\d)\d{3}/);
+            if (match) return parseInt(match[1]) * 1000;
+            return 0;
+        }
+
+        function getFirstVerb(text) {
+            const words = text.trim().split(/[\s,]+/);
+            return words[0] || '';
+        }
+
+        // Infer IPA based on unit level relative to CLO
+        function inferIPA(unitLevel) {
+            if (unitLevel <= 1000) return 'I';
+            if (unitLevel <= 2000) return 'P';
+            return 'A';
+        }
+
+        // Dark mode
+        const themeToggle = document.getElementById('theme-toggle');
+        function setTheme(theme) {
+            document.documentElement.setAttribute('data-theme', theme);
+            localStorage.setItem('ipa-vis-theme', theme);
+            themeToggle.innerHTML = theme === 'dark' ? '&#9788;' : '&#9790;';
+        }
+        setTheme(localStorage.getItem('ipa-vis-theme') || localStorage.getItem('lo-gen-theme') || 'light');
+        themeToggle.addEventListener('click', () => {
+            setTheme(document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
+        });
+
+        // View tabs
+        document.querySelectorAll('.view-tab').forEach(tab => {
+            tab.addEventListener('click', () => {
+                document.querySelectorAll('.view-tab').forEach(t => t.classList.remove('active'));
+                tab.classList.add('active');
+                document.querySelectorAll('.view-panel').forEach(p => p.classList.remove('active'));
+                document.getElementById('view-' + tab.getAttribute('data-view')).classList.add('active');
+            });
+        });
+
+        // Load CLOs
+        document.getElementById('load-clos-btn').addEventListener('click', () => {
+            const input = document.getElementById('clo-input').value.trim();
+            if (!input) return alert('Please paste your CLOs.');
+
+            clos = input.split('\n')
+                .filter(l => l.trim())
+                .map((l, i) => {
+                    const cleaned = l.replace(/^\d+[\.\)]\s*/, '').trim();
+                    return {
+                        num: i + 1,
+                        text: cleaned,
+                        verb: getFirstVerb(cleaned),
+                        bloomsLevel: detectBloomsLevel(cleaned)
+                    };
+                });
+
+            if (clos.length === 0) return alert('No CLOs found.');
+
+            // Auto-generate IPA mappings for existing units
+            units.forEach(u => generateIPAMapping(u));
+            renderAll();
+        });
+
+        // Add unit
+        document.getElementById('add-unit-btn').addEventListener('click', () => {
+            const code = document.getElementById('new-unit-code').value.trim();
+            const name = document.getElementById('new-unit-name').value.trim();
+            const ulosText = document.getElementById('new-unit-ulos').value.trim();
+
+            if (!code) return alert('Please enter a unit code.');
+
+            const level = getUnitLevel(code);
+            const ulos = ulosText ? ulosText.split('\n').filter(l => l.trim()).map(l => {
+                const cleaned = l.replace(/^\d+[\.\)]\s*/, '').trim();
+                return { text: cleaned, verb: getFirstVerb(cleaned), bloomsLevel: detectBloomsLevel(cleaned) };
+            }) : [];
+
+            const unit = { code, name: name || code, level, ulos, ipaMapping: {}, assessments: [] };
+            generateIPAMapping(unit);
+            units.push(unit);
+
+            // Clear inputs
+            document.getElementById('new-unit-code').value = '';
+            document.getElementById('new-unit-name').value = '';
+            document.getElementById('new-unit-ulos').value = '';
+
+            renderAll();
+        });
+
+        // Generate IPA mapping for a unit based on its level
+        function generateIPAMapping(unit) {
+            unit.ipaMapping = {};
+            if (clos.length === 0) return;
+
+            const ipa = inferIPA(unit.level);
+
+            // For each CLO, check if any ULO in this unit relates to it
+            // Simple heuristic: if unit has ULOs, try to match keywords
+            // If no ULOs, assign all CLOs the inferred IPA level
+            if (unit.ulos.length === 0) {
+                // Assign all CLOs at this IPA level
+                clos.forEach((clo, i) => {
+                    unit.ipaMapping[i] = ipa;
+                });
+            } else {
+                // Try to match ULOs to CLOs by keyword similarity
+                clos.forEach((clo, i) => {
+                    const cloWords = new Set(clo.text.toLowerCase().split(/\W+/).filter(w => w.length > 3));
+                    let bestMatch = 0;
+                    unit.ulos.forEach(ulo => {
+                        const uloWords = ulo.text.toLowerCase().split(/\W+/).filter(w => w.length > 3);
+                        const overlap = uloWords.filter(w => cloWords.has(w)).length;
+                        if (overlap > bestMatch) bestMatch = overlap;
+                    });
+                    if (bestMatch >= 2) {
+                        unit.ipaMapping[i] = ipa;
+                    }
+                });
+
+                // If very few matches, fall back to assigning all
+                const mappedCount = Object.keys(unit.ipaMapping).length;
+                if (mappedCount < clos.length * 0.3) {
+                    clos.forEach((clo, i) => {
+                        if (!unit.ipaMapping[i]) unit.ipaMapping[i] = ipa;
+                    });
+                }
+            }
+        }
+
+        // Paste units modal
+        document.getElementById('paste-units-btn').addEventListener('click', () => {
+            document.getElementById('paste-modal').style.display = 'flex';
+        });
+        document.getElementById('paste-units-cancel').addEventListener('click', () => {
+            document.getElementById('paste-modal').style.display = 'none';
+        });
+        document.getElementById('paste-units-confirm').addEventListener('click', () => {
+            const data = document.getElementById('paste-units-data').value.trim();
+            if (!data) return;
+
+            const lines = data.split('\n').filter(l => l.trim());
+            lines.forEach(line => {
+                const parts = line.split('\t');
+                if (parts.length < 2) return;
+                const code = parts[0].trim();
+                const name = parts[1].trim();
+                const ulosRaw = parts[2] ? parts[2].split(';').filter(u => u.trim()) : [];
+                const level = getUnitLevel(code);
+                const ulos = ulosRaw.map(u => {
+                    const cleaned = u.trim().replace(/^\d+[\.\)]\s*/, '');
+                    return { text: cleaned, verb: getFirstVerb(cleaned), bloomsLevel: detectBloomsLevel(cleaned) };
+                });
+                const unit = { code, name, level, ulos, ipaMapping: {}, assessments: [] };
+                generateIPAMapping(unit);
+                units.push(unit);
+            });
+
+            document.getElementById('paste-modal').style.display = 'none';
+            document.getElementById('paste-units-data').value = '';
+            renderAll();
+        });
+
+        // Cycle IPA value on click
+        function cycleIPA(unitIdx, cloIdx) {
+            const unit = units[unitIdx];
+            const current = unit.ipaMapping[cloIdx] || '';
+            const cycle = { '': 'I', 'I': 'P', 'P': 'A', 'A': '' };
+            unit.ipaMapping[cloIdx] = cycle[current];
+            renderAll();
+        }
+
+        // Delete unit
+        function deleteUnit(idx) {
+            if (confirm('Remove ' + units[idx].code + '?')) {
+                units.splice(idx, 1);
+                renderAll();
+            }
+        }
+
+        // Render everything
+        function renderAll() {
+            renderUnitCards();
+            if (clos.length > 0 && units.length > 0) {
+                document.getElementById('views-section').style.display = 'block';
+                renderIPAMatrix();
+                renderGapAnalysis();
+                renderBloomsView();
+                renderAssessmentView();
+            } else {
+                document.getElementById('views-section').style.display = 'none';
+            }
+            document.getElementById('unit-count').textContent = units.length;
+        }
+
+        function renderUnitCards() {
+            const container = document.getElementById('unit-cards');
+            if (units.length === 0) {
+                container.innerHTML = '<div class="empty-state"><p>No units added yet.</p><p class="hint">Add units below or paste from a spreadsheet.</p></div>';
+                return;
+            }
+
+            // Sort by level
+            const sorted = [...units].map((u, i) => ({ ...u, originalIdx: i }));
+            sorted.sort((a, b) => a.level - b.level);
+
+            container.innerHTML = sorted.map(u => `
+                <div class="unit-card">
+                    <div class="unit-card-header">
+                        <span class="unit-card-code">${escapeHtml(u.code)}</span>
+                        <span class="unit-card-level">${u.level}-level</span>
+                    </div>
+                    <div class="unit-card-name">${escapeHtml(u.name)}</div>
+                    <div class="unit-card-ulos">${u.ulos.length} ULO${u.ulos.length !== 1 ? 's' : ''} | IPA: ${inferIPA(u.level)}</div>
+                    <div class="unit-card-actions">
+                        <button onclick="deleteUnit(${u.originalIdx})" class="delete">Remove</button>
+                    </div>
+                </div>
+            `).join('');
+        }
+        // Make deleteUnit global
+        window.deleteUnit = deleteUnit;
+        window.cycleIPA = cycleIPA;
+
+        // Render IPA Matrix
+        function renderIPAMatrix() {
+            const sorted = [...units].map((u, i) => ({ ...u, originalIdx: i }));
+            sorted.sort((a, b) => a.level - b.level);
+
+            // Group by level
+            const levels = [...new Set(sorted.map(u => u.level))].sort((a, b) => a - b);
+
+            let html = '<table class="ipa-matrix"><thead>';
+
+            // Level group header
+            html += '<tr><th></th>';
+            levels.forEach(level => {
+                const unitsAtLevel = sorted.filter(u => u.level === level);
+                html += `<th class="level-header" colspan="${unitsAtLevel.length}">${level}-level</th>`;
+            });
+            html += '</tr>';
+
+            // Unit code header
+            html += '<tr><th>CLO</th>';
+            sorted.forEach(u => {
+                html += `<th title="${escapeHtml(u.name)}">${escapeHtml(u.code)}</th>`;
+            });
+            html += '</tr></thead><tbody>';
+
+            // CLO rows
+            clos.forEach((clo, cloIdx) => {
+                const shortText = clo.text.length > 50 ? clo.text.substring(0, 50) + '...' : clo.text;
+                html += `<tr><td title="${escapeHtml(clo.text)}"><strong>CLO ${clo.num}.</strong> ${escapeHtml(shortText)}</td>`;
+                sorted.forEach(u => {
+                    const ipa = u.ipaMapping[cloIdx] || '';
+                    let cellHtml = '';
+                    if (ipa) {
+                        const cls = ipa === 'I' ? 'ipa-cell-i' : ipa === 'P' ? 'ipa-cell-p' : 'ipa-cell-a';
+                        cellHtml = `<span class="ipa-cell ${cls}" onclick="cycleIPA(${u.originalIdx},${cloIdx})" title="Click to change">${ipa}</span>`;
+                    } else {
+                        cellHtml = `<span class="ipa-cell" onclick="cycleIPA(${u.originalIdx},${cloIdx})" title="Click to assign" style="border:1.5px dashed var(--border-color);color:var(--text-muted);font-size:0.6rem;">+</span>`;
+                    }
+                    html += `<td>${cellHtml}</td>`;
+                });
+                html += '</tr>';
+            });
+
+            html += '</tbody></table>';
+            document.getElementById('ipa-matrix-content').innerHTML = html;
+            document.getElementById('matrix-title').textContent = document.getElementById('course-name').value || 'IPA Matrix';
+        }
+
+        // Gap analysis
+        function renderGapAnalysis() {
+            const gaps = [];
+
+            clos.forEach((clo, cloIdx) => {
+                const stages = { I: false, P: false, A: false };
+                units.forEach(u => {
+                    const ipa = u.ipaMapping[cloIdx];
+                    if (ipa) stages[ipa] = true;
+                });
+
+                if (!stages.I) gaps.push(`CLO ${clo.num} is never <strong>Introduced</strong> — students aren't given foundational exposure.`);
+                if (!stages.P) gaps.push(`CLO ${clo.num} is never <strong>Practised</strong> — students don't get opportunities to develop these skills.`);
+                if (!stages.A) gaps.push(`CLO ${clo.num} is never <strong>Assured</strong> — mastery is not formally demonstrated or assessed.`);
+
+                // Check progression order
+                let introLevel = 9999, practiceLevel = 0, assuredLevel = 0;
+                units.forEach(u => {
+                    const ipa = u.ipaMapping[cloIdx];
+                    if (ipa === 'I' && u.level < introLevel) introLevel = u.level;
+                    if (ipa === 'P' && u.level > practiceLevel) practiceLevel = u.level;
+                    if (ipa === 'A' && u.level > assuredLevel) assuredLevel = u.level;
+                });
+                if (stages.I && stages.A && introLevel >= assuredLevel) {
+                    gaps.push(`CLO ${clo.num} is Introduced at ${introLevel}-level but Assured at the same or lower level — progression may be inverted.`);
+                }
+            });
+
+            const panel = document.getElementById('gap-panel');
+            if (gaps.length === 0) {
+                panel.innerHTML = `<div class="gap-panel no-gaps"><h4>✓ No IPA gaps detected</h4><p style="font-size:0.8rem;">All CLOs have complete I → P → A coverage. Well done!</p></div>`;
+            } else {
+                panel.innerHTML = `<div class="gap-panel"><h4>IPA Compliance Gaps (${gaps.length})</h4>${gaps.map(g => `<div class="gap-item">${g}</div>`).join('')}</div>`;
+            }
+        }
+// Bloom's escalation view
+        function renderBloomsView() {
+            const container = document.getElementById('blooms-content');
+            const sorted = [...units].sort((a, b) => a.level - b.level);
+
+            let html = '';
+            clos.forEach((clo, cloIdx) => {
+                html += `<div class="blooms-row"><div class="blooms-clo-label">CLO ${clo.num}</div><div class="blooms-progression">`;
+
+                sorted.forEach(u => {
+                    const ipa = u.ipaMapping[cloIdx];
+                    if (!ipa) return;
+
+                    // Find relevant ULO bloom's level for this CLO in this unit
+                    let bloomLevel = 0;
+                    if (u.ulos.length > 0) {
+                        // Try to find the most relevant ULO
+                        const cloWords = new Set(clo.text.toLowerCase().split(/\W+/).filter(w => w.length > 3));
+                        let bestMatch = 0, bestBlooms = 0;
+                        u.ulos.forEach(ulo => {
+                            const uloWords = ulo.text.toLowerCase().split(/\W+/).filter(w => w.length > 3);
+                            const overlap = uloWords.filter(w => cloWords.has(w)).length;
+                            if (overlap > bestMatch || (overlap === bestMatch && ulo.bloomsLevel > bestBlooms)) {
+                                bestMatch = overlap;
+                                bestBlooms = ulo.bloomsLevel;
+                            }
+                        });
+                        bloomLevel = bestBlooms || (u.ulos[0] ? u.ulos[0].bloomsLevel : 0);
+                    }
+
+                    // If no ULO bloom's found, infer from IPA stage
+                    if (bloomLevel === 0) {
+                        if (ipa === 'I') bloomLevel = 1; // Remember/Understand
+                        else if (ipa === 'P') bloomLevel = 3; // Apply/Analyse
+                        else bloomLevel = 5; // Evaluate/Create
+                    }
+
+                    const levelClass = 'blooms-level-' + bloomLevel;
+                    const label = getBloomsLabel(bloomLevel);
+                    html += `<span class="blooms-unit-tag ${levelClass}" title="${escapeHtml(u.name)} (${ipa}): ${label}">
+                        <strong>${u.code}</strong> ${label} (${ipa})
+                    </span>`;
+                });
+
+                html += '</div></div>';
+            });
+
+            container.innerHTML = html || '<div class="empty-state"><p>Add units with ULOs to see Bloom\'s progression.</p></div>';
+        }
+
+        // Assessment alignment view
+        function renderAssessmentView() {
+            const container = document.getElementById('assessment-content');
+            const sorted = [...units].sort((a, b) => a.level - b.level);
+
+            let html = '';
+            clos.forEach((clo, cloIdx) => {
+                const shortText = clo.text.length > 60 ? clo.text.substring(0, 60) + '...' : clo.text;
+                html += `<div class="assessment-row">`;
+                html += `<div class="assessment-clo">CLO ${clo.num}. ${escapeHtml(shortText)}</div>`;
+                html += `<div class="assessment-units">`;
+
+                let hasAssured = false;
+                sorted.forEach(u => {
+                    const ipa = u.ipaMapping[cloIdx];
+                    if (!ipa) return;
+
+                    if (ipa === 'A') {
+                        hasAssured = true;
+                        // Check if unit has assessment info
+                        if (u.assessments && u.assessments.length > 0) {
+                            html += `<span class="assessment-unit-tag assured">${u.code}: ${escapeHtml(u.assessments[0])}</span>`;
+                        } else {
+                            html += `<span class="assessment-unit-tag assured">${u.code} (Assured) ✓</span>`;
+                        }
+                    } else {
+                        html += `<span class="assessment-unit-tag">${u.code} (${ipa})</span>`;
+                    }
+                });
+
+                if (!hasAssured) {
+                    html += `<span class="assessment-unit-tag no-assessment">⚠ No unit assures this CLO</span>`;
+                }
+
+                html += '</div></div>';
+            });
+
+            container.innerHTML = html || '<div class="empty-state"><p>Load CLOs and add units to see assessment alignment.</p></div>';
+        }
+
+        // Export CSV
+        document.getElementById('export-csv-btn').addEventListener('click', () => {
+            if (clos.length === 0 || units.length === 0) return;
+            const sorted = [...units].sort((a, b) => a.level - b.level);
+
+            let csv = 'CLO,' + sorted.map(u => '"' + u.code + ' (' + u.level + '-level)"').join(',') + ',Has I,Has P,Has A,Complete\n';
+
+            clos.forEach((clo, cloIdx) => {
+                const shortText = clo.text.substring(0, 40).replace(/"/g, "'");
+                let row = '"CLO ' + clo.num + '. ' + shortText + '..."';
+                let hasI = false, hasP = false, hasA = false;
+
+                sorted.forEach(u => {
+                    const ipa = u.ipaMapping[cloIdx] || '';
+                    row += ',' + ipa;
+                    if (ipa === 'I') hasI = true;
+                    if (ipa === 'P') hasP = true;
+                    if (ipa === 'A') hasA = true;
+                });
+
+                row += ',' + (hasI ? 'Yes' : 'NO') + ',' + (hasP ? 'Yes' : 'NO') + ',' + (hasA ? 'Yes' : 'NO') + ',' + (hasI && hasP && hasA ? 'Complete' : 'GAPS');
+                csv += row + '\n';
+            });
+
+            const blob = new Blob([csv], { type: 'text/csv' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'ipa-matrix-' + (document.getElementById('course-name').value || 'course').replace(/\s+/g, '-').toLowerCase() + '.csv';
+            document.body.appendChild(a); a.click(); document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        });
+
+        // Print
+        document.getElementById('print-matrix-btn').addEventListener('click', () => { window.print(); });
+
+        // Utility
+        function escapeHtml(t) { const d = document.createElement('div'); d.textContent = t; return d.innerHTML; }
+
+        // Initial render
+        renderAll();
+    });
+    </script>
 </body>
 </html>
